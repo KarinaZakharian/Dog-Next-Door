@@ -166,50 +166,74 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ##### Table animal
 
-- id
-- type
-- photo
-- name
-- weight
-- age
-- sex
-- breed
-- about
-- energy_level
-- feeding schedule
-- potty_break_schedule
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL | Identifiant de l'animal |
+| type | VARCHAR(255) | NOT NULL | espèce de l'animal :chien ou chat |
+| photo | VARCHAR(45) | NOT NULL, UNIQUE | image de l'animal, chemin accès à la photo |
+| name | VARCHAR(45) | NOT NULL | nom de l'animal |
+| weight | VARCHAR(45) | - | poids de l'animal en kg |
+| age | INTEGER | - | age de l'animal |
+| sex | VARCHAR(6) | mâle ou femelle | sexe de l'animal |
+| breed | VARCHAR(45) | - |  race de l'animal |
+| about | VARCHAR(45) | - | description de l'animal |
+| energy_level | INTEGER |  |  niveau d'activité/dépense de l'animal |
+| feeding_schedule | créneau d'alimentation INTEGER ou TIME? | - | Animal |
+| potty_break_schedule | créneau concernant les besoins INTEGER ou TIME? | - | Animal |
+| user_id | clé étrangère désigant le propriétaire de l'animal INTEGER | - | User |
 
 ##### Table booking
 
-- id
-- start_date
-- end_date
-- status
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL | Identifiant de la réservation |
+| start_date |  | DATETIME |  | Booking |
+| end_date |  |  |  | DATETIME |
+| status |  | VARCHAR(45) |  | Booking |
+| user_id |  | INTEGER |  | User |
+
 
 ##### Table disponibility
 
-- id
-- Start_date
-- end_date
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| start_date | Date de début de disponibilité | DATETIME |  | Disponibility |
+| end_date | Date de fin de disponibilité | DATETIME |  | Disponibility |
 
 ##### Table image
 
-- id
-- label
-- path_access
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| label | Libellé de l'image | VARCHAR(70) | - | Image |
+| path_access | Chemin d'accès de l'image | VARCHAR(45) | Image sotckée dans répertoire public | Image |
 
 ##### Table message
 
-- id
-- topic
-- body
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| topic | Sujet du message | VARCHAR(255) | - | Message |
+| body | Contenu du message | VARCHAR(45) | - | Message |
+| user_id | Expéditeur du message | INTEGER | - | User |
+
+<!-- Inverser les tailles de VARCHAR 45 & 255 ? -->
 
 ##### Table permission
 
-- id
-- label
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| label | Nom de la permission | VARCHAR(70) |  | Permission |
+| role_id | Role lié à la permission | INTEGER | clé étrangère | Role |
 
 ##### Table testimonial
+
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+|  |  |  |  |
 
 - id
 - label
@@ -218,6 +242,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 - rating
 
 ##### Table user
+
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+|  |  |  |  |
 
 - id
 - firstname
