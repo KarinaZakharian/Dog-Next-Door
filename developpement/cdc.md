@@ -57,7 +57,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ### L'arborescence de l'application
 
-![truc-site](Arborescence-site.png)
+![Arborescence-site](O'DogNextDoor-Arbo-routes.png)
 
 ### Liste des routes prévues
 
@@ -82,9 +82,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 | `/booking` | POST | Soumission de formulaire de réservation | Demande de réservation 
 
 ### User stories
-| En tant que  | Je veux que | Afin de  |
-|---------------|---------|------------------------------|
-|    |    |     |
+
 ### Rôle de chacun
 
 ## Documents relatifd à la BDD
