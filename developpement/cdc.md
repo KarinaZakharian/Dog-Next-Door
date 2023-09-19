@@ -233,29 +233,24 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 | Champ | Type  | Spécifités | Description |
 |---------|---------|---------|---------|
-| id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT |  |
-|  |  |  |  |
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| body | VARCHAR(255)   | NOT NULL  | corps du message |
+| rating | INTEGER   | NOT NULL  | note de l'utilisateur |
 
-- id
-- label
-- code_testimonial
-- body
-- rating
 
 ##### Table user
 
 | Champ | Type  | Spécifités | Description |
 |---------|---------|---------|---------|
-| id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT |  |
-|  |  |  |  |
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| firstname  | VARCHAR(255) | NOT NULL | prénom de l'utilisateur  |
+| lastname  | VARCHAR(255) | NOT NULL | nom de l'utilisateur  |
+| email  | VARCHAR(255) | NOT NULL | email de l'utilisateur  |
+| avatar | VARCHAR(70) | -- | avatar de l'utilisateur  |
+| street_number  | INTEGER | -- | numéro d'adresse  |
+| street_name  | VARCHAR(50) | -- | nom de l'adresse  |
+| zipcode  | INTEGER | -- | Code postal  |
+| town  | VARCHAR(45) | -- | Ville  |
+| country  | VARCHAR(45) | --  | Pays   |
+| booking_id | INTEGER | REFERENCES | FOREIGN KEY  |
 
-- id
-- firstname
-- lastname
-- email
-- avatar
-- street_number
-- street_name
-- zip_code
-- town
-- country
