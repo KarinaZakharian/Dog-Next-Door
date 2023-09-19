@@ -59,7 +59,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ## L'arborescence de l'application
 
-![Arborescence-site](./utils/Arborescence-site.png)
+![Arborescence-site](./utils/O'DogNextDoor-Arbo-routes.png)
 
 ### Liste des routes prévues
 
