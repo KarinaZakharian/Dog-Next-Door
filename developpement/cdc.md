@@ -59,7 +59,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ## L'arborescence de l'application
 
-![Arborescence-site](O'DogNextDoor-Arbo-routes.png)
+![Arborescence-site](./utils/Arborescence-site.png)
 
 ### Liste des routes prévues
 
@@ -145,3 +145,87 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ## Documents relatif à la BDD
 
+### MCD 
+- user : code_user, firstname, lastname, email, avatar, street_number, street_name, zip_code, town, country
+- role : code_role, label 
+- permission : code_permission, label
+- animal : code_animal, type, photo, name, weight, age, sex, breed, about, energy level, feeding schedule, potty break schedule
+- message : code_message, topic, body
+- testimonial : code_testimonial, body, rating
+- image : code_image, label, path_access
+- planning : code_planning,  : code_planning, started_date, ended_date
+- booking : code_booking, start_date, ended_date, status
+
+![MCD](./utils/MCD.png)
+
+### Le MPD
+
+![MPD](./utils/MPD.png)
+
+### Dico des données
+
+##### Table animal
+
+- id
+- type
+- photo
+- name
+- weight
+- age
+- sex
+- breed
+- about
+- energy_level
+- feeding schedule
+- potty_break_schedule
+
+##### Table booking
+
+- id
+- start_date
+- end_date
+- status
+
+##### Table disponibility
+
+- id
+- Start_date
+- end_date
+
+##### Table image
+
+- id
+- label
+- path_access
+
+##### Table message
+
+- id
+- topic
+- body
+
+##### Table permission
+
+- id
+- label
+
+##### Table testimonial
+
+- id
+- label
+- code_testimonial
+- body
+- rating
+
+##### Table user
+
+- id
+- firstname
+- lastname
+- email
+- avatar
+- street_number
+- street_name
+- zip_code
+- town
+- country
