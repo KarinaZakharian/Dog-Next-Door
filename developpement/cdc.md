@@ -134,13 +134,10 @@ D'autres options tels que les activités canines proposées par les accueillants
 ## Rôle de chacun
 
 - Product owner : Ilias YAKDANE
-- Scrum master : 
-- Lead dev : 
-- Git master : 
-- Référent tech : 
-    - API.gouv / vicolo :
-    - react-calendar 
-    - Leaflet / Google Map / HERE : 
+- Scrum master : Soufiane IBNAICHE
+- Lead dev : front : Karina ZAKHARIAN / back : Ilias YAKDANE
+- Git master : David VIAU
+- Référent tech : IBNAICHE Soufiane / David VIAU
 
 
 ## Documents relatif à la BDD
