@@ -118,7 +118,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 ### Route : inbox (/inbox)
 | En tant que  | Je veux que | Afin de  |
 |---------------|---------|------------------------------|
-|  membre  |  je souhaite avoir accès à un espace personnel où je peux gérer mes réservations passées et à venir, ainsi que consulter l'historique de mes séjours  |  ""  |
+|  membre  |  je souhaite avoir accès à un espace personnel   |  gérer mes réservations passées et à venir, ainsi que consulter l'historique de mes séjours  |
 |  membre  |  je veux avoir une confirmation de ma réservation  | comprenant tous les détails de ma réservation  |
 |  membre  |  je veux avoir la possibilité de modifier ou d'annuler ma réservation en ligne  |  en respectant les conditions d'annulation   |
 |  membre  |  je souhaite être informer de mes demandes en attente   |  pouvoir répondre et valider ou non les demandes d'hébergements  |
