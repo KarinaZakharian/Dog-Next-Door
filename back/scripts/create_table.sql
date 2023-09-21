@@ -9,16 +9,18 @@ DROP TABLE IF EXISTS "animal", "role_has_permission", "booking", "user_has_role"
 
 CREATE TABLE "user" (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  firstname VARCHAR(42),
-  lastname VARCHAR(42),
-  email VARCHAR(42),
-  user_password VARCHAR(72),
+  firstname NOT NULL VARCHAR(42),
+  lastname NOT NULLVARCHAR(42),
+  email NOT NULL UNIQUE VARCHAR(42),
+  user_password NOT NULL VARCHAR(72),
   date_birth DATE,
   avatar VARCHAR(42),
+  lattitude NOT NULL FLOAT(255),
+  longitude NOT NULL FLOAT(255),
   street_number VARCHAR(42),
   street_name VARCHAR(42),
   zip_code VARCHAR(42),
-  town VARCHAR(42),
+  town NOT NULL VARCHAR(42),
   country VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ

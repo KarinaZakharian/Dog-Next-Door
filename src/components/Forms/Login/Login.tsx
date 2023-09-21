@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -10,7 +12,6 @@ import './Login.scss';
 import { useAppDispatch } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
-import { useState } from 'react';
 
 function Login() {
   const [valid, setIsValid] = useState(true);
@@ -23,18 +24,26 @@ function Login() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
+    console.log(objData);
 
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
     if (isValid) {
+      swal({
+        icon: 'success',
+        buttons: [false],
+        timer: 1500,
+      });
+      setTimeout(() => {
+        dispatch(login(formData));
+        navigate('/', { replace: true });
+      }, 1500);
       // const formJson = Object.fromEntries(formData.entries());
       // console.log(formJson);
       // je veux dispatcher une action pour me connecter
       // → appel API : est-on dans la BDD ?
       // → « action asynchrone » = thunk
-      dispatch(login(formData));
-      navigate('/', { replace: true });
     } else {
       console.log('form is not valid');
     }
@@ -63,7 +72,12 @@ function Login() {
               aria-label="Mot de passe"
               style={{ borderColor: valid ? 'initial' : 'red' }}
             />
-
+            {!valid && (
+              <p className="error">
+                Le mot de passe ou l'email que vous avez saisi est incorrect.
+                Veuillez réessayer.
+              </p>
+            )}
             <Button prop="Submit" />
           </form>
         </div>
