@@ -167,8 +167,6 @@ D'autres options tels que les activités canines proposées par les accueillants
 - Git master : David VIAU
 - Référent tech : Soufiane IBNAICHE / David VIAU
 
-
-
 ## Documents relatif à la BDD
 
 ### MCD 
