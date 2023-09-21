@@ -61,24 +61,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ![Arborescence-site](./utils/O'DogNextDoor-Arbo-routes.png)
 
-### Liste des routes : front
-
-| Route | Page |
-|---------------|---------|
-|Routes Utilisateurs|---|---|---|
-| `/` | Affichage homepage & formulaire de rechreche avec possiblité de soumettre pour effectuer la recherche |
-| `/subscribe` | Affichage du formulaire d'inscription avec possibilité de soumettre pour se créer un compte |
-| `/contact` | Affichage du formulaire de contact avec possibilité de soumettre pour envoyer la demande aux administrateurs du site |
-| `/login` | Affichage du formulaire de connexion avec possibilité de soumettre pour connexion|
-| `/search` | Affiche la liste des utilisateurs trouvés selon les ccritères de recherche |
-|Routes membres|---|
-| `/pet-sitter/id` | Affichage du pet sitter sélectionné par l'id |
-| `/account/id` | Affichage du profil de l'utilisateur loggé avec son compte |
-| `/account/id/inbox` | Affcihage de la liste des demandes en attentes |
-| `/account/id/inbox/upcoming` | Affcihage de la liste des demandes à venir  |
-| `/account/id/inbox/past` | Affcihage de la liste des demandes passées |
-
-### Liste des routes : back
+### Liste des routes prévues
 
 | Route | Méthode | Action | Données renvoyées |
 |---------------|---------|------------------------------|-----------------|
@@ -94,11 +77,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 | `/search` | GET | Liste des utilisateurs | Récupère les utilisateurs des doggers proches et afficher sur la map|
 | `/search` | POST | Refaire une recherche | Modifiez le filtre de recherche |
 |Routes membres|---|---|---|
-| `/account` | GET | Affichage du profil de l'utilisateur | Récupérer les données du profil|
-| `/account` | PATCH | Modification des données personnelles (prénom, email, téléphone) | Modifier les données personnelles (prénom, email, téléphone)|
-| `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées|
-| `/pet-sitter` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter|
-| `/pet-sitter` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires|
+| `/account` | GET | Affichage du profil de l'utilisateur | Récupérer les données du profil
+| `/account` | PATCH | Modification des données personnelles (prénom, email, téléphone) | Modifier les données personnelles (prénom, email, téléphone)
+| `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées
+| `/pet-sitter` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter
+| `/pet-sitter` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires
 
 ## User stories
 
@@ -151,11 +134,10 @@ D'autres options tels que les activités canines proposées par les accueillants
 ## Rôle de chacun
 
 - Product owner : Ilias YAKDANE
-- Scrum master : Soufiane IBNAICHE
+- Scrum master : IBNAICHE Soufiane
 - Lead dev : front : Karina ZAKHARIAN / back : Ilias YAKDANE
 - Git master : David VIAU
-- Référent tech : IBNAICHE Soufiane / David VIAU
-
+- Référent tech : Soufiane IBNAICHE / David VIAU
 
 ## Documents relatif à la BDD
 
@@ -186,11 +168,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 | type | VARCHAR(255) | NOT NULL | espèce de l'animal :chien ou chat |
 | photo | VARCHAR(45) | NOT NULL, UNIQUE | image de l'animal, chemin accès à la photo |
 | name | VARCHAR(45) | NOT NULL | nom de l'animal |
-| weight | VARCHAR(45) | - | poids de l'animal en kg |
-| age | INTEGER | - | age de l'animal |
+| weight_category | VARCHAR(45) | - | Categorie de poids de l'animal |
+| age | DATE | - | Date de naissance de l'animal |
 | sex | VARCHAR(6) | mâle ou femelle | sexe de l'animal |
 | breed | VARCHAR(45) | - |  race de l'animal |
-| about | VARCHAR(45) | - | description de l'animal |
+| about | LONGTEXT | - | description de l'animal |
 | energy_level | INTEGER | - |  niveau d'activité/dépense de l'animal |
 | feeding_schedule | INTEGER ou TIME? | NOT NULL |  créneau d'alimentation |
 | potty_break_schedule | INTEGER ou TIME? | - |  créneau concernant les besoins |
@@ -205,6 +187,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 | end_date | DATETIME | NOT NULL, UNIQUE, GreaterThan start_date | Date à laquelle la réservation prend fin |
 | status | VARCHAR(45) | NOT NULL, DEFAULT "En ATTENTE" | Statut de la réservation : en attente, acceptée, finie |
 | user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) | Clé étrangère référant à l'utilisateur qui aura en charge l'hébergement |
+| sender_id | INTEGER | NOT NULL, FOREIGN KEY user(id) | Clé étrangère référant à l'utilisateur qui fait la demande |
 
 ##### Table disponibility
 
@@ -221,15 +204,19 @@ D'autres options tels que les activités canines proposées par les accueillants
 | id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT | Identifiant de l'image |
 | label | VARCHAR(70) | NOT NULL | Libellé de l'image |
 | path_access | VARCHAR(45) | NOT NULL | Chemin d'accès de l'image : sotckée dans répertoire public |
+| user_id | INT |  FOREIGN KEY user(id)| Clé étrangère référant à l'utilisateur qui a ajouté une photo |
 
 ##### Table message
 
 | Champ | Type  | Spécifités | Description |
 |---------|---------|---------|---------|
 | id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT |  Identifiant du message |
-| topic | VARCHAR(255) | NOT NULL | Sujet du message |
-| body | VARCHAR(45) | NOT NULL | Contenu du message |
-| user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée à l'expéditeur du message |
+| topic | VARCHAR(45) | NOT NULL | Sujet du message |
+| body | LONGTEXT | NOT NULL | Contenu du message |
+| recipient_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée au destinataire du message |
+| sender_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée au l'expéditeur du message |
+
+<!-- Inverser les tailles de VARCHAR 45 & 255 ? -->
 
 ##### Table permission
 
@@ -254,6 +241,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 | id | INTEGER | PRIMARY KEY, NOT NULL |  |
 | firstname  | VARCHAR(255) | NOT NULL | prénom de l'utilisateur  |
 | lastname  | VARCHAR(255) | NOT NULL | nom de l'utilisateur  |
+| birth_date  | DATE | NOT NULL | date de naissance de l''utilisateur |
 | email  | VARCHAR(255) | NOT NULL | email de l'utilisateur  |
 | avatar | VARCHAR(70) | -- | avatar de l'utilisateur  |
 | street_number  | INTEGER | -- | numéro d'adresse  |
@@ -262,3 +250,4 @@ D'autres options tels que les activités canines proposées par les accueillants
 | town  | VARCHAR(45) | -- | Ville  |
 | country  | VARCHAR(45) | --  | Pays   |
 | booking_id | INTEGER | REFERENCES | FOREIGN KEY  |
+
