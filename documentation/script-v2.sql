@@ -6,7 +6,7 @@ CREATE TABLE ANIMAL (
   type VARCHAR(42),
   photo VARCHAR(42),
   name VARCHAR(42),
-  weight VARCHAR(42),
+  weight_category VARCHAR(42),
   age VARCHAR(42),
   sex VARCHAR(42),
   breed VARCHAR(42),
@@ -29,6 +29,9 @@ CREATE TABLE BOOKING (
   start_date VARCHAR(42),
   end_date VARCHAR(42),
   status VARCHAR(42),
+  comment VARCHAR(42),
+  validate VARCHAR(42),
+   VARCHAR(42),
   code_user VARCHAR(42),
   code_user_1 VARCHAR(42),
   PRIMARY KEY (code_booking)
