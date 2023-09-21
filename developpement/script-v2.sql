@@ -15,7 +15,9 @@ CREATE TABLE ANIMAL (
   feeding_schedule VARCHAR(42),
   potty_break_schedule VARCHAR(42),
   code_user VARCHAR(42),
-  PRIMARY KEY (code_animal)
+  PRIMARY KEY (code_animal),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE APPARTIENT (
@@ -31,7 +33,9 @@ CREATE TABLE BOOKING (
   status VARCHAR(42),
   code_user VARCHAR(42),
   code_user_1 VARCHAR(42),
-  PRIMARY KEY (code_booking)
+  PRIMARY KEY (code_booking),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE DETIENT (
@@ -44,7 +48,9 @@ CREATE TABLE DISPONIBILITY (
   code_disponibility VARCHAR(42),
   start_date VARCHAR(42),
   end_date VARCHAR(42),
-  PRIMARY KEY (code_disponibility)
+  PRIMARY KEY (code_disponibility),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE ETABLIR (
@@ -53,12 +59,14 @@ CREATE TABLE ETABLIR (
   PRIMARY KEY (code_disponibility, code_user)
 );
 
-CREATE TABLE IMAGE (
+CREATE TABLE IMAGE (s
   code_image VARCHAR(42),
   label VARCHAR(42),
   path_access VARCHAR(42),
   code_user VARCHAR(42),
-  PRIMARY KEY (code_image)
+  PRIMARY KEY (code_image),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE MESSAGE (
@@ -67,7 +75,9 @@ CREATE TABLE MESSAGE (
   body VARCHAR(42),
   code_user VARCHAR(42),
   code_user_1 VARCHAR(42),
-  PRIMARY KEY (code_message)
+  PRIMARY KEY (code_message),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE MESSAGE_ADMIN (
@@ -75,19 +85,25 @@ CREATE TABLE MESSAGE_ADMIN (
   subject VARCHAR(42),
   message VARCHAR(42),
   code_user VARCHAR(42),
-  PRIMARY KEY (code_message_admin)
+  PRIMARY KEY (code_message_admin),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE PERMISSION (
   code_permission VARCHAR(42),
   label VARCHAR(42),
-  PRIMARY KEY (code_permission)
+  PRIMARY KEY (code_permission),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE ROLE (
   code_role VARCHAR(42),
   label VARCHAR(42),
-  PRIMARY KEY (code_role)
+  PRIMARY KEY (code_role),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE TESTIMONIAL (
@@ -95,7 +111,9 @@ CREATE TABLE TESTIMONIAL (
   body VARCHAR(42),
   rating VARCHAR(42),
   code_user VARCHAR(42),
-  PRIMARY KEY (code_testimonial)
+  PRIMARY KEY (code_testimonial),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 CREATE TABLE USER (
@@ -109,7 +127,9 @@ CREATE TABLE USER (
   zip_code VARCHAR(42),
   town VARCHAR(42),
   country VARCHAR(42),
-  PRIMARY KEY (code_user)
+  PRIMARY KEY (code_user),
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME
 );
 
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
