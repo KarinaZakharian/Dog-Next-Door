@@ -9,7 +9,7 @@ const userController = {
         const passwordUser = userFound.user_password;
         if(passwordUser == req.body.user_password){
 
-            req.session.user = userFound;
+            // req.session.user = userFound;
             delete req.session.user_password;
             const userToken = tokenController.createToken(userFound.id);
             // req.cookie.accesstoken = userToken;

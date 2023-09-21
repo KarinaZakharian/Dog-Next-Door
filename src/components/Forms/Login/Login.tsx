@@ -31,7 +31,11 @@ function Login() {
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
+<<<<<<< HEAD
     if (isValid && firstname) {
+=======
+    if (isValid) {
+>>>>>>> 3e8c36b (Modification final pour la présentation)
       swal({
         icon: 'success',
         buttons: [false],
