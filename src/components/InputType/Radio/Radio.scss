@@ -1,0 +1,42 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+.form__radio-input {
+    -webkit-appearance: none;
+  }
+
+  .form__fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .form__radio-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 200px;
+    border: 2px solid v.$color-border;
+    margin: auto;
+    border-radius: 10px;
+    color: v.$color-text;
+    transition: 0.5s;
+
+    .form__icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    > span {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  .form__radio-input:checked + .form__radio-label {
+    border: 2px solid v.$color-hower;
+    box-shadow: 0 10px 20px v.$color-text-dark;
+    color: v.$color-text-dark;
+  }

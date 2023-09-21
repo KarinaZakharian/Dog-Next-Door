@@ -1,5 +1,5 @@
-@use '../../styles/reset';
-@use '../../styles/variables' as v;
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
 .input {
   display: flex;
   flex-direction: column;
