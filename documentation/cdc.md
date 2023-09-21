@@ -21,6 +21,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 ## MVP
 
 1. Rechercher un pet sitter se situant dans la même ville ou région
+<<<<<<< HEAD
 2. Recherche de pet sitter par périmètre, affichage de la carte (API : leaflet, api.gouv)
 3. Devenir un pet sitter
 4. Discuter avec un pet sitter en privée (messagerie)
@@ -35,6 +36,22 @@ D'autres options tels que les activités canines proposées par les accueillants
 3. Gestion d'une monnaie virtuelle avec le Doggy
 4. Acheter des Doggy's
 5. Ajout du web socket (discussion instantanée & planning)
+=======
+2. Devenir un pet sitter
+3. Discuter avec un pet sitter en privée ( messagerie)
+4. Proposer un créneau de disponibilité
+5. Réservez un créneau de garde
+6. Validation de la garde
+7. Mettre à jour le planning
+
+## Evolutions potentielles
+
+1. Recherche de pet sitter par périmètre affichage de la carte (API : googleMap, OpenLayers, leaflet, mapbox, openstreetview)
+2. Rendre la garde obligatoire après avoir fait garder son animal
+3. Gestion d'une monnaie virtuelle avec le Doggy
+4. Acheter des Doggy's
+5. Ajout du web socket (discussion instantanée)
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 6. Modification du mot de passe en cas d'oubli
 7. Avoir un panel d'administration pour gérer tous les utilisateurs
 
@@ -61,6 +78,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ![Arborescence-site](./utils/O'DogNextDoor-Arbo-routes.png)
 
+<<<<<<< HEAD
 ### Liste des routes : front
 
 | Route | Page |
@@ -79,10 +97,14 @@ D'autres options tels que les activités canines proposées par les accueillants
 | `/account/id/inbox/past` | Affcihage de la liste des demandes passées |
 
 ### Liste des routes : back
+=======
+### Liste des routes prévues
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 
 | Route | Méthode | Action | Données renvoyées |
 |---------------|---------|------------------------------|-----------------|
 |Routes Utilisateurs|---|---|---|
+<<<<<<< HEAD
 | `/` | GET | Affichage du formulaire & homepage | Page d'accueil|
 | `/` | POST | Soumission du formulaire de recherche | Information retournée par le formulaire|
 | `/subscribe` | GET | Affichage du formulaire d'inscription | Page d'inscription|
@@ -99,6 +121,24 @@ D'autres options tels que les activités canines proposées par les accueillants
 | `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées|
 | `/pet-sitter` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter|
 | `/pet-sitter` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires|
+=======
+| `/` | GET | Affichage du formulaire & homepage | Page d'accueil
+| `/` | POST | Soumission du formulaire de recherche | Information retournée par le formulaire
+| `/subscribe` | GET | Affichage du formulaire d'inscription | Page d'inscription
+| `/subscribe` | POST | Soumission du formulaire d'inscription | Information du nouvelle utilisateur
+| `/login` | GET | Affichage du formulaire de connexion | Page de connexion
+| `/login` | POST | Soumission du formulaire de connexion | Connexion de l'utilisateur
+| `/contact` | GET | Affichage du formulaire de contact | Page de contact
+| `/contact` | POST | Soumission du formulaire de contact | Envoi d'un message à l'administrateur
+| `/search` | GET | Liste des utilisateurs | Récupère les utilisateurs des doggers proches et afficher sur la map
+| `/search` | POST | Refaire une recherche | Modifiez le filtre de recherche 
+|Routes membres|---|---|---|
+| `/account` | GET | Affichage du profil de l'utilisateur | Récupérer les données du profil
+| `/account` | PATCH | Modification des données personnelles (prénom, email, téléphone) | Modifier les données personnelles (prénom, email, téléphone)
+| `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées
+| `/pet-sitter` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter
+| `/pet-sitter` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 
 ## User stories
 
@@ -196,6 +236,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 | potty_break_schedule | INTEGER ou TIME? | - |  créneau concernant les besoins |
 | user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  clé étrangère désigant le propriétaire (user) de l'animal |
 
+<<<<<<< HEAD
+=======
+<!-- Potty break integer ou varchar/time? -->
+
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 ##### Table booking
 
 | Champ | Type  | Spécifités | Description |
@@ -231,6 +276,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 | body | VARCHAR(45) | NOT NULL | Contenu du message |
 | user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée à l'expéditeur du message |
 
+<<<<<<< HEAD
+=======
+<!-- Inverser les tailles de VARCHAR 45 & 255 ? -->
+
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 ##### Table permission
 
 | Champ | Type  | Spécifités | Description |
@@ -247,6 +297,10 @@ D'autres options tels que les activités canines proposées par les accueillants
 | body | VARCHAR(255)   | NOT NULL  | corps du message |
 | rating | INTEGER   | NOT NULL  | note de l'utilisateur |
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
 ##### Table user
 
 | Champ | Type  | Spécifités | Description |
@@ -261,4 +315,9 @@ D'autres options tels que les activités canines proposées par les accueillants
 | zipcode  | INTEGER | -- | Code postal  |
 | town  | VARCHAR(45) | -- | Ville  |
 | country  | VARCHAR(45) | --  | Pays   |
+<<<<<<< HEAD
 | booking_id | INTEGER | REFERENCES | FOREIGN KEY  |
+=======
+| booking_id | INTEGER | REFERENCES | FOREIGN KEY  |
+
+>>>>>>> 66e49cd (Update MCD, MPD, tree structure)
