@@ -1,6 +1,6 @@
 :
 RECEPTIONNE, 01 MESSAGE, 0N USER
-ANIMAL : code_animal, type, photo, name, weight, age, sex, breed, about, energy_level, feeding schedule, potty_break_schedule
+ANIMAL : code_animal, type, photo, name, weight_category, age, sex, breed, about, energy_level, feeding schedule, potty_break_schedule
 TESTIMONIAL : code_testimonial, body, rating
 DISPONIBILITY : code_disponibility, start_date, end_date
 :
@@ -26,7 +26,7 @@ ENVOIE, 01 MESSAGE_ADMIN, 0N USER
 :
 :
 
-BOOKING : code_booking, start_date, end_date, status
+BOOKING : code_booking, start_date, end_date, status, comment, validate, 
 RESERVER, 11 BOOKING, 0N USER
 IMAGE : code_image, label, path_access
 MESSAGE_ADMIN : code_message_admin, subject, message
