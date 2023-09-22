@@ -278,9 +278,3 @@ D'autres options tels que les activités canines proposées par les accueillants
 | country  | VARCHAR(45) | --  | Pays   |
 
 ##### Table message_admin
-
-| Champ | Type  | Spécifités | Description |
-|---------|---------|---------|---------|
-| id | INTEGER | PRIMARY KEY, NOT NULL |  |
-| subject | VARCHAR(45)   | NOT NULL  | sujet du message |
-| message | LONGTEXT   | NOT NULL  | message de l'utilisateur |
