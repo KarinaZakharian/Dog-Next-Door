@@ -4,10 +4,10 @@
 //import './App.scss';
 //import Login from '../Login/Login';
 
-import CalendarComp from '../InputType/DatePiker/DatePicker';
+import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
 
 function App() {
-  return <CalendarComp />;
+  return <DateRangePickerComp />;
 }
 
 export default App;
