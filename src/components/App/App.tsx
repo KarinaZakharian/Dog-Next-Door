@@ -2,12 +2,12 @@
 //import Radio from '../InputType/Radio/Radio';
 //import SignUp from '../Signup/Signup'
 //import './App.scss';
-//import Login from '../Login/Login';
+import Login from '../Login/Login';
 
-import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
+//import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
 
 function App() {
-  return <DateRangePickerComp />;
+  return <Login />;
 }
 
 export default App;
