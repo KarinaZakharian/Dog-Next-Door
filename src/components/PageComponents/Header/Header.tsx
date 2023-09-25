@@ -22,8 +22,12 @@ function Header() {
         {name && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
-              <div className="menu__menu-item">Profil</div>
-              <div className="menu__menu-item">Boite de reception</div>
+              <NavLink className="menu__menu-item" to="/profil">
+                Profil
+              </NavLink>
+              <NavLink className="menu__menu-item" to="/index">
+                Boite de reception
+              </NavLink>
             </div>
             <div className="menu__menu-connection">
               <strong>{name}</strong>
@@ -40,8 +44,12 @@ function Header() {
 
         {!name && (
           <div className="menu__nav-menu">
-            <div className="menu__menu-item">Login</div>
-            <div className="menu__menu-item">Singup</div>
+            <NavLink className="menu__menu-item" to="/subscribe">
+              Login
+            </NavLink>
+            <NavLink className="menu__menu-item" to="/login">
+              Singup
+            </NavLink>
           </div>
         )}
       </nav>
