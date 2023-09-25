@@ -1,0 +1,31 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+form {
+  background-color: v.$color-main;
+  border-radius: 4px;
+  border: 2px solid v.$color-border;
+  width: 70%;
+  margin: 50px auto;
+  color: v.$color-text;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 35px;
+}
+
+.main {
+  height: 100vh;
+  background-image: url(../../../assets/woman-2711279.jpg);
+  background-size: cover; /* Image will cover the entire container */
+  background-repeat: no-repeat; /* Image will not repeat */
+  flex-grow: 1;
+}
+.container {
+  width: 990px;
+  margin: 0 auto;
+}

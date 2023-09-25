@@ -1,0 +1,37 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+
+.footer__wrapper {
+  background-color: v.$color-border;
+  padding: 20px;
+}
+
+.footer__container {
+  max-width: 990px;
+  padding: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer__nav-menu-item {
+  font-weight: 400;
+  font-size: 16px;
+  color: v.$color-text-dark;
+}
+
+.footer__rights {
+  font-size: 16px;
+  color: v.$color-text-dark;
+}
