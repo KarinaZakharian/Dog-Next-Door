@@ -46,10 +46,10 @@ function Header() {
 
         {!name && (
           <div className="menu__nav-menu">
-            <NavLink className="menu__menu-item" to="/subscribe">
+            <NavLink className="menu__menu-item" to="/login">
               Login
             </NavLink>
-            <NavLink className="menu__menu-item" to="/login">
+            <NavLink className="menu__menu-item" to="/subscribe">
               Singup
             </NavLink>
           </div>

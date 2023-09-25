@@ -45,7 +45,7 @@ function Login() {
 
             <Input
               label="password"
-              name="password"
+              name="user_password"
               type="password"
               placeholder="Mot de passe"
               aria-label="Mot de passe"

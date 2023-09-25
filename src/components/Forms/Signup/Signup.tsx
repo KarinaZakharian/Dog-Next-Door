@@ -24,7 +24,7 @@ function SignUp() {
     // je veux dispatcher une action pour me connecter
     // → appel API : est-on dans la BDD ?
     // → « action asynchrone » = thunk
-    navigate('/', { replace: true });
+    navigate('/login', { replace: true });
     dispatch(signup(formData));
   };
   return (
