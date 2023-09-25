@@ -1,0 +1,51 @@
+.container {
+  width: 990px;
+  margin: 0 auto;
+}
+
+.menu {
+  background-color: #ffffff;
+  padding: 10px;
+  display: flex;
+
+  align-items: center;
+
+  &__logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__nav-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__nav-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &__menu-item {
+      margin-right: 20px;
+      text-decoration: none;
+      color: #333;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__menu-connection {
+    margin-left: 20px;
+
+    strong {
+      margin-right: 10px;
+    }
+  }
+}
