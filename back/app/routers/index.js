@@ -1,10 +1,11 @@
 const express = require("express");
-
 const router = express.Router();
+const userRouter = require('./userRouter');
 
-
-router.get("/", (req,res) => {
+userRouter.get("/", (req,res) => {
     res.send("API O'DogNextDoor");
-})
+});
+
+router.use(userRouter);
 
 module.exports = router;

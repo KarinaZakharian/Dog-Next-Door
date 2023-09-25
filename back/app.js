@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const router = require("./app/routers/index.js");
+const router = require("./app/routers");
 
 //* permet de sécuriser les transferts de données entre des navigateurs et des serveurs web
 
