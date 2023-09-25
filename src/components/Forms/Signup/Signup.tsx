@@ -71,7 +71,7 @@ function SignUp() {
               aria-label="Adresse E-mail"
             />
             <Input
-              name="password"
+              name="user_password"
               type="password"
               placeholder="Mot de passe"
               aria-label="Mot de passe"
