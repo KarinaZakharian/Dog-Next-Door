@@ -2,6 +2,7 @@
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
 import './Login.scss';
 import picture from '../../../assets/woman-2711279.jpg';
 
@@ -25,12 +26,10 @@ function Login() {
     dispatch(login(formData));
   };
   return (
-    <>
-      <div className="container">
-        <Header />
-      </div>
-      <main>
-        <img src={picture} alt="main" />
+    <div className="page-wrapper">
+      <Header />
+
+      <main className="main">
         <div className="container">
           <form onSubmit={handleSubmit}>
             <Input
@@ -53,7 +52,8 @@ function Login() {
           </form>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 

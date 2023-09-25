@@ -2,9 +2,8 @@
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
 import './Signup.scss';
-
-import picture from '../../../assets/woman-2711279.jpg';
 
 import { useAppDispatch } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/signup';
@@ -26,12 +25,10 @@ function SignUp() {
     dispatch(signup(formData));
   };
   return (
-    <>
-      <div className="container">
-        <Header />
-      </div>
-      <main>
-        <img src={picture} alt="main" />
+    <div className="page-wrapper">
+      <Header />
+
+      <main className="main">
         <div className="container">
           <form className="form" onSubmit={handleSubmit}>
             <Input
@@ -80,7 +77,8 @@ function SignUp() {
           </form>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 

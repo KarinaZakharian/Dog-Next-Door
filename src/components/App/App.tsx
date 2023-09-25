@@ -1,6 +1,6 @@
 //import Button from '../InputType/Button/Button';
 //import Radio from '../InputType/Radio/Radio';
-//import SignUp from '../Signup/Signup'
+import SignUp from '../Forms/Signup/Signup';
 //import './App.scss';
 import Login from '../Forms/Login/Login';
 //import Header from '../PageComponents/Header/Header';
