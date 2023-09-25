@@ -3,6 +3,8 @@ const {userController} = require('../controllers/index.js')
 
 const userRouter= express.Router();
 
-userRouter.post("/login", userController.findUser);
+// userRouter.post("/login",userController.findUser, userController.checkUserInput);
+userRouter.post("/login",userController.findUser);
+// userRouter.post("/account",userController.loggedUser);
 
 module.exports = userRouter;
