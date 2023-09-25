@@ -1,6 +1,11 @@
 
 ### Début du Sprint 1
 
+Création de la branche develop_back 
+
+
+### Début du Sprint 1
+
 # J7 22/09
     - Rectification du cdc ( doublons et routes )
     - Utiliser GitHub Project afin de partitioner les différentes tâches durant ce Sprint_1
