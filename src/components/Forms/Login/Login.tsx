@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { useNavigate } from 'react-router-dom';
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
@@ -10,6 +11,7 @@ import { useAppDispatch } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 
 function Login() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,6 +26,7 @@ function Login() {
     // → appel API : est-on dans la BDD ?
     // → « action asynchrone » = thunk
     dispatch(login(formData));
+    navigate('/', { replace: true });
   };
   return (
     <div className="page-wrapper">

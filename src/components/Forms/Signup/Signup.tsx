@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+
+import { useNavigate } from 'react-router-dom';
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
@@ -9,6 +11,7 @@ import { useAppDispatch } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/signup';
 
 function SignUp() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,7 +24,7 @@ function SignUp() {
     // je veux dispatcher une action pour me connecter
     // → appel API : est-on dans la BDD ?
     // → « action asynchrone » = thunk
-
+    navigate('/', { replace: true });
     dispatch(signup(formData));
   };
   return (

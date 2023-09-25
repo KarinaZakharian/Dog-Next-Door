@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // import Header from '../PageComponents/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 
