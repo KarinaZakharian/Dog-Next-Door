@@ -1,12 +1,19 @@
 /* eslint-disable prettier/prettier */
 import { NavLink } from 'react-router-dom';
-import Button from '../InputType/Button/Button';
 import './Header.scss';
-import mainLogo from '../../assets/Logo-ODogNextDoor.svg';
+import mainLogo from '../../../assets/Logo-ODogNextDoor.svg';
 
-const name = 'karina';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+
+import { logout } from '../../../store/reducers/login';
 
 function Header() {
+  const name = useAppSelector((state) => state.login.name);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <div className="wrapper">
       <nav className="menu">
@@ -20,7 +27,11 @@ function Header() {
             </div>
             <div className="menu__menu-connection">
               <strong>{name}</strong>
-              <button className="menu__menu-button" type="submit">
+              <button
+                className="menu__menu-button"
+                type="button"
+                onClick={handleLogout}
+              >
                 Se déconnecter
               </button>
             </div>

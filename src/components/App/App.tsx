@@ -2,13 +2,13 @@
 //import Radio from '../InputType/Radio/Radio';
 //import SignUp from '../Signup/Signup'
 //import './App.scss';
-//import Login from '../Login/Login';
-import Header from '../Header/Header';
+import Login from '../Forms/Login/Login';
+//import Header from '../PageComponents/Header/Header';
 
 //import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
 
 function App() {
-  return <Header />;
+  return <Login />;
 }
 
 export default App;

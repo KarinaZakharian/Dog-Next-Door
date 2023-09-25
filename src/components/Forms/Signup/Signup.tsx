@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import Input from '../InputType/Input/Input';
-import Button from '../InputType/Button/Button';
+import Input from '../../InputType/Input/Input';
+import Button from '../../InputType/Button/Button';
 import './Signup.scss';
 
 function SignUp() {
