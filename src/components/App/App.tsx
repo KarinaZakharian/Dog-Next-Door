@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 // On import nos composants de pages
 import Home from '../Home';
-import Search from '../Search';
+import Search from '../Search/Search';
 import Error from '../Error';
 
 // on import le css
