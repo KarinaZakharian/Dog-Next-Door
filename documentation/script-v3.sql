@@ -29,6 +29,9 @@ CREATE TABLE BOOKING (
   start_date VARCHAR(42),
   end_date VARCHAR(42),
   status VARCHAR(42),
+  comment VARCHAR(42),
+  validate VARCHAR(42),
+   VARCHAR(42),
   code_user VARCHAR(42),
   code_user_1 VARCHAR(42),
   PRIMARY KEY (code_booking)
@@ -103,7 +106,6 @@ CREATE TABLE USER (
   firstname VARCHAR(42),
   lastname VARCHAR(42),
   email VARCHAR(42),
-  date_birth VARCHAR(42),
   avatar VARCHAR(42),
   street_number VARCHAR(42),
   street_name VARCHAR(42),
