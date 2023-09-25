@@ -1,7 +1,7 @@
 // on import nos composants pour la création de la page /Search
 import Header from '../PageComponents/Header/Header';
 import Footer from '../PageComponents/Footer/Footer';
-import SectionCard from '../SectionCards/SectionCards';
+import SectionCard from '../SectionCard/SectionCards';
 import SectionMap from '../SectionMap/SectionMap';
 
 // On import notre css
