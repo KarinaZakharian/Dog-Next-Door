@@ -8,11 +8,9 @@ import {
 import axios from 'axios';
 
 interface LoginState {
-  isOpen: boolean;
   name: string | null;
 }
 export const initialState: LoginState = {
-  isOpen: true,
   name: null,
 };
 
@@ -40,7 +38,7 @@ export const login = createAsyncThunk(
     // delete data.token;
 
     return data as {
-      // logged: boolean;
+      logged: boolean;
       name: string;
       // token: string;
     };
