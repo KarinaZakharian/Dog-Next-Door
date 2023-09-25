@@ -17,7 +17,9 @@ function Header() {
   return (
     <div className="wrapper">
       <nav className="menu">
-        <img className="menu__logo" src={mainLogo} alt="main-logo" />
+        <NavLink to="/">
+          <img className="menu__logo" src={mainLogo} alt="main-logo" />
+        </NavLink>
 
         {name && (
           <div className="menu__nav-wrapper">
