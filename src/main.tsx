@@ -3,6 +3,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import ReactDOM from 'react-dom/client';
+// On importe notre composant principal
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App/App';
 

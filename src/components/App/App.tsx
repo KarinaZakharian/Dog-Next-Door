@@ -1,14 +1,24 @@
-//import Button from '../InputType/Button/Button';
-//import Radio from '../InputType/Radio/Radio';
-import SignUp from '../Forms/Signup/Signup';
-//import './App.scss';
-import Login from '../Forms/Login/Login';
-//import Header from '../PageComponents/Header/Header';
+// import Header from '../PageComponents/Header/Header';
+import { Route, Routes } from 'react-router-dom';
 
-//import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
+// On import nos composants de pages
+import Home from '../Home';
+import Search from '../Search';
+import Error from '../Error';
+
+// on import le css
+import './App.scss';
 
 function App() {
-  return <Login />;
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
