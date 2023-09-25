@@ -58,7 +58,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.name = null;
 
       // je supprime mon JWT de mon instance Axios
-      //delete axiosInstance.defaults.headers.common.Authorization;
+      // delete axiosInstance.defaults.headers.common.Authorization;
     });
 });
 
