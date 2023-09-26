@@ -1,14 +1,16 @@
-// import { useState } from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-// import { icon } from 'leaflet';
-// import adressData from '../../adressData';
+import L from 'leaflet';
+import marker from '../../assets/location-pin.png';
 
 import './SectionMap.scss';
 
 function SectionMap() {
-  // const [activeAdress, setActiveAdress] = useState(null);
-  // const data = adressData;
-
+  const myIcon = new L.Icon({
+    iconUrl: marker,
+    iconRetinaUrl: marker,
+    popupAnchor: [-0, -0],
+    iconSize: [45, 45],
+  });
   return (
     <MapContainer
       className="leaflet-container"
@@ -16,19 +18,12 @@ function SectionMap() {
       zoom={12}
       scrollWheelZoom={false}
     >
-      {/* {data.features.map((park) => (
-        <Marker
-          key={park.properties.PARK_ID}
-          position={[
-            park.geometry.coordinates[1],
-            park.geometry.coordinates[0],
-          ]}
-          onClick={() => {
-            setActiveAdress(park);
-          }}
-          icon={icon} */}
-      {/* />
-      ))} */}
+      <Marker
+        key={1}
+        position={[46.116667, 3.416667]}
+        // onClick={() => {}}
+        icon={myIcon}
+      />
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
