@@ -34,6 +34,7 @@ function SignUp() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
+    console.log(objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
