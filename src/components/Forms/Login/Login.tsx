@@ -9,11 +9,13 @@ import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import './Login.scss';
 
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
 
 function Login() {
+  const firstname = useAppSelector((state) => state.login.firstname);
+
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -29,7 +31,7 @@ function Login() {
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
-    if (isValid) {
+    if (isValid && firstname) {
       swal({
         icon: 'success',
         buttons: [false],
@@ -45,7 +47,14 @@ function Login() {
       // → appel API : est-on dans la BDD ?
       // → « action asynchrone » = thunk
     } else {
-      console.log('form is not valid');
+      swal({
+        icon: 'error',
+        buttons: [false],
+        timer: 1500,
+      });
+      setTimeout(() => {
+        navigate('/login', { replace: true });
+      }, 1500);
     }
   };
   return (
