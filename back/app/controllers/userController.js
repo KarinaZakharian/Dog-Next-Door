@@ -11,7 +11,7 @@ const userController = {
             req.session.user = userFound;
             delete req.session.user_password;
             const userToken = tokenController.createToken(userFound.id);
-            // req.session.cookie.token = userToken;
+            // req.cookie.accesstoken = userToken;
             // req.session.user.token = userToken
             
             res.json(req.session.user);
