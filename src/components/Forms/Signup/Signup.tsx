@@ -18,6 +18,7 @@ import {
   passwordSchema,
   firstnameSchema,
   lastnameSchema,
+  citySchema,
 } from '../../../Validations/UserValidation';
 
 function SignUp() {
@@ -25,6 +26,7 @@ function SignUp() {
   const [passwordValid, setPasswordIsValid] = useState(true);
   const [firstnameValid, setfirstnameIsValid] = useState(true);
   const [lastnameValid, setlastnameIsValid] = useState(true);
+  const [cityValid, setCityIsValid] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -60,11 +62,17 @@ function SignUp() {
     });
     setlastnameIsValid(lastnameIsValid);
 
+    const cityIsValid = await citySchema.isValid({
+      city: `${objData.firstname}`,
+    });
+    setCityIsValid(cityIsValid);
+
     if (
       emailIsValid &&
       passwordIsValid &&
       firstnameIsValid &&
-      lastnameIsValid
+      lastnameIsValid &&
+      cityIsValid
     ) {
       swal('Nous vous remercions de vous être inscrit sur notre site', {
         icon: 'success',
@@ -112,7 +120,10 @@ function SignUp() {
               style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
             />
             {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
-            <AutoComplete />
+            <AutoComplete
+              style={{ borderColor: cityValid ? 'initial' : 'red' }}
+            />
+            {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input
               name="email"
               type="email"
