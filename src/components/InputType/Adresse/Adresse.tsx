@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
-import './style.scss';
+import './Adresse.scss';
 
 function AutoComplete() {
   const [addresses, setAdresses] = useState([]);
@@ -38,6 +38,9 @@ function AutoComplete() {
   return (
     <div className="signup__localisation">
       <div className="autocompletion-city">
+        <label htmlFor="city" className="input__label">
+          Ville
+        </label>
         <input
           name="city"
           id="city"
