@@ -8,12 +8,10 @@ import {
 import axios from 'axios';
 
 interface LoginState {
-  isOpen: boolean;
-  name: string | null;
+  firstname: string | null;
 }
 export const initialState: LoginState = {
-  isOpen: true,
-  name: null,
+  firstname: null,
 };
 
 export const logout = createAction('user/logout');
@@ -40,9 +38,8 @@ export const login = createAsyncThunk(
     // delete data.token;
 
     return data as {
-      // logged: boolean;
-      name: string;
-      // token: string;
+      firstname: string;
+      token: string;
     };
   }
 );
@@ -51,11 +48,11 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = true;
-      state.name = action.payload.name;
+      state.firstname = action.payload.firstname;
       // state.token = action.payload.token;
     })
     .addCase(logout, (state) => {
-      state.name = null;
+      state.firstname = null;
 
       // je supprime mon JWT de mon instance Axios
       // delete axiosInstance.defaults.headers.common.Authorization;

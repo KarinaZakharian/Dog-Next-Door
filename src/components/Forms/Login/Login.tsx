@@ -1,32 +1,43 @@
 /* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
+
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import './Login.scss';
-import picture from '../../../assets/woman-2711279.jpg';
 
 import { useAppDispatch } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
+import { loginSchema } from '../../../Validations/UserValidation';
+import { useState } from 'react';
 
 function Login() {
+  const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const objData = Object.fromEntries(formData);
 
-    // const formJson = Object.fromEntries(formData.entries());
-    // console.log(formJson);
-    // je veux dispatcher une action pour me connecter
-    // → appel API : est-on dans la BDD ?
-    // → « action asynchrone » = thunk
-    dispatch(login(formData));
-    navigate('/', { replace: true });
+    const isValid = await loginSchema.isValid(objData);
+    setIsValid(isValid);
+
+    if (isValid) {
+      // const formJson = Object.fromEntries(formData.entries());
+      // console.log(formJson);
+      // je veux dispatcher une action pour me connecter
+      // → appel API : est-on dans la BDD ?
+      // → « action asynchrone » = thunk
+      dispatch(login(formData));
+      navigate('/', { replace: true });
+    } else {
+      console.log('form is not valid');
+    }
   };
   return (
     <div className="page-wrapper">
@@ -41,6 +52,7 @@ function Login() {
               type="email"
               placeholder="E-mail"
               aria-label="Adresse E-mail"
+              style={{ borderColor: valid ? 'initial' : 'red' }}
             />
 
             <Input
@@ -49,6 +61,7 @@ function Login() {
               type="password"
               placeholder="Mot de passe"
               aria-label="Mot de passe"
+              style={{ borderColor: valid ? 'initial' : 'red' }}
             />
 
             <Button prop="Submit" />
