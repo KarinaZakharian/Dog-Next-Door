@@ -8,6 +8,7 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
+import AutoComplete from '../../InputType/Adresse/Adresse';
 import './Signup.scss';
 
 import { useAppDispatch } from '../../../hooks/redux';
@@ -92,24 +93,7 @@ function SignUp() {
               placeholder="Prénom"
               aria-label="Votre Prenom"
             />
-            <Input
-              name="adresse"
-              type="text"
-              placeholder="Votre Adresse"
-              aria-label="Votre Adresse"
-            />
-            <Input
-              name="code_postal"
-              type="text"
-              placeholder="Code Postal"
-              aria-label="Votre Code Postal"
-            />
-            <Input
-              name="ville"
-              type="text"
-              placeholder="Votre Ville"
-              aria-label="Votre Ville"
-            />
+            <AutoComplete />
             <Input
               name="email"
               type="email"
