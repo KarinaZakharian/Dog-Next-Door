@@ -51,26 +51,24 @@ function AutoComplete() {
           value={query}
           className="search__form-filters__select autocompletion-city__input"
         />
-        {
-          <ul className="autocompletion-city__ul">
-            {addresses &&
-              addresses.features &&
-              addresses.features.map((address) => (
-                <li
-                  className="autocompletion-city__ul__li"
-                  key={address.properties.label}
-                  onClick={() =>
-                    setAddressGeometryAndCloseAutocompletion({
-                      x: address.properties.x,
-                      y: address.properties.y,
-                    })
-                  }
-                >
-                  {address.properties.label}
-                </li>
-              ))}
-          </ul>
-        }
+        <ul className="autocompletion-city__ul">
+          {addresses &&
+            addresses.features &&
+            addresses.features.map((address) => (
+              <li
+                className="autocompletion-city__ul__li"
+                key={address.properties.label}
+                onClick={() =>
+                  setAddressGeometryAndCloseAutocompletion({
+                    x: address.properties.x,
+                    y: address.properties.y,
+                  })
+                }
+              >
+                {address.properties.label}
+              </li>
+            ))}
+        </ul>
       </div>
     </div>
   );
