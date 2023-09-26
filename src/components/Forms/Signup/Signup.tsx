@@ -2,6 +2,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -49,9 +50,16 @@ function SignUp() {
     // console.log(passwordValid);
 
     if (emailIsValid && passwordIsValid) {
+      swal({
+        icon: 'success',
+        buttons: [false],
+      });
       navigate('/login', { replace: true });
       dispatch(signup(formData));
     } else {
+      swal({
+        icon: 'error',
+      });
       console.log('form is not valid');
     }
     // const formJson = Object.fromEntries(formData.entries());
