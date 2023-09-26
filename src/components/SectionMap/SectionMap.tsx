@@ -1,6 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
-import marker from '../../assets/location-pin.png';
+import marker from '../../assets/dog-area.png';
+import shadow from '../../assets/dog-area-shadow.png';
 
 import './SectionMap.scss';
 
@@ -8,8 +9,11 @@ function SectionMap() {
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
+    shadowUrl: shadow,
     popupAnchor: [-0, -0],
     iconSize: [45, 45],
+    shadowSize: [45, 45],
+    shadowAnchor: [4, 22],
   });
   return (
     <MapContainer
