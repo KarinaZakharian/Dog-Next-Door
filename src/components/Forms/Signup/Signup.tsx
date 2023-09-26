@@ -8,7 +8,7 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
-import AutoComplete from '../../InputType/Adresse/Adresse';
+import AutoComplete from '../../InputType/Addresse/Addresse';
 import './Signup.scss';
 
 import { useAppDispatch } from '../../../hooks/redux';

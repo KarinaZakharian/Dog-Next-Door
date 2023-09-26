@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
-import './Adresse.scss';
+import './Addresse.scss';
 
 function AutoComplete() {
   const [addresses, setAdresses] = useState([]);
