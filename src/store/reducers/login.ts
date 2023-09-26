@@ -21,10 +21,7 @@ export const login = createAsyncThunk(
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
 
-    const { data } = await axios.post(
-      'https://orecipes-api.onrender.com/api/login',
-      objData
-    );
+    const { data } = await axios.post('https://localhost:3000/login', objData);
 
     // j'utilise mon instance d'Axios
     // const { data } = await axiosInstance.post('/login', objData);
