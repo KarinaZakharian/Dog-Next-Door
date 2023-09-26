@@ -8,6 +8,12 @@ const session = require("express-session");
 const RedisStore = require('connect-redis').default;
 const redisClient = require('./app/services/redisClient');
 
+// Mise en place des cookies
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser())
+
+
 let redisStore = new RedisStore({
     client : redisClient,
     prefix : "token:"
