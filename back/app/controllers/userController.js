@@ -4,9 +4,10 @@ const tokenController = require("../services/tokenController");
 const userController = {
     checkUserInput : async (req,res,next) => {
         const userFound = await userController.findUser(req, res);
+        console.log(req.body);
         
         const passwordUser = userFound.user_password;
-        if(passwordUser == req.body.password){
+        if(passwordUser == req.body.user_password){
 
             req.session.user = userFound;
             delete req.session.user_password;
@@ -14,7 +15,7 @@ const userController = {
             // req.cookie.accesstoken = userToken;
             // req.session.user.token = userToken
             
-            res.json(req.session.user);
+            res.json(userFound);
         }else{
             res.json("Couple identifiant mot de passe incorrect");
             return;
@@ -27,7 +28,6 @@ const userController = {
         try {
             const user = await userDatamapper.getOneUser(userInput);
             return user;
-            
         } catch (error) {
             res.status(500).json(error.toString());
         }
