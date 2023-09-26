@@ -15,6 +15,58 @@ function SectionMap() {
     shadowSize: [45, 45],
     shadowAnchor: [4, 22],
   });
+  const data = [
+    {
+      id: 1,
+      avatar: '../../assets/avatar-1.png',
+      firstname: 'John',
+      lastname: 'Doe',
+      town: 'Paris',
+      country: 'France',
+      latitude: 46.15,
+      longitude: 3.43,
+    },
+    {
+      id: 2,
+      avatar: '../../assets/avatar-1.png',
+      firstname: 'Karine',
+      lastname: 'Truc',
+      town: 'Paris',
+      country: 'France',
+      latitude: 46.11,
+      longitude: 3.42,
+    },
+    {
+      id: 3,
+      avatar: '../../assets/avatar-1.png',
+      firstname: 'Félix',
+      lastname: 'Machin',
+      town: 'Paris',
+      country: 'France',
+      latitude: 46.12,
+      longitude: 3.41,
+    },
+    {
+      id: 4,
+      avatar: '../../assets/avatar-1.png',
+      firstname: 'Rober',
+      lastname: 'Bidule',
+      town: 'Paris',
+      country: 'France',
+      latitude: 46.11,
+      longitude: 3.43,
+    },
+    {
+      id: 5,
+      avatar: '../../assets/avatar-1.png',
+      firstname: 'Régis',
+      lastname: 'What',
+      town: 'Paris',
+      country: 'France',
+      latitude: 46.14,
+      longitude: 3.41,
+    },
+  ];
   return (
     <MapContainer
       className="leaflet-container"
@@ -22,22 +74,24 @@ function SectionMap() {
       zoom={12}
       scrollWheelZoom={false}
     >
-      <Marker key={1} position={[46.116667, 3.4456611]} icon={myIcon}>
-        <Popup>
-          <div>
-            <h2>David</h2>
-            <p>J&apos;habite là ^^</p>
-          </div>
-        </Popup>
-      </Marker>
-      <Marker key={1} position={[46.1026516, 3.42]} icon={myIcon}>
-        <Popup>
-          <div>
-            <h2>Marker Popup Title</h2>
-            <p>Marker Popup Content</p>
-          </div>
-        </Popup>
-      </Marker>
+      {data.map((user) => (
+        <Marker
+          key={user.id}
+          position={L.latLng(user.latitude, user.longitude)}
+          icon={myIcon}
+        >
+          <Popup>
+            <div>{user.avatar}</div>
+            <div>
+              <h2>
+                `{user.firstname} {user.lastname}`
+              </h2>
+              <p>{user.town}</p>
+              <p>{user.country}</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
