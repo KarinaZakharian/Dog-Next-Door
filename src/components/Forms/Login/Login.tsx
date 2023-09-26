@@ -63,7 +63,12 @@ function Login() {
               aria-label="Mot de passe"
               style={{ borderColor: valid ? 'initial' : 'red' }}
             />
-
+            {!valid && (
+              <p className="error">
+                Le mot de passe ou l'email que vous avez saisi est incorrect.
+                Veuillez réessayer.
+              </p>
+            )}
             <Button prop="Submit" />
           </form>
         </div>
