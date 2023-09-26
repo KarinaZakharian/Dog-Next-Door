@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logout } from '../../../store/reducers/login';
 
 function Header() {
-  const name = useAppSelector((state) => state.login.name);
+  const firstname = useAppSelector((state) => state.login.firstname);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -21,7 +21,7 @@ function Header() {
           <img className="menu__logo" src={mainLogo} alt="main-logo" />
         </NavLink>
 
-        {name && (
+        {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
               <NavLink className="menu__menu-item" to="/profil">
@@ -32,7 +32,7 @@ function Header() {
               </NavLink>
             </div>
             <div className="menu__menu-connection">
-              <strong>{name}</strong>
+              <strong>{firstname}</strong>
               <button
                 className="menu__menu-button"
                 type="button"
@@ -44,7 +44,7 @@ function Header() {
           </div>
         )}
 
-        {!name && (
+        {!firstname && (
           <div className="menu__nav-menu">
             <NavLink className="menu__menu-item" to="/login">
               Login
