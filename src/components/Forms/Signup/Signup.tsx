@@ -50,14 +50,17 @@ function SignUp() {
     // console.log(passwordValid);
 
     if (emailIsValid && passwordIsValid) {
-      swal({
+      swal('Nous vous remercions de vous être inscrit sur notre site', {
         icon: 'success',
         buttons: [false],
+        timer: 1500,
       });
-      navigate('/login', { replace: true });
-      dispatch(signup(formData));
+      setTimeout(() => {
+        navigate('/login', { replace: true });
+        dispatch(signup(formData));
+      }, 1500);
     } else {
-      swal({
+      swal("Erreur d'inscription", {
         icon: 'error',
       });
       console.log('form is not valid');
