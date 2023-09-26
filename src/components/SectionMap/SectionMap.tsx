@@ -18,7 +18,15 @@ function SectionMap() {
       zoom={12}
       scrollWheelZoom={false}
     >
-      <Marker key={1} position={[46.116667, 3.416667]} icon={myIcon}>
+      <Marker key={1} position={[46.116667, 3.4456611]} icon={myIcon}>
+        <Popup>
+          <div>
+            <h2>David</h2>
+            <p>J&apos;habite là ^^</p>
+          </div>
+        </Popup>
+      </Marker>
+      <Marker key={1} position={[46.1026516, 3.42]} icon={myIcon}>
         <Popup>
           <div>
             <h2>Marker Popup Title</h2>
