@@ -1,5 +1,8 @@
 const {userDatamapper} = require('../datamappers');
 const tokenController = require("../services/tokenController");
+const validator = require('validator');
+require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const userController = {
     checkUserInput : async (req,res,next) => {
@@ -16,7 +19,6 @@ const userController = {
             })
             .status(200)
             .json(userFound);
-            
         }else{
             res
             .json("Couple identifiant mot de passe incorrect");
@@ -34,6 +36,41 @@ const userController = {
             res.status(500).json(error.toString());
         }
        
+    },
+
+    createUser : async (req,res) => {
+
+        const newUser =  req.body;
+            
+        try {
+
+            // Vérification de l'existence du compte
+            const userExist = await userDatamapper.getOneUser(newUser);
+            if(userExist){
+                res.json("Cet email est déjà utilisé ! Veuillez vous logger")   
+            };
+
+            // Remplacement du mdp par un mdp crypté
+            newUser.password = await bcrypt.hash(newUser.password, parseInt(process.env.SALT));
+            
+            // Vérification de l'emial du nouvel utilisateur
+            if(!validator.isEmail(newUser.email)){
+                res.json("Email invalide");
+            };
+
+            // ^\d+\s[A-z\s\d]+,\s\d{5}\s[A-z\s]+$
+            //! Vérification de la ville renseigné par l'utilisateur (JOI)
+
+            //! Validation de la longitude et lattitude via API Gouv
+            console.log("avant l'insertion");
+            const response = await userDatamapper.addUser(newUser);
+            res.json("Ajout utilisateur");
+            
+        } catch (error) {
+            res.status(404).json("erreur de connection server");
+        }
+
+
     },
 
     // loggedUser : (req, res) => {
