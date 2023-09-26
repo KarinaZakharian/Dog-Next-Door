@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import './Addresse.scss';
 
-function AutoComplete() {
+function AutoComplete({ style }) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
   const [selectedAddressGeometry, setSelectedAddressGeometry] = useState({
@@ -51,6 +51,7 @@ function AutoComplete() {
           placeholder="Ville"
           value={query}
           className="search__form-filters__select autocompletion-city__input"
+          style={style}
         />
         {
           <ul className="autocompletion-city__ul">

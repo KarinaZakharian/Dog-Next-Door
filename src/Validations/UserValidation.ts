@@ -20,3 +20,7 @@ export const lastnameSchema = yup.object().shape({
 export const passwordSchema = yup.object().shape({
   user_password: yup.string().min(8).max(25).required(),
 });
+
+export const citySchema = yup.object().shape({
+  city: yup.string().trim().required(),
+});
