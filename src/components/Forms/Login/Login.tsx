@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -29,13 +30,20 @@ function Login() {
     setIsValid(isValid);
 
     if (isValid) {
+      swal({
+        icon: 'success',
+        buttons: [false],
+        timer: 1500,
+      });
+      setTimeout(() => {
+        dispatch(login(formData));
+        navigate('/', { replace: true });
+      }, 1500);
       // const formJson = Object.fromEntries(formData.entries());
       // console.log(formJson);
       // je veux dispatcher une action pour me connecter
       // → appel API : est-on dans la BDD ?
       // → « action asynchrone » = thunk
-      dispatch(login(formData));
-      navigate('/', { replace: true });
     } else {
       console.log('form is not valid');
     }
