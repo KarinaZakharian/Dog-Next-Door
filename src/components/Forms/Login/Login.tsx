@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -10,7 +11,6 @@ import './Login.scss';
 import { useAppDispatch } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
-import { useState } from 'react';
 
 function Login() {
   const [valid, setIsValid] = useState(true);
@@ -23,6 +23,7 @@ function Login() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
+    console.log(objData);
 
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
