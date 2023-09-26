@@ -16,11 +16,15 @@ import { signup } from '../../../store/reducers/signup';
 import {
   emailSchema,
   passwordSchema,
+  firstnameSchema,
+  lastnameSchema,
 } from '../../../Validations/UserValidation';
 
 function SignUp() {
   const [emailValid, setEmailIsValid] = useState(true);
   const [passwordValid, setPasswordIsValid] = useState(true);
+  const [firstnameValid, setfirstnameIsValid] = useState(true);
+  const [lastnameValid, setlastnameIsValid] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -29,28 +33,38 @@ function SignUp() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     const objData = Object.fromEntries(formData);
-    // console.log({ email: `${objData.email}` });
-    // console.log(objData);
-    // console.log(`email:"${objData.email}"`);
-    // console.log(objData.user_password);
 
+    // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
       email: `${objData.email}`,
     });
-    // console.log(objData.email);
-    //  console.log(emailIsValid);
     setEmailIsValid(emailIsValid);
-    // console.log(emailValid);
+
+    // Validation of password using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const passwordIsValid = await passwordSchema.isValid({
       user_password: `${objData.user_password}`,
     });
-    // console.log(passwordIsValid);
     setPasswordIsValid(passwordIsValid);
-    // console.log(passwordValid);
 
-    if (emailIsValid && passwordIsValid) {
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const firstnameIsValid = await firstnameSchema.isValid({
+      firstname: `${objData.firstname}`,
+    });
+    setfirstnameIsValid(firstnameIsValid);
+
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const lastnameIsValid = await lastnameSchema.isValid({
+      lastname: `${objData.firstname}`,
+    });
+    setlastnameIsValid(lastnameIsValid);
+
+    if (
+      emailIsValid &&
+      passwordIsValid &&
+      firstnameIsValid &&
+      lastnameIsValid
+    ) {
       swal('Nous vous remercions de vous être inscrit sur notre site', {
         icon: 'success',
         buttons: [false],
@@ -82,17 +96,21 @@ function SignUp() {
         <div className="container">
           <form className="form" onSubmit={handleSubmit}>
             <Input
-              name="nom"
+              name="lastname"
               type="text"
               placeholder="Nom"
               aria-label="Votre Nom"
+              style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
             />
+            {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
             <Input
-              name="prenom"
+              name="firstname"
               type="text"
               placeholder="Prénom"
               aria-label="Votre Prenom"
+              style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
             />
+            {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
             <AutoComplete />
             <Input
               name="email"
