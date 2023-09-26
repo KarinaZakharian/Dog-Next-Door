@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
 
-    const { data } = await axios.post('https://localhost:3000/login', objData);
+    const { data } = await axios.post('http://localhost:3000/login', objData);
 
     // j'utilise mon instance d'Axios
     // const { data } = await axiosInstance.post('/login', objData);
@@ -35,11 +35,17 @@ export const login = createAsyncThunk(
     // le token est uniquement utilisé ici,
     // je peux le supprimer des mes données
     // delete data.token;
-
+    console.log(data);
+    
     return data as {
       firstname: string;
       token: string;
     };
+
+    
+    
+
+    
   }
 );
 
