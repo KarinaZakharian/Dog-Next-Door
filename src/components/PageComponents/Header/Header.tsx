@@ -9,6 +9,7 @@ import { logout } from '../../../store/reducers/login';
 
 function Header() {
   const firstname = useAppSelector((state) => state.login.firstname);
+  const error = useAppSelector((state) => state.login.error);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {

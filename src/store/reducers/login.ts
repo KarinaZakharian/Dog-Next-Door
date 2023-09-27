@@ -36,22 +36,17 @@ const loginReducer = createReducer(initialState, (builder) => {
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = true;
       state.firstname = action.payload.firstname;
+      state.error= null
       // state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
       console.log(action);
-      // je récupère l'erreur directement dans action.error
-    })
-    .addCase(login.rejected, (state, action) => {
-      // Handle the error here and update the state accordingly
       state.error = action.payload;
-<<<<<<< HEAD
-      console.log(state.error); // Assuming your error message is stored in the payload
-=======
       // state.error= action.error.code
       // je récupère l'erreur directement dans `action.error`
 >>>>>>> 9deeb12 (Add error handling for Signup)
     })
+    
     .addCase(logout, (state) => {
       state.firstname = null;
 
