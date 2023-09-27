@@ -8,12 +8,15 @@ const userController = {
     checkUserInput : async (req,res) => {
         const userFound = await userController.findUser(req, res);
         
+       console.log(req.body);
         if(!userFound){
-            res.json("Vous n'avez pas de compte")
+            res.status(401).json(false)
         };
+        console.log(userFound.user_password);
+        const passwordUser = await bcrypt.compare(req.body.user_password, userFound.user_password);
+        console.log(passwordUser);
+        if(passwordUser){
 
-        const passwordUser = userFound.user_password;
-        if(passwordUser == req.body.password){
             delete userFound.user_password;
             const userToken = tokenController.createToken(userFound.id);
             res
@@ -50,7 +53,7 @@ const userController = {
             // Vérification de l'existence du compte
             const userExist = await userDatamapper.getOneUser(newUser);
             if(userExist){
-                res.json("Cet email est déjà utilisé ! Veuillez vous logger")   
+                res.status(401).json("Cet email est déjà utilisé ! Veuillez vous logger")   
             };
             
             // Remplacement du mdp par un mdp crypté
