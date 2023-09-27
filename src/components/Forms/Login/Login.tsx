@@ -29,37 +29,35 @@ function Login() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
-    console.log(objData);
+    // console.log(objData);
 
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
+    
 
-    if (isValid) {
-      swal({
+    if (isValid ){
+      console.log(error);
+      
+        dispatch(login(formData));
+      
+    }
+    if(error){
+      swal( `${error}` ,{
+        icon: 'error',
+      });
+    }
+    else{
+      swal( {
         icon: 'success',
         buttons: [false],
-        timer: 1500,
+        timer: 1000,
       });
       setTimeout(() => {
-        dispatch(login(formData));
         navigate('/', { replace: true });
-      }, 1500);
-      // const formJson = Object.fromEntries(formData.entries());
-      // console.log(formJson);
-      // je veux dispatcher une action pour me connecter
-      // → appel API : est-on dans la BDD ?
-      // → « action asynchrone » = thunk
+      }, 1000);
+      
     }
-    if (!isValid) {
-      swal({
-        icon: 'error',
-      });
-    }
-    if (error) {
-      swal(`${error}`, {
-        icon: 'error',
-      });
-    }
+   
   };
   return (
     <div className="page-wrapper">
