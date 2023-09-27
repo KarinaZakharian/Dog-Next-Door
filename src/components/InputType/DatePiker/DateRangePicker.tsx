@@ -48,6 +48,7 @@ function DateRangePickerComp() {
     <div className="calendarWrap">
       <p>Pour ces jours</p>
       <input
+        name="date"
         value={`${format(range[0].startDate, 'MM/dd/yyy')} to ${format(
           range[0].endDate,
           'MM/dd/yyy'

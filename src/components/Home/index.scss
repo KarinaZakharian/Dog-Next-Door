@@ -1,0 +1,42 @@
+@use '../../styles/reset';
+@use '../../styles/variables' as v;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  height: 100vh;
+  background-image: url(../../../assets/woman-2711279.jpg);
+  background-size: cover; /* Image will cover the entire container */
+  background-repeat: no-repeat; /* Image will not repeat */
+  flex-grow: 1;
+}
+.container {
+  width: 990px;
+  margin: 0 auto;
+}
+.radio {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+}
+
+.radio-animal {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  background-color: v.$color-border;
+}
+.title-animal {
+  text-align: center;
+  color: v.$color-text-dark;
+  font-weight: 700;
+  font-size: 20px;
+  background-color: v.$color-border;
+  margin-bottom: 0;
+}
+.title-size {
+  margin-bottom: -20px;
+}
