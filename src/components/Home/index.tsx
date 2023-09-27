@@ -15,6 +15,8 @@ import geant from '../../assets/icons8-dog-64.png';
 
 import './index.scss';
 import Button from '../InputType/Button/Button';
+import { addData } from '../../store/reducers/home';
+import { useAppDispatch } from '../../hooks/redux';
 
 function Home() {
   const [picked, setPicked] = useState('');
@@ -26,13 +28,14 @@ function Home() {
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
-
+  const dispatch = useAppDispatch();
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
     console.log(objData);
+    dispatch(addData(objData));
   }
 
   return (
