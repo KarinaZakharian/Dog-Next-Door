@@ -34,7 +34,7 @@ function Login() {
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
-    if (isValid) {
+    if (isValid && !error) {
       swal({
         icon: 'success',
         buttons: [false],
