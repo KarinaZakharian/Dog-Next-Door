@@ -1,12 +1,12 @@
 import Card from './Card/Card';
 import data from '../../../fakeData/data.json';
 
-import { User } from '../../@types/types';
+import { UserProps } from '../../@types/types';
 
 import './SectionCards.scss';
 
 function SectionCard() {
-  const users: User[] = data;
+  const users: UserProps[] = data;
 
   return (
     <div className="sectioncards">

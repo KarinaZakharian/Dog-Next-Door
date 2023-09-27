@@ -2,10 +2,10 @@ import { UserProps } from '../../../@types/types';
 
 import './Card.scss';
 
-function Card({ image, firstname, lastname, town, country }: UserProps) {
+function Card({ avatar, firstname, lastname, town, country }: UserProps) {
   return (
     <div className="card">
-      <img src={image} alt="Avatar" />
+      <img src={avatar} alt="Avatar" />
       <div>
         <h2>
           {firstname} {lastname}
