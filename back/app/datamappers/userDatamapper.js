@@ -30,14 +30,6 @@ const userDatamapper = {
         } catch (error) {
             return error
         }
-        
-        // const query = `INSERT INTO "user"
-        //             ("firstname", "lastname", "email", "address", "password")
-        //             VALUES ($1, $2, $3, $4, $5)`;
-        // const values = [userToAdd.email];
-        // console.log(values);
-        // const result = await client.query(query, values);
-        // return result;
     },
 };
 

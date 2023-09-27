@@ -5,10 +5,14 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const userController = {
-    checkUserInput : async (req,res,next) => {
+    checkUserInput : async (req,res) => {
         const userFound = await userController.findUser(req, res);
-        const passwordUser = userFound.user_password;
         
+        if(!userFound){
+            res.json("Vous n'avez pas de compte")
+        };
+
+        const passwordUser = userFound.user_password;
         if(passwordUser == req.body.password){
             delete userFound.user_password;
             const userToken = tokenController.createToken(userFound.id);
@@ -26,12 +30,11 @@ const userController = {
         }
     },
     
-    findUser : async (req,res,next) => {
+    findUser : async (req,res) => {
         const userInput = req.body;
         try {
             const user = await userDatamapper.getOneUser(userInput);
             return user;
-            
         } catch (error) {
             res.status(500).json(error.toString());
         }
@@ -50,9 +53,9 @@ const userController = {
                 res.json("Cet email est déjà utilisé ! Veuillez vous logger");
                 return
             };
-
+            
             // Remplacement du mdp par un mdp crypté
-            newUser.password = await bcrypt.hash(newUser.password, parseInt(process.env.SALT));
+            newUser.user_password = await bcrypt.hash(newUser.user_password, parseInt(process.env.SALT));
             
             // Vérification de l'emial du nouvel utilisateur
             if(!validator.isEmail(newUser.email)){
@@ -64,8 +67,12 @@ const userController = {
             //! Vérification de la ville renseigné par l'utilisateur (JOI)
 
             //! Validation de la longitude et lattitude via API Gouv
+<<<<<<< HEAD
             
+=======
+>>>>>>> 798ac0fa74df048790b164dbd7ef80fd8a96768d
             const response = await userDatamapper.addUser(newUser);
+            console.log(response);
             res.json("Ajout utilisateur");
             
         } catch (error) {
