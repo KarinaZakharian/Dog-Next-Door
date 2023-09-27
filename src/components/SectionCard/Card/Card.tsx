@@ -1,22 +1,19 @@
-import { User } from '../../../@types/types';
+import { UserProps } from '../../../@types/types';
 
 import './Card.scss';
 
-interface UserProps {
-  user: User;
-}
-
-function Card({ user }: UserProps) {
+function Card({ image, firstname, lastname, town, country }: UserProps) {
   return (
-    <article>
-      <img src={user.avatar} alt={user.firstname} />
+    <div className="card">
+      <img src={image} alt="Avatar" />
       <div>
-        <h3>{`#${user.firstname} - ${user.lastname}`}</h3>
+        <h2>
+          {firstname} {lastname}
+        </h2>
+        <p>{town}</p>
+        <p>{country}</p>
       </div>
-      <p>
-        {user.town} {user.country}
-      </p>
-    </article>
+    </div>
   );
 }
 
