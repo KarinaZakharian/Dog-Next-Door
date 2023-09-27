@@ -13,7 +13,6 @@ interface LoginState {
 }
 export const initialState: LoginState = {
   firstname: null,
-  error: null,
 };
 
 export const logout = createAction('user/logout');
@@ -49,11 +48,6 @@ const loginReducer = createReducer(initialState, (builder) => {
       // state.logged = true;
       state.firstname = action.payload.firstname;
       // state.token = action.payload.token;
-    })
-    .addCase(login.rejected, (state, action) => {
-      // Handle the error here and update the state accordingly
-      state.error = action.payload;
-      console.log(state.error); // Assuming your error message is stored in the payload
     })
     .addCase(logout, (state) => {
       state.firstname = null;

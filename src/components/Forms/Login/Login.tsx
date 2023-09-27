@@ -15,6 +15,7 @@ import { loginSchema } from '../../../Validations/UserValidation';
 
 function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
+console.log(firstname);
 
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Login() {
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
-    if (isValid && firstname) {
+    if (isValid) {
       swal({
         icon: 'success',
         buttons: [false],

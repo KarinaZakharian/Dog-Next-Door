@@ -4,10 +4,12 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface SignupState {
-  name: string | null;
+  name: string | null,
+  error:string | null
 }
 export const initialState: SignupState = {
   name: null,
+  error:null
 };
 
 export const signup = createAsyncThunk(
@@ -16,7 +18,7 @@ export const signup = createAsyncThunk(
     const objData = Object.fromEntries(formData);
 
     const { data } = await axios.post(
-      'https://orecipes-api.onrender.com/api/login',
+      'http://localhost:3000/subscribe',
       objData
     );
 
@@ -34,7 +36,13 @@ export const signup = createAsyncThunk(
   }
 );
 const signupReducer = createReducer(initialState, (builder) => {
-  builder.addCase(signup.fulfilled, (state, action) => {});
+  
+  builder
+  .addCase(signup.rejected, (state, action) => {
+    console.log(action);
+    // je récupère l'erreur directement dans action.error
+
+  })
 });
 
 export default signupReducer;
