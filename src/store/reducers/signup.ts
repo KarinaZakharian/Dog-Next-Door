@@ -4,12 +4,12 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface SignupState {
-  name: string | null,
-  error:string | null
+  name: string | null;
+  error: string | null;
 }
 export const initialState: SignupState = {
   name: null,
-  error:null
+  error: null,
 };
 
 export const signup = createAsyncThunk(
@@ -36,13 +36,11 @@ export const signup = createAsyncThunk(
   }
 );
 const signupReducer = createReducer(initialState, (builder) => {
-  
-  builder
-  .addCase(signup.rejected, (state, action) => {
+  builder.addCase(signup.rejected, (state, action) => {
+    state.error = action.payload;
     console.log(action);
     // je récupère l'erreur directement dans action.error
-
-  })
+  });
 });
 
 export default signupReducer;

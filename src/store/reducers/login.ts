@@ -13,6 +13,7 @@ interface LoginState {
 }
 export const initialState: LoginState = {
   firstname: null,
+  error: null,
 };
 
 export const logout = createAction('user/logout');

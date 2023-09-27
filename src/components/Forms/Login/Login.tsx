@@ -15,7 +15,9 @@ import { loginSchema } from '../../../Validations/UserValidation';
 
 function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
-console.log(firstname);
+  const error = useAppSelector((state) => state.login.error);
+  console.log(error);
+  console.log(firstname);
 
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
@@ -51,15 +53,18 @@ console.log(firstname);
       // je veux dispatcher une action pour me connecter
       // → appel API : est-on dans la BDD ?
       // → « action asynchrone » = thunk
-    } else {
+    }
+    if (!isValid) {
       swal({
         icon: 'error',
-        buttons: [false],
-        timer: 1500,
+        buttons: [true],
       });
-      setTimeout(() => {
-        navigate('/login', { replace: true });
-      }, 1500);
+    }
+    if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+        buttons: [true],
+      });
     }
   };
   return (
