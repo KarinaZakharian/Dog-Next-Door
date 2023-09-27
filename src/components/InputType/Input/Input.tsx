@@ -30,6 +30,7 @@ function Input({ name, placeholder, ...props }: InputProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
+    event.target.style.borderColor = 'initial';
   };
 
   console.log(name, value);

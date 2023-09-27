@@ -57,13 +57,11 @@ function Login() {
     if (!isValid) {
       swal({
         icon: 'error',
-        buttons: [true],
       });
     }
     if (error) {
       swal(`${error}`, {
         icon: 'error',
-        buttons: [true],
       });
     }
   };
