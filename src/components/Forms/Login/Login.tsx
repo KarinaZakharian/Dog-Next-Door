@@ -34,27 +34,17 @@ function Login() {
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
-<<<<<<< HEAD
-    if (isValid && firstname) {
-=======
     if (isValid) {
->>>>>>> 3e8c36b (Modification final pour la présentation)
-      swal({
-        icon: 'success',
-        buttons: [false],
-        timer: 1500,
-      });
-      setTimeout(() => {
-        dispatch(login(formData));
-      
+      console.log(error);
+
+      dispatch(login(formData));
     }
-    if(error){
-      swal( `${error}` ,{
+    if (error) {
+      swal(`${error}`, {
         icon: 'error',
       });
-    }
-    else{
-      swal( {
+    } else {
+      swal({
         icon: 'success',
         buttons: [false],
         timer: 1000,
@@ -62,9 +52,7 @@ function Login() {
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 1000);
-      
     }
-   
   };
   return (
     <div className="page-wrapper">
