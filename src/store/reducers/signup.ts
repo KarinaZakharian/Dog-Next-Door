@@ -5,7 +5,7 @@ import axios from 'axios';
 
 interface SignupState {
   name: string | null;
-  error: string | null;
+  error: unknown;
 }
 export const initialState: SignupState = {
   name: null,
@@ -38,6 +38,7 @@ export const signup = createAsyncThunk(
 const signupReducer = createReducer(initialState, (builder) => {
   builder.addCase(signup.rejected, (state, action) => {
     state.error = action.payload;
+    // state.error= action.error.code
     console.log(action);
     // je récupère l'erreur directement dans action.error
   });

@@ -9,7 +9,7 @@ import axios from 'axios';
 
 interface LoginState {
   firstname: string | null;
-  error: string | null;
+  error: unknown;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -53,6 +53,7 @@ const loginReducer = createReducer(initialState, (builder) => {
     .addCase(login.rejected, (state, action) => {
       console.log(action);
       state.error = action.payload;
+      // state.error= action.error.code
       // je récupère l'erreur directement dans `action.error`
     })
     .addCase(logout, (state) => {

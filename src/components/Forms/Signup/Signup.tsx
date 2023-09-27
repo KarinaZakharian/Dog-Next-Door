@@ -11,7 +11,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import './Signup.scss';
 
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/signup';
 import {
   emailSchema,
@@ -30,6 +30,8 @@ function SignUp() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const error = useAppSelector((state) => state.signup.error);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -72,7 +74,8 @@ function SignUp() {
       passwordIsValid &&
       firstnameIsValid &&
       lastnameIsValid &&
-      cityIsValid
+      cityIsValid &&
+      !error
     ) {
       swal('Nous vous remercions de vous être inscrit sur notre site', {
         icon: 'success',
@@ -83,6 +86,11 @@ function SignUp() {
         navigate('/login', { replace: true });
         dispatch(signup(formData));
       }, 1500);
+    } else if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+      });
+      console.log('error');
     } else {
       swal("Erreur d'inscription", {
         icon: 'error',
