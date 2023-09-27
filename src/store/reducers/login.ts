@@ -9,7 +9,7 @@ import axios from 'axios';
 
 interface LoginState {
   firstname: string | null;
-  error: string | null;
+  error: unknown;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -45,7 +45,12 @@ const loginReducer = createReducer(initialState, (builder) => {
     .addCase(login.rejected, (state, action) => {
       // Handle the error here and update the state accordingly
       state.error = action.payload;
+<<<<<<< HEAD
       console.log(state.error); // Assuming your error message is stored in the payload
+=======
+      // state.error= action.error.code
+      // je récupère l'erreur directement dans `action.error`
+>>>>>>> 9deeb12 (Add error handling for Signup)
     })
     .addCase(logout, (state) => {
       state.firstname = null;

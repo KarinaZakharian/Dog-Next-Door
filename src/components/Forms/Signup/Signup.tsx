@@ -13,18 +13,80 @@ import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import './Signup.scss';
 
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup } from '../../../store/reducers/signup';
 
 function SignUp() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const error = useAppSelector((state) => state.signup.error);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
 
+<<<<<<< HEAD
+=======
+    // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const emailIsValid = await emailSchema.isValid({
+      email: `${objData.email}`,
+    });
+    setEmailIsValid(emailIsValid);
+
+    // Validation of password using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const passwordIsValid = await passwordSchema.isValid({
+      user_password: `${objData.user_password}`,
+    });
+    setPasswordIsValid(passwordIsValid);
+
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const firstnameIsValid = await firstnameSchema.isValid({
+      firstname: `${objData.firstname}`,
+    });
+    setfirstnameIsValid(firstnameIsValid);
+
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const lastnameIsValid = await lastnameSchema.isValid({
+      lastname: `${objData.firstname}`,
+    });
+    setlastnameIsValid(lastnameIsValid);
+
+    const cityIsValid = await citySchema.isValid({
+      city: `${objData.firstname}`,
+    });
+    setCityIsValid(cityIsValid);
+
+    if (
+      emailIsValid &&
+      passwordIsValid &&
+      firstnameIsValid &&
+      lastnameIsValid &&
+      cityIsValid &&
+      !error
+    ) {
+      swal('Nous vous remercions de vous être inscrit sur notre site', {
+        icon: 'success',
+        buttons: [false],
+        timer: 1500,
+      });
+      setTimeout(() => {
+        navigate('/login', { replace: true });
+        dispatch(signup(formData));
+      }, 1500);
+    } else if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+      });
+      console.log('error');
+    } else {
+      swal("Erreur d'inscription", {
+        icon: 'error',
+      });
+      console.log('form is not valid');
+    }
+>>>>>>> 9deeb12 (Add error handling for Signup)
     // const formJson = Object.fromEntries(formData.entries());
     // console.log(formJson);
     // je veux dispatcher une action pour me connecter
