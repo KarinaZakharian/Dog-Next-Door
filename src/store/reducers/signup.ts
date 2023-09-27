@@ -16,7 +16,7 @@ export const signup = createAsyncThunk(
     const objData = Object.fromEntries(formData);
 
     const { data } = await axios.post(
-      'https://orecipes-api.onrender.com/api/login',
+      'https://localhost:3000/subscribe',
       objData
     );
 
