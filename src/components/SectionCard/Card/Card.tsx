@@ -1,23 +1,22 @@
-import data from '../../../../fakeData/data.json';
+import { User } from '../../../@types/types';
 
 import './Card.scss';
 
-function Card() {
+interface UserProps {
+  user: User;
+}
+
+function Card({ user }: UserProps) {
   return (
     <article>
-      <img
-        src={user.avatar}
-        alt={user.firstname}
-      />
+      <img src={user.avatar} alt={user.firstname} />
       <div>
-        <h3>
-          {`#${user.firstname} - ${user.lastname}`}
-        </h3>
+        <h3>{`#${user.firstname} - ${user.lastname}`}</h3>
       </div>
       <p>
         {user.town} {user.country}
       </p>
-    </article>;
+    </article>
   );
 }
 
