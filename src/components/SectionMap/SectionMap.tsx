@@ -17,10 +17,11 @@ function SectionMap() {
     shadowAnchor: [4, 22],
   });
   const users = data;
+  const { latitude, longitude } = users[0];
   return (
     <MapContainer
       className="leaflet-container"
-      center={[46.116667, 3.416667]}
+      center={L.latLng(latitude, longitude)}
       zoom={12}
       scrollWheelZoom={false}
     >
