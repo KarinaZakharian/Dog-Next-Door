@@ -67,10 +67,7 @@ const userController = {
             //! Vérification de la ville renseigné par l'utilisateur (JOI)
 
             //! Validation de la longitude et lattitude via API Gouv
-<<<<<<< HEAD
             
-=======
->>>>>>> 798ac0fa74df048790b164dbd7ef80fd8a96768d
             const response = await userDatamapper.addUser(newUser);
             console.log(response);
             res.json("Ajout utilisateur");
