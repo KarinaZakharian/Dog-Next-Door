@@ -15,6 +15,7 @@ import { loginSchema } from '../../../Validations/UserValidation';
 
 function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
+console.log(firstname);
 
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
