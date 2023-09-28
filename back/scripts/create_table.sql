@@ -22,6 +22,7 @@ CREATE TABLE "user" (
   street_name VARCHAR(42),
   zip_code VARCHAR(42),
   town NOT NULL VARCHAR(42),
+  town NOT NULL VARCHAR(42),
   country VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ

@@ -10,6 +10,7 @@ import axios from 'axios';
 interface LoginState {
   firstname: string | null;
   error: unknown;
+  error: unknown;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -40,6 +41,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       // state.logged = true;
       console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
+      state.error = null;
       state.error = null;
       // state.token = action.payload.token;
     })

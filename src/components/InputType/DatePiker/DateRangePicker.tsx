@@ -41,7 +41,7 @@ function DateRangePickerComp() {
   /* set carrent date on component Load */
   useEffect(() => {
     document.addEventListener('keydown', hideOnEscape, true);
-    document.addEventListener('click', hideOnClickOutside, true);
+    document.addEventListener('click', hideOnClickOutside, true); 
   }, []);
 
   return (
