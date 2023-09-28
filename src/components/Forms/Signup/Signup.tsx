@@ -10,7 +10,7 @@ import AutoComplete from '../../InputType/Addresse/Addresse';
 import './Signup.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { signup } from '../../../store/reducers/signup';
+import { signup, success } from '../../../store/reducers/signup';
 import {
   emailSchema,
   passwordSchema,
@@ -25,19 +25,21 @@ function SignUp() {
   const [firstnameValid, setfirstnameIsValid] = useState(true);
   const [lastnameValid, setlastnameIsValid] = useState(true);
   const [cityValid, setCityIsValid] = useState(true);
-
+  const [coordinates, setCoordinates] = useState({x: 0, y:0})
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const error = useAppSelector((state) => state.signup.error);
-  const firstname = useAppSelector((state) => state.signup.firstname);
-
+ // const firstname = useAppSelector((state) => state.signup.firstname);
+  const message = useAppSelector((state) => state.signup.message);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    formData.append('latitutde', coordinates.x.toString());
+    formData.append('longitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    console.log(objData);
+    console.log('body envoyé dans la requête du signup', objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
@@ -80,15 +82,24 @@ function SignUp() {
   };
 
   useEffect(() => {
-    if (firstname) {
-      swal({ icon: 'success' });
-      navigate('/login', { replace: true });
+    if (!error && message) {
+      swal({
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        dispatch(success());
+        navigate('/login', { replace: true });
+      }, 1000);
     }
 
     if (error) {
-      swal(`${error}`, { icon: 'error' });
+      swal(`${error}`, {
+        icon: 'error',
+        button: true,
+      });
     }
-  }, [firstname, error]);
+  }, [error, message]);
 
   return (
     <div className="page-wrapper">
@@ -115,6 +126,7 @@ function SignUp() {
             {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
             <AutoComplete
               style={{ borderColor: cityValid ? 'initial' : 'red' }}
+              setCoordinates={setCoordinates}
             />
             {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input

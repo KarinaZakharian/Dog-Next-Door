@@ -64,7 +64,7 @@ const userController = {
             
             // Vérification de l'emial du nouvel utilisateur
             if(!validator.isEmail(newUser.email)){
-                res.json({"message" : "Email invalide"});
+                res.status(401).json({"message" : "Email invalide"});
                 return
             };
             
@@ -74,7 +74,7 @@ const userController = {
             //! Validation de la longitude et lattitude via API Gouv
             const response = await userDatamapper.addUser(newUser);
             // console.log(JSON.stringify(response,0,2));
-            res.status(200).json(newUser);
+            res.status(200).json({"message" : "Ajout d'utilisateur avec succès"});
             
         } catch (error) {
             res.status(404).json("erreur de connection server");

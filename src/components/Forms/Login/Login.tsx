@@ -40,12 +40,21 @@ function Login() {
   };
   useEffect(() => {
     if (firstname) {
-      swal({ icon: 'success' });
-      navigate('/', { replace: true });
+      swal({ 
+        icon: 'success',
+        timer: 1000,
+       });
+
+      setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 1000);
     }
 
     if (error) {
-      swal(`${error}`, { icon: 'error' });
+      swal(`${error}`, {
+        icon: 'error',
+        button: true,
+      });
     }
   }, [firstname, error]);
 

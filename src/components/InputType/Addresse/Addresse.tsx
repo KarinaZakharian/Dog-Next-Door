@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import './Addresse.scss';
 
-function AutoComplete({ style }) {
+function AutoComplete({ style , setCoordinates}) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
-  const [selectedAddressGeometry, setSelectedAddressGeometry] = useState({
-    x: 0,
-    y: 0,
-  });
 
-  const getAddressesFromAPI = async (query) => {
+  const getAddressesFromAPI = async (search : string) => {
+    console.log('je suis dans la fonction');
     try {
-      if (query !== '' && isNaN(query)) {
+      if (search !== '' && isNaN(search)) {
+        console.log('je suis dans la fonction et je cherche');
         const response = await fetch(
           `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(
-            query
+            search
           )}&limit=5`
         );
         if (response.ok) {
@@ -29,7 +27,7 @@ function AutoComplete({ style }) {
   };
 
   const setAddressGeometryAndCloseAutocompletion = (geolocalisation) => {
-    setSelectedAddressGeometry(geolocalisation);
+    setCoordinates(geolocalisation);
     setAdresses([]);
     console.log(geolocalisation);
   };
@@ -63,8 +61,8 @@ function AutoComplete({ style }) {
                     const selectedLabel = address.properties.label;
                     setQuery(selectedLabel); // Set the input value to the selected address label
                     setAddressGeometryAndCloseAutocompletion({
-                      x: address.properties.x,
-                      y: address.properties.y,
+                      x: address.geometry.coordinates[0],
+                      y: address.geometry.coordinates[1],
                     });
                   }}
                 >
