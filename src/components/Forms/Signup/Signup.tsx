@@ -36,8 +36,8 @@ function SignUp() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    formData.append('latitutde', coordinates.x.toString());
-    formData.append('longitude', coordinates.y.toString());
+    formData.append('longitude', coordinates.x.toString());
+    formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
     console.log('body envoyé dans la requête du signup', objData);
 
