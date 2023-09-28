@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
@@ -9,7 +8,6 @@ import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import './Login.scss';
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
@@ -87,7 +85,7 @@ function Login() {
                 Veuillez réessayer.
               </p>
             )}
-            <Button prop="Submit" />
+            <Button prop="Connexion" />
           </form>
         </div>
       </main>

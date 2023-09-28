@@ -1,10 +1,3 @@
-/* eslint-disable prettier/prettier */
-/*We have to check value in the cmponent where function is used
-const [picked, setPicked] = useState('');
-  function handleRadioChange(value: string): void {
-    setPicked(value);
-  }*/
-
 import { ChangeEvent } from 'react';
 
 import './Radio.scss';

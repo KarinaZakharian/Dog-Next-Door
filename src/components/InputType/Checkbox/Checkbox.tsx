@@ -1,7 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* <CheckboxGroup options={options} legend="Check box" /> */
-/* const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4']; */
-
 import { useState } from 'react';
 import './Checkbox.scss';
 

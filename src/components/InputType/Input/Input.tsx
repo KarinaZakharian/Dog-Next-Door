@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import './Input.scss';
 
 import { useState } from 'react';

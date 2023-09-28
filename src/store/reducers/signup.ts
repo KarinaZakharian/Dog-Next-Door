@@ -4,44 +4,47 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface SignupState {
-  name: string | null;
+  firstname: string | null;
   error: unknown;
 }
 export const initialState: SignupState = {
-  name: null,
+  firstname: null,
   error: null,
 };
 
 export const signup = createAsyncThunk(
   'user/signup',
-  async (formData: FormData) => {
+  async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
+try{
 
-    const { data } = await axios.post(
-      'http://localhost:3000/subscribe',
-      objData
-    );
-
-    // j'utilise mon instance d'Axios
-    // const { data } = await axiosInstance.post('/login', objData);
-
-    // à la connexion, j'ajoute le token directement
-    // dans mon instance Axios
-    // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-
-    // le token est uniquement utilisé ici,
-    // je peux le supprimer des mes données
-    // delete data.token;
-    return data as { name: string };
+  const { data } = await axios.post(
+    'http://localhost:3000/subscribe',
+    objData
+  );
+  return data as { firstname: string };
+  console.log('data dans middleware', data);
+}
+ catch (error) {
+  return thunkAPI.rejectWithValue(error);
+}
   }
 );
 const signupReducer = createReducer(initialState, (builder) => {
-  builder.addCase(signup.rejected, (state, action) => {
-    state.error = action.payload;
-    // state.error= action.error.code
-    console.log(action);
-    // je récupère l'erreur directement dans action.error
-  });
+  builder
+  .addCase(signup.rejected, (state, action) => {
+    console.log('action rejected', action);
+      state.error = action.payload.response.data.message;
+  })
+  .addCase(signup.fulfilled, (state, action) => {
+    // state.logged = true;
+    console.log('action fulfilled', action);
+    state.firstname = action.payload.firstname;
+    state.error = null;
+  
+
+    // state.token = action.payload.token;
+  })
 });
 
 export default signupReducer;

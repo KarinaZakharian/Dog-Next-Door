@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import Footer from '../PageComponents/Footer/Footer';
 import Header from '../PageComponents/Header/Header';

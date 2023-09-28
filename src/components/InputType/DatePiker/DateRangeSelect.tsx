@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import { DateRange } from 'react-date-range';
 import format from 'date-fns/format';
 import { addDays } from 'date-fns';

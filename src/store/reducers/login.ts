@@ -10,7 +10,7 @@ import axios from 'axios';
 interface LoginState {
   firstname: string | null;
   error: unknown;
-  error: unknown;
+ 
 }
 export const initialState: LoginState = {
   firstname: null,

@@ -1,7 +1,5 @@
-/* eslint-disable prettier/prettier */
-
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
@@ -31,6 +29,7 @@ function SignUp() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const error = useAppSelector((state) => state.signup.error);
+  const firstname = useAppSelector((state) => state.signup.firstname);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,12 +59,12 @@ function SignUp() {
 
     // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const lastnameIsValid = await lastnameSchema.isValid({
-      lastname: `${objData.firstname}`,
+      lastname: `${objData.lastname}`,
     });
     setlastnameIsValid(lastnameIsValid);
 
     const cityIsValid = await citySchema.isValid({
-      city: `${objData.firstname}`,
+      city: `${objData.city}`,
     });
     setCityIsValid(cityIsValid);
 
@@ -74,37 +73,23 @@ function SignUp() {
       passwordIsValid &&
       firstnameIsValid &&
       lastnameIsValid &&
-      cityIsValid &&
-      !error
+      cityIsValid
     ) {
-      swal('Nous vous remercions de vous être inscrit sur notre site', {
-        icon: 'success',
-        buttons: [false],
-        timer: 1500,
-      });
-      setTimeout(() => {
-        navigate('/login', { replace: true });
-        dispatch(signup(formData));
-      }, 1500);
-    } else if (error) {
-      swal(`${error}`, {
-        icon: 'error',
-      });
-      console.log('error');
-    } else {
-      swal("Erreur d'inscription", {
-        icon: 'error',
-      });
-      console.log('form is not valid');
+      dispatch(signup(formData));
     }
-    // const formJson = Object.fromEntries(formData.entries());
-    // console.log(formJson);
-    // je veux dispatcher une action pour me connecter
-    // → appel API : est-on dans la BDD ?
-    // → « action asynchrone » = thunk
-    // navigate('/login', { replace: true });
-    // dispatch(signup(formData));
   };
+
+  useEffect(() => {
+    if (firstname) {
+      swal({ icon: 'success' });
+      navigate('/login', { replace: true });
+    }
+
+    if (error) {
+      swal(`${error}`, { icon: 'error' });
+    }
+  }, [firstname, error]);
+
   return (
     <div className="page-wrapper">
       <Header />
@@ -140,7 +125,7 @@ function SignUp() {
               style={{ borderColor: emailValid ? 'initial' : 'red' }}
             />
             {!emailValid && (
-              <p className="error">Votre adresse e-mail n'est pas valide</p>
+              <p className="error">Votre adresse e-mail n&apos;est pas valide</p>
             )}
             <Input
               name="user_password"
@@ -153,7 +138,7 @@ function SignUp() {
               <p className="error">Votre password n'est pas valide</p>
             )}
 
-            <Button prop="Submit" />
+            <Button prop="S'inscrire" />
           </form>
         </div>
       </main>

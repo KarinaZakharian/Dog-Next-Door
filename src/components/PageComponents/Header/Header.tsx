@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import mainLogo from '../../../assets/Logo-ODogNextDoor.svg';
@@ -48,10 +47,10 @@ function Header() {
         {!firstname && (
           <div className="menu__nav-menu">
             <NavLink className="menu__menu-item" to="/login">
-              Login
+              Connexion
             </NavLink>
             <NavLink className="menu__menu-item" to="/subscribe">
-              Singup
+              S&apos;inscrire
             </NavLink>
           </div>
         )}

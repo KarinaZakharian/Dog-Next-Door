@@ -10,7 +10,7 @@ const userController = {
         
         console.log(req.body);
         if(!userFound){
-            res.status(401).json("Vous n'avez pas accès")
+            res.status(401).json({"message" : "Couple identifiant mot de passe incorrect"})
             return
         }
         
@@ -55,7 +55,8 @@ const userController = {
             // Vérification de l'existence du compte
             const userExist = await userDatamapper.getOneUser(newUser);
             if(userExist){
-                res.status(401).json("Cet email est déjà utilisé ! Veuillez vous logger")   
+                res.status(401).json({"message" : "Email déjà utilisé"});
+                return
             };
             
             // Remplacement du mdp par un mdp crypté
@@ -63,7 +64,8 @@ const userController = {
             
             // Vérification de l'emial du nouvel utilisateur
             if(!validator.isEmail(newUser.email)){
-                res.json("Email invalide");
+                res.json({"message" : "Email invalide"});
+                return
             };
             
             // ^\d+\s[A-z\s\d]+,\s\d{5}\s[A-z\s]+$
@@ -71,14 +73,12 @@ const userController = {
             
             //! Validation de la longitude et lattitude via API Gouv
             const response = await userDatamapper.addUser(newUser);
-            console.log(response);
-            res.json("Ajout utilisateur");
+            // console.log(JSON.stringify(response,0,2));
+            res.status(200).json(newUser);
             
         } catch (error) {
             res.status(404).json("erreur de connection server");
         }
-        
-        
     },
     
     // loggedUser : (req, res) => {

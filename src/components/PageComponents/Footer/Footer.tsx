@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { NavLink } from 'react-router-dom';
 import './Footer.scss';
 

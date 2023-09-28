@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import './Addresse.scss';
 
@@ -32,7 +31,6 @@ function AutoComplete({ style }) {
   const setAddressGeometryAndCloseAutocompletion = (geolocalisation) => {
     setSelectedAddressGeometry(geolocalisation);
     setAdresses([]);
-
     console.log(geolocalisation);
   };
 
