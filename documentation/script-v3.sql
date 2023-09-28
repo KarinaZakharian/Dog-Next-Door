@@ -6,7 +6,7 @@ CREATE TABLE ANIMAL (
   type VARCHAR(42),
   photo VARCHAR(42),
   name VARCHAR(42),
-  weight VARCHAR(42),
+  weight_category VARCHAR(42),
   age VARCHAR(42),
   sex VARCHAR(42),
   breed VARCHAR(42),
@@ -33,10 +33,18 @@ CREATE TABLE BOOKING (
   start_date VARCHAR(42),
   end_date VARCHAR(42),
   status VARCHAR(42),
+  comment VARCHAR(42),
+  validate VARCHAR(42),
+   VARCHAR(42),
   code_user VARCHAR(42),
+<<<<<<< HEAD:developpement/script.sql
   PRIMARY KEY (code_booking),
   created_at DATETIME NOT NULL,
   updated_at DATETIME
+=======
+  code_user_1 VARCHAR(42),
+  PRIMARY KEY (code_booking)
+>>>>>>> 6f6a1681d49af9171cfc2fe35907435b9e11f42c:documentation/script-v3.sql
 );
 
 CREATE TABLE DETIENT (
@@ -79,9 +87,22 @@ CREATE TABLE MESSAGE (
   topic VARCHAR(42),
   body VARCHAR(42),
   code_user VARCHAR(42),
+<<<<<<< HEAD:developpement/script.sql
   PRIMARY KEY (code_message),
   created_at DATETIME NOT NULL,
   updated_at DATETIME
+=======
+  code_user_1 VARCHAR(42),
+  PRIMARY KEY (code_message)
+>>>>>>> 6f6a1681d49af9171cfc2fe35907435b9e11f42c:documentation/script-v3.sql
+);
+
+CREATE TABLE MESSAGE_ADMIN (
+  code_message_admin VARCHAR(42),
+  subject VARCHAR(42),
+  message VARCHAR(42),
+  code_user VARCHAR(42),
+  PRIMARY KEY (code_message_admin)
 );
 
 CREATE TABLE PERMISSION (
@@ -129,11 +150,14 @@ CREATE TABLE USER (
 ALTER TABLE ANIMAL ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
 ALTER TABLE APPARTIENT ADD FOREIGN KEY (code_role) REFERENCES ROLE (code_role);
 ALTER TABLE APPARTIENT ADD FOREIGN KEY (code_permission) REFERENCES PERMISSION (code_permission);
+ALTER TABLE BOOKING ADD FOREIGN KEY (code_user_1) REFERENCES USER (code_user);
 ALTER TABLE BOOKING ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
 ALTER TABLE DETIENT ADD FOREIGN KEY (code_role) REFERENCES ROLE (code_role);
 ALTER TABLE DETIENT ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
 ALTER TABLE ETABLIR ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
 ALTER TABLE ETABLIR ADD FOREIGN KEY (code_disponibility) REFERENCES DISPONIBILITY (code_disponibility);
 ALTER TABLE IMAGE ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
+ALTER TABLE MESSAGE ADD FOREIGN KEY (code_user_1) REFERENCES USER (code_user);
 ALTER TABLE MESSAGE ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
+ALTER TABLE MESSAGE_ADMIN ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);
 ALTER TABLE TESTIMONIAL ADD FOREIGN KEY (code_user) REFERENCES USER (code_user);

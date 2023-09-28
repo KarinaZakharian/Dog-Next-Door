@@ -21,20 +21,20 @@ D'autres options tels que les activités canines proposées par les accueillants
 ## MVP
 
 1. Rechercher un pet sitter se situant dans la même ville ou région
-2. Devenir un pet sitter
-3. Discuter avec un pet sitter en privée ( messagerie)
-4. Proposer un créneau de disponibilité
-5. Réservez un créneau de garde
-6. Validation de la garde
-7. Mettre à jour le planning
+2. Recherche de pet sitter par périmètre, affichage de la carte (API : leaflet, api.gouv)
+3. Devenir un pet sitter
+4. Discuter avec un pet sitter en privée (messagerie)
+5. Proposer un créneau de disponibilité
+6. Réservez un créneau de garde
+7. Validation de la garde
+8. Mettre à jour le planning
 
 ## Evolutions potentielles
 
-1. Recherche de pet sitter par périmètre affichage de la carte (API : googleMap, OpenLayers, leaflet, mapbox, openstreetview)
 2. Rendre la garde obligatoire après avoir fait garder son animal
 3. Gestion d'une monnaie virtuelle avec le Doggy
 4. Acheter des Doggy's
-5. Ajout du web socket (discussion instantanée)
+5. Ajout du web socket (discussion instantanée & planning)
 6. Modification du mot de passe en cas d'oubli
 7. Avoir un panel d'administration pour gérer tous les utilisateurs
 
@@ -61,27 +61,55 @@ D'autres options tels que les activités canines proposées par les accueillants
 
 ![Arborescence-site](./utils/O'DogNextDoor-Arbo-routes.png)
 
-### Liste des routes prévues
+### Liste des routes : front
+
+| Route | Page |
+|---------------|---------|
+|Routes Utilisateurs|---|---|---|
+| `/` | Affichage homepage & formulaire de rechreche avec possiblité de soumettre pour effectuer la recherche |
+| `/subscribe` | Affichage du formulaire d'inscription avec possibilité de soumettre pour se créer un compte |
+| `/contact` | Affichage du formulaire de contact avec possibilité de soumettre pour envoyer la demande aux administrateurs du site |
+| `/login` | Affichage du formulaire de connexion avec possibilité de soumettre pour connexion|
+| `/search` | Affiche la liste des utilisateurs trouvés selon les ccritères de recherche |
+|Routes membres|---|
+| `/pet-sitter/id` | Affichage du pet sitter sélectionné par l'id |
+| `/pet-sitter/id/reservation` | Envoyer une demande de réservation au pet-sitter correspondant |
+| `/account/id` | Affichage du profil de l'utilisateur loggé avec son compte |
+| `/account/id/addanimal` | Ajout d'un animal au pet-sitter correspondant |
+| `/account/id/inbox` | Affcihage de la liste des demandes en attentes |
+| `/account/id/inbox/upcoming` | Affcihage de la liste des demandes à venir  |
+| `/account/id/inbox/past` | Affcihage de la liste des demandes passées |
+
+### Liste des routes : back
 
 | Route | Méthode | Action | Données renvoyées |
 |---------------|---------|------------------------------|-----------------|
 |Routes Utilisateurs|---|---|---|
-| `/` | GET | Affichage du formulaire & homepage | Page d'accueil
-| `/` | POST | Soumission du formulaire de recherche | Information retournée par le formulaire
-| `/subscribe` | GET | Affichage du formulaire d'inscription | Page d'inscription
-| `/subscribe` | POST | Soumission du formulaire d'inscription | Information du nouvelle utilisateur
-| `/login` | GET | Affichage du formulaire de connexion | Page de connexion
-| `/login` | POST | Soumission du formulaire de connexion | Connexion de l'utilisateur
-| `/contact` | GET | Affichage du formulaire de contact | Page de contact
-| `/contact` | POST | Soumission du formulaire de contact | Envoi d'un message à l'administrateur
-| `/search` | GET | Liste des utilisateurs | Récupère les utilisateurs des doggers proches et afficher sur la map
-| `/search` | POST | Refaire une recherche | Modifiez le filtre de recherche 
+| `/` | GET | Affichage du formulaire & homepage | Page d'accueil|
+| `/` | POST | Soumission du formulaire de recherche | Information retournée par le formulaire|
+| `/subscribe` | GET | Affichage du formulaire d'inscription | Page d'inscription|
+| `/subscribe` | POST | Soumission du formulaire d'inscription | Information du nouvelle utilisateur|
+| `/login` | GET | Affichage du formulaire de connexion | Page de connexion|
+| `/login` | POST | Soumission du formulaire de connexion | Connexion de l'utilisateur|
+| `/contact` | GET | Affichage du formulaire de contact | Page de contact|
+| `/contact` | POST | Soumission du formulaire de contact | Envoi d'un message à l'administrateur|
+| `/search` | GET | Liste des utilisateurs | Récupère les utilisateurs des doggers proches et afficher sur la map|
+| `/search` | POST | Refaire une recherche | Modifiez le filtre de recherche |
 |Routes membres|---|---|---|
-| `/account` | GET | Affichage du profil de l'utilisateur | Récupérer les données du profil
-| `/account` | PATCH | Modification des données personnelles (prénom, email, téléphone) | Modifier les données personnelles (prénom, email, téléphone)
-| `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées
-| `/pet-sitter` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter
-| `/pet-sitter` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires
+| `/account/:id` | GET | Affichage du profil de l'utilisateur | Récupérer les données du profil|
+| `/account/:id` | PATCH | Modification des données personnelles (prénom, email, téléphone) | Modifier les données personnelles |
+| `/account/:id/addanimal` |GET | Affichage du formulaire d'ajoute d'animal | / |
+| `/account/:id/addanimal` |POST | Envoie du formulaire d'ajoute d'animal | Données concernant l'animal |
+| `/inbox` | GET | Liste des demandes en attente, en cours, à venir et passées | Affichage des demandes en attente, en cours, à venir et passées|
+| `/pet-sitter/:id` | GET | Affichage du pet sitter | Récupère la page de profil du pet sitter|
+| `/pet-sitter/:id` | PATCH | Modification du profil pet sitter  | Modification du calendrier et des commentaires|
+| `/pet-sitter/:id/reservation` | GET | Affichage du formulaire de réservation | Afficher les informations de l'utilisateur qui réserve avec animal et du pet sitter |
+| `/pet-sitter/:id/reservation` | POST | Enoive du formulaire de réservation | Envoyer des données de réservation |
+
+| `/account/:id/inbox` |GET | Affichage du formulaire & homepage | Affcihage de la liste des demandes en attentes |
+| `/account/:id/inbox/upcoming` |GET | Affichage du formulaire & homepage | Affcihage de la liste des demandes à venir  |
+| `/account/:id/inbox/past` |GET | Affichage du formulaire & homepage | Affcihage de la liste des demandes passées |
+
 
 ## User stories
 
@@ -134,11 +162,10 @@ D'autres options tels que les activités canines proposées par les accueillants
 ## Rôle de chacun
 
 - Product owner : Ilias YAKDANE
-- Scrum master : Soufiane IBNAICHE
+- Scrum master : IBNAICHE Soufiane
 - Lead dev : front : Karina ZAKHARIAN / back : Ilias YAKDANE
 - Git master : David VIAU
-- Référent tech : IBNAICHE Soufiane / David VIAU
-
+- Référent tech : Soufiane IBNAICHE / David VIAU
 
 ## Documents relatif à la BDD
 
@@ -169,17 +196,15 @@ D'autres options tels que les activités canines proposées par les accueillants
 | type | VARCHAR(255) | NOT NULL | espèce de l'animal :chien ou chat |
 | photo | VARCHAR(45) | NOT NULL, UNIQUE | image de l'animal, chemin accès à la photo |
 | name | VARCHAR(45) | NOT NULL | nom de l'animal |
-| weight | VARCHAR(45) | - | poids de l'animal en kg |
-| age | INTEGER | - | age de l'animal |
+| weight_category | VARCHAR(45) | - | Categorie de poids de l'animal |
+| age | DATE | - | Date de naissance de l'animal |
 | sex | VARCHAR(6) | mâle ou femelle | sexe de l'animal |
 | breed | VARCHAR(45) | - |  race de l'animal |
-| about | VARCHAR(45) | - | description de l'animal |
+| about | LONGTEXT | - | description de l'animal |
 | energy_level | INTEGER | - |  niveau d'activité/dépense de l'animal |
 | feeding_schedule | INTEGER ou TIME? | NOT NULL |  créneau d'alimentation |
 | potty_break_schedule | INTEGER ou TIME? | - |  créneau concernant les besoins |
 | user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  clé étrangère désigant le propriétaire (user) de l'animal |
-
-<!-- Potty break integer ou varchar/time? -->
 
 ##### Table booking
 
@@ -190,6 +215,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 | end_date | DATETIME | NOT NULL, UNIQUE, GreaterThan start_date | Date à laquelle la réservation prend fin |
 | status | VARCHAR(45) | NOT NULL, DEFAULT "En ATTENTE" | Statut de la réservation : en attente, acceptée, finie |
 | user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) | Clé étrangère référant à l'utilisateur qui aura en charge l'hébergement |
+| sender_id | INTEGER | NOT NULL, FOREIGN KEY user(id) | Clé étrangère référant à l'utilisateur qui fait la demande |
 
 ##### Table disponibility
 
@@ -206,17 +232,18 @@ D'autres options tels que les activités canines proposées par les accueillants
 | id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT | Identifiant de l'image |
 | label | VARCHAR(70) | NOT NULL | Libellé de l'image |
 | path_access | VARCHAR(45) | NOT NULL | Chemin d'accès de l'image : sotckée dans répertoire public |
+| user_id | INT |  FOREIGN KEY user(id)| Clé étrangère référant à l'utilisateur qui a ajouté une photo |
 
 ##### Table message
 
 | Champ | Type  | Spécifités | Description |
 |---------|---------|---------|---------|
 | id | INTEGER | PRIMARY KEY, NOT NULL, AUTO_INCREMENT |  Identifiant du message |
-| topic | VARCHAR(255) | NOT NULL | Sujet du message |
-| body | VARCHAR(45) | NOT NULL | Contenu du message |
-| user_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée à l'expéditeur du message |
+| topic | VARCHAR(45) | NOT NULL | Sujet du message |
+| body | LONGTEXT | NOT NULL | Contenu du message |
+| recipient_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée au destinataire du message |
+| sender_id | INTEGER | NOT NULL, FOREIGN KEY user(id) |  Clé étrangère liée au l'expéditeur du message |
 
-<!-- Inverser les tailles de VARCHAR 45 & 255 ? -->
 
 ##### Table permission
 
@@ -234,7 +261,6 @@ D'autres options tels que les activités canines proposées par les accueillants
 | body | VARCHAR(255)   | NOT NULL  | corps du message |
 | rating | INTEGER   | NOT NULL  | note de l'utilisateur |
 
-
 ##### Table user
 
 | Champ | Type  | Spécifités | Description |
@@ -242,6 +268,7 @@ D'autres options tels que les activités canines proposées par les accueillants
 | id | INTEGER | PRIMARY KEY, NOT NULL |  |
 | firstname  | VARCHAR(255) | NOT NULL | prénom de l'utilisateur  |
 | lastname  | VARCHAR(255) | NOT NULL | nom de l'utilisateur  |
+| birth_date  | DATE | NOT NULL | date de naissance de l''utilisateur |
 | email  | VARCHAR(255) | NOT NULL | email de l'utilisateur  |
 | avatar | VARCHAR(70) | -- | avatar de l'utilisateur  |
 | street_number  | INTEGER | -- | numéro d'adresse  |
@@ -249,5 +276,11 @@ D'autres options tels que les activités canines proposées par les accueillants
 | zipcode  | INTEGER | -- | Code postal  |
 | town  | VARCHAR(45) | -- | Ville  |
 | country  | VARCHAR(45) | --  | Pays   |
-| booking_id | INTEGER | REFERENCES | FOREIGN KEY  |
 
+##### Table message_admin
+
+| Champ | Type  | Spécifités | Description |
+|---------|---------|---------|---------|
+| id | INTEGER | PRIMARY KEY, NOT NULL |  |
+| subject | VARCHAR(45)   | NOT NULL  | sujet du message |
+| message | LONGTEXT   | NOT NULL  | message de l'utilisateur |
