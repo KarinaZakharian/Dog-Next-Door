@@ -71,15 +71,11 @@ const userController = {
             if(!validator.isEmail(newUser.email)){
                 res.json("Email invalide");
             };
-            
-            // ^\d+\s[A-z\s\d]+,\s\d{5}\s[A-z\s]+$
-            //! Vérification de la ville renseigné par l'utilisateur (JOI)
-            
+                        
             //! Validation de la longitude et lattitude via API Gouv
             const response = await userDatamapper.addUser(newUser);
             console.log(response);
             res.json("Ajout utilisateur");
-            
         } catch (error) {
             res.status(404).json("erreur de connection server");
         }

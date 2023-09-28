@@ -33,7 +33,7 @@ const tokenController = {
         }
     },
 
-    checkTokenMemberAccess : async (req, res, next) => {
+    checkTokenMember : async (req, res, next) => {
         const token = req.cookies.access_token;
         if(!token){
             return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
