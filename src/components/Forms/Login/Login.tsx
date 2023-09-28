@@ -35,19 +35,9 @@ function Login() {
     setIsValid(isValid);
     
 
-<<<<<<< HEAD
     if (isValid ){
       console.log(error);
       
-=======
-    if (isValid && !error) {
-      swal({
-        icon: 'success',
-        buttons: [false],
-        timer: 1500,
-      });
-      setTimeout(() => {
->>>>>>> 1fb7fe7575967f2be9220098700f892d6b8b0c27
         dispatch(login(formData));
       
     }
