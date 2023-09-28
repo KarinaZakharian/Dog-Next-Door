@@ -7,4 +7,5 @@ export interface UserProps {
   longitude?: number;
   town: string;
   country: string;
+  description: string;
 }

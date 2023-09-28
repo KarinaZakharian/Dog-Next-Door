@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { UserProps } from '../../../@types/types';
+import { UserProps } from '../../../../@types/types';
 
 import './Card.scss';
 
-function Card({ avatar, firstname, lastname, town, country }: UserProps) {
+function Card({ avatar, firstname, lastname, town, country, description }: UserProps) {
   return (
     <Link className='card-link' to={''}>
       <div className="card">
@@ -14,6 +14,7 @@ function Card({ avatar, firstname, lastname, town, country }: UserProps) {
           </h2>
           <p className='card-town'>{town}</p>
           <p className='card-country'>{country}</p>
+          <p className="card-description">{description}</p>
         </div>
       </div>
     </Link>

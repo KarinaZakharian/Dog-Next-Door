@@ -1,8 +1,8 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
-import marker from '../../assets/dog-area.png';
-import shadow from '../../assets/dog-area-shadow.png';
-import data from '../../../fakeData/data.json';
+import marker from '../../../assets/dog-area.png';
+import shadow from '../../../assets/dog-area-shadow.png';
+import data from '../../../../fakeData/data.json';
 
 import './SectionMap.scss';
 
