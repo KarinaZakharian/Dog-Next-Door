@@ -49,9 +49,9 @@ function DateRangePickerComp() {
       <p>Pour ces jours</p>
       <input
         name="date"
-        value={`${format(range[0].startDate, 'MM/dd/yyy')} to ${format(
+        value={`${format(range[0].startDate, ' dd/MM/YYY')} au ${format(
           range[0].endDate,
-          'MM/dd/yyy'
+          'dd/MM/YYY'
         )}`}
         readOnly
         className="inputBox"
@@ -65,7 +65,7 @@ function DateRangePickerComp() {
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             ranges={range}
-            months={2}
+            months={1}
             direction="horizontal"
             className="calendarElement"
           />

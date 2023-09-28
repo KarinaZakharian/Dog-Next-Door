@@ -40,7 +40,7 @@ function AutoComplete({ style }) {
     <div className="signup__localisation">
       <div className="autocompletion-city">
         <label htmlFor="city" className="input__label">
-          Ville
+          Adresse complète
         </label>
         <input
           name="city"
@@ -48,7 +48,7 @@ function AutoComplete({ style }) {
           type="text"
           onChange={(e) => setQuery(e.target.value)}
           onKeyUp={() => getAddressesFromAPI(query)}
-          placeholder="Ville"
+          placeholder="Adresse"
           value={query}
           className="search__form-filters__select autocompletion-city__input"
           style={style}
