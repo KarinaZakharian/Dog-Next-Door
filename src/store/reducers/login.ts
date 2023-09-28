@@ -20,26 +20,20 @@ export const logout = createAction('user/logout');
 
 export const login = createAsyncThunk(
   'user/login',
-  async (formData: FormData) => {
+  async (formData: FormData,thunkAPI) => {
     const objData = Object.fromEntries(formData);
+try{
+  const {data}  = await axios.post('http://localhost:3000/login', objData);
+  console.log("data dans middleware",data);
+  return data as {
+    firstname:string,
+  }
+}
+catch(error){
+ return thunkAPI.rejectWithValue(error)
+}
+     
 
-    const { data } = await axios.post('http://localhost:3000/login', objData);
-
-    // j'utilise mon instance d'Axios
-    // const { data } = await axiosInstance.post('/login', objData);
-
-    // à la connexion, j'ajoute le token directement
-    // dans mon instance Axios
-    // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-
-    // le token est uniquement utilisé ici,
-    // je peux le supprimer des mes données
-    // delete data.token;
-
-    return data as {
-      firstname: string;
-      token: string;
-    };
   }
 );
 
@@ -47,15 +41,16 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = true;
+      console.log("action fulfilled",action)
       state.firstname = action.payload.firstname;
       state.error= null
       // state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
-      console.log(action);
-       state.error = action.error.message;
-       console.log(action.error.message)
-      // state.error= action.error.message
+       console.log("action rejected",action);
+       state.error = action.payload.response.data.message
+      //  console.log(action.error.message)
+      // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
     })
     

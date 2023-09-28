@@ -33,7 +33,7 @@ function Input({ name, placeholder, ...props }: InputProps) {
     event.target.style.borderColor = 'initial';
   };
 
-  console.log(name, value);
+  // console.log(name, value);
 
   return (
     <div className="input">

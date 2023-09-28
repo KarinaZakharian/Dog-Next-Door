@@ -29,7 +29,7 @@ const userController = {
                 .json(userFound);
             }else{
                 res
-                .json("Couple identifiant mot de passe incorrect");
+                .status(401).json({"message" : "Couple identifiant mot de passe incorrect"});
                 return;
             }
         
