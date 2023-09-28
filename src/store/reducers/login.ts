@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
 
-    const { data } = await axios.post('https://localhost:3000/login', objData);
+    const { data } = await axios.post('http://localhost:3000/login', objData);
 
     // j'utilise mon instance d'Axios
     // const { data } = await axiosInstance.post('/login', objData);
@@ -52,7 +52,7 @@ const loginReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.rejected, (state, action) => {
       console.log(action);
-      state.error = action.payload;
+      state.error = action.error.message;
       // state.error= action.error.code
       // je récupère l'erreur directement dans `action.error`
     })
