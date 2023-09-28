@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 /*We have to check value in the cmponent where function is used
 const [picked, setPicked] = useState('');
   function handleRadioChange(value: string): void {
     setPicked(value);
-  }*/ 
-
+  }*/
 
 import { ChangeEvent } from 'react';
 
@@ -14,10 +14,20 @@ interface FieldProps {
   id: string | undefined;
   value: string;
   picked: string;
+  img: string;
+  label: string;
   onRadioChange: (value: string) => void;
 }
 
-function Radio({ name, id, value, picked, onRadioChange }: FieldProps) {
+function Radio({
+  name,
+  id,
+  value,
+  picked,
+  img,
+  label,
+  onRadioChange,
+}: FieldProps) {
   console.log(picked);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -36,16 +46,8 @@ function Radio({ name, id, value, picked, onRadioChange }: FieldProps) {
         onChange={handleChange}
       />
       <label htmlFor={id} className="form__radio-label small">
-        <span className="form__text">{value}</span>
-        <span className="form__text">
-          {value === 'Petit'
-            ? '0 - 7 kg'
-            : value === 'Moyen'
-            ? '7 - 18 kg'
-            : value === 'Grand'
-            ? '18 - 45 kg'
-            : '45+ kg'}
-        </span>
+        <img className="form__icon" src={img} alt="hotel" />
+        <span className="form__text">{label}</span>
       </label>
     </div>
   );

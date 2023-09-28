@@ -20,20 +20,17 @@ export const logout = createAction('user/logout');
 
 export const login = createAsyncThunk(
   'user/login',
-  async (formData: FormData,thunkAPI) => {
+  async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
-try{
-  const {data}  = await axios.post('http://localhost:3000/login', objData);
-  console.log("data dans middleware",data);
-  return data as {
-    firstname:string,
-  }
-}
-catch(error){
- return thunkAPI.rejectWithValue(error)
-}
-     
-
+    try {
+      const { data } = await axios.post('http://localhost:3000/login', objData);
+      console.log('data dans middleware', data);
+      return data as {
+        firstname: string;
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -41,19 +38,19 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = true;
-      console.log("action fulfilled",action)
+      console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
-      state.error= null
+      state.error = null;
       // state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
-       console.log("action rejected",action);
-       state.error = action.payload.response.data.message
+      console.log('action rejected', action);
+      state.error = action.payload.response.data.message;
       //  console.log(action.error.message)
       // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
     })
-    
+
     .addCase(logout, (state) => {
       state.firstname = null;
 

@@ -16,8 +16,8 @@ import { loginSchema } from '../../../Validations/UserValidation';
 function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
   const error = useAppSelector((state) => state.login.error);
-  // console.log(error);
-  console.log(firstname);
+  // console.log('error:', error);
+  console.log('firstname', firstname);
 
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();
@@ -33,24 +33,22 @@ function Login() {
 
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
-    
 
-   if(isValid){
-    dispatch(login(formData))
-    
-    ;}
-  }
-    useEffect(()=>{
-      if(firstname){swal({icon:'success' });
-      navigate('/', { replace: true })
-     
-      ;}
-   
-      if(error){swal(`${error}`,{icon:'error'})};
+    if (isValid) {
+      dispatch(login(formData));
+    }
+  };
+  useEffect(() => {
+    if (firstname) {
+      swal({ icon: 'success' });
+      navigate('/', { replace: true });
+    }
 
-     
-     },[firstname,error]);
-  
+    if (error) {
+      swal(`${error}`, { icon: 'error' });
+    }
+  }, [firstname, error]);
+
   return (
     <div className="page-wrapper">
       <Header />
