@@ -1,25 +1,52 @@
 const jwt = require('jsonwebtoken') ;
+const {getOneUserById} = require('../datamappers/userDatamapper')
 require("dotenv").config();
 
 const tokenController = {
 
-    createToken :(userID, role = 'member') => {
+    createToken :(id, role = 'member') => {
         const payload = {
-            userId: userID,
-            role : role
-            // on pourrait ajouter d'autres informations non 'volatiles'
+            id,
+            role
         }
         const SECRET_KEY = process.env.SECRET_KEY;
         const options = {
-            expiresIn: '24h', // on peut utiliser 's', 'h', 'd', ou pas d'unité pour les ms
-            algorithm : 'HS256', //  HS256 est la valeur par défaut
-            // ... il existe d'autre options possibles (cf. lien ci-dessous)
+            expiresIn: '24h',
+            algorithm : 'HS256',
         }
         const token = jwt.sign(payload, SECRET_KEY, options);
-        return token; // Création du token
-        
-        
-    }
+        return token;
+    },
+
+    checkTokenLogin : async (req, res, next) => {
+        const token = req.cookies.access_token;
+        if(!token){
+            return next();
+        }
+
+        try {
+            const userData = jwt.verify(token, process.env.SECRET_KEY);
+            req.userId = userData.id;
+            return next();
+        } catch (error) {
+            return next();
+        }
+    },
+
+    checkTokenMember : async (req, res, next) => {
+        const token = req.cookies.access_token;
+        if(!token){
+            return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
+        }
+
+        try {
+            const userData = jwt.verify(token, process.env.SECRET_KEY);
+            req.userId = userData.id;
+            return next();
+        } catch (error) {
+            return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
+        }
+    },
 };
 
 module.exports = tokenController;
