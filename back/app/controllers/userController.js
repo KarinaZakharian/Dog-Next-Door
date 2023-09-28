@@ -5,17 +5,20 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const userController = {
-    checkUserInput : async (req,res) => {
+    loginUser : async (req,res) => {
         const userFound = await userController.findUser(req, res);
         
-        console.log(req.body);
+        // console.log(req.body);
+        //* Si l'utilisateur n'existe pas, on renvoi une erreur 401
         if(!userFound){
-            res.status(401).json({"message" : "Couple identifiant mot de passe incorrect"})
+            res.status(401).json({"message" : "Couple identifiant mot de passe est incorrect"})
             return
         }
         
+        //* On compare le mot de passe hashé 
         const passwordUser = await bcrypt.compare(req.body.user_password, userFound.user_password);
             console.log(passwordUser);
+        //* Si c'est true, on continue
             if(passwordUser){
                 
                 // delete userFound.user_password;
@@ -27,12 +30,13 @@ const userController = {
                 })
                 .status(200)
                 .json(userFound);
+                
             }else{
+        //* Sinon on envoie une erreur 401
                 res
-                .status(401).json({"message" : "Couple identifiant mot de passe incorrect"});
+                .status(401).json({"message" : "Couple identifiant mot de passe est incorrect"});
                 return;
             }
-        
     },
     
     findUser : async (req,res) => {
@@ -49,6 +53,7 @@ const userController = {
     createUser : async (req,res) => {
         
         const newUser =  req.body;
+        console.log("Create function body ", newUser);
         
         try {
             
@@ -71,7 +76,7 @@ const userController = {
             // ^\d+\s[A-z\s\d]+,\s\d{5}\s[A-z\s]+$
             //! Vérification de la ville renseigné par l'utilisateur (JOI)
             
-            //! Validation de la longitude et lattitude via API Gouv
+            //! Validation de la longitude et latitude via API Gouv
             const response = await userDatamapper.addUser(newUser);
             // console.log(JSON.stringify(response,0,2));
             res.status(200).json({"message" : "Ajout d'utilisateur avec succès"});

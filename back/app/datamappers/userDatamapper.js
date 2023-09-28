@@ -18,7 +18,6 @@ const userDatamapper = {
     addUser : async (newUser) => {
         try {
             const userToAdd = newUser;
-            console.log(userToAdd);
             const query = `INSERT INTO "user"
                     ("firstname", "lastname", "email", "user_address", "user_password")
                     VALUES ($1, $2, $3, $4, $5)`;
