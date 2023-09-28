@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
@@ -16,7 +16,7 @@ import { loginSchema } from '../../../Validations/UserValidation';
 function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
   const error = useAppSelector((state) => state.login.error);
-  console.log(error);
+  // console.log(error);
   console.log(firstname);
 
   const [valid, setIsValid] = useState(true);
@@ -35,46 +35,22 @@ function Login() {
     setIsValid(isValid);
     
 
-<<<<<<< HEAD
-    if (isValid ){
-      console.log(error);
-      
-=======
-<<<<<<< HEAD
-    if (isValid ){
-      console.log(error);
-      
-=======
-    if (isValid && !error) {
-      swal({
-        icon: 'success',
-        buttons: [false],
-        timer: 1500,
-      });
-      setTimeout(() => {
->>>>>>> 1fb7fe7575967f2be9220098700f892d6b8b0c27
->>>>>>> e6827a5b8198a108ead1545f0871af512113490f
-        dispatch(login(formData));
-      
-    }
-    if(error){
-      swal( `${error}` ,{
-        icon: 'error',
-      });
-    }
-    else{
-      swal( {
-        icon: 'success',
-        buttons: [false],
-        timer: 1000,
-      });
-      setTimeout(() => {
-        navigate('/', { replace: true });
-      }, 1000);
-      
-    }
+   if(isValid){
+    dispatch(login(formData))
+    
+    ;}
+  }
+    useEffect(()=>{
+      if(firstname){swal({icon:'success' });
+      navigate('/', { replace: true })
+     
+      ;}
    
-  };
+      if(error){swal(`${error}`,{icon:'error'})};
+
+     
+     },[firstname,error]);
+  
   return (
     <div className="page-wrapper">
       <Header />
