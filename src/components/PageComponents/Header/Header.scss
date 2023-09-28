@@ -4,14 +4,14 @@
   border-bottom: 2px solid v.$color-border;
 }
 .menu {
-  width: 990px;
   margin: 0 auto;
   padding: 10px;
   display: flex;
   align-items: center;
   gap: 20px;
   justify-content: space-between;
-  background-color: v.$color-main;
+  background-color: v.$color-border;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
   &__logo {
     font-size: 24px;

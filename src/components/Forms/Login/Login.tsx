@@ -10,6 +10,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import './Login.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
 
@@ -29,6 +30,7 @@ function Login() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
+    // console.log(objData);
     // console.log(objData);
 
     const isValid = await loginSchema.isValid(objData);
@@ -73,6 +75,12 @@ function Login() {
               aria-label="Mot de passe"
               style={{ borderColor: valid ? 'initial' : 'red' }}
             />
+            {!valid && (
+              <p className="error">
+                Le mot de passe ou l'email que vous avez saisi est incorrect.
+                Veuillez réessayer.
+              </p>
+            )}
             {!valid && (
               <p className="error">
                 Le mot de passe ou l'email que vous avez saisi est incorrect.
