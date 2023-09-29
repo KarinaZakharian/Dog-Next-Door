@@ -80,7 +80,7 @@ const userController = {
             console.log(response);
             res.json("Ajout utilisateur");
         } catch (error) {
-            res.status(404).json("erreur de connection server");
+            res.status(404).json("Erreur de connexion server");
         }
         
         
