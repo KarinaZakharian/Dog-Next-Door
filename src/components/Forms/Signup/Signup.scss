@@ -1,0 +1,47 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  background-color: v.$color-main;
+  border-radius: 4px;
+  border: 2px solid v.$color-border;
+  width: 50%;
+  margin: 50px auto;
+  color: v.$color-text;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 35px;
+}
+.main {
+  height: 100vh;
+  background-image: url(../../../assets/chienv2.jpg);
+  background-size: cover; /* Image will cover the entire container */
+  background-repeat: no-repeat; /* Image will not repeat */
+  flex-grow: 1;
+}
+.container {
+  width: 990px;
+  margin: 0 auto;
+}
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: v.$color-flash;
+  font-size: 12px;
+  border: 1px solid v.$color-border;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.swal-text {
+  padding: 17px;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: v.$color-text-dark;
+  font-weight: 700;
+  font-size: 14px;
+}

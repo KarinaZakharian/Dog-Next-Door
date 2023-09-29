@@ -1,0 +1,30 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__field {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid v.$color-border;
+    border-radius: 5px;
+    background-color: v.$color-main;
+
+    &:focus {
+      outline: none;
+      border-color: v.$color-text;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-top: 8px;
+    color: v.$color-text-dark;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
