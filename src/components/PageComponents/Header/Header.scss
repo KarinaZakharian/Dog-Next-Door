@@ -1,0 +1,73 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+.wrapper {
+  border-bottom: 2px solid v.$color-border;
+}
+.menu {
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  background-color: v.$color-border;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+  &__logo {
+    font-size: 24px;
+    font-weight: bold;
+    width: 75px;
+    height: 65px;
+  }
+
+  &__nav-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
+  }
+  &__menu-item {
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    color: v.$color-text-dark;
+
+    &:hover {
+      text-decoration: underline;
+      color: v.$color-flash;
+    }
+  }
+
+  &__menu-connection {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+
+    strong {
+      margin-right: 10px;
+      color: v.$color-text-dark;
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+}
+
+.menu__menu-button {
+  border: none;
+  background-color: v.$color-main;
+  color: v.$color-text-dark;
+  font-weight: 400;
+  font-size: 16px;
+
+}
