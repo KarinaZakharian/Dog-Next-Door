@@ -29,7 +29,7 @@ const tokenController = {
             req.userId = userData.id;
             return next();
         } catch (error) {
-            return error;
+            return next(error);
         }
     },
 

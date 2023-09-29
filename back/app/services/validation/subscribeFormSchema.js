@@ -8,13 +8,7 @@ const subscribeFormSchema = Joi.object({
     longitude : Joi.string().pattern(new RegExp('^-?([1][2][3][4][5][6]{1,2}|1[1][2][3][4][5][6][1][2][3][4][5][6]|180)(\.[1][2][3][4][5][6]{1,10})?$')).required(),
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'fr', 'school'] } }).required(),
     password: Joi.required()
-});
+}).required;
 
-const loginFormSchema = Joi.object({
-    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'fr', 'school'] } }).required(),
-    password: Joi.required()
-});
+module.exports = subscribeFormSchema;
 
-module.exports = {
-    subscribeFormSchema,
-    loginFormSchema};

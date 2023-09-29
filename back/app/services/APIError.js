@@ -1,10 +1,10 @@
 class APIError extends Error{
-    constructor(message,code,err){
+    constructor(message, status, err){
         super(message);
         if(err){
             this.error = err;
         }
-        this.code = code;
+        this.status = status;
         this.date = new Date();
     }
 }
