@@ -7,7 +7,7 @@ const [picked, setPicked] = useState('');
 
 import { ChangeEvent } from 'react';
 
-import './Radio.scss';
+import './RadioSimple.scss';
 
 interface FieldProps {
   name: string;
@@ -25,18 +25,18 @@ function Radio({ name, id, value, picked, onRadioChange }: FieldProps) {
   }
 
   return (
-    <div className="form__radio">
+    <div className="radio-simple">
       <input
         type="radio"
         id={id}
         value={value}
         name={name}
-        className="form__radio-input"
+        className="radio-input"
         checked={picked === value}
         onChange={handleChange}
       />
-      <label htmlFor={id} className="form__radio-label small">
-        <span className="form__text">{value}</span>
+      <label htmlFor={id} className="radio-label">
+        {value}
       </label>
     </div>
   );

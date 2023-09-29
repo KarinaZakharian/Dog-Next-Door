@@ -11,6 +11,7 @@ import Error from '../Error';
 
 // on import le css
 import './App.scss';
+import ProfilForm from '../Profil/ProfilPage/ProfilForm/ProfilForm';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
+        <Route path="/profil" element={<ProfilForm />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

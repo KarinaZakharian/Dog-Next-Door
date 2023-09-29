@@ -1,0 +1,24 @@
+@use '../../../../styles/reset';
+@use '../../../../styles/variables' as v;
+.radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+p {
+  margin-bottom: 15px;
+}
+.form__title {
+  background-color: v.$color-border;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.main {
+  height: 100%;
+  background-image: url(../../../../assets/woman-2711279.jpg);
+  background-size: cover; /* Image will cover the entire container */
+  background-repeat: no-repeat; /* Image will not repeat */
+  flex-grow: 1;
+}
