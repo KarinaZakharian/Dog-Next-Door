@@ -1,11 +1,12 @@
-@use '../../styles/reset';
-@use '../../styles/variables' as v;
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
 
 .checkbox-title {
   font-size: 16px;
   font-weight: 700;
   color: v.$color-text-dark;
   margin-bottom: 15px;
+  margin-top: 15px;
 }
 /* Customize the label (the container) */
 .container {
@@ -24,7 +25,7 @@
 }
 
 /* Hide the browser's default checkbox */
-.container input {
+.container .checkbox {
   position: absolute;
   opacity: 0;
   cursor: pointer;

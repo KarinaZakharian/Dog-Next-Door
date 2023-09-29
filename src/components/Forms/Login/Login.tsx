@@ -40,10 +40,10 @@ function Login() {
   };
   useEffect(() => {
     if (firstname) {
-      swal({ 
+      swal({
         icon: 'success',
         timer: 1000,
-       });
+      });
 
       setTimeout(() => {
         navigate('/', { replace: true });
@@ -62,7 +62,7 @@ function Login() {
     <div className="page-wrapper">
       <Header />
 
-      <main className="main">
+      <main className="main-login">
         <div className="container">
           <form onSubmit={handleSubmit}>
             <Input
