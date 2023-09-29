@@ -21,7 +21,7 @@ const userController = {
         //* Si c'est true, on continue
             if(passwordUser){
                 
-                // delete userFound.user_password;
+                delete userFound.user_password;
                 const userToken = tokenController.createToken(userFound.id);
                 res
                 .cookie("access_token", userToken, {
