@@ -5,7 +5,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const userController = {
-    checkUserInput : async (req,res) => {
+    logInUser : async (req,res) => {
 
         // Vérification token si utilisateur déjà connecté
         if(req.userId){
@@ -23,21 +23,22 @@ const userController = {
             return
         }
         
-        const passwordUserCheck = await bcrypt.compare(req.body.user_password, userFound.user_password);            if(passwordUserCheck){
-                delete userFound.user_password;
-                const userToken = tokenController.createToken(userFound.id);
-                res
-                .cookie("access_token", userToken, {
-                    httpOnly:false,
-                    secure : process.env.NODE_ENV === "production",
-                })
-                .status(200)
-                .json(userFound);
-            }else{
-                res
-                .json("Couple identifiant mot de passe incorrect");
-                return;
-            }
+        const passwordUserCheck = await bcrypt.compare(req.body.user_password, userFound.user_password);
+        if(passwordUserCheck){
+            delete userFound.user_password;
+            const userToken = tokenController.createToken(userFound.id);
+            res
+            .cookie("access_token", userToken, {
+                httpOnly:false,
+                secure : process.env.NODE_ENV === "production",
+            })
+            .status(200)
+            .json(userFound);
+        }else{
+            res
+            .json("Couple identifiant mot de passe incorrect");
+            return;
+        }
         
     },
     

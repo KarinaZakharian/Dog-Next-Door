@@ -1,26 +1,27 @@
 const APIError = require('../APIError');
-const {subscribeFormSchema, loginFormSchema} = require('./formSchema');
+const subscribeFormSchema = require('./subscribeFormSchema');
+const loginFormSchema = require('./loginFormSchema');
 
 const validationFormService ={
     checkSubscribeForm : (req, res, next) => {
-        const {value, error} = subscribeFormSchema.validate(req.body);
+        let { error } = subscribeFormSchema.validate(req.body);
         if(!error){
-            return next();
+            next();
         }else{
-            let err = new APIError("Votre formulaire n'est pas correct", 400);
-            return res.json(err);
+            let error = new APIError("Votre formulaire n'est pas correct", 400);
+            res.json(error);
         }
     },
 
     checkLogInForm : (req, res, next) => {
-        const {value, error} = loginFormSchema.validate(req.body);
+        let { error } = loginFormSchema.validate(req.body);
         if(!error){
-            return next();
+            next();
         }else{
-            let err = new APIError("Votre formulaire n'est pas correct", 400);
-            return next(err);
+            let error = new APIError("Votre formulaire n'est pas correct", 400);
+            res.json(error);
         }
     },
 };
 
-module.exports = validationFormService
+module.exports = validationFormService;
