@@ -8,8 +8,8 @@ const validationFormService ={
         if(!error){
             next();
         }else{
-            let error = new APIError("Votre formulaire n'est pas correct", 400);
-            res.json(error);
+            let err = new APIError("Votre formulaire n'est pas correct", 400, error);
+            res.json(err.message);
         }
     },
 
@@ -18,8 +18,8 @@ const validationFormService ={
         if(!error){
             next();
         }else{
-            let error = new APIError("Votre formulaire n'est pas correct", 400);
-            res.json(error);
+            let err = new APIError("Votre formulaire n'est pas correct", 400, error);
+            res.json(err.message);
         }
     },
 };
