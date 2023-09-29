@@ -4,6 +4,7 @@ class APIError extends Error{
         if(err){
             this.error = err;
         }
+        this.message;
         this.code = code;
         this.date = new Date();
     }
