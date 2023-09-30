@@ -62,7 +62,8 @@ const userController = {
             // Vérification de l'existence du compte
             const userExist = await userDatamapper.getOneUserByEmail(newUser);
             if(userExist){
-                res.status(401).json("Cet email est déjà utilisé ! Veuillez vous logger")   
+                res.json("Cet email est déjà utilisé ! Veuillez vous logger");
+                return
             };
             
             // Remplacement du mdp par un mdp crypté
@@ -71,14 +72,16 @@ const userController = {
             // Vérification de l'emial du nouvel utilisateur
             if(!validator.isEmail(newUser.email)){
                 res.json("Email invalide");
+                return
             };
                         
             //! Validation de la longitude et lattitude via API Gouv
+            
             const response = await userDatamapper.addUser(newUser);
             console.log(response);
             res.json("Ajout utilisateur");
         } catch (error) {
-            res.status(404).json("erreur de connection server");
+            res.status(404).json("Erreur de connexion server");
         }
         
         
