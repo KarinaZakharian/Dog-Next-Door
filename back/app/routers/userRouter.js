@@ -8,12 +8,14 @@ const { controlWrapper:cw } = require('../services/errorService.js')
 const { checkSubscribeForm, checkLogInForm } = require('../services/validation/validationForm.js');
 
 // // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-// userRouter.post("/login", checkTokenLogin, cw(checkLogInForm, userController.logInUser));
+userRouter.post("/login", checkTokenLogin, cw(checkLogInForm, userController.logInUser));
 // // userRouter.post("/account",userController.loggedUser);
-// userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
+userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
 
 // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-userRouter.post("/login",userController.checkUserInput);
+// userRouter.post("/login",userController.checkUserInput);
 // userRouter.post("/account",userController.loggedUser);
-userRouter.post("/subscribe", checkTokenMember, cw(userController.createUser));
+// userRouter.post("/subscribe", checkTokenMember, cw(userController.createUser));
+
+module.exports = userRouter;
 
