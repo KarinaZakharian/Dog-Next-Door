@@ -13,7 +13,6 @@ const { checkSubscribeForm, checkLogInForm } = require('../services/validation/v
 // userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
 
 // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-<<<<<<< HEAD
 userRouter.get("/login", (req,res) => {
     res.send("Login page")
 })
@@ -23,10 +22,5 @@ userRouter.get("/subscribe", (req,res) => {
 userRouter.post("/login", checkTokenLogin, cw(userController.logInUser));
 // userRouter.post("/account",userController.loggedUser);
 userRouter.post("/signup", checkTokenMember, cw(userController.createUser));
-=======
-userRouter.post("/login", checkTokenLogin, checkLogInForm, cw(userController.logInUser));
-// userRouter.post("/account",userController.loggedUser);
-userRouter.post("/signup", checkSubscribeForm, cw(userController.createUser));
->>>>>>> a7f24220935b7052b7f8ce185bd1bfdab3a145f7
 
 module.exports = userRouter;
