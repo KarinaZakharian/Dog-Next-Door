@@ -13,12 +13,12 @@ const { checkSubscribeForm, checkLogInForm } = require('../services/validation/v
 // userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
 
 // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-userRouter.get("/login", (req,res) => {
-    res.send("Login page")
-})
-userRouter.get("/subscribe", (req,res) => {
-    res.send("Subscribe page")
-})
+// userRouter.get("/login", (req,res) => {
+//     res.send("Login page")
+// })
+// userRouter.get("/subscribe", (req,res) => {
+//     res.send("Subscribe page")
+// })
 userRouter.post("/login", checkTokenLogin, cw(userController.logInUser));
 // userRouter.post("/account",userController.loggedUser);
 userRouter.post("/signup", checkTokenMember, cw(userController.createUser));
