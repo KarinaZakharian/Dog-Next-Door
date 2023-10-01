@@ -29,5 +29,3 @@ userRouter.post("/login", checkTokenLogin, checkLogInForm, cw(userController.log
 // userRouter.post("/subscribe", checkTokenMember, cw(userController.createUser));
 
 module.exports = userRouter;
-
-module.exports = userRouter;
