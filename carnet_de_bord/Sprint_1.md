@@ -25,3 +25,7 @@ Création de la branche develop_back
     - Après quelques erreurs, nous avons réussi à retourner les données via la BDD au front.
     - Prochaine étape : on tente de finaliser la connexion, en ajoutant les erreurs en cas de mauvais information (email, password), l'insertion d'un utilisateur via le formulaire de contact,
   et l'appararition de la page Account.
+
+  ## J9 27/09
+
+   - Rendez-vous mi-sprint
