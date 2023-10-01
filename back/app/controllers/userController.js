@@ -5,44 +5,49 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 
 const userController = {
-    loginUser : async (req,res) => {
-        const userFound = await userController.findUser(req, res);
+    logInUser : async (req,res) => {
+
+        // Vérification token si utilisateur déjà connecté
+        if(req.userId){
+            const userId = req.userId;
+            const userConnected = await userDatamapper.getOneUserById(userId);
+            delete userConnected.user_password;
+            return res.status(200).json(userConnected);
+        }
+
+        // Recherche utilisateur via ses identifiants de connection
+        const userFound = await userController.findUserByEmail(req, res);
         
         // console.log(req.body);
         //* Si l'utilisateur n'existe pas, on renvoi une erreur 401
         if(!userFound){
-            res.status(401).json({"message" : "Couple identifiant mot de passe est incorrect"})
+            res.status(401).json("Vous n'avez pas accès")
             return
         }
         
-        //* On compare le mot de passe hashé 
-        const passwordUser = await bcrypt.compare(req.body.user_password, userFound.user_password);
-            console.log(passwordUser);
-        //* Si c'est true, on continue
-            if(passwordUser){
-                
-                delete userFound.user_password;
-                const userToken = tokenController.createToken(userFound.id);
-                res
-                .cookie("access_token", userToken, {
-                    httpOnly:true,
-                    secure : process.env.NODE_ENV === "production",
-                })
-                .status(200)
-                .json(userFound);
-                
-            }else{
-        //* Sinon on envoie une erreur 401
-                res
-                .status(401).json({"message" : "Couple identifiant mot de passe est incorrect"});
-                return;
-            }
+        const passwordUserCheck = await bcrypt.compare(req.body.user_password, userFound.user_password);
+        if(passwordUserCheck){
+            delete userFound.user_password;
+            const userToken = tokenController.createToken(userFound.id);
+            res
+            .cookie("access_token", userToken, {
+                httpOnly:false,
+                secure : process.env.NODE_ENV === "production",
+            })
+            .status(200)
+            .json(userFound);
+        }else{
+            res
+            .json("Couple identifiant mot de passe incorrect");
+            return;
+        }
+        
     },
     
-    findUser : async (req,res) => {
+    findUserByEmail : async (req,res) => {
         const userInput = req.body;
         try {
-            const user = await userDatamapper.getOneUser(userInput);
+            const user = await userDatamapper.getOneUserByEmail(userInput);
             return user;
         } catch (error) {
             res.status(500).json(error.toString());
@@ -53,14 +58,13 @@ const userController = {
     createUser : async (req,res) => {
         
         const newUser =  req.body;
-        console.log("Create function body ", newUser);
         
         try {
             
             // Vérification de l'existence du compte
-            const userExist = await userDatamapper.getOneUser(newUser);
+            const userExist = await userDatamapper.getOneUserByEmail(newUser);
             if(userExist){
-                res.status(401).json({"message" : "Email déjà utilisé"});
+                res.json("Cet email est déjà utilisé ! Veuillez vous logger");
                 return
             };
             
@@ -69,21 +73,20 @@ const userController = {
             
             // Vérification de l'emial du nouvel utilisateur
             if(!validator.isEmail(newUser.email)){
-                res.status(401).json({"message" : "Email invalide"});
+                res.json("Email invalide");
                 return
             };
+                        
+            //! Validation de la longitude et lattitude via API Gouv
             
-            // ^\d+\s[A-z\s\d]+,\s\d{5}\s[A-z\s]+$
-            //! Vérification de la ville renseigné par l'utilisateur (JOI)
-            
-            //! Validation de la longitude et latitude via API Gouv
             const response = await userDatamapper.addUser(newUser);
-            // console.log(JSON.stringify(response,0,2));
-            res.status(200).json({"message" : "Ajout d'utilisateur avec succès"});
-            
+            console.log(response);
+            res.json("Ajout utilisateur");
         } catch (error) {
-            res.status(404).json("erreur de connection server");
+            res.status(404).json("Erreur de connexion server");
         }
+        
+        
     },
     
     // loggedUser : (req, res) => {
