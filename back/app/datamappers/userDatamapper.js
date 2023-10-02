@@ -36,7 +36,7 @@ const userDatamapper = {
             const query = `INSERT INTO "user"
                     ("firstname", "lastname", "email", "user_address", "user_password")
                     VALUES ($1, $2, $3, $4, $5)`;
-            const {firstname, lastname, email, user_address, password} = userToAdd;
+            const {firstname, lastname, email, user_address, user_password} = userToAdd;
             const values = [firstname, lastname, email, user_address, user_password]
             const result = await client.query(query, values);
             console.log(result);
