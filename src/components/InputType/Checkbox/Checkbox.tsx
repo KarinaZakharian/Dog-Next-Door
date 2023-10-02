@@ -3,13 +3,20 @@ import { useState } from 'react';
 import './Checkbox.scss';
 
 interface CheckboxGroupProps {
+  name: string;
   options: string[];
   legend: string;
+  onSelectionChange: (selectedOptions: string[]) => void;
 }
 
-function CheckboxGroup({ options, legend }: CheckboxGroupProps) {
+function CheckboxGroup({
+  name,
+  options,
+  legend,
+  onSelectionChange,
+}: CheckboxGroupProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
+  onSelectionChange(selectedOptions);
   console.log(selectedOptions);
 
   const handleCheckboxChange = (option: string) => {
@@ -28,9 +35,10 @@ function CheckboxGroup({ options, legend }: CheckboxGroupProps) {
       {options.map((option) => (
         <label key={option} className="container">
           <input
+            name={name}
             className="checkbox"
             type="checkbox"
-            value={option}
+            value={selectedOptions}
             checked={selectedOptions.includes(option)}
             onChange={() => handleCheckboxChange(option)}
           />

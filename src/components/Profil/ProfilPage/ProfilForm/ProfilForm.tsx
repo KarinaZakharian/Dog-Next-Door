@@ -15,6 +15,17 @@ import Radio from '../../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../../InputType/Checkbox/Checkbox';
 
 function ProfilForm() {
+  const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
+  const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
+
+  const handleSelectionChange1 = (selectedOptions: string[]) => {
+    setSelectedOptions1(selectedOptions);
+  };
+
+  const handleSelectionChange2 = (selectedOptions: string[]) => {
+    setSelectedOptions2(selectedOptions);
+  };
+
   const options = [
     'Maison fumeur',
     'Enfant âgés de 0 à 5 ans',
@@ -51,11 +62,6 @@ function ProfilForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
-    // Add the selectedOptions to the formData
-
-    formData.append('additionalOptions', options);
-    formData.append('size', size);
 
     const objData = Object.fromEntries(formData);
     console.log(objData);
@@ -127,12 +133,16 @@ function ProfilForm() {
               />
             </div>
             <CheckboxGroup
+              name="additional options"
               legend="À quoi les propriétaires peuvent-ils s'attendre lorsqu'ils vous confient la garde de leur animal de compagnie ?"
               options={options}
+              onSelectionChange={handleSelectionChange1}
             />
             <CheckboxGroup
+              name="size"
               legend="Quels types d'animaux pouvez-vous accueillir à votre domicile ?"
               options={size}
+              onSelectionChange={handleSelectionChange2}
             />
             <p>
               À quelle fréquence pouvez-vous emmener les animaux que vous gardez
