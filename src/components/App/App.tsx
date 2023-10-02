@@ -1,9 +1,7 @@
-/* eslint-disable prettier/prettier */
-// import Header from '../PageComponents/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 
 // On import nos composants de pages
-import Home from '../Home';
+import Home from '../Home/Home';
 import Search from '../Search/Search';
 import Login from '../Forms/Login/Login';
 import Signup from '../Forms/Signup/Signup';

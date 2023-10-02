@@ -62,7 +62,7 @@ function Login() {
   return (
     <div className="page-wrapper">
       <Header />
-      <Main />
+      {/* <Main /> */}
       <main className="main-login">
         <div className="container">
           <form onSubmit={handleSubmit}>

@@ -3,13 +3,13 @@ import data from '../../../../fakeData/data.json';
 
 import { UserProps } from '../../../@types/types';
 
-import './SectionCards.scss';
+import classes from './SectionCards.module.scss';
 
 function SectionCard() {
   const users: UserProps[] = data;
 
   return (
-    <div className="sectioncards">
+    <div className={classes.sectioncards}>
       {users.map((user) => (
         <Card
           key={user.id}

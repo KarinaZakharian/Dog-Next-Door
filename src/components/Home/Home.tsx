@@ -12,7 +12,7 @@ import medium from '../../assets/icons8-dog-35.png';
 import big from '../../assets/icons8-dog-55.png';
 import geant from '../../assets/icons8-dog-64.png';
 
-import './index.scss';
+import './Home.scss';
 import Button from '../InputType/Button/Button';
 import { addData } from '../../store/reducers/home';
 import { useAppDispatch } from '../../hooks/redux';

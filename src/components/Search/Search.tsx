@@ -10,13 +10,15 @@ import InputSearch from './InputSearch/InputSearch';
 
 function Search() {
   return (
-    <div className="search" id="Map">
+    <>
       <Header />
-      <SectionMap />
-      <SectionCards />
-      <InputSearch />
+      <div className="search" id="Map">
+        <InputSearch />
+        <SectionCards />
+        <SectionMap />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
