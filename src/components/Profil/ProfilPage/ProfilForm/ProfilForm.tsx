@@ -2,6 +2,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
+import {
+  success,
+  fillProfilForm,
+} from '../../../../store/reducers/profil-form';
 
 import Input from '../../../InputType/Input/Input';
 import Button from '../../../InputType/Button/Button';
@@ -15,6 +19,12 @@ import Radio from '../../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../../InputType/Checkbox/Checkbox';
 
 function ProfilForm() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const error = useAppSelector((state) => state.profilForm.error);
+  const message = useAppSelector((state) => state.profilForm.message);
+
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
 
@@ -40,9 +50,6 @@ function ProfilForm() {
     'Géant (45 kg)',
   ];
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
   const [pickedAccomodation, setAccomodation] = useState('');
   function handleAccomodationChange(value: string): void {
     setAccomodation(value);
@@ -65,8 +72,30 @@ function ProfilForm() {
 
     const objData = Object.fromEntries(formData);
     console.log(objData);
+
+    dispatch(fillProfilForm(formData));
     // console.log(objData);
   };
+
+  useEffect(() => {
+    if (!error && message) {
+      swal({
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        dispatch(success());
+        navigate('/', { replace: true });
+      }, 1000);
+    }
+
+    if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+        button: true,
+      });
+    }
+  }, [error, message]);
 
   return (
     <div className="page-wrapper">
