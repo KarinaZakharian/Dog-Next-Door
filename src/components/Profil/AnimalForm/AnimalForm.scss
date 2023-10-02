@@ -1,0 +1,9 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+p {
+  font-size: 16px;
+  font-weight: 700;
+  color: v.$color-text-dark;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}

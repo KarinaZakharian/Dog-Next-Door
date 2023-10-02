@@ -12,7 +12,7 @@ import './ProfilForm.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import TextareaInput from '../../InputType/Textarea/Textarea';
-import Radio from '../../InputType/RadioSimple/RadioSimple';
+import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 
 function ProfilForm() {
@@ -112,21 +112,21 @@ function ProfilForm() {
             />
             <p>Mon logement</p>
             <div className="radio-wrapper">
-              <Radio
+              <RadioSimple
                 name="accommodation"
                 id="maison"
                 picked={pickedAccomodation}
                 value="Maison"
                 onRadioChange={handleAccomodationChange}
               />
-              <Radio
+              <RadioSimple
                 name="accommodation"
                 id="appartement"
                 picked={pickedAccomodation}
                 value="Appartement"
                 onRadioChange={handleAccomodationChange}
               />
-              <Radio
+              <RadioSimple
                 name="accommodation"
                 id="ferme"
                 picked={pickedAccomodation}
@@ -136,21 +136,21 @@ function ProfilForm() {
             </div>
             <p>Quel type de jardin avez-vous ?</p>
             <div className="radio-wrapper">
-              <Radio
+              <RadioSimple
                 name="garden"
                 id="clos"
                 picked={pickedGarden}
                 value="Jardin clos"
                 onRadioChange={handleGardenChange}
               />
-              <Radio
+              <RadioSimple
                 name="garden"
                 id="non-clo"
                 picked={pickedGarden}
                 value="Jardin non clos"
                 onRadioChange={handleGardenChange}
               />
-              <Radio
+              <RadioSimple
                 name="garden"
                 id="pas-jardin"
                 picked={pickedGarden}
@@ -175,28 +175,28 @@ function ProfilForm() {
               faire leurs besoins ?
             </p>
             <div className="radio-wrapper">
-              <Radio
+              <RadioSimple
                 name="walk"
                 id="1"
                 picked={pickedWalk}
                 value="Entre 0 et 2 heures"
                 onRadioChange={handleWalkChange}
               />
-              <Radio
+              <RadioSimple
                 name="walk"
                 id="2"
                 picked={pickedWalk}
                 value="Entre 2 et 4 heures"
                 onRadioChange={handleWalkChange}
               />
-              <Radio
+              <RadioSimple
                 name="walk"
                 id="3"
                 picked={pickedWalk}
                 value="Entre 4 et 8 heures"
                 onRadioChange={handleWalkChange}
               />
-              <Radio
+              <RadioSimple
                 name="walk"
                 id="4"
                 picked={pickedWalk}

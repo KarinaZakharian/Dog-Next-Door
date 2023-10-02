@@ -1,14 +1,17 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
-p {
+.datapicker-title {
   font-size: 16px;
   font-weight: 700;
   color: v.$color-text-dark;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 .inputBox {
   padding: 10px;
   width: 100%;
   margin: 0 auto;
   display: block;
+  border-radius: 5px;
+  border-color: v.$color-border;
 }
