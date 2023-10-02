@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   createAction,
   createAsyncThunk,
@@ -10,7 +9,6 @@ import axios from 'axios';
 interface LoginState {
   firstname: string | null;
   error: unknown;
- 
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -42,13 +40,13 @@ const loginReducer = createReducer(initialState, (builder) => {
       console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.error = null;
-    
+
       // state.token = action.payload.token;
     })
     .addCase(login.rejected, (state, action) => {
       console.log('action rejected', action);
-      state.error = action.payload.response.data.message;
-      state.firstname=null
+      state.error = action.payload.response.data;
+      state.firstname = null;
       //  console.log(action.error.message)
       // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
