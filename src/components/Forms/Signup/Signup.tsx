@@ -82,8 +82,12 @@ function SignUp() {
   };
 
   useEffect(() => {
+    console.log('error', error);
+    console.log('message', message);
+
     if (!error && message) {
-      swal({
+      swal(`${message}`, {
+        text: message,
         icon: 'success',
         timer: 1000,
       });
