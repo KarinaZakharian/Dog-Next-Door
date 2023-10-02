@@ -6,6 +6,7 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
+import Main from '../../PageComponents/Main/Main';
 import './Login.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
@@ -61,7 +62,7 @@ function Login() {
   return (
     <div className="page-wrapper">
       <Header />
-
+      <Main />
       <main className="main-login">
         <div className="container">
           <form onSubmit={handleSubmit}>

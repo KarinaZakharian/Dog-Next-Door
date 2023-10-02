@@ -21,8 +21,6 @@ function Radio({
   label,
   onRadioChange,
 }: FieldProps) {
-  console.log(picked);
-
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     onRadioChange(event.target.value);
   }

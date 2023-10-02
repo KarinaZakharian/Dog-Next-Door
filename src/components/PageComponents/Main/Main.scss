@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as v;
+
+.main {
+  background-image: url(../../assets/chienv2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-grow: 1;
+
+  &-title {
+    text-align: center;
+    color: v.$color-text-dark;
+    font-weight: 700;
+    font-size: 6rem;
+    margin-bottom: 0;
+  }
+}

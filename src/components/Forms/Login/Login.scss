@@ -19,11 +19,12 @@ form {
 }
 
 .main-login {
-  height: 100vh;
-  background-image: url(../../../assets/chienv2.jpg);
-  background-size: cover; /* Image will cover the entire container */
-  background-repeat: no-repeat; /* Image will not repeat */
-  flex-grow: 1;
+  position: relative;
+  //   height: 100vh;
+  //   background-image: url(../../../assets/chienv2.jpg);
+  //   background-size: cover; /* Image will cover the entire container */
+  //   background-repeat: no-repeat; /* Image will not repeat */
+  //   flex-grow: 1;
 }
 .container {
   width: 990px;

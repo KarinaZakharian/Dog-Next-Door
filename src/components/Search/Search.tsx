@@ -6,7 +6,6 @@ import SectionMap from './SectionMap/SectionMap';
 
 // On import notre css
 import './Search.scss';
-import Input from '../InputType/Input/Input';
 import InputSearch from './InputSearch/InputSearch';
 
 function Search() {
