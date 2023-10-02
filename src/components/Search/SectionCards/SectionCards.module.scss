@@ -1,5 +1,7 @@
 @use '../../../styles/variables' as v;
 
 .sectioncards {
-  background-color: v.$color-main;
+  width: 50%;
+  height: 95vh;
+  margin: 0 20%;
 }
