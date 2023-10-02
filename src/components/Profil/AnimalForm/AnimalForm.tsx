@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 // import { success, fillProfilForm } from '../../../store/reducers/profil-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { success, fillAnimalForm } from '../../../store/reducers/animal-form';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -20,14 +21,13 @@ import Footer from '../../PageComponents/Footer/Footer';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import Radio from '../../InputType/Radio/Radio';
 import CalendarComp from '../../InputType/DatePiker/DateSelect';
-import TextareaInput from '../../InputType/Textarea/Textarea';
 
 function AnimalForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const error = useAppSelector((state) => state.profilForm.error);
-  const message = useAppSelector((state) => state.profilForm.message);
+  const error = useAppSelector((state) => state.animalForm.error);
+  const message = useAppSelector((state) => state.animalForm.message);
 
   // picking  the animal
   const [pickedAnimal, setAnimal] = useState('');
@@ -69,9 +69,31 @@ function AnimalForm() {
     const objData = Object.fromEntries(formData);
     console.log(objData);
 
+    dispatch(fillAnimalForm(formData));
+
     // dispatch(fillProfilForm(formData));
     // console.log(objData);
   };
+
+  useEffect(() => {
+    if (!error && message) {
+      swal({
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        dispatch(success());
+        navigate('/', { replace: true });
+      }, 1000);
+    }
+
+    if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+        button: true,
+      });
+    }
+  }, [error, message]);
 
   return (
     <div className="page-wrapper">
