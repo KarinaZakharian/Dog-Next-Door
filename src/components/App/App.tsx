@@ -9,7 +9,8 @@ import Error from '../Error';
 
 // on import le css
 import './App.scss';
-import ProfilForm from '../Profil/ProfilPage/ProfilForm/ProfilForm';
+import ProfilForm from '../Profil/ProfilForm/ProfilForm';
+import AnimalForm from '../Profil/AnimalForm/AnimalForm';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
-        <Route path="/profil" element={<ProfilForm />} />
+        <Route path="/profil/form" element={<ProfilForm />} />
+        <Route path="/profil/animal" element={<AnimalForm />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

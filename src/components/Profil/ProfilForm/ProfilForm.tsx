@@ -2,21 +2,18 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-import {
-  success,
-  fillProfilForm,
-} from '../../../../store/reducers/profil-form';
+import { success, fillProfilForm } from '../../../store/reducers/profil-form';
 
-import Input from '../../../InputType/Input/Input';
-import Button from '../../../InputType/Button/Button';
-import Header from '../../../PageComponents/Header/Header';
-import Footer from '../../../PageComponents/Footer/Footer';
+import Input from '../../InputType/Input/Input';
+import Button from '../../InputType/Button/Button';
+import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
 import './ProfilForm.scss';
 
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import TextareaInput from '../../../InputType/Textarea/Textarea';
-import Radio from '../../../InputType/RadioSimple/RadioSimple';
-import CheckboxGroup from '../../../InputType/Checkbox/Checkbox';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import TextareaInput from '../../InputType/Textarea/Textarea';
+import Radio from '../../InputType/RadioSimple/RadioSimple';
+import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 
 function ProfilForm() {
   const navigate = useNavigate();
