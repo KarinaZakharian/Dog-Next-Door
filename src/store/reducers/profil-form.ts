@@ -21,7 +21,7 @@ export const fillProfilForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axios.post('http://localhost:3000/subscribe', objData);
+      const data = await axios.post('http://localhost:3000/account', objData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

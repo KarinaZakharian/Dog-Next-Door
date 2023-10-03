@@ -18,6 +18,7 @@ function Login() {
   const error = useAppSelector((state) => state.login.error);
   // console.log('error:', error);
   console.log('firstname', firstname);
+  console.log('firstname', firstname);
 
   const [valid, setIsValid] = useState(true);
   const navigate = useNavigate();

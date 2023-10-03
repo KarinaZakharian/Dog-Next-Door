@@ -16,10 +16,23 @@ p {
   font-weight: 700;
 }
 .main {
-  height: 100%;
+  min-height: 100vh;
   background-image: url(../../../assets/chienv2.jpg);
   background-size: cover; /* Image will cover the entire container */
   background-repeat: no-repeat; /* Image will not repeat */
   flex-grow: 1;
   background-position: center;
+}
+.profil-form {
+  background-color: v.$color-main;
+  border-radius: 4px;
+  border: 2px solid v.$color-border;
+  width: 80%;
+  margin: 50px auto;
+  color: v.$color-text;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 35px;
 }

@@ -10,6 +10,7 @@ function SectionCard() {
   const dispatch = useAppDispatch();
 
   const users = useAppSelector((state) => state.search.users);
+  console.log(users);
 
   return (
     <div className={classes.sectioncards}>

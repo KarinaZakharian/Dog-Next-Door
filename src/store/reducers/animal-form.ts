@@ -21,7 +21,10 @@ export const fillAnimalForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axios.post('http://localhost:3000/subscribe', objData);
+      const data = await axios.post(
+        'http://localhost:3000/account/addanimal',
+        objData
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

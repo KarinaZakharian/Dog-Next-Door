@@ -8,7 +8,7 @@ import axios from 'axios';
 
 interface LoginState {
   firstname: string | null;
-  error: unknown;
+  error: null;
 }
 export const initialState: LoginState = {
   firstname: null,

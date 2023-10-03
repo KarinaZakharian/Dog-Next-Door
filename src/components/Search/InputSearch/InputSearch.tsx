@@ -19,6 +19,7 @@ import './InputSearch.scss';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 
 // import { addData } from '../../../store/reducers/home';
+import { searchThunk } from '../../../store/reducers/search';
 
 function InputSearch() {
   const animal = useAppSelector((state) => state.home.animal);
@@ -74,6 +75,7 @@ function InputSearch() {
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
+    dispatch(searchThunk(formData));
     console.log(objData);
   }
 
@@ -114,28 +116,28 @@ function InputSearch() {
               name="radius"
               id="5km"
               picked={pickedRadius}
-              value=" 5 km"
+              value="5"
               onRadioChange={handleRadiusChange}
             />
             <RadioSimple
               name="radius"
               id="10km"
               picked={pickedRadius}
-              value=" 10 km"
+              value="10"
               onRadioChange={handleRadiusChange}
             />
             <RadioSimple
               name="radius"
-              id="20km"
+              id="20"
               picked={pickedRadius}
-              value="20 km"
+              value="20"
               onRadioChange={handleRadiusChange}
             />
             <RadioSimple
               name="radius"
-              id="35km"
+              id="35"
               picked={pickedRadius}
-              value="35 km"
+              value="35"
               onRadioChange={handleRadiusChange}
             />
           </div>

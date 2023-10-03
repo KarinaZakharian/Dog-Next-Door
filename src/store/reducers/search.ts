@@ -22,8 +22,9 @@ export const searchThunk = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axios.post('../../../../fakeData/data.json', objData);
+      const data = await axios.post('http://localhost:3000/search', objData);
       return data;
+      console.log(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
       console.log(error);
@@ -31,14 +32,14 @@ export const searchThunk = createAsyncThunk(
   }
 );
 
-export const searchSuccess = createAction('signup/success ');
+export const searchSuccess = createAction('search/success ');
 
 export const search = createAction<SearchState>('state/add-data');
 const searchReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(search, (state, action) => {
-      state.users = action.payload.users;
-      console.log(action.payload);
+      // state.users = action.payload.users;
+      // console.log(action.payload);
     })
     .addCase(searchThunk.rejected, (state, action) => {
       console.log('action rejected', action);
@@ -49,6 +50,9 @@ const searchReducer = createReducer(initialState, (builder) => {
       console.log('action fulfilled', action);
       state.error = null;
       state.message = action.payload.data;
+      state.users = action.payload.data;
+      console.log(state.users);
+      console.log(action.payload);
     })
     .addCase(searchSuccess, (state) => {
       state.error = null;

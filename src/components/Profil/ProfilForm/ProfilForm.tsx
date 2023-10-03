@@ -100,7 +100,7 @@ function ProfilForm() {
 
       <main className="main">
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form className="profil-form" onSubmit={handleSubmit}>
             <p className="form__title">
               Complétez les informations demandées pour que votre profil soit
               approuvé
