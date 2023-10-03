@@ -1,12 +1,15 @@
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Card from './Card/Card';
-import data from '../../../../fakeData/data.json';
+import { searchReducer } from '../../../store/reducers/searchReducer';
 
 import { UserProps } from '../../../@types/types';
 
 import classes from './SectionCards.module.scss';
 
 function SectionCard() {
-  const users: UserProps[] = data;
+  const dispatch = useAppDispatch();
+
+  const users = useAppSelector((state) => state.search.users);
 
   return (
     <div className={classes.sectioncards}>
@@ -17,8 +20,8 @@ function SectionCard() {
           firstname={user.firstname}
           lastname={user.lastname}
           town={user.town}
+          user_address={user.user_address}
           country={user.country}
-          description={user.description}
         />
       ))}
     </div>

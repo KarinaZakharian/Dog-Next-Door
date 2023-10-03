@@ -25,6 +25,8 @@ function InputSearch() {
   const city = useAppSelector((state) => state.home.city);
   const date = useAppSelector((state) => state.home.date);
   const size = useAppSelector((state) => state.home.size);
+
+  console.log(animal, city, date, size);
   const dispatch = useAppDispatch();
 
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -54,12 +56,12 @@ function InputSearch() {
     setRadius(value);
   }
 
-  const [picked, setPicked] = useState('');
+  const [picked, setPicked] = useState(size);
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
-  const [pickedAnimal, setAnimal] = useState('');
+  const [pickedAnimal, setAnimal] = useState(animal);
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }

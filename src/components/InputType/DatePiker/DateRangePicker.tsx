@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { DateRangePicker } from 'react-date-range';
 import format from 'date-fns/format';
 import { addDays } from 'date-fns';
@@ -46,7 +45,7 @@ function DateRangePickerComp() {
 
   return (
     <div className="calendarWrap">
-      <p className="atapicker-title">Pour ces jours</p>
+      <p>Pour ces jours</p>
       <input
         name="date"
         value={`${format(range[0].startDate, ' dd/MM/YYY')} au ${format(

@@ -7,24 +7,14 @@ import {
 import axios from 'axios';
 
 interface SearchState {
-  animal: string | null;
-  city: string | null;
-  date: string | null;
-  size: string | null;
-  walk: string | null;
-  radius: number | null;
-  options: string | null;
-  error: null;
+  users: string[];
+  error: string | null;
+  message: string | null;
 }
 export const initialState: SearchState = {
-  animal: '',
-  city: '',
-  date: '',
-  size: '',
-  walk: '',
-  radius: 0,
-  options: '',
-  error: null,
+  users: [],
+  error: '',
+  message: '',
 };
 
 export const searchThunk = createAsyncThunk(
@@ -32,7 +22,7 @@ export const searchThunk = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axios.post('http://localhost:3000/search', objData);
+      const data = await axios.post('../../../../fakeData/data.json', objData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -41,18 +31,29 @@ export const searchThunk = createAsyncThunk(
   }
 );
 
+export const searchSuccess = createAction('signup/success ');
+
 export const search = createAction<SearchState>('state/add-data');
 const searchReducer = createReducer(initialState, (builder) => {
-  builder.addCase(search, (state, action) => {
-    state.animal = action.payload.animal;
-    state.city = action.payload.city;
-    state.date = action.payload.date;
-    state.size = action.payload.size;
-    state.walk = action.payload.walk;
-    state.radius = action.payload.radius;
-    state.options = action.payload.options;
-    console.log(action.payload);
-  });
+  builder
+    .addCase(search, (state, action) => {
+      state.users = action.payload.users;
+      console.log(action.payload);
+    })
+    .addCase(searchThunk.rejected, (state, action) => {
+      console.log('action rejected', action);
+      state.error = action.payload.response.data;
+      state.message = null;
+    })
+    .addCase(searchThunk.fulfilled, (state, action) => {
+      console.log('action fulfilled', action);
+      state.error = null;
+      state.message = action.payload.data;
+    })
+    .addCase(searchSuccess, (state) => {
+      state.error = null;
+      state.message = null;
+    });
 });
 
 export default searchReducer;

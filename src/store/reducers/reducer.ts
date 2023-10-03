@@ -5,6 +5,7 @@ import signupReducer from './signup';
 import homeReducer from './home';
 import profilFormReducer from './profil-form';
 import animalFormReducer from './animal-form';
+import searchReducer from './search';
 
 const reducer = {
   signup: signupReducer,
@@ -12,6 +13,7 @@ const reducer = {
   home: homeReducer,
   profilForm: profilFormReducer,
   animalForm: animalFormReducer,
+  search: searchReducer,
 };
 
 export default reducer;
