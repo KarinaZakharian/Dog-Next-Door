@@ -23,15 +23,20 @@ CREATE TABLE "user" (
   zip_code VARCHAR(42),
   town VARCHAR(42),
   country VARCHAR(42),
+  accomodation VARCHAR(42),
+  garden VARCHAR(42),
+  animal_size VARCHAR (42),
+  additionnal_information TEXT,
+  walking_duration VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );
 
 CREATE TABLE animal (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  type VARCHAR(42),
+  animal_type VARCHAR(42),
   photo VARCHAR(42),
-  name VARCHAR(42),
+  animal_name VARCHAR(42),
   weight_category VARCHAR(42),
   age VARCHAR(42),
   sex VARCHAR(42),

@@ -96,12 +96,30 @@ const userController = {
         } catch( error) {
             res.status(500).json(error.toString());
         }
+    }, 
+
+    createUserOptionnalInformation : async (req,res)=> {
+        const intendedUser = req.body;
+        const userId = req.userId;
+        
+        try {
+             // Vérification de l'existence du compte
+             const userExist = await userDatamapper.getOneUserById(userId);
+            
+             if(!userExist){
+                 res.json("Cet utilisateur n'est pas enregistré en BDD");
+                 return
+             };
+
+             const response = await userDatamapper.addOptionnalInformations(intendedUser, userId);
+             
+             res.json("Vos informations ont été ajoutées avec succès");
+
+        } catch (error) {
+            res.status(500).json(error.toString());
+        }
     }
     
-    // loggedUser : (req, res) => {
-    //     const userLogged = req.session.user;
-    //     res.json(userLogged);
-    // },
     
 };
 
