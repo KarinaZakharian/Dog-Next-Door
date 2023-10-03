@@ -46,7 +46,7 @@ const userDatamapper = {
         }
     },
     
-    getUsersByZipCode : async (searchParameters) => {
+    getUsersByDistance : async (searchParameters) => {
 
         // try{
             const resultSearch = searchParameters;

@@ -87,7 +87,7 @@ const userController = {
         
     },
 
-    findUserByZipCode : async (req,res) => {
+    findUserByDistance : async (req,res) => {
         const searchParameters = req.body;
         console.log(searchParameters);
         try {

@@ -21,7 +21,7 @@ userRouter.post("/login", checkTokenLogin, cw(userController.logInUser));
 
 userRouter.post("/subscribe", checkTokenLogin, cw(userController.createUser));
 
-userRouter.post("/search", cw(userController.findUserByZipCode));
+userRouter.post("/search", cw(userController.findUserByDistance));
 
 userRouter.post("/account", checkAccountForm, checkTokenMember, cw(userController.createUserOptionnalInformation));
 
