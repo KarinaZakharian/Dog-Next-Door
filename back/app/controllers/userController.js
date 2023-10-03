@@ -18,8 +18,6 @@ const userController = {
         // Recherche utilisateur via ses identifiants de connection
         const userFound = await userController.findUserByEmail(req, res);
         
-        // console.log(req.body);
-        //* Si l'utilisateur n'existe pas, on renvoi une erreur 401
         if(!userFound){
             res.status(401).json("Vous n'avez pas accès")
             return
@@ -53,17 +51,13 @@ const userController = {
             res.status(500).json(error.toString());
         }
         
-        
     },
     
-    
     createUser : async (req,res) => {
-        
         
         const newUser =  req.body;
         
         try {
-            
             
             // Vérification de l'existence du compte
             const userExist = await userDatamapper.getOneUserByEmail(newUser);
@@ -93,12 +87,10 @@ const userController = {
         
     },
     
-    
     // loggedUser : (req, res) => {
     //     const userLogged = req.session.user;
     //     res.json(userLogged);
     // },
-    
     
 };
 

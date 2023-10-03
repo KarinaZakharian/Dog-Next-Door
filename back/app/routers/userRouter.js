@@ -20,4 +20,3 @@ userRouter.post("/login", checkTokenLogin, cw(userController.logInUser));
 userRouter.post("/subscribe", checkTokenLogin, cw(userController.createUser));
 
 module.exports = userRouter;
-

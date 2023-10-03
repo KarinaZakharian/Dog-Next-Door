@@ -21,7 +21,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil" element={<ProfilForm />} />
         <Route path="/profil/form" element={<ProfilForm />} />
         <Route path="/profil/animal" element={<AnimalForm />} />
         <Route path="*" element={<Error />} />

@@ -16,8 +16,14 @@ import './index.scss';
 import Button from '../InputType/Button/Button';
 import { addData } from '../../store/reducers/home';
 import { useAppDispatch } from '../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+
   const [picked, setPicked] = useState('');
   function handleRadioChange(value: string): void {
     setPicked(value);
@@ -27,7 +33,7 @@ function Home() {
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
-  const dispatch = useAppDispatch();
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -35,6 +41,7 @@ function Home() {
     const objData = Object.fromEntries(formData);
     console.log(objData);
     dispatch(addData(objData));
+    navigate('/search', { replace: true });
   }
 
   return (
@@ -65,7 +72,10 @@ function Home() {
               />
             </div>
 
-            <AutoComplete style={{ borderColor: 'initial' }} />
+            <AutoComplete
+              style={{ borderColor: 'initial' }}
+              setCoordinates={setCoordinates}
+            />
             <DateRangePickerComp />
             <p className="title-size">La taille de mon animal</p>
             <div className="radio">

@@ -6,7 +6,7 @@ import Radio from '../../InputType/Radio/Radio';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 
 import { search } from '../../../store/reducers/search';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -16,14 +16,24 @@ import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 
 import './InputSearch.scss';
+import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
+
+// import { addData } from '../../../store/reducers/home';
 
 function InputSearch() {
+  const animal = useAppSelector((state) => state.home.animal);
+  const city = useAppSelector((state) => state.home.city);
+  const date = useAppSelector((state) => state.home.date);
+  const size = useAppSelector((state) => state.home.size);
+  const dispatch = useAppDispatch();
+
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const handleSelectionChange1 = (selectedOptions: string[]) => {
     setSelectedOptions1(selectedOptions);
   };
+
   const options = [
     'Maison fumeur',
     'Enfant âgés de 0 à 5 ans',
@@ -31,6 +41,18 @@ function InputSearch() {
     'Animaux en cage à la maison',
     'Aucune de ces réponses',
   ];
+
+  // picking the walking hours
+  const [pickedWalk, setWalk] = useState('');
+  function handleWalkChange(value: string): void {
+    setWalk(value);
+  }
+
+  // picking the radius
+  const [pickedRadius, setRadius] = useState('');
+  function handleRadiusChange(value: string): void {
+    setRadius(value);
+  }
 
   const [picked, setPicked] = useState('');
   function handleRadioChange(value: string): void {
@@ -41,7 +63,7 @@ function InputSearch() {
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
-  const dispatch = useAppDispatch();
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -51,7 +73,6 @@ function InputSearch() {
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
     console.log(objData);
-    dispatch(search(objData));
   }
 
   return (
@@ -85,6 +106,37 @@ function InputSearch() {
             style={{ borderColor: 'initial' }}
             setCoordinates={setCoordinates}
           />
+          <p>Distance autour de chez moi</p>
+          <div className="radiosimple-wrapper">
+            <RadioSimple
+              name="radius"
+              id="5km"
+              picked={pickedRadius}
+              value=" 5 km"
+              onRadioChange={handleRadiusChange}
+            />
+            <RadioSimple
+              name="radius"
+              id="10km"
+              picked={pickedRadius}
+              value=" 10 km"
+              onRadioChange={handleRadiusChange}
+            />
+            <RadioSimple
+              name="radius"
+              id="20km"
+              picked={pickedRadius}
+              value="20 km"
+              onRadioChange={handleRadiusChange}
+            />
+            <RadioSimple
+              name="radius"
+              id="35km"
+              picked={pickedRadius}
+              value="35 km"
+              onRadioChange={handleRadiusChange}
+            />
+          </div>
           <DateRangePickerComp />
           <p className="inputSearch__title-size">La taille de mon animal</p>
           <div className="inputSearch__radio">
@@ -132,6 +184,38 @@ function InputSearch() {
             options={options}
             onSelectionChange={handleSelectionChange1}
           />
+
+          <p>Horaires des pauses pipi</p>
+          <div className="radiosimple-wrapper">
+            <RadioSimple
+              name="walk"
+              id="1"
+              picked={pickedWalk}
+              value="Entre 0 et 2 heures"
+              onRadioChange={handleWalkChange}
+            />
+            <RadioSimple
+              name="walk"
+              id="2"
+              picked={pickedWalk}
+              value="Entre 2 et 4 heures"
+              onRadioChange={handleWalkChange}
+            />
+            <RadioSimple
+              name="walk"
+              id="3"
+              picked={pickedWalk}
+              value="Entre 4 et 8 heures"
+              onRadioChange={handleWalkChange}
+            />
+            <RadioSimple
+              name="walk"
+              id="4"
+              picked={pickedWalk}
+              value="+ 8 heures"
+              onRadioChange={handleWalkChange}
+            />
+          </div>
           <Button prop="Rechercher" />
         </form>
       </div>
