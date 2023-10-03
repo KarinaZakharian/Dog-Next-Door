@@ -89,7 +89,7 @@ const userController = {
 
     findUserByZipCode : async (req,res) => {
         const searchParameters = req.body;
-        
+        console.log(searchParameters);
         try {
             const users = await userDatamapper.getUsersByZipCode(searchParameters);
             res.json(users);

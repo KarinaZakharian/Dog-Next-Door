@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+
 import marker from '../../../assets/dog-area.png';
 import shadow from '../../../assets/dog-area-shadow.png';
 import data from '../../../../fakeData/data.json';
