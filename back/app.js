@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const cors = require("cors");
-const router = require("./app/routers");
-const session = require("express-session");
+const cors = require('cors');
+const router = require('./app/routers');
+const session = require('express-session');
 
 // Mise en place de redis pour le stockage en session des token
 // const RedisStore = require('connect-redis').default;
@@ -11,8 +11,7 @@ const session = require("express-session");
 // Mise en place des cookies
 const cookieParser = require('cookie-parser');
 
-app.use(cookieParser())
-
+app.use(cookieParser());
 
 // let redisStore = new RedisStore({
 //     client : redisClient,
@@ -20,7 +19,7 @@ app.use(cookieParser())
 // });
 
 //? Permet de sécuriser les transferts de données entre des navigateurs et des serveurs web
-app.use(cors("*"));
+app.use(cors('*'));
 
 //* Setup
 app.use(express.urlencoded({ extended: true }));
@@ -39,7 +38,7 @@ app.use(express.json());
 //* Router
 app.use(router);
 
-const port = 3000 || process.env.PORT
+const port = 3000 || process.env.PORT;
 app.listen(port, () => {
-    console.log(`Server listening at localhost:${port}`);
-})
+  console.log(`Server listening at localhost:${port}`);
+});

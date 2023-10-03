@@ -65,7 +65,7 @@ function Login() {
       {/* <Main /> */}
       <main className="main-login">
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form className="login__form" onSubmit={handleSubmit}>
             <Input
               label="email"
               name="email"
