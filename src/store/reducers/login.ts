@@ -8,10 +8,14 @@ import axios from 'axios';
 
 interface LoginState {
   firstname: string | null;
+  lastname: string | null;
+  city: string | null;
   error: null;
 }
 export const initialState: LoginState = {
   firstname: null,
+  lastname: null,
+  city: null,
   error: null,
 };
 
@@ -26,6 +30,8 @@ export const login = createAsyncThunk(
       console.log('data dans middleware', data);
       return data as {
         firstname: string;
+        lastname: string;
+        city: string;
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -39,6 +45,8 @@ const loginReducer = createReducer(initialState, (builder) => {
       // state.logged = true;
       console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
+      state.city = action.payload.city;
       state.error = null;
 
       // state.token = action.payload.token;

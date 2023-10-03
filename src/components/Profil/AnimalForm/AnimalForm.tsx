@@ -101,7 +101,7 @@ function AnimalForm() {
 
       <main className="main">
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form className="animal-form" onSubmit={handleSubmit}>
             <p className="title-animal">Quel type d'animal ?</p>
             <div className="radio-animal">
               <Radio
