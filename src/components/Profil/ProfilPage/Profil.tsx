@@ -12,7 +12,13 @@ function Profil() {
       <Header />
 
       <main className="main">
-        <div className="container"></div>
+        <div className="container">
+          <div className="aside">
+            <img className="aside__img" alt="profil-image"></img>
+            <h1 className="aside-title">Karina Zakharian</h1>
+          </div>
+          <div className="main-content"></div>{' '}
+        </div>
       </main>
       <Footer />
     </div>
