@@ -25,11 +25,11 @@ function SignUp() {
   const [firstnameValid, setfirstnameIsValid] = useState(true);
   const [lastnameValid, setlastnameIsValid] = useState(true);
   const [cityValid, setCityIsValid] = useState(true);
-  const [coordinates, setCoordinates] = useState({x: 0, y:0})
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const error = useAppSelector((state) => state.signup.error);
- // const firstname = useAppSelector((state) => state.signup.firstname);
+  // const firstname = useAppSelector((state) => state.signup.firstname);
   const message = useAppSelector((state) => state.signup.message);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -82,8 +82,12 @@ function SignUp() {
   };
 
   useEffect(() => {
+    console.log('error', error);
+    console.log('message', message);
+
     if (!error && message) {
-      swal({
+      swal(`${message}`, {
+        text: message,
         icon: 'success',
         timer: 1000,
       });
@@ -105,7 +109,7 @@ function SignUp() {
     <div className="page-wrapper">
       <Header />
 
-      <main className="main">
+      <main className="main-signup">
         <div className="container">
           <form className="form" onSubmit={handleSubmit}>
             <Input
@@ -137,7 +141,9 @@ function SignUp() {
               style={{ borderColor: emailValid ? 'initial' : 'red' }}
             />
             {!emailValid && (
-              <p className="error">Votre adresse e-mail n&apos;est pas valide</p>
+              <p className="error">
+                Votre adresse e-mail n&apos;est pas valide
+              </p>
             )}
             <Input
               name="user_password"

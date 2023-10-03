@@ -6,6 +6,7 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
+import Main from '../../PageComponents/Main/Main';
 import './Login.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
@@ -40,10 +41,10 @@ function Login() {
   };
   useEffect(() => {
     if (firstname) {
-      swal({ 
+      swal({
         icon: 'success',
         timer: 1000,
-       });
+      });
 
       setTimeout(() => {
         navigate('/', { replace: true });
@@ -61,10 +62,10 @@ function Login() {
   return (
     <div className="page-wrapper">
       <Header />
-
-      <main className="main">
+      {/* <Main /> */}
+      <main className="main-login">
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form className="login__form" onSubmit={handleSubmit}>
             <Input
               label="email"
               name="email"

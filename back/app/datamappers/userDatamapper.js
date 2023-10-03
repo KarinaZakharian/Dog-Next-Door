@@ -1,19 +1,32 @@
 const client = require('../services/clientPg');
 
 const userDatamapper = {
-    getOneUserByEmail : async (newUser) => {
-        try {
-            const getUser = newUser;
-            const query = `SELECT * FROM "user"
-                            WHERE "email"=$1`;
-            const value = [getUser.email];
-            const userFound = await client.query(query, value);
-            return userFound.rows[0];
-        } catch (error) {
-            return console.error("Problème de recherche BDD utilisateur")
-        }
 
-    },
+  getOneUserByEmail: async (newUser) => {
+    try {
+      const getUser = newUser;
+      const query = `SELECT * FROM "user"
+                            WHERE "email"=$1`;
+      const value = [getUser.email];
+      const userFound = await client.query(query, value);
+      return userFound.rows[0];
+    } catch (error) {
+      return console.error('Problème de recherche BDD utilisateur');
+    }
+  },
+
+  getOneUserById: async (id) => {
+    try {
+      const userId = id;
+      const query = `SELECT * FROM "user"
+                            WHERE "id"=$1`;
+      const value = [userId];
+      const userFound = await client.query(query, value);
+      return userFound.rows[0];
+    } catch (error) {
+      return console.error('Problème de recherche BDD utilisateur');
+    }
+  },
 
     getOneUserById : async (id) => {
         try {

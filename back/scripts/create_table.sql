@@ -11,17 +11,17 @@ CREATE TABLE "user" (
   id INTEGER  GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   firstname VARCHAR(42) NOT NULL,
   lastname VARCHAR(42) NOT NULL,
-  email VARCHAR(70) NOT NULL UNIQUE,
-  user_password VARCHAR(250) NOT NULL,
+  email VARCHAR(42) NOT NULL UNIQUE,
+  user_password VARCHAR(72) NOT NULL,
   date_birth DATE,
   avatar VARCHAR(42),
   user_address VARCHAR(42),
-  latitude FLOAT,
+  lattitude FLOAT,
   longitude FLOAT,
   street_number VARCHAR(42),
   street_name VARCHAR(42),
   zip_code VARCHAR(42),
-  city VARCHAR(42),
+  town VARCHAR(42),
   country VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
@@ -29,9 +29,9 @@ CREATE TABLE "user" (
 
 CREATE TABLE animal (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  animal_type VARCHAR(42),
+  type VARCHAR(42),
   photo VARCHAR(42),
-  animal_name VARCHAR(42),
+  name VARCHAR(42),
   weight_category VARCHAR(42),
   age VARCHAR(42),
   sex VARCHAR(42),
@@ -49,7 +49,7 @@ CREATE TABLE booking (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   start_date VARCHAR(42),
   end_date VARCHAR(42),
-  booking_message TEXT,
+  message TEXT,
   booking_status VARCHAR(42),
   user_id INTEGER NOT NULL REFERENCES "user"("id"),
   sender_id INTEGER NOT NULL REFERENCES "user"("id"),
@@ -59,7 +59,7 @@ CREATE TABLE booking (
 
 CREATE TABLE disponibility (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  dispo_start_date VARCHAR(42),
+  start_date VARCHAR(42),
   end_date VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ

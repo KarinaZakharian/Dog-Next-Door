@@ -1,0 +1,31 @@
+.inputSearch {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  top: 5rem;
+  left: 0;
+
+  &__container {
+    position: absolute;
+  }
+
+  &__form {
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title-animal {
+  }
+
+  &__radio-animal {
+  }
+
+  &__title-size {
+  }
+
+  &__radio {
+  }
+}

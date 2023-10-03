@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "avatar": "../../public/avatar-2.jpg",
+    "avatar": "../../avatar-2.jpg",
     "firstname": "John",
     "lastname": "Doe",
     "town": "Vichy",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "avatar": "../../public/avatar-1.jpg",
+    "avatar": "../../avatar-1.jpg",
     "firstname": "Karine",
     "lastname": "Truc",
     "town": "Vichy",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "avatar": "../../public/avatar-3.jpg",
+    "avatar": "../../avatar-3.jpg",
     "firstname": "Félix",
     "lastname": "Machin",
     "town": "Vichy",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "avatar": "../../public/avatar-4.jpg",
+    "avatar": "../../avatar-4.jpg",
     "firstname": "Rober",
     "lastname": "Bidule",
     "town": "Vichy",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "avatar": "../../public/avatar-5.jpg",
+    "avatar": "../../avatar-5.jpg",
     "firstname": "Régis",
     "lastname": "What",
     "town": "Vichy",

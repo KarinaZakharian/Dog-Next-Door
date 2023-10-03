@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
 import axios from 'axios';

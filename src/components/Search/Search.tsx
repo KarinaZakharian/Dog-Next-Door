@@ -6,18 +6,19 @@ import SectionMap from './SectionMap/SectionMap';
 
 // On import notre css
 import './Search.scss';
-import Input from '../InputType/Input/Input';
 import InputSearch from './InputSearch/InputSearch';
 
 function Search() {
   return (
-    <div className="search" id="Map">
+    <>
       <Header />
-      <SectionMap />
-      <SectionCards />
-      <InputSearch />
+      <div className="search" id="Map">
+        <InputSearch />
+        <SectionCards />
+        <SectionMap />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
