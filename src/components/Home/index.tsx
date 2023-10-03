@@ -12,7 +12,7 @@ import medium from '../../assets/icons8-dog-35.png';
 import big from '../../assets/icons8-dog-55.png';
 import geant from '../../assets/icons8-dog-64.png';
 
-import './Home.scss';
+import './index.scss';
 import Button from '../InputType/Button/Button';
 import { addData } from '../../store/reducers/home';
 import { useAppDispatch } from '../../hooks/redux';
@@ -40,13 +40,11 @@ function Home() {
   return (
     <div className="page-wrapper">
       <Header />
-      <main className="home__main">
-        <div className="home__container">
-          <form className="home__main-form" onSubmit={handleSubmit}>
-            <p className="home__title-animal">
-              Je recherche un service pour mon
-            </p>
-            <div className="home__radio-animal">
+      <main className="main">
+        <div className="container">
+          <form className="main-form" onSubmit={handleSubmit}>
+            <p className="title-animal">Je recherche un service pour mon</p>
+            <div className="radio-animal">
               <Radio
                 name="animal"
                 id="cat"
@@ -69,8 +67,8 @@ function Home() {
 
             <AutoComplete style={{ borderColor: 'initial' }} />
             <DateRangePickerComp />
-            <p className="home__title-size">La taille de mon animal</p>
-            <div className="home__radio">
+            <p className="title-size">La taille de mon animal</p>
+            <div className="radio">
               <Radio
                 name="size"
                 id="small"

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 // On import nos composants de pages
-import Home from '../Home/Home';
+import Home from '../Home/index';
 import Search from '../Search/Search';
 import Login from '../Forms/Login/Login';
 import Signup from '../Forms/Signup/Signup';
