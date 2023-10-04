@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import axios from 'axios';
+import axiosInstance from '../../utils/axios';
 
 interface SearchState {
   users: string[];

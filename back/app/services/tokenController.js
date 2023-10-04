@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken') ;
-const {getOneUserById} = require('../datamappers/userDatamapper')
+const {getOneUserById} = require('../datamappers/userDatamapper');
+const userDatamapper = require('../datamappers/userDatamapper');
 require("dotenv").config();
 
 const tokenController = {
@@ -27,7 +28,9 @@ const tokenController = {
         try {
             const userData = jwt.verify(token, process.env.SECRET_KEY);
             req.userId = userData.id;
-            return next();
+            const userConnected = await userDatamapper.getOneUserById(req.userId)
+            res.json(userConnected);
+            next();
         } catch (error) {
             return next(error);
         }

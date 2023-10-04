@@ -15,6 +15,7 @@ userRouter.get("/subscribe", (req,res) => {
     res.send("Subscribe page")
 });
 
+userRouter.get("/search", checkTokenLogin);
 
 //!Route POST
 userRouter.post("/login", checkTokenLogin, cw(userController.logInUser));

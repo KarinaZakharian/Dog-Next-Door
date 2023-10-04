@@ -6,6 +6,8 @@ import {
 
 import axios from 'axios';
 
+// import axiosInstance from '../../utils/axios'
+
 interface LoginState {
   firstname: string | null;
   lastname: string | null;
@@ -27,6 +29,12 @@ export const login = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axios.post('http://localhost:3000/login', objData);
+      console.log(data.token)
+
+       // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+
+       delete data.token;
+       
       console.log('data dans middleware', data);
       return data as {
         firstname: string;
@@ -62,6 +70,7 @@ const loginReducer = createReducer(initialState, (builder) => {
 
     .addCase(logout, (state) => {
       state.firstname = null;
+      // delete axiosInstance.defaults.headers.common.Authorization;
 
       // je supprime mon JWT de mon instance Axios
       // delete axiosInstance.defaults.headers.common.Authorization;

@@ -27,13 +27,19 @@ const userController = {
         if(passwordUserCheck){
             delete userFound.user_password;
             const userToken = tokenController.createToken(userFound.id);
+            userFound.token = userToken;
             res
             .cookie("access_token", userToken, {
-                httpOnly:false,
+                httpOnly:true,
                 secure : process.env.NODE_ENV === "production",
             })
             .status(200)
             .json(userFound);
+
+            if(!req.session.user) {
+                req.session.user = [userFound];
+                console.log(req.session.user);
+            }
         }else{
             res
             .json("Couple identifiant mot de passe incorrect");

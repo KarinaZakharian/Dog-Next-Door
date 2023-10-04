@@ -24,7 +24,7 @@ function Header() {
         {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
-              <NavLink className="menu__menu-item" to="/profil">
+              <NavLink className="menu__menu-item" to="/account">
                 Profil
               </NavLink>
               <NavLink className="menu__menu-item" to="/index">

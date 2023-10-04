@@ -22,6 +22,8 @@ function Profil() {
   const additionalOptions = useAppSelector(
     (state) => state.profilForm.additionalOptions
   );
+
+  console.log("consile log HOME PAGE",firstname,size)
   return (
     <div className="page-wrapper">
       <Header />
@@ -30,7 +32,7 @@ function Profil() {
         <div className="aside">
           <img></img>
           <h1>
-            {firstname} {lastname}
+            {firstname} {lastname} 
           </h1>
           <h3> {firstname} peut effectuer la garde à son domicile</h3>
           <ul></ul>

@@ -21,9 +21,9 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
-        <Route path="/profil" element={<Profil />} />
-        <Route path="/profil/form" element={<ProfilForm />} />
-        <Route path="/profil/animal" element={<AnimalForm />} />
+        <Route path="/account" element={<Profil />} />
+        <Route path="/account/form" element={<ProfilForm />} />
+        <Route path="/account/animal-form" element={<AnimalForm />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>
