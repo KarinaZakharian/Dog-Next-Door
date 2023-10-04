@@ -23,7 +23,7 @@ export const searchThunk = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axios.post('http://localhost:3000/search', objData);
+      const data = await axiosInstance.post('/search', objData);
       return data;
       console.log(data);
     } catch (error) {

@@ -14,16 +14,14 @@ function Profil() {
   const firstname = useAppSelector((state) => state.login.firstname);
   const lastname = useAppSelector((state) => state.login.lastname);
   const city = useAppSelector((state) => state.login.city);
-  const size = useAppSelector((state) => state.profilForm.size);
-  const description = useAppSelector((state) => state.profilForm.description);
-  const accommodation = useAppSelector(
-    (state) => state.profilForm.accommodation
-  );
+  const size = useAppSelector((state) => state.login.size);
+  const description = useAppSelector((state) => state.login.description);
+  const accommodation = useAppSelector((state) => state.login.accommodation);
   const additionalOptions = useAppSelector(
-    (state) => state.profilForm.additionalOptions
+    (state) => state.login.additionalOptions
   );
 
-  console.log("consile log HOME PAGE",firstname,size)
+  console.log("consile log HOME PAGE",firstname,size, accommodation)
   return (
     <div className="page-wrapper">
       <Header />

@@ -30,6 +30,13 @@ function Header() {
               <NavLink className="menu__menu-item" to="/index">
                 Boite de reception
               </NavLink>
+              <NavLink className="menu__menu-item" to="/account/form">
+                Profil form
+              </NavLink>
+              <NavLink className="menu__menu-item" to="/search">
+                Search
+              </NavLink>
+              
             </div>
             <div className="menu__menu-connection">
               <strong>{firstname}</strong>

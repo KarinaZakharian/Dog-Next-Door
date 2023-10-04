@@ -74,8 +74,8 @@ D'autres options tels que les activités canines proposées par les accueillants
 |Routes membres|---|
 | `/pet-sitter/id` | Affichage du pet sitter sélectionné par l'id |
 | `/pet-sitter/id/reservation` | Envoyer une demande de réservation au pet-sitter correspondant |
-| `/account/id` | Affichage du profil de l'utilisateur loggé avec son compte |
-| `/account/id/addanimal` | Ajout d'un animal au pet-sitter correspondant |
+| `/account` | Affichage du profil de l'utilisateur loggé avec son compte |
+| `/account/addanimal` | Ajout d'un animal au pet-sitter correspondant |
 | `/account/id/inbox` | Affcihage de la liste des demandes en attentes |
 | `/account/id/inbox/upcoming` | Affcihage de la liste des demandes à venir  |
 | `/account/id/inbox/past` | Affcihage de la liste des demandes passées |

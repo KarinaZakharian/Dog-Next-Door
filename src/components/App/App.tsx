@@ -9,11 +9,16 @@ import Error from '../Error';
 import ProfilForm from '../Profil/ProfilForm/ProfilForm';
 import AnimalForm from '../Profil/AnimalForm/AnimalForm';
 import Profil from '../Profil/ProfilPage/Profil';
-
+import Petsitter from '../Petsitter/Petsitter';
 // on import le css
 import './App.scss';
 
+
 function App() {
+
+  
+
+
   return (
     <div className="app">
       <Routes>
@@ -22,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/account" element={<Profil />} />
+        <Route path="/petsitter/:id" element={<Petsitter />} />
         <Route path="/account/form" element={<ProfilForm />} />
         <Route path="/account/animal-form" element={<AnimalForm />} />
         <Route path="*" element={<Error />} />

@@ -113,21 +113,21 @@ function ProfilForm() {
             <p>Mon logement</p>
             <div className="radio-wrapper">
               <RadioSimple
-                name="accommodation"
+                name="accomodation"
                 id="maison"
                 picked={pickedAccomodation}
                 value="Maison"
                 onRadioChange={handleAccomodationChange}
               />
               <RadioSimple
-                name="accommodation"
+                name="accomodation"
                 id="appartement"
                 picked={pickedAccomodation}
                 value="Appartement"
                 onRadioChange={handleAccomodationChange}
               />
               <RadioSimple
-                name="accommodation"
+                name="accomodation"
                 id="ferme"
                 picked={pickedAccomodation}
                 value="Ferme"
@@ -159,13 +159,13 @@ function ProfilForm() {
               />
             </div>
             <CheckboxGroup
-              name="additional options"
+              name="additionnal_information"
               legend="À quoi les propriétaires peuvent-ils s'attendre lorsqu'ils vous confient la garde de leur animal de compagnie ?"
               options={options}
               onSelectionChange={handleSelectionChange1}
             />
             <CheckboxGroup
-              name="size"
+              name="animal_size"
               legend="Quels types d'animaux pouvez-vous accueillir à votre domicile ?"
               options={size}
               onSelectionChange={handleSelectionChange2}
@@ -176,28 +176,28 @@ function ProfilForm() {
             </p>
             <div className="radio-wrapper">
               <RadioSimple
-                name="walk"
+                name="walking_duration"
                 id="1"
                 picked={pickedWalk}
                 value="Entre 0 et 2 heures"
                 onRadioChange={handleWalkChange}
               />
               <RadioSimple
-                name="walk"
+                name="walking_duration"
                 id="2"
                 picked={pickedWalk}
                 value="Entre 2 et 4 heures"
                 onRadioChange={handleWalkChange}
               />
               <RadioSimple
-                name="walk"
+                name="walking_duration"
                 id="3"
                 picked={pickedWalk}
                 value="Entre 4 et 8 heures"
                 onRadioChange={handleWalkChange}
               />
               <RadioSimple
-                name="walk"
+                name="walking_duration"
                 id="4"
                 picked={pickedWalk}
                 value="+ 8 heures"

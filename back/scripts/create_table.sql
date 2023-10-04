@@ -23,6 +23,7 @@ CREATE TABLE "user" (
   zip_code VARCHAR(42),
   town VARCHAR(42),
   country VARCHAR(42),
+  description TEXT,
   accomodation VARCHAR(42),
   garden VARCHAR(42),
   animal_size VARCHAR (42),

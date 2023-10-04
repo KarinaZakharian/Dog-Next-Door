@@ -57,6 +57,18 @@ const userController = {
         }
         
     },
+
+    findUserById : async (req,res) => {
+        const userId = parseInt(req.params.id);
+        
+        try {
+            const user = await userDatamapper.getOneUserById(userId);
+            res.json(user);
+        } catch (error) {
+            res.status(500).json(error.toString());
+        }
+        
+    },
     
     createUser : async (req,res) => {
         
@@ -104,12 +116,13 @@ const userController = {
 
     createUserOptionnalInformation : async (req,res)=> {
         const intendedUser = req.body;
+        console.log(req.body);
         const userId = req.userId;
         
         try {
              // Vérification de l'existence du compte
              const userExist = await userDatamapper.getOneUserById(userId);
-            
+            console.log(userExist);
              if(!userExist){
                  res.json("Cet utilisateur n'est pas enregistré en BDD");
                  return

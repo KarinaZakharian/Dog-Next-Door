@@ -37,18 +37,22 @@ const tokenController = {
     },
 
     checkTokenMember : async (req, res, next) => {
-        const token = req.cookies.access_token;
+        const authorization = req.headers.authorization;
+        if (authorization) {
+            const token = authorization.split(' ')[1];
+            try {
+                const userData = jwt.verify(token, process.env.SECRET_KEY);
+                req.userId = userData.id;
+                return next();
+            } catch (error) {
+                return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
+            }
+          }
         if(!token){
             return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
         }
 
-        try {
-            const userData = jwt.verify(token, process.env.SECRET_KEY);
-            req.userId = userData.id;
-            return next();
-        } catch (error) {
-            return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
-        }
+       
     },
 };
 

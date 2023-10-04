@@ -22,6 +22,7 @@ const userDatamapper = {
             WHERE "id"=$1`;
             const value = [userId];
             const userFound = await client.query(query, value);
+            
             return userFound.rows[0];
         } catch (error) {
             return console.error("Problème de recherche BDD utilisateur")
@@ -84,11 +85,12 @@ const userDatamapper = {
             garden = $2,
             animal_size = $3,
             walking_duration = $4,
-            additionnal_information = $5
-            WHERE id = $6`;
+            additionnal_information = $5,
+            description = $6
+            WHERE id = $7`;
 
-            const {accomodation, garden, animal_size, walking_duration, additionnal_information} = userConcerned;
-            const values = [accomodation, garden, animal_size, walking_duration,additionnal_information, userId]
+            const {accomodation, garden, animal_size, walking_duration, additionnal_information,description} = userConcerned;
+            const values = [accomodation, garden, animal_size, walking_duration,additionnal_information, description, userId]
             const result = await client.query(query, values);
 
             return result;

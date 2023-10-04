@@ -26,6 +26,7 @@ const validationFormService ={
 
     checkAccountForm : (req,res,next) => {
         let { error } = accountFormSchema.validate(req.body);
+        console.log(error);
         if(!error){
             next()
         } else {
