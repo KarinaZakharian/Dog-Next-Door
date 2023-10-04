@@ -29,11 +29,11 @@ export const login = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axios.post('http://localhost:3000/login', objData);
-      console.log(data.token)
+      // console.log(data.token)
 
        // axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
 
-       delete data.token;
+       // delete data.token;
        
       console.log('data dans middleware', data);
       return data as {

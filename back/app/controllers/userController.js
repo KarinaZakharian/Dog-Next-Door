@@ -28,6 +28,7 @@ const userController = {
             delete userFound.user_password;
             const userToken = tokenController.createToken(userFound.id);
             userFound.token = userToken;
+            
             res
             .cookie("access_token", userToken, {
                 httpOnly:true,
@@ -35,11 +36,9 @@ const userController = {
             })
             .status(200)
             .json(userFound);
-
-            if(!req.session.user) {
-                req.session.user = [userFound];
-                console.log(req.session.user);
-            }
+            // req.session.user = [userToken];
+            // console.log(req.session.user);
+           
         }else{
             res
             .json("Couple identifiant mot de passe incorrect");
@@ -95,9 +94,8 @@ const userController = {
 
     findUserByDistance : async (req,res) => {
         const searchParameters = req.body;
-        console.log(searchParameters);
         try {
-            const users = await userDatamapper.getUsersByZipCode(searchParameters);
+            const users = await userDatamapper.getUsersByDistance(searchParameters);
             res.json(users);
         } catch( error) {
             res.status(500).json(error.toString());

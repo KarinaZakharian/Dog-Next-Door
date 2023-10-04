@@ -53,7 +53,7 @@ const userDatamapper = {
             const latitude = parseFloat(resultSearch.latitude);
             const longitude = parseFloat(resultSearch.longitude);
             
-            const radius_km = resultSearch.radius; 
+            const radius_km = parseInt(resultSearch.radius); 
             
             const values = [latitude, longitude, radius_km]
 
