@@ -1,10 +1,10 @@
-import { success, fillProfilForm } from '../../../store/reducers/profil-form';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import './Profil.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
+<<<<<<< HEAD
 // import avatar from '../../../assets/icons8-avatar-100.png';
 import { fetchUser } from '../../../store/reducers/profil';
 
@@ -15,6 +15,20 @@ function Profil() {
     dispatch(fetchUser());
   }, []);
   
+=======
+import avatar from '../../../assets/Logo-ODogNextDoor.svg';
+
+import { useEffect } from 'react';
+import { fetchUser } from '../../../store/reducers/profil';
+
+function Profil() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
+>>>>>>> a8df6e78081f77385f83b0327059bc411972dbf4
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const user_address = useAppSelector((state) => state.profil.user_address);
@@ -27,6 +41,8 @@ function Profil() {
   );
 
   console.log(
+    'first Name',
+    firstname,
     'accomodation',
     accommodation,
     'size',
@@ -42,9 +58,13 @@ function Profil() {
   );
 
   const renderSize = () => {
-    if (size) {
+    if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
         return size.map((item, index) => <li key={index}>{item}</li>);
+      } else if (typeof size === 'string') {
+        // Assuming 'size' is a string like "Petit (0-7 kg)"
+        const sizes = size.split(',');
+        return sizes.map((item, index) => <li key={index}>{item}</li>);
       } else {
         return <li>{size}</li>;
       }
@@ -53,11 +73,17 @@ function Profil() {
   };
 
   const renderOptions = () => {
-    if (additionnal_information) {
+    if (
+      additionnal_information !== undefined &&
+      additionnal_information !== null
+    ) {
       if (Array.isArray(additionnal_information)) {
         return additionnal_information.map((item, index) => (
           <li key={index}>{item}</li>
         ));
+      } else if (typeof additionnal_information === 'string') {
+        const options = additionnal_information.split(',');
+        return options.map((item, index) => <li key={index}>{item}</li>);
       } else {
         return <li>{additionnal_information}</li>;
       }
@@ -68,24 +94,34 @@ function Profil() {
   return (
     <div className="page-wrapper">
       <Header />
+      <div className="profil-wrapper">
+        <div className="container-profil">
+          <div className="aside-profil">
+            <img className="main-img" src={avatar} />
 
-      <div className="container">
-        <div className="aside">
-          <h1>
-            {firstname} {lastname}
-          </h1>
-          <h3> {firstname} peut effectuer la garde à son domicile</h3>
-          <ul>{renderSize()}</ul>
-          <h3>À propos du domicile du {user_address}</h3>
-          <ul>
-            {accommodation && <li>{accommodation}</li>}
-            {garden && <li>{garden}</li>}
-            {/* Map through the 'additional options' array and render each option in an <li> element */}
-            {renderOptions()}
-          </ul>
-          <div className="main">{description && <p>{description}</p>}</div>
+            <h3 className="profil-title">
+              {lastname} peut effectuer la garde à son domicile
+            </h3>
+            <ul>{renderSize()}</ul>
+            <h3 className="profil-title">À propos du domicile du {lastname}</h3>
+            <ul>
+              {accommodation && <li>{accommodation}</li>}
+              {garden && <li>{garden}</li>}
+              {/* Map through the 'additional options' array and render each option in an <li> element */}
+              {renderOptions()}
+            </ul>
+            <h3 className="profil-title">Disponibilité de {lastname}</h3>
+            <DateRangeComp />
+          </div>
+          <div className="main-profil">
+            <h1>
+              {firstname} {lastname}
+            </h1>
+            {description && <p>{description}</p>}
+          </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );

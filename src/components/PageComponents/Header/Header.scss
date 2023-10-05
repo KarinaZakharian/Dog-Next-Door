@@ -10,8 +10,8 @@
   align-items: center;
   gap: 20px;
   justify-content: space-between;
-  background-color: v.$color-border;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: v.$color-main;
+  max-width: 1500px;
 
   &__logo {
     font-size: 24px;
@@ -39,7 +39,7 @@
     margin-right: 20px;
     text-decoration: none;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 30px;
     color: v.$color-text-dark;
 
     &:hover {
@@ -69,5 +69,4 @@
   color: v.$color-text-dark;
   font-weight: 400;
   font-size: 16px;
-
 }
