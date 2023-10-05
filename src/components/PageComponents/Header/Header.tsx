@@ -20,6 +20,18 @@ function Header() {
         <NavLink to="/">
           <img className="menu__logo" src={mainLogo} alt="main-logo" />
         </NavLink>
+        <NavLink className="menu__menu-item" to="/account">
+          Profil
+        </NavLink>
+        <NavLink className="menu__menu-item" to="/index">
+          Boite de reception
+        </NavLink>
+        <NavLink className="menu__menu-item" to="/account/form">
+          Profil form
+        </NavLink>
+        <NavLink className="menu__menu-item" to="/search">
+          Search
+        </NavLink>
 
         {firstname && (
           <div className="menu__nav-wrapper">
@@ -36,7 +48,6 @@ function Header() {
               <NavLink className="menu__menu-item" to="/search">
                 Search
               </NavLink>
-              
             </div>
             <div className="menu__menu-connection">
               <strong>{firstname}</strong>

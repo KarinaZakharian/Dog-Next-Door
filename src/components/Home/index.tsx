@@ -78,7 +78,7 @@ function Home() {
               style={{ borderColor: 'initial' }}
               setCoordinates={setCoordinates}
             />
-            <DateRangePickerComp />
+            <DateRangePickerComp legend="Pour ces jours" />
             <p className="title-size">La taille de mon animal</p>
             <div className="radio">
               <Radio

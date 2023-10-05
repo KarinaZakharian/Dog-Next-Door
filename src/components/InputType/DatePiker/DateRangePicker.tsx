@@ -5,8 +5,10 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './DatePicker.scss';
 import { useEffect, useRef, useState } from 'react';
-
-function DateRangePickerComp() {
+interface InputProps {
+  legend: string;
+}
+function DateRangePickerComp({ legend }: InputProps) {
   /* open close */
   const [open, setOpen] = useState(false);
 
@@ -45,7 +47,7 @@ function DateRangePickerComp() {
 
   return (
     <div className="calendarWrap">
-      <p>Pour ces jours</p>
+      <p>{legend}</p>
       <input
         name="date"
         value={`${format(range[0].startDate, ' dd/MM/YYY')} au ${format(

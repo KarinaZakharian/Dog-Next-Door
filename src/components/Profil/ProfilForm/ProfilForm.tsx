@@ -16,6 +16,7 @@ import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 
 import { login } from '../../../store/reducers/login';
+import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 
 function ProfilForm() {
   const navigate = useNavigate();
@@ -206,6 +207,7 @@ function ProfilForm() {
                 onRadioChange={handleWalkChange}
               />
             </div>
+            <DateRangePickerComp legend="Disponibilité" />
             <Button prop="Enregistrer" />
           </form>
         </div>
