@@ -18,12 +18,22 @@ import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 import { login } from '../../../store/reducers/login';
 import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 
+import {
+  emailSchema,
+  passwordSchema,
+} from '../../../Validations/UserValidation';
+import AutoComplete from '../../InputType/Addresse/Addresse';
+
 function ProfilForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const error = useAppSelector((state) => state.profilForm.error);
   const message = useAppSelector((state) => state.profilForm.message);
+
+  const [emailValid, setEmailIsValid] = useState(true);
+  const [passwordValid, setPasswordIsValid] = useState(true);
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
@@ -64,6 +74,58 @@ function ProfilForm() {
   function handleWalkChange(value: string): void {
     setWalk(value);
   }
+
+  const handleMySubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append('longitude', coordinates.x.toString());
+    formData.append('latitude', coordinates.y.toString());
+    const objData = Object.fromEntries(formData);
+    console.log('body envoyé dans la requête du signup', objData);
+
+    // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const emailIsValid = await emailSchema.isValid({
+      email: `${objData.email}`,
+    });
+    setEmailIsValid(emailIsValid);
+
+    // Validation of password using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const passwordIsValid = await passwordSchema.isValid({
+      user_password: `${objData.user_password}`,
+    });
+    setPasswordIsValid(passwordIsValid);
+
+    if (emailIsValid && passwordIsValid) {
+      dispatch(signup(formData));
+    }
+  };
+
+  useEffect(() => {
+    console.log('error', error);
+    console.log('message', message);
+
+    if (!error && message) {
+      swal(`${message}`, {
+        text: message,
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        dispatch(success());
+        navigate('/account', { replace: true });
+      }, 1000);
+    }
+
+    if (error) {
+      swal(`${error}`, {
+        icon: 'error',
+        button: true,
+      });
+    }
+  }, [error, message]);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -85,7 +147,7 @@ function ProfilForm() {
       });
       setTimeout(() => {
         dispatch(success());
-        navigate('/', { replace: true });
+        navigate('/account', { replace: true });
       }, 1000);
     }
 
@@ -103,6 +165,51 @@ function ProfilForm() {
 
       <main className="main">
         <div className="container">
+          <form className="profil-form" onSubmit={handleMySubmit}>
+            <Input
+              name="lastname"
+              type="text"
+              placeholder="Nom"
+              aria-label="Votre Nom"
+              style={{ borderColor: 'initial' }}
+            />
+            <Input
+              name="firstname"
+              type="text"
+              placeholder="Prénom"
+              aria-label="Votre Prenom"
+              style={{ borderColor: 'initial' }}
+            />
+            <AutoComplete
+              style={{ borderColor: 'initial' }}
+              setCoordinates={setCoordinates}
+            />
+
+            <Input
+              name="email"
+              type="email"
+              placeholder="Adresse E-mail"
+              aria-label="Adresse E-mail"
+              style={{ borderColor: emailValid ? 'initial' : 'red' }}
+            />
+            {!emailValid && (
+              <p className="error">
+                Votre adresse e-mail n&apos;est pas valide
+              </p>
+            )}
+            <Input
+              name="user_password"
+              type="password"
+              placeholder="Mot de passe"
+              aria-label="Mot de passe"
+              style={{ borderColor: passwordValid ? 'initial' : 'red' }}
+            />
+            {!passwordValid && (
+              <p className="error">Votre password n'est pas valide</p>
+            )}
+            <DateRangePickerComp legend="Disponibilité" />
+            <Button prop="Enregistrer" />
+          </form>
           <form className="profil-form" onSubmit={handleSubmit}>
             <p className="form__title">
               Complétez les informations demandées pour que votre profil soit
