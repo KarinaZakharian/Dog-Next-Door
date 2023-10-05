@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './Addresse.scss';
 
-function AutoComplete({ style , setCoordinates}) {
+function AutoComplete({ style, setCoordinates }) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
 
-  const getAddressesFromAPI = async (search : string) => {
+  const getAddressesFromAPI = async (search: string) => {
     console.log('je suis dans la fonction');
     try {
       if (search !== '' && isNaN(search)) {
@@ -39,7 +39,7 @@ function AutoComplete({ style , setCoordinates}) {
           Adresse complète
         </label>
         <input
-          name="city"
+          name="user_address"
           id="city"
           type="text"
           onChange={(e) => setQuery(e.target.value)}

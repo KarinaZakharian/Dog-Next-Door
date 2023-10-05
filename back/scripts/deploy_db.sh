@@ -1,7 +1,7 @@
 # le script sh s'éxécute avec la commande bash + le fichier de destination
 
 # Je lance le script de création de role et de base de donnée
-sudo -u postgres psql -f ./scripts/init_db.sql
+sudo -u admindav psql -f ./scripts/init_db.sql
 
 
 export PGUSER=odog

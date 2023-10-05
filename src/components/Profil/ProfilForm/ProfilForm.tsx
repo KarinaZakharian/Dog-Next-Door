@@ -15,6 +15,8 @@ import TextareaInput from '../../InputType/Textarea/Textarea';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 
+import { login } from '../../../store/reducers/login';
+
 function ProfilForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

@@ -6,29 +6,29 @@ import {
 
 import axios from 'axios';
 
- import axiosInstance from '../../utils/axios'
+import axiosInstance from '../../utils/axios';
 
 interface LoginState {
   firstname: string | null;
   lastname: string | null;
-  city: string | null;
+  user_address: string | null;
   description: string | null;
-  accommodation: string | null;
+  accomodation: string | null;
   garden: string | null;
-  additionalOptions: string[] | null;
-  size: string[] | null;
+  additionnal_information: string[] | null;
+  animal_size: string[] | null;
   error: string | null;
 }
 export const initialState: LoginState = {
   firstname: null,
   lastname: null,
-  city: null,
+  user_address: null,
   error: null,
   description: null,
-  accommodation: null,
+  accomodation: null,
   garden: null,
-  additionalOptions: null,
-  size: null,
+  additionnal_information: null,
+  animal_size: null,
 };
 
 export const logout = createAction('user/logout');
@@ -38,25 +38,25 @@ export const login = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await  axiosInstance.post('/login', objData);
+      const { data } = await axiosInstance.post('/login', objData);
       console.log(data);
-      
+
       //localStorage.setItem("access-token", data.token);
 
-       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
 
-       delete data.token;
-       
-    
+      delete data.token;
+
       return data as {
         firstname: string;
         lastname: string;
-        city: string;
+        user_address: string;
         description: string;
         accommodation: string;
         garden: string;
-        additionalOptions: string[];
-        size: string[];
+        additionnal_information: string[];
+        animal_size: string[];
+        accomodation: string;
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -71,11 +71,12 @@ const loginReducer = createReducer(initialState, (builder) => {
       console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
-      state.city = action.payload.city;
-      state.description = action.payload.accommodation;
+      state.user_address = action.payload.user_address;
+      state.description = action.payload.description;
       state.garden = action.payload.garden;
-      state.size = action.payload.size;
-      state.additionalOptions = action.payload.additionalOptions;
+      state.animal_size = action.payload.animal_size;
+      state.accomodation = action.payload.accomodation;
+      state.additionnal_information = action.payload.additionnal_information;
       state.error = null;
 
       // state.token = action.payload.token;
@@ -94,7 +95,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       // delete axiosInstance.defaults.headers.common.Authorization;
 
       // je supprime mon JWT de mon instance Axios
-       delete axiosInstance.defaults.headers.common.Authorization;
+      delete axiosInstance.defaults.headers.common.Authorization;
     });
 });
 
