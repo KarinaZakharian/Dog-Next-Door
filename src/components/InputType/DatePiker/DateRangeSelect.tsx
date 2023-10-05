@@ -1,66 +1,50 @@
-import { DateRange } from 'react-date-range';
-import format from 'date-fns/format';
-import { addDays } from 'date-fns';
+import React, { useState } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { useEffect, useRef, useState } from 'react';
+import { DateRange } from 'react-date-range';
+import { addDays } from 'date-fns';
 
 function DateRangeComp() {
-  /* open close */
-  const [open, setOpen] = useState(false);
+  /* Set your desired start and end dates here */
+  const startDate = new Date('2023-01-01');
+  const endDate = new Date('2023-01-15');
 
-  /* date state */
-  const [range, setRange] = useState([
+  /* Create a date range object */
+  const dateRange = [
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate,
+      endDate,
       key: 'selection',
     },
-  ]);
+  ];
 
-  /*  get the target element to toggle */
-  const refOne = useRef(null);
+  /* Set the open state and handle interactions */
+  const [open, setOpen] = useState(false);
 
-  /* hide dropdown on ESC press */
-  const hideOnEscape = (e) => {
-    console.log(e.key);
-    if (e.key === 'Escape') {
-      setOpen(false);
-    }
+  const toggleCalendar = () => {
+    setOpen(!open);
   };
 
-  const hideOnClickOutside = (e) => {
-    console.log(refOne.current);
-    console.log(e.target);
-    if (refOne.current && !refOne.current.contains(e.target)) {
-      setOpen(false);
-    }
+  const handleDateChange = (item) => {
+    // Do nothing when the user tries to change the dates
   };
-  /* set carrent date on component Load */
-  useEffect(() => {
-    document.addEventListener('keydown', hideOnEscape, true);
-    document.addEventListener('click', hideOnClickOutside, true);
-  }, []);
 
   return (
     <div className="calendarWrap">
       <input
-        value={`${format(range[0].startDate, 'MM/dd/yyy')} to ${format(
-          range[0].endDate,
-          'MM/dd/yyy'
-        )}`}
+        value={`${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`}
         readOnly
         className="inputBox"
-        onClick={() => setOpen((open) => !open)}
+        onClick={toggleCalendar}
       />
 
-      <div ref={refOne}>
+      <div>
         {open && (
           <DateRange
-            onChange={(item) => setRange([item.selection])}
-            editableDateInputs={true}
+            onChange={handleDateChange}
+            editableDateInputs={false}
             moveRangeOnFirstSelection={false}
-            ranges={range}
+            ranges={dateRange}
             months={1}
             direction="horizontal"
             className="calendarElement"
