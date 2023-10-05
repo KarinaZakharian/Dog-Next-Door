@@ -9,6 +9,8 @@ import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import './Profil.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
+import avatar from '../../../assets/Logo-ODogNextDoor.svg';
+
 // import avatar from '../../../assets/icons8-avatar-100.png';
 
 function Profil() {
@@ -38,26 +40,32 @@ function Profil() {
     user_address
   );
 
-  const renderSize = () => {
-    if (size) {
-      if (Array.isArray(size)) {
-        return size.map((item, index) => <li key={index}>{item}</li>);
-      } else {
-        return <li>{size}</li>;
-      }
+  const renderOptions = () => {
+    if (additionnal_information) {
+      const infoArray = additionnal_information.split(',');
+
+      return (
+        <ul>
+          {infoArray.map((item, index) => (
+            <li key={index}>{item.trim()}</li>
+          ))}
+        </ul>
+      );
     }
     return null;
   };
 
-  const renderOptions = () => {
-    if (additionnal_information) {
-      if (Array.isArray(additionnal_information)) {
-        return additionnal_information.map((item, index) => (
-          <li key={index}>{item}</li>
-        ));
-      } else {
-        return <li>{additionnal_information}</li>;
-      }
+  const renderSize = () => {
+    if (size) {
+      const infoArray = size.split(',');
+
+      return (
+        <ul>
+          {infoArray.map((item, index) => (
+            <li key={index}>{item.trim()}</li>
+          ))}
+        </ul>
+      );
     }
     return null;
   };
@@ -65,24 +73,35 @@ function Profil() {
   return (
     <div className="page-wrapper">
       <Header />
-
-      <div className="container">
-        <div className="aside">
-          <h1>
-            {firstname} {lastname}
-          </h1>
-          <h3> {firstname} peut effectuer la garde à son domicile</h3>
-          <ul>{renderSize()}</ul>
-          <h3>À propos du domicile du {user_address}</h3>
-          <ul>
-            {accommodation && <li>{accommodation}</li>}
-            {garden && <li>{garden}</li>}
-            {/* Map through the 'additional options' array and render each option in an <li> element */}
+      <div className="profil-wrapper">
+        <div className="container-profil">
+          <div className="aside-profil">
+            <img className="aside-img" src={avatar} alt="Avatar" />
+            <h3 className="profil-title">
+              {firstname} peut effectuer la garde à son domicile
+            </h3>
+            {renderSize()}
+            <h3 className="profil-title">
+              À propos du domicile du {user_address}
+            </h3>
+            <ul>
+              {accommodation && <li>{accommodation}</li>}
+              {garden && <li>{garden}</li>}
+              {/* Map through the 'additional options' array and render each option in an <li> element */}
+            </ul>
             {renderOptions()}
-          </ul>
-          <div className="main">{description && <p>{description}</p>}</div>
+            <h3 className="profil-title">Disponibilité</h3>
+            <DateRangeComp />
+          </div>
+          <div className="main-profil">
+            <h1>
+              {firstname} {lastname}
+            </h1>
+            {description && <p>{description}</p>}
+          </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );
