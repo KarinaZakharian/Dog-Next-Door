@@ -166,6 +166,10 @@ function ProfilForm() {
       <main className="main">
         <div className="container">
           <form className="profil-form" onSubmit={handleMySubmit}>
+            <p className="form__title">
+              Complétez les informations demandées pour que votre profil soit
+              approuvé
+            </p>
             <Input
               name="lastname"
               type="text"
@@ -314,7 +318,7 @@ function ProfilForm() {
                 onRadioChange={handleWalkChange}
               />
             </div>
-            <DateRangePickerComp legend="Disponibilité" />
+
             <Button prop="Enregistrer" />
           </form>
         </div>
