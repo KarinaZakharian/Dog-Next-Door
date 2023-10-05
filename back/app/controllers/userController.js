@@ -3,7 +3,6 @@ const tokenController = require('../services/tokenController');
 const validator = require('validator');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-const { log } = require('console');
 
 const userController = {
   logInUser: async (req, res) => {
@@ -58,9 +57,12 @@ const userController = {
   },
 
   findUserById: async (req, res) => {
-    const userId = parseInt(req.params.id);
-
     try {
+      const userId = parseInt(req.userId);
+      console.log('userController 1', userId);
+      if (req.params.id) {
+        userId = parseInt(req.params.id);
+      }
       const user = await userDatamapper.getOneUserById(userId);
       res.json(user);
     } catch (error) {
@@ -123,7 +125,6 @@ const userController = {
       console.log(userExist);
       if (!userExist) {
         res.json("Cet utilisateur n'est pas enregistré en BDD");
-        console.log('res.json du back', res.json);
         return;
       }
 

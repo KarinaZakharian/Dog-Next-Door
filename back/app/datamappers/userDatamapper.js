@@ -17,11 +17,11 @@ const userDatamapper = {
   getOneUserById: async (id) => {
     try {
       const userId = id;
+      console.log('userDatamapper', userId);
       const query = `SELECT * FROM "user"
             WHERE "id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);
-
       return userFound.rows[0];
     } catch (error) {
       return console.error('Problème de recherche BDD utilisateur');
@@ -110,6 +110,7 @@ const userDatamapper = {
         additionnal_information,
         description,
       } = userConcerned;
+
       const values = [
         accomodation,
         garden,
