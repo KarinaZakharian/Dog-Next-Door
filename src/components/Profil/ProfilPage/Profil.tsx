@@ -6,8 +6,15 @@ import './Profil.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 // import avatar from '../../../assets/icons8-avatar-100.png';
+import { fetchUser } from '../../../store/reducers/profil';
+
 
 function Profil() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+  
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const user_address = useAppSelector((state) => state.profil.user_address);
@@ -85,3 +92,7 @@ function Profil() {
 }
 
 export default Profil;
+function useEffect(arg0: () => void) {
+  throw new Error('Function not implemented.');
+}
+

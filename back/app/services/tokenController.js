@@ -16,6 +16,7 @@ const tokenController = {
             algorithm : 'HS256',
         }
         const token = jwt.sign(payload, SECRET_KEY, options);
+        console.log(token);
         return token;
     },
 
@@ -40,6 +41,7 @@ const tokenController = {
         const authorization = req.headers.authorization;
         if (authorization) {
             const token = authorization.split(' ')[1];
+            
             try {
                 const userData = jwt.verify(token, process.env.SECRET_KEY);
                 req.userId = userData.id;
@@ -48,9 +50,9 @@ const tokenController = {
                 return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
             }
           }
-        if(!token){
-            return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
-        }
+        // if(!token){
+        //     return res.status(401).json({"message":"Connectez-vous pour pouvoir accéder à cette page"});
+        // }
 
        
     },
