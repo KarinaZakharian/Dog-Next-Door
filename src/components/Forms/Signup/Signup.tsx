@@ -111,7 +111,7 @@ function SignUp() {
       <Header />
 
       <main className="main-signup">
-        <div className="container">
+        <div className="container-signup">
           <form className="form" onSubmit={handleSubmit}>
             <Input
               name="lastname"

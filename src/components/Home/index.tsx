@@ -50,7 +50,7 @@ function Home() {
     <div className="page-wrapper">
       <Header />
       <main className="main">
-        <div className="container">
+        <div className="container-home">
           <form className="main-form" onSubmit={handleSubmit}>
             <p className="title-animal">Je recherche un service pour mon</p>
             <div className="radio-animal">
@@ -79,7 +79,7 @@ function Home() {
               setCoordinates={setCoordinates}
             />
             <DateRangePickerComp legend="Pour ces jours" />
-            <p className="title-size">La taille de mon animal</p>
+            <p className="form-title">La taille de mon animal</p>
             <div className="radio">
               <Radio
                 name="size"

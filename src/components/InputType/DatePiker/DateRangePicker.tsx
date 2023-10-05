@@ -47,7 +47,7 @@ function DateRangePickerComp({ legend }: InputProps) {
 
   return (
     <div className="calendarWrap">
-      <p>{legend}</p>
+      <p className="legend">{legend}</p>
       <input
         name="date"
         value={`${format(range[0].startDate, ' dd/MM/YYY')} au ${format(

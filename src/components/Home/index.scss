@@ -12,8 +12,8 @@
   background-repeat: no-repeat; /* Image will not repeat */
   flex-grow: 1;
 }
-.container {
-  width: 990px;
+.container-home {
+  max-width: 1300px;
   margin: 0 auto;
 }
 .radio {
@@ -33,7 +33,7 @@
   text-align: center;
   color: v.$color-text-dark;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 40px;
   background-color: v.$color-border;
   margin-bottom: 0;
 }
@@ -45,7 +45,7 @@
   background-color: #fff;
   border-radius: 4px;
   border: 2px solid #e7e7e7;
-  width: 70%;
+  width: 100%;
   margin: 50px auto;
   color: #7b7f88;
   font-weight: 700;
@@ -53,4 +53,9 @@
   display: flex;
   flex-direction: column;
   padding: 20px 35px;
+}
+.form-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: v.$color-text-dark;
 }
