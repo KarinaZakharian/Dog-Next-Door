@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   createAsyncThunk,
   createReducer,
@@ -11,12 +10,10 @@ import axiosInstance from '../../utils/axios';
 interface ProfilState {
   message: string | null;
   error: unknown;
-
 }
 export const initialState: ProfilState = {
   message: null,
   error: null,
-
 };
 
 export const fillProfilForm = createAsyncThunk(
@@ -24,12 +21,8 @@ export const fillProfilForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await axiosInstance.post(
-        '/account/form',
-        objData
-      );
+      const { data } = await axiosInstance.post('/account/form', objData);
       return data as {
-      
         message: string;
       };
     } catch (error) {
@@ -53,7 +46,6 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       // state.firstname = action.payload.firstname;
       state.error = null;
       state.message = action.payload.message;
-     
 
       // state.token = action.payload.token;
     })

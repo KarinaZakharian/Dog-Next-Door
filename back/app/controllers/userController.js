@@ -3,6 +3,7 @@ const tokenController = require('../services/tokenController');
 const validator = require('validator');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const { log } = require('console');
 
 const userController = {
   logInUser: async (req, res) => {
@@ -122,6 +123,7 @@ const userController = {
       console.log(userExist);
       if (!userExist) {
         res.json("Cet utilisateur n'est pas enregistré en BDD");
+        console.log('res.json du back', res.json);
         return;
       }
 
