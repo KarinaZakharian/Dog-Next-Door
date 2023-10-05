@@ -1,2 +1,40 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
+
+.profil-wrapper {
+  min-height: 100vh;
+  background-image: url(../../../assets/chienv2.jpg);
+  background-size: cover; /* Image will cover the entire container */
+  background-repeat: no-repeat; /* Image will not repeat */
+  flex-grow: 1;
+  background-position: center;
+}
+.container-profil {
+  padding: 25px;
+  max-width: 1300px;
+  background-color: v.$color-main;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+.aside-profil {
+  padding: 20px;
+}
+.main-profil {
+  padding: 20px;
+}
+.aside-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.profil-title {
+  color: v.$color-text-dark;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+ul {
+  list-style: none;
+}
