@@ -25,10 +25,8 @@ export const searchThunk = createAsyncThunk(
     try {
       const data = await axiosInstance.post('/search', objData);
       return data;
-      console.log(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
-      console.log(error);
     }
   }
 );
@@ -48,12 +46,12 @@ const searchReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(searchThunk.fulfilled, (state, action) => {
-      console.log('action fulfilled', action);
+      // console.log('action fulfilled', action);
       state.error = null;
       state.message = action.payload.data;
       state.users = action.payload.data;
-      console.log(state.users);
-      console.log(action.payload);
+      // console.log(state.users);
+      // console.log(action.payload);
     })
     .addCase(searchSuccess, (state) => {
       state.error = null;

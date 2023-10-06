@@ -39,7 +39,7 @@ export const login = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.post('/login', objData);
-      console.log(data);
+      // console.log(data);
 
       //localStorage.setItem("access-token", data.token);
 
@@ -68,7 +68,7 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       // state.logged = true;
-      console.log('action fulfilled', action);
+      // console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.user_address = action.payload.user_address;
