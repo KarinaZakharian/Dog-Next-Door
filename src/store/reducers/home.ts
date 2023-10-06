@@ -24,7 +24,7 @@ const homeReducer = createReducer(initialState, (builder) => {
     state.city = action.payload.city;
     state.date = action.payload.date;
     state.size = action.payload.size;
-    state.size = action.payload.size;
+    state.radius = action.payload.radius;
     console.log(action.payload);
   });
 });
