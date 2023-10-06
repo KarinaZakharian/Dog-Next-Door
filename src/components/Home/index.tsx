@@ -15,13 +15,18 @@ import geant from '../../assets/icons8-dog-64.png';
 import './index.scss';
 import Button from '../InputType/Button/Button';
 import { addData } from '../../store/reducers/home';
-import { useAppDispatch } from '../../hooks/redux';
+import { searchThunk } from '../../store/reducers/search';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
+import RadioSimple from '../InputType/RadioSimple/RadioSimple';
 
 function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const error = useAppSelector((state) => state.search.error);
+  const message = useAppSelector((state) => state.search.message);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [picked, setPicked] = useState('');
@@ -34,6 +39,12 @@ function Home() {
     setAnimal(value);
   }
 
+  // picking the radius
+  const [pickedRadius, setRadius] = useState('');
+  function handleRadiusChange(value: string): void {
+    setRadius(value);
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -42,6 +53,7 @@ function Home() {
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
     console.log(objData);
+    dispatch(searchThunk(objData));
     dispatch(addData(objData));
     navigate('/search', { replace: true });
   }
@@ -77,7 +89,39 @@ function Home() {
             <AutoComplete
               style={{ borderColor: 'initial' }}
               setCoordinates={setCoordinates}
+              searchedCity=""
             />
+            <p>Distance autour de chez moi</p>
+            <div className="radiosimple-wrapper">
+              <RadioSimple
+                name="radius"
+                id="5km"
+                picked={pickedRadius}
+                value="5"
+                onRadioChange={handleRadiusChange}
+              />
+              <RadioSimple
+                name="radius"
+                id="10km"
+                picked={pickedRadius}
+                value="10"
+                onRadioChange={handleRadiusChange}
+              />
+              <RadioSimple
+                name="radius"
+                id="20"
+                picked={pickedRadius}
+                value="20"
+                onRadioChange={handleRadiusChange}
+              />
+              <RadioSimple
+                name="radius"
+                id="35"
+                picked={pickedRadius}
+                value="35"
+                onRadioChange={handleRadiusChange}
+              />
+            </div>
             <DateRangePickerComp legend="Pour ces jours" />
             <p className="form-title">La taille de mon animal</p>
             <div className="radio">

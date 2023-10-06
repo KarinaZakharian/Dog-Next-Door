@@ -26,8 +26,9 @@ function InputSearch() {
   const city = useAppSelector((state) => state.home.city);
   const date = useAppSelector((state) => state.home.date);
   const size = useAppSelector((state) => state.home.size);
+  const searchRadius = useAppSelector((state) => state.home.radius);
 
-  console.log(animal, city, date, size);
+  console.log(animal, city, date, size, searchRadius);
   const dispatch = useAppDispatch();
 
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -52,7 +53,7 @@ function InputSearch() {
   }
 
   // picking the radius
-  const [pickedRadius, setRadius] = useState('');
+  const [pickedRadius, setRadius] = useState(searchRadius);
   function handleRadiusChange(value: string): void {
     setRadius(value);
   }
@@ -109,6 +110,7 @@ function InputSearch() {
           <AutoComplete
             style={{ borderColor: 'initial' }}
             setCoordinates={setCoordinates}
+            searchedCity={city}
           />
           <p>Distance autour de chez moi</p>
           <div className="radiosimple-wrapper">
@@ -141,7 +143,7 @@ function InputSearch() {
               onRadioChange={handleRadiusChange}
             />
           </div>
-          <DateRangePickerComp />
+          <DateRangePickerComp legend="Pour ces jours" />
           <p className="inputSearch__title-size">La taille de mon animal</p>
           <div className="inputSearch__radio">
             <Radio

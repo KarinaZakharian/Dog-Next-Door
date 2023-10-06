@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './Addresse.scss';
 
-function AutoComplete({ style, setCoordinates }) {
+function AutoComplete({ style, setCoordinates, searchedCity }) {
   const [addresses, setAdresses] = useState([]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(searchedCity);
 
   const getAddressesFromAPI = async (search: string) => {
     console.log('je suis dans la fonction');

@@ -7,12 +7,14 @@ interface HomeState {
   city: string | null;
   date: string | null;
   size: string | null;
+  radius: string | null;
 }
 export const initialState: HomeState = {
   animal: '',
   city: '',
   date: '',
   size: '',
+  radius: '',
 };
 export const addData = createAction<HomeState>('state/add-data');
 const homeReducer = createReducer(initialState, (builder) => {
@@ -22,9 +24,8 @@ const homeReducer = createReducer(initialState, (builder) => {
     state.city = action.payload.city;
     state.date = action.payload.date;
     state.size = action.payload.size;
+    state.size = action.payload.size;
     console.log(action.payload);
-    // j'efface mon input
-    // state.currentMessage = '';
   });
 });
 
