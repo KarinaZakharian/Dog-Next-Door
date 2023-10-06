@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Calendar } from 'react-date-range';
 import format from 'date-fns/format';
 import 'react-date-range/dist/styles.css'; // main style file
@@ -17,7 +18,7 @@ function CalendarComp() {
   /* hide dropdown on ESC press */
   const hideOnEscape = (e) => {
     console.log(e.key);
-    if (e.key === 'Escape') {
+    if (e.key === 'Enter') {
       setOpen(false);
     }
   };
@@ -43,7 +44,9 @@ function CalendarComp() {
 
   return (
     <div className="calendarWrap">
+      <p className="datapicker-title">Date de naissance</p>
       <input
+        name="age"
         value={calendar}
         readOnly
         className="inputBox"

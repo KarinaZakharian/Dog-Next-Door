@@ -5,30 +5,60 @@ import {
 } from '@reduxjs/toolkit';
 
 import axios from 'axios';
+import axiosInstance from '../../utils/axios';
 
-export const logout = createAction('user/logout');
+interface SearchState {
+  users: string[];
+  error: string | null;
+  message: string | null;
+}
+export const initialState: SearchState = {
+  users: [],
+  error: '',
+  message: '',
+};
 
-export const login = createAsyncThunk(
-  'user/login',
-  async (formData: FormData) => {
+export const searchThunk = createAsyncThunk(
+  'user/search',
+  async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
-
-    const { data } = await axios.post('https://localhost:3000/search', objData);
-
-    return data;
+    try {
+      const data = await axiosInstance.post('/search', objData);
+      return data;
+      console.log(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+      console.log(error);
+    }
   }
 );
 
-const mapReducer = createReducer(initialState, (builder) => {
+export const searchSuccess = createAction('search/success ');
+
+export const search = createAction<SearchState>('state/add-data');
+const searchReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(login.fulfilled, (state, action) => {
-      // state.logged = true;
-      state.firstname = action.payload.firstname;
-      // state.token = action.payload.token;
+    .addCase(search, (state, action) => {
+      // state.users = action.payload.users;
+      // console.log(action.payload);
     })
-    .addCase(logout, (state) => {
-      state.firstname = null;
+    .addCase(searchThunk.rejected, (state, action) => {
+      console.log('action rejected', action);
+      state.error = action.payload.response.data;
+      state.message = null;
+    })
+    .addCase(searchThunk.fulfilled, (state, action) => {
+      console.log('action fulfilled', action);
+      state.error = null;
+      state.message = action.payload.data;
+      state.users = action.payload.data;
+      console.log(state.users);
+      console.log(action.payload);
+    })
+    .addCase(searchSuccess, (state) => {
+      state.error = null;
+      state.message = null;
     });
 });
 
-export default mapReducer;
+export default searchReducer;

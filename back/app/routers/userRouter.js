@@ -5,22 +5,23 @@ const { checkTokenLogin, checkTokenMember } = require('../services/tokenControll
 const {checkLogInForm, checkSubscribeForm } = require('../services/validation/validationForm.js')
 // Import des services
 const { controlWrapper:cw } = require('../services/errorService.js')
+const { checkSubscribeForm, checkLogInForm, checkAccountForm } = require('../services/validation/validationForm.js');
 
-// // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-userRouter.post("/login", checkTokenLogin, cw(checkLogInForm, userController.logInUser));
-// // userRouter.post("/account",userController.loggedUser);
-userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
+//!Route GET
+
+userRouter.get("/petsitter/:id", cw(userController.findUserById));
+
+userRouter.get('/account', checkTokenMember , cw(userController.findUserById));
 
 
-// // userRouter.post("/login",userController.findUser, userController.checkUserInput);
-// userRouter.post("/login", checkTokenLogin, cw(checkLogInForm, userController.logInUser));
-// // userRouter.post("/account",userController.loggedUser);
-// userRouter.post("/signup", checkTokenMember, cw(checkSubscribeForm, userController.createUser));
+//!Route POST
 
-// userRouter.post("/login",userController.findUser, userController.checkUserInput);
-// userRouter.post("/login",userController.checkUserInput);
-// userRouter.post("/login", checkTokenLogin, checkLogInForm, cw(userController.logInUser));
-// userRouter.post("/account",userController.loggedUser);
-// userRouter.post("/subscribe", checkTokenMember, cw(userController.createUser));
+userRouter.post("/login" , cw(userController.logInUser));
+
+userRouter.post("/subscribe", cw(userController.createUser));
+
+userRouter.post("/search", cw(userController.findUserByDistance));
+
+userRouter.post("/account/form", checkTokenMember ,cw(userController.createUserOptionnalInformation));
 
 module.exports = userRouter;

@@ -6,6 +6,7 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
+import Main from '../../PageComponents/Main/Main';
 import './Login.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
@@ -16,6 +17,7 @@ function Login() {
   const firstname = useAppSelector((state) => state.login.firstname);
   const error = useAppSelector((state) => state.login.error);
   // console.log('error:', error);
+  console.log('firstname', firstname);
   console.log('firstname', firstname);
 
   const [valid, setIsValid] = useState(true);
@@ -61,10 +63,10 @@ function Login() {
   return (
     <div className="page-wrapper">
       <Header />
-
+      {/* <Main /> */}
       <main className="main-login">
-        <div className="container">
-          <form onSubmit={handleSubmit}>
+        <div className="container-login">
+          <form className="login__form" onSubmit={handleSubmit}>
             <Input
               label="email"
               name="email"

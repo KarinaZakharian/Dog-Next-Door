@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
@@ -82,8 +83,12 @@ function SignUp() {
   };
 
   useEffect(() => {
+    console.log('error', error);
+    console.log('message', message);
+
     if (!error && message) {
-      swal({
+      swal(`${message}`, {
+        text: message,
         icon: 'success',
         timer: 1000,
       });
@@ -106,7 +111,7 @@ function SignUp() {
       <Header />
 
       <main className="main-signup">
-        <div className="container">
+        <div className="container-signup">
           <form className="form" onSubmit={handleSubmit}>
             <Input
               name="lastname"

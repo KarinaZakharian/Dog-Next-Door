@@ -17,7 +17,7 @@ interface FieldProps {
   onRadioChange: (value: string) => void;
 }
 
-function Radio({ name, id, value, picked, onRadioChange }: FieldProps) {
+function RadioSimple({ name, id, value, picked, onRadioChange }: FieldProps) {
   console.log(picked);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -43,4 +43,4 @@ function Radio({ name, id, value, picked, onRadioChange }: FieldProps) {
 }
 
 // == Export
-export default Radio;
+export default RadioSimple;

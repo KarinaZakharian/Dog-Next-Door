@@ -1,6 +1,7 @@
 const APIError = require('../APIError');
 const subscribeFormSchema = require('./subscribeFormSchema');
 const loginFormSchema = require('./loginFormSchema');
+const accountFormSchema = require('./accountFormSchema');
 
 const validationFormService ={
     checkSubscribeForm : (req, res, next) => {
@@ -19,6 +20,17 @@ const validationFormService ={
             next();
         }else{
             let err = new APIError("Votre formulaire n'est pas correct", 400, error);
+            res.json(err.message);
+        }
+    },
+
+    checkAccountForm : (req,res,next) => {
+        let { error } = accountFormSchema.validate(req.body);
+        console.log(error);
+        if(!error){
+            next()
+        } else {
+            let err = new APIError("Votre formulaire n'est pas correcte", 400 , error)
             res.json(err.message);
         }
     },

@@ -1,5 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+
 import marker from '../../../assets/dog-area.png';
 import shadow from '../../../assets/dog-area-shadow.png';
 import data from '../../../../fakeData/data.json';
@@ -16,6 +18,8 @@ function SectionMap() {
     shadowSize: [40, 40],
     shadowAnchor: [4, 22],
   });
+  const dispatch = useAppDispatch();
+  // const users = useAppSelector((state) => state.search.users);
   const users = data;
   const { latitude, longitude } = users[0];
   return (

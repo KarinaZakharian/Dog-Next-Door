@@ -1,9 +1,9 @@
 BEGIN;
 
 
-INSERT INTO "user" ("firstname","lastname","email","user_password","date_birth","avatar","street_number","street_name","zip_code","town","country", "lattitude", "longitude")
+INSERT INTO "user" ("firstname","lastname","email","user_password","date_birth","avatar","street_number","street_name","zip_code","town","country", "latitude", "longitude")
 VALUES 
-('Soufiane','IBNAICHE','soufiane.ibnaiche@oclock.school','1234','1990-03-05','soufiane.jpg', '3', 'Avenue Charles Floquet', '75007','Paris', 'France', '48.85640670533029', '2.2941727989822835'),
+('Soufiane','IBNAICHE','soufiane.ibnaiche@oclock.school','$2a$12$2dTR4OLRqpIcRnuSx/IlZebFkTv4hypGvlL8LwYjsoPIqNvyhQLbS','1990-03-05','soufiane.jpg', '3', 'Avenue Charles Floquet', '75007','Paris', 'France', '48.85640670533029', '2.2941727989822835'),
 ('Ilias','YAKDANE','ilias.yakdane@oclock.school','1234','1991-06-15','ilias.jpg','107', 'Rue de l''Ouest', '75014', 'Paris', 'France', '48.834028139712416','2.3155446404129476'),
 ('David', 'VIAU','david.viau@oclock.school','1234','1980-04-18','david.jpg','18','Rue Verlet-Hanus', '69003', 'Lyon', 'France', '45.757981', '4.850069'),
 ('Karina', 'ZAKHARIAN','karina.zakharian@oclock.school','1234','1991-02-20','karina.jpg','12','Rue Rue du Maréchal Niel','33100','Bordeaux','France', '44.850282', '-0.55939'),

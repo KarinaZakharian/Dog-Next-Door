@@ -1,0 +1,22 @@
+@use '../../../styles/reset';
+@use '../../../styles/variables' as v;
+p {
+  font-size: 16px;
+  font-weight: 700;
+  color: v.$color-text-dark;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.animal-form {
+  background-color: v.$color-main;
+  border-radius: 4px;
+  border: 2px solid v.$color-border;
+  width: 80%;
+  margin: 50px auto;
+  color: v.$color-text;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 35px;
+}
