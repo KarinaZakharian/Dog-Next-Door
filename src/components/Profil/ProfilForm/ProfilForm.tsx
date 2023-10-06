@@ -2,7 +2,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-import { success, fillProfilForm } from '../../../store/reducers/profil-form';
+import {
+  success,
+  fillProfilForm,
+  updateSignupForm,
+} from '../../../store/reducers/profil-form';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -14,8 +18,6 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import TextareaInput from '../../InputType/Textarea/Textarea';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
-
-import { login } from '../../../store/reducers/login';
 import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 
 import {
@@ -30,6 +32,8 @@ function ProfilForm() {
 
   const error = useAppSelector((state) => state.profilForm.error);
   const message = useAppSelector((state) => state.profilForm.message);
+  const myMessage = useAppSelector((state) => state.profilForm.myMessage);
+  const myError = useAppSelector((state) => state.profilForm.myError);
 
   const [emailValid, setEmailIsValid] = useState(true);
   const [passwordValid, setPasswordIsValid] = useState(true);
@@ -98,7 +102,7 @@ function ProfilForm() {
     setPasswordIsValid(passwordIsValid);
 
     if (emailIsValid && passwordIsValid) {
-      dispatch(signup(formData));
+      dispatch(updateSignupForm(formData));
     }
   };
 
@@ -106,8 +110,8 @@ function ProfilForm() {
     console.log('error', error);
     console.log('message', message);
 
-    if (!error && message) {
-      swal(`${message}`, {
+    if (!myError && myMessage) {
+      swal(`${myMessage}`, {
         text: message,
         icon: 'success',
         timer: 1000,
@@ -118,8 +122,8 @@ function ProfilForm() {
       }, 1000);
     }
 
-    if (error) {
-      swal(`${error}`, {
+    if (myError) {
+      swal(`${myError}`, {
         icon: 'error',
         button: true,
       });
