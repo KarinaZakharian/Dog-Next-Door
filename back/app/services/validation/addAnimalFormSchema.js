@@ -1,14 +1,14 @@
 const Joi = require('joi').extend(require('@joi/date'));
 
 const addAnimalFormSchema = Joi.object({
-    type: Joi.string().required(),
+    animal: Joi.string().required(),
     name: Joi.string().required(),
-    breed: Joi.string().required(),
-    date_birth: Joi.date().format('DD-MM-YYYY').required(),
-    weight_category: Joi.string().required(),
-    potty_break_schedule: Joi.string().required(),
-    feeding_schedule: Joi.string().required(),
-    energy_level: Joi.string().required()
+    race: Joi.string().required(),
+    date_birth: Joi.string().required(),
+    size: Joi.string().required(),
+    walk: Joi.string().required(),
+    mealhours: Joi.string().required(),
+    energy: Joi.string().required()
 })
 
 module.exports = addAnimalFormSchema;

@@ -11,6 +11,6 @@ const { checkAddAnimalForm } = require('../services/validation/validationForm.js
 const { animalController } = require("../controllers");
 
 // Routes post
-animalRouter.post('/account/addanimal', checkTokenMember, cw(animalController.createNewAnimal));
+animalRouter.post('/account/addanimal', checkAddAnimalForm, checkTokenMember, cw(animalController.createNewAnimal));
 
 module.exports = animalRouter;
