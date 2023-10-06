@@ -39,7 +39,7 @@ CREATE TABLE animal (
   photo VARCHAR(42),
   animal_name VARCHAR(42),
   weight_category VARCHAR(42),
-  age VARCHAR(42),
+  birthdate VARCHAR(42),
   sex VARCHAR(42),
   breed VARCHAR(42),
   about TEXT,

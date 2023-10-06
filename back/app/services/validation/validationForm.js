@@ -2,6 +2,7 @@ const APIError = require('../APIError');
 const subscribeFormSchema = require('./subscribeFormSchema');
 const loginFormSchema = require('./loginFormSchema');
 const accountFormSchema = require('./accountFormSchema');
+const addAnimalFormSchema = require('./addAnimalFormSchema');
 
 const validationFormService ={
     checkSubscribeForm : (req, res, next) => {
@@ -31,6 +32,15 @@ const validationFormService ={
             next()
         } else {
             let err = new APIError("Votre formulaire n'est pas correcte", 400 , error)
+        }
+    },
+    
+    checkAddAnimalForm : (req, res, next) => {
+        let { error } = addAnimalFormSchema.validate(req.body);
+        if(!error){
+            next();
+        }else{
+            let err = new APIError("Votre formulaire n'est pas correct", 400, error);
             res.json(err.message);
         }
     },
