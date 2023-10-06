@@ -2,7 +2,7 @@ const express = require("express");
 const {userController} = require('../controllers/index.js');
 const userRouter= express.Router();
 const { checkTokenLogin, checkTokenMember } = require('../services/tokenController.js')
-const {checkLogInForm, checkSubscribeForm } = require('../services/validation/validationForm.js')
+
 // Import des services
 const { controlWrapper:cw } = require('../services/errorService.js')
 const { checkSubscribeForm, checkLogInForm, checkAccountForm } = require('../services/validation/validationForm.js');
