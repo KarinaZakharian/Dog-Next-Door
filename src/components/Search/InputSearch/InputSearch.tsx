@@ -75,9 +75,9 @@ function InputSearch() {
     const formData = new FormData(form);
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
-    const objData = Object.fromEntries(formData);
+    // const objData = Object.fromEntries(formData);
     dispatch(searchThunk(formData));
-    console.log(objData);
+    // console.log(objData);
   }
 
   return (
@@ -110,7 +110,7 @@ function InputSearch() {
           <AutoComplete
             style={{ borderColor: 'initial' }}
             setCoordinates={setCoordinates}
-            searchedCity={city}
+          
           />
           <p>Distance autour de chez moi</p>
           <div className="radiosimple-wrapper">

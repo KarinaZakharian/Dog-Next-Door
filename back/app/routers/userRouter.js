@@ -23,7 +23,7 @@ userRouter.post("/search", cw(userController.findUserByDistance));
 
 
 //!Route PATCH
-userRouter.patch("/account/form1",checkTokenMember ,cw(userController.updateOptionnalInformation));
+userRouter.patch("/account/form",checkTokenMember ,cw(userController.updateOptionnalInformation));
 
 userRouter.patch("/account/form2",checkTokenMember ,cw(userController.updatePersonnalInformation));
 

@@ -29,6 +29,7 @@ CREATE TABLE "user" (
   animal_size VARCHAR (42),
   additionnal_information TEXT,
   walking_duration VARCHAR(42),
+  disponibility_date VARCHAR(42),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );

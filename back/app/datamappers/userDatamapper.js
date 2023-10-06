@@ -18,10 +18,12 @@ const userDatamapper = {
     try {
 
       const userId = id;
-      const query = `SELECT * FROM "user"
+      const query = `
+            SELECT * FROM "user"
             WHERE "id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);
+      console.log(userFound.rows[0]);
       return userFound.rows[0];
 
     } catch (error) {
@@ -120,6 +122,54 @@ const userDatamapper = {
         walking_duration,
         additionnal_information,
         description,
+        userId,
+      ];
+      const result = await client.query(query, values);
+
+      return result;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  addPersonnalInformation: async (personnalInformation, userId) => {
+    try {
+      const userConcerned = personnalInformation;
+      console.log(userConcerned);
+
+      const query = `
+            UPDATE "user"
+            SET 
+            firstname = $1,
+            lastname = $2,
+            email = $3,
+            user_address = $4,
+            user_password = $5,
+            latitude = $6,
+            longitude = $7,
+            disponibility_date = $8
+            WHERE id = $9`;
+
+      const {
+        firstname,
+        lastname,
+        email,
+        user_address,
+        user_password,
+        latitude,
+        longitude,
+        disponibility_date
+      } = userConcerned;
+
+      const values = [
+        firstname,
+        lastname,
+        email,
+        user_address,
+        user_password,
+        latitude,
+        longitude,
+        disponibility_date,
         userId,
       ];
       const result = await client.query(query, values);

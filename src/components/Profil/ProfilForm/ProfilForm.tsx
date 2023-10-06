@@ -23,6 +23,9 @@ import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 import {
   emailSchema,
   passwordSchema,
+  firstnameSchema,
+  lastnameSchema,
+  citySchema,
 } from '../../../Validations/UserValidation';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 
@@ -34,9 +37,13 @@ function ProfilForm() {
   const message = useAppSelector((state) => state.profilForm.message);
   const myMessage = useAppSelector((state) => state.profilForm.myMessage);
   const myError = useAppSelector((state) => state.profilForm.myError);
+  console.log( "profil error, profil message", error,message, 'signup update error, message',myError, myMessage)
 
   const [emailValid, setEmailIsValid] = useState(true);
   const [passwordValid, setPasswordIsValid] = useState(true);
+  const [firstnameValid, setfirstnameIsValid] = useState(true);
+  const [lastnameValid, setlastnameIsValid] = useState(true);
+  const [cityValid, setCityIsValid] = useState(true);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
@@ -101,7 +108,28 @@ function ProfilForm() {
     });
     setPasswordIsValid(passwordIsValid);
 
-    if (emailIsValid && passwordIsValid) {
+  // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+  const firstnameIsValid = await firstnameSchema.isValid({
+    firstname: `${objData.firstname}`,
+  });
+  setfirstnameIsValid(firstnameIsValid);
+   // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+   const lastnameIsValid = await lastnameSchema.isValid({
+    lastname: `${objData.lastname}`,
+  });
+  setlastnameIsValid(lastnameIsValid);
+
+  
+  const cityIsValid = await citySchema.isValid({
+    city: `${objData.city}`,
+  });
+  setCityIsValid(cityIsValid);
+
+    if (  emailIsValid &&
+      passwordIsValid &&
+      firstnameIsValid &&
+      lastnameIsValid &&
+      cityIsValid) {
       dispatch(updateSignupForm(formData));
     }
   };
@@ -112,7 +140,7 @@ function ProfilForm() {
 
     if (!myError && myMessage) {
       swal(`${myMessage}`, {
-        text: message,
+        
         icon: 'success',
         timer: 1000,
       });
@@ -128,7 +156,7 @@ function ProfilForm() {
         button: true,
       });
     }
-  }, [error, message]);
+  }, [myError, myMessage]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -179,20 +207,22 @@ function ProfilForm() {
               type="text"
               placeholder="Nom"
               aria-label="Votre Nom"
-              style={{ borderColor: 'initial' }}
+              style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
             />
+            {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
             <Input
               name="firstname"
               type="text"
               placeholder="Prénom"
               aria-label="Votre Prenom"
-              style={{ borderColor: 'initial' }}
+              style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
             />
+             {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
             <AutoComplete
-              style={{ borderColor: 'initial' }}
+               style={{ borderColor: cityValid ? 'initial' : 'red' }}
               setCoordinates={setCoordinates}
             />
-
+             {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input
               name="email"
               type="email"
