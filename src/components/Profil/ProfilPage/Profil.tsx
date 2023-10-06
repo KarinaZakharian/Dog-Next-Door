@@ -8,6 +8,8 @@ import avatar from '../../../assets/Logo-ODogNextDoor.svg';
 
 import { useEffect } from 'react';
 import { fetchUser } from '../../../store/reducers/profil';
+import { Link } from 'react-router-dom';
+import Button from '../../InputType/Button/Button';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -113,6 +115,9 @@ function Profil() {
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
+            <Link  to={'/account/animal-form'}>
+      <Button prop='Ajoutez votre animal de compagnie' />
+    </Link>
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE animal (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  animal_type VARCHAR(42),
+  type VARCHAR(42),
   photo VARCHAR(42),
   animal_name VARCHAR(42),
   weight_category VARCHAR(42),

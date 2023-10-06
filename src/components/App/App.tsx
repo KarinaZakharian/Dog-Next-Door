@@ -28,13 +28,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/petsitter/:id" element={<Petsitter />} />
+        <Route path="/account/animal-form" element={<AnimalForm />} />
         
         {firstname &&
           <>
             <Route path="/account" element={<Profil />} />
            
             <Route path="/account/form" element={<ProfilForm />} />
-            <Route path="/account/animal-form" element={<AnimalForm />} />
+           
           </>
        }
         

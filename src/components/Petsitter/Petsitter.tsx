@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
@@ -13,6 +13,7 @@ import { fetchUserById } from '../../store/reducers/sitter';
 
 import avatar from '../../assets/Logo-ODogNextDoor.svg';
 import DateRangeComp from '../InputType/DatePiker/DateRangeSelect';
+import Button from '../InputType/Button/Button';
 
 function Petsitter() {
   const user = useAppSelector((state) => state.sitter.user);
