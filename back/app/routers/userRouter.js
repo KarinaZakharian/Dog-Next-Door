@@ -11,8 +11,7 @@ const { checkSubscribeForm, checkLogInForm, checkAccountForm } = require('../ser
 
 userRouter.get("/petsitter/:id", cw(userController.findUserById));
 
-userRouter.get('/account', checkTokenMember , cw(userController.findUserById));
-
+userRouter.get('/account', checkTokenMember , cw(userController.findUser));
 
 //!Route POST
 
@@ -22,6 +21,12 @@ userRouter.post("/subscribe", cw(userController.createUser));
 
 userRouter.post("/search", cw(userController.findUserByDistance));
 
-userRouter.post("/account/form", checkTokenMember ,cw(userController.createUserOptionnalInformation));
+
+//!Route PATCH
+userRouter.patch("/account/form1",checkTokenMember ,cw(userController.updateOptionnalInformation));
+
+userRouter.patch("/account/form2",checkTokenMember ,cw(userController.updatePersonnalInformation));
 
 module.exports = userRouter;
+
+

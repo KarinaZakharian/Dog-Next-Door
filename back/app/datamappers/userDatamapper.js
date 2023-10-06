@@ -95,7 +95,8 @@ const userDatamapper = {
 
       const query = `
             UPDATE "user"
-            SET accomodation = $1,
+            SET 
+            accomodation = $1,
             garden = $2,
             animal_size = $3,
             walking_duration = $4,
