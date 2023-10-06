@@ -27,11 +27,12 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
+        <Route path="/petsitter/:id" element={<Petsitter />} />
         
         {firstname &&
           <>
             <Route path="/account" element={<Profil />} />
-            <Route path="/petsitter/:id" element={<Petsitter />} />
+           
             <Route path="/account/form" element={<ProfilForm />} />
             <Route path="/account/animal-form" element={<AnimalForm />} />
           </>

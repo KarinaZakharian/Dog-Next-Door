@@ -27,6 +27,7 @@ function Profil() {
     (state) => state.profil.additionnal_information
   );
   const walking_duration = useAppSelector((state) => state.profil.walking_duration);
+  const disponibility_date = useAppSelector((state) => state.profil.disponibility_date);
   
 
   console.log(
@@ -43,7 +44,9 @@ function Profil() {
     'options',
     additionnal_information,
     'city',
-    user_address
+    user_address,
+    'disponib',
+    disponibility_date
   );
 
   const renderSize = () => {
@@ -102,7 +105,8 @@ function Profil() {
             {walking_duration && <p>Disponibilité de promenade</p>}
             {walking_duration && <p>{walking_duration}</p>}
             <h3 className="profil-title">Disponibilité de {lastname}</h3>
-            <DateRangeComp />
+            {disponibility_date &&  <DateRangeComp />}
+           
           </div>
           <div className="main-profil">
             <h1>
