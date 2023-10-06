@@ -22,6 +22,6 @@ userRouter.post("/subscribe", cw(userController.createUser));
 
 userRouter.post("/search", cw(userController.findUserByDistance));
 
-userRouter.post("/account/form",checkTokenMember ,cw(userController.createUserOptionnalInformation));
+userRouter.post("/account/form", checkTokenMember ,cw(userController.createUserOptionnalInformation));
 
 module.exports = userRouter;

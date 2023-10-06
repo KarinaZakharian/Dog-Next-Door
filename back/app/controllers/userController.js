@@ -122,7 +122,7 @@ const userController = {
     const intendedUser = req.body;
     console.log(req.body);
     const userId = req.userId;
-
+    console.log(userId);
     try {
       // Vérification de l'existence du compte
       const userExist = await userDatamapper.getOneUserById(userId);
@@ -133,7 +133,7 @@ const userController = {
       }
 
       const response = await userDatamapper.addOptionnalInformations(intendedUser,userId);
-
+      console.log(response);
       res.json('Vos informations ont été ajoutées avec succès');
     } catch (error) {
       res.status(500).json(error.toString());

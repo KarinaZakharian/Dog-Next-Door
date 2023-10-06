@@ -4,18 +4,6 @@ import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import './Profil.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
-<<<<<<< HEAD
-// import avatar from '../../../assets/icons8-avatar-100.png';
-import { fetchUser } from '../../../store/reducers/profil';
-
-
-function Profil() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, []);
-  
-=======
 import avatar from '../../../assets/Logo-ODogNextDoor.svg';
 
 import { useEffect } from 'react';
@@ -26,9 +14,8 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [dispatch]);
+  }, []);
 
->>>>>>> a8df6e78081f77385f83b0327059bc411972dbf4
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const user_address = useAppSelector((state) => state.profil.user_address);
@@ -128,7 +115,3 @@ function Profil() {
 }
 
 export default Profil;
-function useEffect(arg0: () => void) {
-  throw new Error('Function not implemented.');
-}
-
