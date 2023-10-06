@@ -26,6 +26,8 @@ function Profil() {
   const additionnal_information = useAppSelector(
     (state) => state.profil.additionnal_information
   );
+  const walking_duration = useAppSelector((state) => state.profil.walking_duration);
+  
 
   console.log(
     'first Name',
@@ -97,6 +99,8 @@ function Profil() {
               {/* Map through the 'additional options' array and render each option in an <li> element */}
               {renderOptions()}
             </ul>
+            {walking_duration && <p>Disponibilité de promenade</p>}
+            {walking_duration && <p>{walking_duration}</p>}
             <h3 className="profil-title">Disponibilité de {lastname}</h3>
             <DateRangeComp />
           </div>

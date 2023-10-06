@@ -15,6 +15,7 @@ interface LoginState {
   description: string | null;
   accomodation: string | null;
   garden: string | null;
+  walking_duration: string| null ;
   additionnal_information: string[] | null;
   animal_size: string[] | null;
   error: string | null;
@@ -28,6 +29,7 @@ export const initialState: LoginState = {
   accomodation: null,
   garden: null,
   additionnal_information: null,
+  walking_duration:  null ,
   animal_size: null,
 };
 
@@ -43,6 +45,7 @@ export const fetchUser = createAsyncThunk('user/login', async () => {
       description: string;
       accommodation: string;
       garden: string;
+      walking_duration: string
       additionnal_information: string[];
       animal_size: string[];
       accomodation: string;
@@ -65,6 +68,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.animal_size = action.payload.animal_size;
       state.accomodation = action.payload.accomodation;
       state.additionnal_information = action.payload.additionnal_information;
+      state.walking_duration=action.payload.walking_duration
       state.error = null;
 
       // state.token = action.payload.token;

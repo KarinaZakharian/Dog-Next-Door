@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 // On import nos composants de pages
 import Home from '../Home/index';
@@ -12,24 +12,31 @@ import Profil from '../Profil/ProfilPage/Profil';
 import Petsitter from '../Petsitter/Petsitter';
 // on import le css
 import './App.scss';
+import { useAppSelector } from '../../hooks/redux';
 
 
 function App() {
 
-  
+  const firstname = useAppSelector((state) => state.login.firstname);
 
 
   return (
     <div className="app">
-      <Routes>
+         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
-        <Route path="/account" element={<Profil />} />
-        <Route path="/petsitter/:id" element={<Petsitter />} />
-        <Route path="/account/form" element={<ProfilForm />} />
-        <Route path="/account/animal-form" element={<AnimalForm />} />
+        
+        {firstname &&
+          <>
+            <Route path="/account" element={<Profil />} />
+            <Route path="/petsitter/:id" element={<Petsitter />} />
+            <Route path="/account/form" element={<ProfilForm />} />
+            <Route path="/account/animal-form" element={<AnimalForm />} />
+          </>
+       }
+        
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

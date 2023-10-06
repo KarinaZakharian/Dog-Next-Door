@@ -35,7 +35,19 @@ const tokenController = {
     //         return next(error);
     //     }
     // },
-
+    checkTokenRemove: async (req, res, next) => {
+        const authorization = req.headers.authorization;
+        if (authorization) {
+            const token = authorization.split(' ')[1];
+            try {
+                const userData = jwt.clearCookie("access_token");
+                res.json({"message": "Vous avez été déconnecté" });
+            } catch (error) {
+                return res.status(401);
+            }
+          }
+    }, 
+    
     checkTokenMember : async (req, res, next) => {
         const authorization = req.headers.authorization;
         if (authorization) {
