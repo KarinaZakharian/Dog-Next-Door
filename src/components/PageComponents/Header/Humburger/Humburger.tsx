@@ -26,7 +26,7 @@ function Humburger() {
   };
 
   return (
-    <div className="menu" onClick={handleMenuClick}>
+    <div className="menuHumburger" onClick={handleMenuClick}>
       <div className={`menu-bar ${isMenuOpen ? 'change' : ''}`}>
         <div id="bar1" className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
         <div id="bar2" className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
