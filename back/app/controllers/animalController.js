@@ -10,7 +10,7 @@ const animalController = {
             const animalAdded = await animalDatamapper.addNewAnimal(newAnimal);
             console.log(animalAdded);
             if(animalAdded === 1){
-                res.json(newAnimal);
+                res.json({"message": "Votre animal a été ajouté avec succès"},newAnimal);
             };
         } catch (error) {
             const err = new APIError(error, 500)

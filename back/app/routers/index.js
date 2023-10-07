@@ -17,6 +17,8 @@ userRouter.get("/", (req,res) => {
 
 // Appel des routes users
 router.use(userRouter);
+
+// Appel des routes inbox
 router.use(inboxRouter);
 
 // Appel des routes animals
