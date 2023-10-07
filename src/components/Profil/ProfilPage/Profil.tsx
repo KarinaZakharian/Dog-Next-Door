@@ -36,7 +36,7 @@ function Profil() {
     (state) => state.profil.disponibility_date
   );
 
-  const animals = [cat, dog];
+  const animals = ['cat', 'dog'];
   console.log(
     'first Name',
     firstname,

@@ -265,7 +265,7 @@ function ProfilForm() {
               label="Ma description"
               placeholder="About me"
             />
-            <p className="label">Mon logement</p>
+            <p className="label-form">Mon logement</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="accomodation"
@@ -289,7 +289,7 @@ function ProfilForm() {
                 onRadioChange={handleAccomodationChange}
               />
             </div>
-            <p className="label">Quel type de jardin avez-vous ?</p>
+            <p className="label-form">Quel type de jardin avez-vous ?</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="garden"
@@ -325,7 +325,7 @@ function ProfilForm() {
               options={size}
               onSelectionChange={handleSelectionChange2}
             />
-            <p className="label">
+            <p className="label-form">
               À quelle fréquence pouvez-vous emmener les animaux que vous gardez
               faire leurs besoins ?
             </p>

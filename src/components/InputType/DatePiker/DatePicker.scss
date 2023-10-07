@@ -11,4 +11,25 @@
 }
 .legend {
   @include v.label;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 414px) {
+  .legend,
+  .datapicker-title {
+    @include v.label-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .inputBox {
+    @include v.input-field-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .rdrDefinedRangesWrapper {
+    display: none;
+  }
 }

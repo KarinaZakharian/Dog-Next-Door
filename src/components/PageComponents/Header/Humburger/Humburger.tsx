@@ -9,8 +9,8 @@ import mainLogo from '../../../../assets/Logo-ODogNextDoor.svg';
 import './Humburger.scss';
 
 function Humburger() {
-  //const firstname = useAppSelector((state) => state.login.firstname);
-  const firstname = 'karina';
+  const firstname = useAppSelector((state) => state.login.firstname);
+  // const firstname = 'karina';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const dispatch = useAppDispatch();

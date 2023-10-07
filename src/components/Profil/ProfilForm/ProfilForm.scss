@@ -26,6 +26,24 @@ p {
   width: 70%;
 }
 
-.label {
+.label-form {
   @include v.label;
+}
+
+@media screen and (max-width: 414px) {
+  .label-form {
+    @include v.label-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .form__title {
+    @include v.title-form-text-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .radio-wrapper {
+    flex-direction: column;
+  }
 }

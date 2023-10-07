@@ -6,6 +6,12 @@
   margin-bottom: 15px;
   margin-top: 15px;
 }
+
+@media screen and (max-width: 414px) {
+  .checkbox-title {
+    @include v.label-phone;
+  }
+}
 /* Customize the label (the container) */
 .container {
   display: block;

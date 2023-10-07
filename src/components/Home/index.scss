@@ -23,6 +23,12 @@
 
       &__label {
         @include v.label;
+        margin-top: 10px;
+        margin-bottom: 0;
+
+        @media screen and (max-width: 414px) {
+          @include v.label-phone;
+        }
       }
 
       &__title-animal {
@@ -30,6 +36,10 @@
         background-color: v.$color-flash;
         margin-bottom: 0;
         border-radius: 10px 10px 0 0;
+
+        @media screen and (max-width: 414px) {
+          @include v.title-form-text-phone;
+        }
       }
 
       &__radio-animal {
@@ -40,6 +50,10 @@
         background-color: v.$color-flash;
         border-radius: 0 0 10px 10px;
         padding-bottom: 10px;
+
+        @media screen and (max-width: 414px) {
+          gap: 5px;
+        }
 
         .radio-animal__title {
           @include v.label;
@@ -57,4 +71,23 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
   margin-top: -23px;
+}
+
+@media screen and (max-width: 414px) {
+  .radio {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .main-form__label {
+    @include v.label-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .main-form__radio-animal {
+    gap: 10px;
+  }
 }

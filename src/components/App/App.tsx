@@ -15,8 +15,8 @@ import './App.scss';
 import { useAppSelector } from '../../hooks/redux';
 
 function App() {
-  // const firstname = useAppSelector((state) => state.login.firstname);
-  const firstname = 'karina';
+  const firstname = useAppSelector((state) => state.login.firstname);
+  //const firstname = 'karina';
 
   return (
     <div className="app">

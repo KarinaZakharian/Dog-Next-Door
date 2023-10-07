@@ -22,11 +22,21 @@ $color-flash: rgb(176, 224, 230);
   font-size: 30px;
 }
 
+@mixin title-form-text-phone {
+  font-weight: 400;
+  font-size: 20px;
+}
+
 @mixin label {
   color: $color-text-dark;
   font-size: 20px;
   font-weight: 500;
   text-align: left;
+}
+
+@mixin label-phone {
+  font-size: 15px;
+  font-weight: 500;
 }
 @mixin radio-wrapper {
   display: flex;
@@ -40,6 +50,10 @@ $color-flash: rgb(176, 224, 230);
   border: 1px solid $color-border;
   border-radius: 5px;
   background-color: $color-main;
+}
+
+@mixin input-field-phone {
+  font-size: 10px;
 }
 
 @mixin title-nav {
