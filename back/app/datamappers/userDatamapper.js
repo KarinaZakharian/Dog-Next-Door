@@ -100,9 +100,9 @@ const userDatamapper = {
             SET 
             accomodation = $1,
             garden = $2,
-            animal_size = $3,
+            animal_size = ARRAY[$3],
             walking_duration = $4,
-            additionnal_information = $5,
+            additionnal_information = ARRAY[$5],
             description = $6
             WHERE id = $7`;
 
