@@ -67,8 +67,10 @@ function Home() {
       <main className="main">
         <div className="container-home">
           <form className="main-form" onSubmit={handleSubmit}>
-            <p className="title-animal">Je recherche un service pour mon</p>
-            <div className="radio-animal">
+            <p className="main-form__title-animal">
+              Je recherche un service pour mon
+            </p>
+            <div className="main-form__radio-animal">
               <Radio
                 name="animal"
                 id="cat"
@@ -92,9 +94,8 @@ function Home() {
             <AutoComplete
               style={{ borderColor: 'initial' }}
               setCoordinates={setCoordinates}
-              
             />
-            <p>Distance autour de chez moi</p>
+            <p className="main-form__label">Distance autour de chez moi</p>
             <div className="radiosimple-wrapper">
               <RadioSimple
                 name="radius"
@@ -126,7 +127,7 @@ function Home() {
               />
             </div>
             <DateRangePickerComp legend="Pour ces jours" />
-            <p className="form-title">La taille de mon animal</p>
+            <p className="main-form__label">La taille de mon animal</p>
             <div className="radio">
               <Radio
                 name="size"

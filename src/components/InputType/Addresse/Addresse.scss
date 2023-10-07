@@ -15,12 +15,7 @@
   }
 
   &__input {
-    padding: 10px;
-    font-size: 25px;
-    font-weight: 400;
-    border: 1px solid v.$color-text-dark;
-    border-radius: 5px;
-    background-color: v.$color-main;
+    @include v.input-field;
     width: 100%;
 
     &:focus {
@@ -31,14 +26,16 @@
   }
 
   &__ul {
+    padding-left: 0;
     width: 100%;
     background-color: v.$color-main;
-    color: v.$color-flash;
+    color: v.$color-text-dark;
     position: absolute;
     top: 110%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    z-index: 1;
 
     &__li {
       border-bottom: solid 1px v.$color-border;

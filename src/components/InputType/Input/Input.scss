@@ -6,12 +6,7 @@
   justify-content: center;
 
   &__field {
-    padding: 10px;
-    font-size: 25px;
-    font-weight: 400;
-    border: 1px solid v.$color-border;
-    border-radius: 5px;
-    background-color: v.$color-main;
+    @include v.input-field;
 
     &:focus {
       outline: none;
@@ -21,10 +16,7 @@
   }
 
   &__label {
-    display: block;
+    @include v.label;
     margin-top: 8px;
-    color: v.$color-text-dark;
-    font-size: 30px;
-    font-weight: 700;
   }
 }

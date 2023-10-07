@@ -1,22 +1,14 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
 .datapicker-title {
-  font-size: 30px;
-  font-weight: 700;
-  color: v.$color-text-dark;
+  @include v.label;
   margin-top: 20px;
   margin-bottom: 5px;
 }
 .inputBox {
-  padding: 10px;
+  @include v.input-field;
   width: 100%;
-  margin: 0 auto;
-  display: block;
-  border-radius: 5px;
-  border-color: v.$color-border;
 }
 .legend {
-  font-size: 30px;
-  font-weight: 700;
-  color: v.$color-text-dark;
+  @include v.label;
 }

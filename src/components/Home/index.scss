@@ -1,5 +1,6 @@
 @use '../../styles/reset';
 @use '../../styles/variables' as v;
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -8,54 +9,52 @@
 .main {
   height: 100vh;
   background-image: url(../../assets/chienv2.jpg);
-  background-size: cover; /* Image will cover the entire container */
-  background-repeat: no-repeat; /* Image will not repeat */
+  background-size: cover;
+  background-repeat: no-repeat;
   flex-grow: 1;
+
+  .container-home {
+    max-width: 1300px;
+    margin: 0 auto;
+
+    .main-form {
+      @include v.form-styling;
+      width: 70%;
+
+      &__label {
+        @include v.label;
+      }
+
+      &__title-animal {
+        @include v.title-form-text;
+        background-color: v.$color-flash;
+        margin-bottom: 0;
+        border-radius: 10px 10px 0 0;
+      }
+
+      &__radio-animal {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        justify-content: center;
+        background-color: v.$color-flash;
+        border-radius: 0 0 10px 10px;
+        padding-bottom: 10px;
+
+        .radio-animal__title {
+          @include v.label;
+          background-color: v.$color-flash;
+          margin-bottom: 0;
+          border-radius: 10px 10px 0 0;
+        }
+      }
+    }
+  }
 }
-.container-home {
-  max-width: 1300px;
-  margin: 0 auto;
-}
+
 .radio {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
-}
-
-.radio-animal {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-  background-color: v.$color-border;
-}
-.title-animal {
-  text-align: center;
-  color: v.$color-text-dark;
-  font-weight: 700;
-  font-size: 40px;
-  background-color: v.$color-border;
-  margin-bottom: 0;
-}
-.title-size {
-  margin-bottom: -20px;
-}
-
-.main-form {
-  background-color: #fff;
-  border-radius: 4px;
-  border: 2px solid #e7e7e7;
-  width: 100%;
-  margin: 50px auto;
-  color: #7b7f88;
-  font-weight: 700;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 35px;
-}
-.form-title {
-  font-size: 30px;
-  font-weight: 700;
-  color: v.$color-text-dark;
+  margin-top: -23px;
 }

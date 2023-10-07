@@ -2,9 +2,7 @@
 @use '../../../styles/variables' as v;
 
 .checkbox-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: v.$color-text-dark;
+  @include v.label;
   margin-bottom: 15px;
   margin-top: 15px;
 }

@@ -3,4 +3,58 @@ $color-border: #e7e7e7;
 $color-text: #7b7f88;
 $color-text-dark: rgb(64, 67, 71);
 $color-hower: rgb(35, 34, 34);
-$color-flash: rgb(15, 174, 206);
+$color-flash: rgb(176, 224, 230);
+
+@mixin form-styling {
+  background-color: $color-main;
+  border-radius: 10px;
+  border: 2px solid #e7e7e7;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 35px;
+  margin: 50px auto;
+}
+
+@mixin title-form-text {
+  text-align: center;
+  color: $color-text-dark;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+@mixin label {
+  color: $color-text-dark;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+}
+@mixin radio-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin input-field {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  background-color: $color-main;
+}
+
+@mixin title-nav {
+  text-align: center;
+  color: $color-flash;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+@mixin hover {
+  color: $color-hower;
+  transform: scale(1.1);
+}
+
+@mixin transition {
+  transition: ease-in-out 0.2s;
+}

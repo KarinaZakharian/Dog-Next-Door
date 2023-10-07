@@ -38,13 +38,11 @@
   &__menu-item {
     margin-right: 20px;
     text-decoration: none;
-    font-weight: 400;
-    font-size: 30px;
-    color: v.$color-text-dark;
+    @include v.title-nav;
+    @include v.transition;
 
     &:hover {
-      text-decoration: underline;
-      color: v.$color-flash;
+      @include v.hover;
     }
   }
 
@@ -56,9 +54,7 @@
 
     strong {
       margin-right: 10px;
-      color: v.$color-text-dark;
-      font-weight: 400;
-      font-size: 16px;
+      @include v.title-nav;
     }
   }
 }
@@ -66,7 +62,17 @@
 .menu__menu-button {
   border: none;
   background-color: v.$color-main;
-  color: v.$color-text-dark;
-  font-weight: 400;
-  font-size: 16px;
+  @include v.title-nav;
+  @include v.transition;
+
+  &:hover {
+    @include v.hover;
+  }
+}
+
+.visible-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
 }

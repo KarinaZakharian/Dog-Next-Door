@@ -9,11 +9,9 @@ p {
   margin-bottom: 15px;
 }
 .form__title {
-  background-color: v.$color-border;
-  padding: 20px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
+  background-color: v.$color-flash;
+  @include v.title-form-text;
+  border-radius: 10px;
 }
 .main {
   height: 100%;
@@ -24,15 +22,10 @@ p {
   background-position: center;
 }
 .profil-form {
-  background-color: v.$color-main;
-  border-radius: 4px;
-  border: 2px solid v.$color-border;
-  width: 80%;
-  margin: 50px auto;
-  color: v.$color-text;
-  font-weight: 700;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 35px;
+  @include v.form-styling;
+  width: 70%;
+}
+
+.label {
+  @include v.label;
 }

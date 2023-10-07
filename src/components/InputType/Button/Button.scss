@@ -5,13 +5,12 @@
   display: block;
   padding: 10px 20px;
   margin: 20px auto;
-  border: 2px solid v.$color-hower;
   border-radius: 10px;
-  font-weight: 700;
-  font-size: 25px;
+  border: 2px solid v.$color-border;
+  font-weight: 400;
+  font-size: 20px;
   color: v.$color-text-dark;
   background-color: v.$color-main;
-  box-shadow: 0 10px 20px v.$color-text-dark;
   transition: 0.1s;
 
   &:hover {

@@ -37,7 +37,14 @@ function ProfilForm() {
   const message = useAppSelector((state) => state.profilForm.message);
   const myMessage = useAppSelector((state) => state.profilForm.myMessage);
   const myError = useAppSelector((state) => state.profilForm.myError);
-  console.log( "profil error, profil message", error,message, 'signup update error, message',myError, myMessage)
+  console.log(
+    'profil error, profil message',
+    error,
+    message,
+    'signup update error, message',
+    myError,
+    myMessage
+  );
 
   const [emailValid, setEmailIsValid] = useState(true);
   const [passwordValid, setPasswordIsValid] = useState(true);
@@ -108,28 +115,29 @@ function ProfilForm() {
     });
     setPasswordIsValid(passwordIsValid);
 
-  // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-  const firstnameIsValid = await firstnameSchema.isValid({
-    firstname: `${objData.firstname}`,
-  });
-  setfirstnameIsValid(firstnameIsValid);
-   // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-   const lastnameIsValid = await lastnameSchema.isValid({
-    lastname: `${objData.lastname}`,
-  });
-  setlastnameIsValid(lastnameIsValid);
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const firstnameIsValid = await firstnameSchema.isValid({
+      firstname: `${objData.firstname}`,
+    });
+    setfirstnameIsValid(firstnameIsValid);
+    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
+    const lastnameIsValid = await lastnameSchema.isValid({
+      lastname: `${objData.lastname}`,
+    });
+    setlastnameIsValid(lastnameIsValid);
 
-  
-  const cityIsValid = await citySchema.isValid({
-    city: `${objData.city}`,
-  });
-  setCityIsValid(cityIsValid);
+    const cityIsValid = await citySchema.isValid({
+      city: `${objData.city}`,
+    });
+    setCityIsValid(cityIsValid);
 
-    if (  emailIsValid &&
+    if (
+      emailIsValid &&
       passwordIsValid &&
       firstnameIsValid &&
       lastnameIsValid &&
-      cityIsValid) {
+      cityIsValid
+    ) {
       dispatch(updateSignupForm(formData));
     }
   };
@@ -140,7 +148,6 @@ function ProfilForm() {
 
     if (!myError && myMessage) {
       swal(`${myMessage}`, {
-        
         icon: 'success',
         timer: 1000,
       });
@@ -217,12 +224,12 @@ function ProfilForm() {
               aria-label="Votre Prenom"
               style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
             />
-             {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
+            {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
             <AutoComplete
-               style={{ borderColor: cityValid ? 'initial' : 'red' }}
+              style={{ borderColor: cityValid ? 'initial' : 'red' }}
               setCoordinates={setCoordinates}
             />
-             {!cityValid && <p className="error">Inscrivez votre adresse</p>}
+            {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input
               name="email"
               type="email"
@@ -258,7 +265,7 @@ function ProfilForm() {
               label="Ma description"
               placeholder="About me"
             />
-            <p>Mon logement</p>
+            <p className="label">Mon logement</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="accomodation"
@@ -282,7 +289,7 @@ function ProfilForm() {
                 onRadioChange={handleAccomodationChange}
               />
             </div>
-            <p>Quel type de jardin avez-vous ?</p>
+            <p className="label">Quel type de jardin avez-vous ?</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="garden"
@@ -318,7 +325,7 @@ function ProfilForm() {
               options={size}
               onSelectionChange={handleSelectionChange2}
             />
-            <p>
+            <p className="label">
               À quelle fréquence pouvez-vous emmener les animaux que vous gardez
               faire leurs besoins ?
             </p>
