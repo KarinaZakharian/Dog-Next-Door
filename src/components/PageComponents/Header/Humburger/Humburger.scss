@@ -1,0 +1,113 @@
+@use '../../../../styles/reset';
+@use '../../../../styles/variables' as v;
+
+.menu {
+  z-index: 2;
+}
+
+.menu-bar {
+  width: 45px;
+  height: 40px;
+  margin: 30px 0 20px 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.bar {
+  height: 5px;
+  width: 100%;
+  background-color: v.$color-flash;
+  display: block;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+#bar1 {
+  transform: translateY(-4px);
+}
+
+#bar3 {
+  transform: translateY(4px);
+}
+
+.nav {
+  transition: 0.3s ease;
+  display: none;
+}
+
+.menu-bg,
+#menu {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.menu-bg {
+  z-index: 1;
+  width: 0;
+  height: 0;
+  margin: 30px 0 20px 20px;
+  background: v.$color-flash;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.change {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.change-nav {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  top: 80px;
+  left: 17px;
+  justify-content: flex-start;
+}
+
+.change .bar {
+  background-color: white;
+}
+
+.change #bar1 {
+  transform: translateY(4px) rotateZ(-45deg);
+}
+
+.change #bar2 {
+  opacity: 0;
+}
+
+.change #bar3 {
+  transform: translateY(-6px) rotateZ(45deg);
+}
+
+.change-bg {
+  width: 520px;
+  height: 460px;
+  transform: translate(-60%, -30%);
+}
+
+.menu-item {
+  @include v.title-nav;
+  color: v.$color-text;
+  text-decoration: none;
+
+  &:hover {
+    @include v.hover;
+  }
+}
+
+.menu-button {
+  border: none;
+  background-color: v.$color-flash;
+
+  @include v.title-nav;
+  @include v.transition;
+  color: v.$color-text;
+
+  &:hover {
+    @include v.hover;
+  }
+}

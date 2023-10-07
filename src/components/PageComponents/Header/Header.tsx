@@ -6,6 +6,7 @@ import mainLogo from '../../../assets/Logo-ODogNextDoor.svg';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import { logout } from '../../../store/reducers/login';
+import Humburger from './Humburger/Humburger';
 
 function Header() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -20,6 +21,7 @@ function Header() {
   };
   return (
     <div className="wrapper">
+      <Humburger />
       <nav className="menu">
         <div className="visible-wrapper">
           <NavLink to="/">
