@@ -1,7 +1,7 @@
 import cat from '../../../assets/icons8-cat-100.png';
 import dog from '../../../assets/icons8-dog-100.png';
 
-import './Card.scss';
+import './AnimalCard.scss';
 
 interface AnimalProps {
   type: string | null;
@@ -25,38 +25,41 @@ function AnimalCard({
   energy,
 }: AnimalProps) {
   return (
-    <div className="card">
+    <div className="animal-card">
       <div className="main-info">
         {type && type === 'cat' && (
-          <img className="card__image" src={cat} alt="Avatar" />
+          <img className="animal-card__image" src={cat} alt="Avatar" />
         )}
         {type && type === 'dog' && (
-          <img className="card__image" src={dog} alt="Avatar" />
+          <img className="animal-card__image" src={dog} alt="Avatar" />
         )}
-        {name && <span className="card__info">{name}</span>}
-        {race && <span className="card__info">{race}</span>}
+        {name && <span className="animal-card__info">{name}</span>}
+        {race && <span className="animal-card__info">{race}</span>}
         {age && (
-          <span className="card__info"> className='card__info'{age}</span>
+          <span className="animal-card__info">
+            {' '}
+            className='card__info'{age}
+          </span>
         )}
       </div>
       {size && (
-        <p className="card__label">
+        <p className="animal-card__label">
           La taille de {name} {size}
         </p>
       )}
       {repa && (
-        <p className="card__label">
+        <p className="animal-card__label">
           {' '}
           {name} mange {repa}
         </p>
       )}
       {energy && (
-        <p className="card__label">
+        <p className="animal-card__label">
           Niveau d'energie de {name} est {energy}
         </p>
       )}
       {pipi && (
-        <p className="card__label"> Horaires des pauses pipi : {pipi}</p>
+        <p className="animal-card__label"> Horaires des pauses pipi : {pipi}</p>
       )}
     </div>
   );

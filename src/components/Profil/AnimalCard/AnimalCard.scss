@@ -1,4 +1,4 @@
-.card {
+.animal-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,21 +16,21 @@
     gap: 10px;
     margin-bottom: 10px;
 
-    .card__image {
+    &__image {
       max-width: 100px;
       max-height: 100px;
       border-radius: 50%;
       object-fit: cover;
     }
 
-    .card__info {
+    &__info {
       font-weight: bold;
       font-size: 18px;
       color: #333;
     }
   }
 
-  .card__label {
+  &__label {
     font-size: 16px;
     color: #555;
     margin: 5px 0;
