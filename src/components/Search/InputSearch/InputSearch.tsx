@@ -110,7 +110,7 @@ function InputSearch() {
           <AutoComplete
             style={{ borderColor: 'initial' }}
             setCoordinates={setCoordinates}
-            searchedCity={city}
+          
           />
           <p>Distance autour de chez moi</p>
           <div className="radiosimple-wrapper">

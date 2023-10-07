@@ -46,7 +46,7 @@ function CalendarComp() {
     <div className="calendarWrap">
       <p className="datapicker-title">Date de naissance</p>
       <input
-        name="age"
+        name="date_birth"
         value={calendar}
         readOnly
         className="inputBox"

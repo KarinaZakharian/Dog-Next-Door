@@ -31,8 +31,17 @@ export const initialState: LoginState = {
   animal_size: null,
 };
 
-export const logout = createAction('user/logout');
 
+
+export const logout = createAsyncThunk('user/logout', async () => {
+  try {
+    const { data } = await axiosInstance.get('/logout');
+    //console.log(data);
+    return data 
+  } catch (error) {
+    //console.log(error);
+  }
+});
 export const login = createAsyncThunk(
   'user/login',
   async (formData: FormData, thunkAPI) => {
@@ -90,7 +99,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       // je récupère l'erreur directement dans `action.error`
     })
 
-    .addCase(logout, (state) => {
+    .addCase(logout.fulfilled, (state) => {
       state.firstname = null;
       // delete axiosInstance.defaults.headers.common.Authorization;
 

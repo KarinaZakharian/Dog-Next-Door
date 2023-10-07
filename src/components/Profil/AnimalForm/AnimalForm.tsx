@@ -200,26 +200,20 @@ function AnimalForm() {
             <p>Horaires des repas</p>
             <div className="radio-wrapper">
               <RadioSimple
-                name="meal-hours"
+                name="mealhours"
                 id="morning"
                 picked={pickedHour}
                 value="Le matin"
                 onRadioChange={handleHourChange}
               />
               <RadioSimple
-                name="meal-hours"
+                name="mealhours"
                 id="twise"
                 picked={pickedHour}
                 value="Deux fois par jour"
                 onRadioChange={handleHourChange}
               />
-              <RadioSimple
-                name="meal-hours"
-                id="personalised"
-                picked={pickedHour}
-                value="Personnaliser"
-                onRadioChange={handleHourChange}
-              />
+           
             </div>
             <p>Niveau d'énergie</p>
             <div className="radio-wrapper">

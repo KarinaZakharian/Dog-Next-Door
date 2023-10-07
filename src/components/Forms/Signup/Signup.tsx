@@ -132,7 +132,7 @@ function SignUp() {
             <AutoComplete
               style={{ borderColor: cityValid ? 'initial' : 'red' }}
               setCoordinates={setCoordinates}
-              searchedCity=""
+              
             />
             {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input

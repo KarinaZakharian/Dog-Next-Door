@@ -3,6 +3,7 @@ const tokenController = require('../services/tokenController');
 const validator = require('validator');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const { log } = require('console');
 
 const userController = {
   logInUser: async (req, res) => {
@@ -62,7 +63,7 @@ const userController = {
         const userId = parseInt(req.params.id);
         
         const user = await userDatamapper.getOneUserById(userId);
-        
+        console.log(user);
         res.json(user);
       } catch (error) {
         res.status(500).json(error.toString());
@@ -149,7 +150,33 @@ const userController = {
           res.json('Vos informations ont été ajoutées avec succès');
           
         } catch (error) {
-          res.status(500).json(error.toString());
+          res.status(500).json({"message" : "Aucune modification a été apportée"});
+        }
+      },
+
+      updatePersonnalInformation: async (req, res) => {
+        const intendedUser = req.body;
+        console.log("body req",req.body);
+        const userId = req.userId;
+      
+        try {
+          // Vérification de l'existence du compte
+          const userExist = await userDatamapper.getOneUserById(userId);
+          console.log(userExist);
+
+          // Remplacement du mdp par un mdp crypté
+          intendedUser.user_password = await bcrypt.hash(
+            intendedUser.user_password,
+          parseInt(process.env.SALT)
+          );
+          
+
+          const response = await userDatamapper.addPersonnalInformation(intendedUser,userId);
+          console.log(response);
+          res.json('Vos informations ont été ajoutées avec succès');
+          
+        } catch (error) {
+          res.status(500).json({"message" : "Aucune modification a été apportée"});
         }
       },
     };

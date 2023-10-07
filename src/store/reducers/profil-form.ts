@@ -25,7 +25,7 @@ export const fillProfilForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await axiosInstance.post('/account/form', objData);
+      const { data } = await axiosInstance.patch('/account/form', objData);
       return data as {
         message: string;
       };
@@ -40,7 +40,7 @@ export const updateSignupForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await axiosInstance.post('/account/form', objData);
+      const { data } = await axiosInstance.patch('/account/form2', objData);
       return data as {
         myMessage: string;
       };
@@ -64,7 +64,7 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       console.log('action fulfilled', action);
       // state.firstname = action.payload.firstname;
       state.error = null;
-      state.message = action.payload.message;
+      state.message = action.payload;
 
       // state.token = action.payload.token;
     })
@@ -78,7 +78,7 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       console.log('action fulfilled', action);
       // state.firstname = action.payload.firstname;
       state.myError = null;
-      state.myMessage = action.payload.message;
+      state.myMessage = action.payload;
 
       // state.token = action.payload.token;
     })

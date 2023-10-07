@@ -8,6 +8,8 @@ import avatar from '../../../assets/Logo-ODogNextDoor.svg';
 
 import { useEffect } from 'react';
 import { fetchUser } from '../../../store/reducers/profil';
+import { Link } from 'react-router-dom';
+import Button from '../../InputType/Button/Button';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -26,6 +28,9 @@ function Profil() {
   const additionnal_information = useAppSelector(
     (state) => state.profil.additionnal_information
   );
+  const walking_duration = useAppSelector((state) => state.profil.walking_duration);
+  const disponibility_date = useAppSelector((state) => state.profil.disponibility_date);
+  
 
   console.log(
     'first Name',
@@ -41,7 +46,9 @@ function Profil() {
     'options',
     additionnal_information,
     'city',
-    user_address
+    user_address,
+    'disponib',
+    disponibility_date
   );
 
   const renderSize = () => {
@@ -97,14 +104,20 @@ function Profil() {
               {/* Map through the 'additional options' array and render each option in an <li> element */}
               {renderOptions()}
             </ul>
+            {walking_duration && <p>Disponibilité de promenade</p>}
+            {walking_duration && <p>{walking_duration}</p>}
             <h3 className="profil-title">Disponibilité de {lastname}</h3>
-            <DateRangeComp />
+            {disponibility_date &&  <DateRangeComp />}
+           
           </div>
           <div className="main-profil">
             <h1>
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
+            <Link  to={'/account/animal-form'}>
+      <Button prop='Ajoutez votre animal de compagnie' />
+    </Link>
           </div>
         </div>
       </div>

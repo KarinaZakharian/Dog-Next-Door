@@ -31,6 +31,7 @@ function DateRangeComp() {
   return (
     <div className="calendarWrap">
       <input
+       name="disponibility_date"
         value={`${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`}
         readOnly
         className="inputBox"

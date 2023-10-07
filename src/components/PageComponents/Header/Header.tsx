@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Header.scss';
 import mainLogo from '../../../assets/Logo-ODogNextDoor.svg';
 
@@ -8,11 +9,13 @@ import { logout } from '../../../store/reducers/login';
 
 function Header() {
   const firstname = useAppSelector((state) => state.login.firstname);
-  const error = useAppSelector((state) => state.login.error);
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login', { replace: true });
   };
   return (
     <div className="wrapper">
@@ -20,15 +23,7 @@ function Header() {
         <NavLink to="/">
           <img className="menu__logo" src={mainLogo} alt="main-logo" />
         </NavLink>
-        <NavLink className="menu__menu-item" to="/account">
-          Profil
-        </NavLink>
-        <NavLink className="menu__menu-item" to="/index">
-          Boite de reception
-        </NavLink>
-        <NavLink className="menu__menu-item" to="/account/form">
-          Profil form
-        </NavLink>
+       
         <NavLink className="menu__menu-item" to="/search">
           Search
         </NavLink>
