@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 // import { success, fillProfilForm } from '../../../store/reducers/profil-form';
@@ -127,7 +127,7 @@ function AnimalForm() {
             <Input name="race" placeholder="Race(s)" />
             <CalendarComp />
 
-            <p className="title-size">La taille de mon animal</p>
+            <p className="label">La taille de mon animal</p>
             <div className="radio">
               <Radio
                 name="size"
@@ -166,7 +166,7 @@ function AnimalForm() {
                 onRadioChange={handleRadioChange}
               />
             </div>
-            <p>Horaires des pauses pipi</p>
+            <p className="label">Horaires des pauses pipi</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="walk"
@@ -197,7 +197,7 @@ function AnimalForm() {
                 onRadioChange={handleWalkChange}
               />
             </div>
-            <p>Horaires des repas</p>
+            <p className="label">Horaires des repas</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="mealhours"
@@ -213,9 +213,8 @@ function AnimalForm() {
                 value="Deux fois par jour"
                 onRadioChange={handleHourChange}
               />
-           
             </div>
-            <p>Niveau d'énergie</p>
+            <p className="label">Niveau d'énergie</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="energy"
@@ -239,7 +238,9 @@ function AnimalForm() {
                 onRadioChange={handleEnergyChange}
               />
             </div>
-            <Button prop="Enregistrer" />
+            <Link className="link-animal" to={'/account'}>
+              <Button prop="Enregistrer" />
+            </Link>
           </form>
         </div>
       </main>

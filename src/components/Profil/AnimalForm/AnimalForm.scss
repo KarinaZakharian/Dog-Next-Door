@@ -1,22 +1,26 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
-p {
-  font-size: 16px;
-  font-weight: 700;
-  color: v.$color-text-dark;
-  margin-top: 20px;
+.label {
+  @include v.label;
   margin-bottom: 5px;
+  margin-top: 15px;
 }
 .animal-form {
-  background-color: v.$color-main;
-  border-radius: 4px;
-  border: 2px solid v.$color-border;
-  width: 80%;
-  margin: 50px auto;
-  color: v.$color-text;
-  font-weight: 700;
-  font-size: 14px;
+  @include v.form-styling;
+  width: 70%;
+}
+.radio-animal {
   display: flex;
-  flex-direction: column;
-  padding: 20px 35px;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  background-color: v.$color-flash;
+  border-radius: 0 0 10px 10px;
+  padding-bottom: 10px;
+}
+.title-animal {
+  @include v.title-form-text;
+  background-color: v.$color-flash;
+  margin-bottom: 0;
+  border-radius: 10px 10px 0 0;
 }

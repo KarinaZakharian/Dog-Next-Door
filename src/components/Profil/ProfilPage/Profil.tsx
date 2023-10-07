@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { fetchUser } from '../../../store/reducers/profil';
 import { Link } from 'react-router-dom';
 import Button from '../../InputType/Button/Button';
+import AnimalCard from '../AnimalCard/AnimalCard';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -28,10 +29,14 @@ function Profil() {
   const additionnal_information = useAppSelector(
     (state) => state.profil.additionnal_information
   );
-  const walking_duration = useAppSelector((state) => state.profil.walking_duration);
-  const disponibility_date = useAppSelector((state) => state.profil.disponibility_date);
-  
+  const walking_duration = useAppSelector(
+    (state) => state.profil.walking_duration
+  );
+  const disponibility_date = useAppSelector(
+    (state) => state.profil.disponibility_date
+  );
 
+  const animals = [cat, dog];
   console.log(
     'first Name',
     firstname,
@@ -107,17 +112,28 @@ function Profil() {
             {walking_duration && <p>Disponibilité de promenade</p>}
             {walking_duration && <p>{walking_duration}</p>}
             <h3 className="profil-title">Disponibilité de {lastname}</h3>
-            {disponibility_date &&  <DateRangeComp />}
-           
+            {disponibility_date && <DateRangeComp />}
           </div>
           <div className="main-profil">
             <h1>
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
-            <Link  to={'/account/animal-form'}>
-      <Button prop='Ajoutez votre animal de compagnie' />
-    </Link>
+            {animals.map((animal) => (
+              <AnimalCard
+                type={null}
+                name={null}
+                race={null}
+                age={null}
+                size={null}
+                pipi={null}
+                repa={null}
+                energy={null}
+              />
+            ))}
+            <Link className="link-animal" to={'/account/animal-form'}>
+              <Button prop="Ajoutez votre animal de compagnie" />
+            </Link>
           </div>
         </div>
       </div>
