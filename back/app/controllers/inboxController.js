@@ -4,7 +4,7 @@ const inboxController = {
     
     findMessageByUser : async (req,res) => {
         const id = req.userId;
-        
+        console.log(id);
         try {
             // //! On récupère l'utilisateur via le token.id
             // const userFound = await inboxDatamapper.getUserById(id);

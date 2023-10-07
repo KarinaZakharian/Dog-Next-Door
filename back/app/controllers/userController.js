@@ -82,11 +82,7 @@ const userController = {
         res.status(500).json(error.toString());
       }
     },
-    
-    
-    
-    
-    
+      
     createUser: async (req, res) => {
       const newUser = req.body;
       console.log(newUser);
@@ -123,6 +119,7 @@ const userController = {
       
       findUserByDistance: async (req, res) => {
         const searchParameters = req.body;
+        console.log(searchParameters);
         try {
           const users = await userDatamapper.getUsersByDistance(searchParameters);
           res.json(users);

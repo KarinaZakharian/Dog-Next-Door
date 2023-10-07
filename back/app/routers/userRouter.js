@@ -12,7 +12,7 @@ const { checkSubscribeForm, checkLogInForm, checkAccountForm } = require('../ser
 userRouter.get("/petsitter/:id", cw(userController.findUserById));
 
 userRouter.get('/account', checkTokenMember , cw(userController.findUser));
-userRouter.get("/logout", checkTokenRemove);
+// userRouter.get("/logout", checkTokenRemove);
 
 //!Route POST
 

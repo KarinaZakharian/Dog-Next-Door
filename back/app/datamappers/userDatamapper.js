@@ -103,8 +103,9 @@ const userDatamapper = {
             animal_size = ARRAY[$3],
             walking_duration = $4,
             additionnal_information = ARRAY[$5],
-            description = $6
-            WHERE id = $7`;
+            description = $6,
+            type= $7
+            WHERE id = $8`;
 
       const {
         accomodation,
@@ -113,6 +114,7 @@ const userDatamapper = {
         walking_duration,
         additionnal_information,
         description,
+        type
       } = userConcerned;
 
       const values = [
@@ -122,6 +124,7 @@ const userDatamapper = {
         walking_duration,
         additionnal_information,
         description,
+        type,
         userId,
       ];
       const result = await client.query(query, values);
