@@ -58,6 +58,29 @@ export const fetchUser = createAsyncThunk('user/login', async () => {
   }
 });
 
+export const fetchAnimal = createAsyncThunk('user/login', async () => {
+  try {
+    const { data } = await axiosInstance.get('/account');
+    //console.log(data);
+
+    return data as {
+      firstname: string ;
+      lastname: string ;
+      user_address: string ;
+      description: string ;
+      accommodation: string ;
+      garden: string ;
+      walking_duration: string ;
+      additionnal_information: string[] ;
+      animal_size: string[] ;
+      accomodation: string ;
+      disponibility_date: string ;
+    };
+  } catch (error) {
+    //console.log(error);
+  }
+});
+
 const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {

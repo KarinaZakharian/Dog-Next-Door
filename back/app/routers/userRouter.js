@@ -30,4 +30,3 @@ userRouter.patch("/account/form2",checkTokenMember ,cw(userController.updatePers
 
 module.exports = userRouter;
 
-

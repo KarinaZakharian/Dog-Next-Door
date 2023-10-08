@@ -19,7 +19,8 @@ const userDatamapper = {
 
       const userId = id;
       const query = `
-            SELECT * FROM "user"
+            SELECT * 
+            FROM "user"
             WHERE "id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);

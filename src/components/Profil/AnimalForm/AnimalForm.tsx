@@ -83,7 +83,7 @@ function AnimalForm() {
       });
       setTimeout(() => {
         dispatch(success());
-        navigate('/', { replace: true });
+        navigate('/account', { replace: true });
       }, 1000);
     }
 
@@ -238,9 +238,9 @@ function AnimalForm() {
                 onRadioChange={handleEnergyChange}
               />
             </div>
-            <Link className="link-animal" to={'/account'}>
+            
               <Button prop="Enregistrer" />
-            </Link>
+            
           </form>
         </div>
       </main>

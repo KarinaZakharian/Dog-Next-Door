@@ -10,6 +10,10 @@ const { checkAddAnimalForm } = require('../services/validation/validationForm.js
 // Appel du controller animal
 const { animalController } = require("../controllers");
 
+
+//Routes get
+
+
 // Routes post
 animalRouter.post('/account/addanimal', checkAddAnimalForm, checkTokenMember, cw(animalController.createNewAnimal));
 
