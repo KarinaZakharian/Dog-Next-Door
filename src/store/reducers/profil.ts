@@ -35,7 +35,7 @@ export const initialState: LoginState = {
   disponibility_date : null,
 };
 
-export const fetchUser = createAsyncThunk('user/login', async () => {
+export const fetchUser = createAsyncThunk('user/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
     //console.log(data);
@@ -58,7 +58,7 @@ export const fetchUser = createAsyncThunk('user/login', async () => {
   }
 });
 
-export const fetchAnimal = createAsyncThunk('user/login', async () => {
+export const fetchAnimal = createAsyncThunk('animal/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
     //console.log(data);
