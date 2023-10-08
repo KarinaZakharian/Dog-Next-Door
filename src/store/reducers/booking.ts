@@ -8,21 +8,21 @@ import {
 import axios from 'axios';
 import axiosInstance from '../../utils/axios';
 
-interface AnimalState {
+interface BookingState {
   message: string | null;
   error: unknown;
 }
-export const initialState: AnimalState = {
+export const initialState: BookingState = {
   message: null,
   error: null,
 };
 
-export const fillAnimalForm = createAsyncThunk(
-  'animal/form',
+export const fillBookingForm = createAsyncThunk(
+  'booking/form',
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const data = await axiosInstance.post('/account/addanimal', objData);
+      const data = await axiosInstance.post('/petsitter/:id/booking', objData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -32,14 +32,14 @@ export const fillAnimalForm = createAsyncThunk(
 
 export const success = createAction('form/success ');
 
-const animalFormReducer = createReducer(initialState, (builder) => {
+const bookingFormReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fillAnimalForm.rejected, (state, action) => {
+    .addCase(fillBookingForm.rejected, (state, action) => {
       console.log('action rejected', action);
       state.error = action.payload.response.data.message;
       state.message = null;
     })
-    .addCase(fillAnimalForm.fulfilled, (state, action) => {
+    .addCase(fillBookingForm.fulfilled, (state, action) => {
       // state.logged = true;
       console.log('action fulfilled', action);
       // state.firstname = action.payload.firstname;
@@ -54,4 +54,4 @@ const animalFormReducer = createReducer(initialState, (builder) => {
     });
 });
 
-export default animalFormReducer;
+export default bookingFormReducer;

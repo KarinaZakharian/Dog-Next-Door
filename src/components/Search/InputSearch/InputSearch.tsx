@@ -23,8 +23,8 @@ import { searchThunk } from '../../../store/reducers/search';
 
 function InputSearch() {
   const animal = useAppSelector((state) => state.home.animal);
-  const city = useAppSelector((state) => state.home.city);
-  const date = useAppSelector((state) => state.home.date);
+  const city = useAppSelector((state) => state.home.user_address);
+  const date = useAppSelector((state) => state.home.disponibility_date);
   const size = useAppSelector((state) => state.home.size);
   const searchRadius = useAppSelector((state) => state.home.radius);
 
@@ -53,17 +53,17 @@ function InputSearch() {
   }
 
   // picking the radius
-  const [pickedRadius, setRadius] = useState(searchRadius);
+  const [pickedRadius, setRadius] = useState(searchRadius || '');
   function handleRadiusChange(value: string): void {
     setRadius(value);
   }
 
-  const [picked, setPicked] = useState(size);
+  const [picked, setPicked] = useState(size || '');
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
-  const [pickedAnimal, setAnimal] = useState(animal);
+  const [pickedAnimal, setAnimal] = useState(animal || '');
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
@@ -110,7 +110,6 @@ function InputSearch() {
           <AutoComplete
             style={{ borderColor: 'initial' }}
             setCoordinates={setCoordinates}
-          
           />
           <p>Distance autour de chez moi</p>
           <div className="radiosimple-wrapper">

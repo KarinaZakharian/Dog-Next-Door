@@ -8,6 +8,7 @@ import animalFormReducer from './animal-form';
 import searchReducer from './search';
 import sitterReducer from './sitter';
 import profilReduser from './profil';
+import bookingFormReducer from './booking';
 
 const reducer = {
   signup: signupReducer,
@@ -18,6 +19,7 @@ const reducer = {
   search: searchReducer,
   sitter: sitterReducer,
   profil: profilReduser,
+  booking: bookingFormReducer,
 };
 
 export default reducer;

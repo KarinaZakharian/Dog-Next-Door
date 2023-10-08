@@ -13,6 +13,7 @@ import Petsitter from '../Petsitter/Petsitter';
 // on import le css
 import './App.scss';
 import { useAppSelector } from '../../hooks/redux';
+import Booking from '../Petsitter/Booking/Booking';
 
 function App() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -26,12 +27,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/petsitter/:id" element={<Petsitter />} />
-        <Route path="/account/animal-form" element={<AnimalForm />} />
 
         {firstname && (
           <>
+            <Route path="/account/animal-form" element={<AnimalForm />} />
             <Route path="/account" element={<Profil />} />
             <Route path="/account/form" element={<ProfilForm />} />
+            <Route path="/petsitter/:id/booking" element={<Booking />} />
           </>
         )}
 

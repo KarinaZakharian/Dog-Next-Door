@@ -8,7 +8,6 @@ interface InputProps {
   [prop: string]: unknown;
 }
 
-
 function Input({ name, placeholder, ...props }: InputProps) {
   const [value, setValue] = useState('');
 

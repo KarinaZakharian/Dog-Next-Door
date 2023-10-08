@@ -50,13 +50,11 @@ function Home() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    console.log(objData);
-
-    dispatch(searchThunk(objData));
+    dispatch(searchThunk(formData));
+    // console.log(objData);
     dispatch(addData(objData));
     navigate('/search', { replace: true });
   }
