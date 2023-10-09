@@ -14,6 +14,9 @@ import Petsitter from '../Petsitter/Petsitter';
 import './App.scss';
 import { useAppSelector } from '../../hooks/redux';
 import Booking from '../Petsitter/Booking/Booking';
+import Account from '../Inbox/InboxAccount/Account';
+import Upcoming from '../Inbox/InboxUpcoming/Upcoming';
+import Uppast from '../Inbox/InboxUppast/Uppast';
 
 function App() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -27,6 +30,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/petsitter/:id" element={<Petsitter />} />
+        <Route path="/account/inbox" element={<Account />} />
+        <Route path="/account/inbox/upcoming" element={<Upcoming />} />
+        <Route path="/account/inbox/uppast" element={<Uppast />} />
 
         {firstname && (
           <>

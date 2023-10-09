@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 // import { success, fillProfilForm } from '../../../store/reducers/profil-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { success, fillAnimalForm } from '../../../store/reducers/animal-form';
+import { success } from '../../../store/reducers/booking';
 
 import dog from '../../../assets/dog-area.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -12,6 +12,7 @@ import small from '../../../assets/icons8-dog-20.png';
 import medium from '../../../assets/icons8-dog-35.png';
 import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
+import './Booking.scss';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';

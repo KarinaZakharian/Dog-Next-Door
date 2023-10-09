@@ -1,0 +1,26 @@
+@use '../../../../styles/reset';
+@use '../../../../styles/variables' as v;
+
+.animal-card {
+  @include v.card-styling;
+  margin: 20px auto;
+  width: 80%;
+  justify-content: space-between;
+  .main-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__image {
+    max-width: 100px; /* Adjust the image size as needed */
+    height: auto;
+  }
+
+  &__info {
+    @include v.label;
+  }
+
+  &__dates {
+    @include v.label;
+  }
+}

@@ -31,7 +31,9 @@ function Header() {
             Search
           </NavLink>
         </div>
-
+        <NavLink className="menu__menu-item" to="/account/inbox">
+          Boite de reception
+        </NavLink>
         {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
@@ -40,9 +42,6 @@ function Header() {
               </NavLink>
               <NavLink className="menu__menu-item" to="/account/form">
                 Profil form
-              </NavLink>
-              <NavLink className="menu__menu-item" to="/index">
-                Boite de reception
               </NavLink>
             </div>
             <div className="menu__menu-connection">
