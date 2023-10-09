@@ -136,8 +136,6 @@ const userDatamapper = {
   addPersonnalInformation: async (personnalInformation, userId) => {
     try {
       const userConcerned = personnalInformation;
-      console.log(userConcerned);
-
       const query = `
             UPDATE "user"
             SET 
@@ -148,8 +146,10 @@ const userDatamapper = {
             user_password = $5,
             latitude = $6,
             longitude = $7,
-            disponibility_date = $8
-            WHERE id = $9`;
+            disponibility_date = $8,
+            startDate = $9,
+            endDate = $10
+            WHERE id = $11`;
 
       const {
         firstname,
@@ -159,7 +159,9 @@ const userDatamapper = {
         user_password,
         latitude,
         longitude,
-        disponibility_date
+        disponibility_date,
+        startDate,
+        endDate
       } = userConcerned;
 
       const values = [
@@ -171,6 +173,8 @@ const userDatamapper = {
         latitude,
         longitude,
         disponibility_date,
+        startDate,
+        endDate,
         userId,
       ];
       const result = await client.query(query, values);

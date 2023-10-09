@@ -30,6 +30,8 @@ CREATE TABLE "user" (
   additionnal_information TEXT[],
   walking_duration VARCHAR(42),
   disponibility_date VARCHAR(42),
+  startDate DATE,
+  endDate DATE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );

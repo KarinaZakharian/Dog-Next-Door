@@ -158,17 +158,28 @@ const userController = {
         try {
           // Vérification de l'existence du compte
           const userExist = await userDatamapper.getOneUserById(userId);
-          console.log(userExist);
+          
 
           // Remplacement du mdp par un mdp crypté
           intendedUser.user_password = await bcrypt.hash(
             intendedUser.user_password,
           parseInt(process.env.SALT)
           );
-          
 
+          const dateRange = intendedUser.disponibility_date;
+          
+          const dates = dateRange.split(" au ");
+          // Assurez-vous que le format de date est "dd/MM/yyyy"
+          const dateFormat = "MM/dd/yyyy";
+
+          const startDate = new Date(dates[0].replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+          const endDate = new Date(dates[1].replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+
+          intendedUser.startDate = startDate;
+          intendedUser.endDate = endDate;
+          
           const response = await userDatamapper.addPersonnalInformation(intendedUser,userId);
-          console.log(response);
+          
           res.json('Vos informations ont été ajoutées avec succès');
           
         } catch (error) {
