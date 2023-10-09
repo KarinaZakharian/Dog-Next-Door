@@ -36,35 +36,36 @@ function Booking() {
 
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  // const animal = useAppSelector((state) => state.animalForm.animals);
+  const animal = useAppSelector((state) => state.animalForm.animals);
+  console.log(animal);
 
   // picking  the animal
-  const [pickedAnimal, setAnimal] = useState('');
+  const [pickedAnimal, setAnimal] = useState(animal?.animal || '');
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
 
   //  picking the size of the animal
-  const [picked, setPicked] = useState('');
+  const [picked, setPicked] = useState(animal?.size || '');
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
   // picking the meal hours
-  const [pickedHour, setHour] = useState('');
+  const [pickedHour, setHour] = useState(animal?.mealhours || '');
   function handleHourChange(value: string): void {
     setHour(value);
   }
 
   // picking the walking hours
-  const [pickedWalk, setWalk] = useState('');
+  const [pickedWalk, setWalk] = useState(animal?.walk || '');
   function handleWalkChange(value: string): void {
     setWalk(value);
   }
 
   // picking energy level
 
-  const [pickedEnergy, setEnergy] = useState('');
+  const [pickedEnergy, setEnergy] = useState(animal?.energy || '');
   function handleEnergyChange(value: string): void {
     setEnergy(value);
   }
@@ -132,8 +133,12 @@ function Booking() {
                 onRadioChange={handleAnimalChange}
               />
             </div>
-            <Input name="name" placeholder="Nom" />
-            <Input name="race" placeholder="Race(s)" />
+            <Input name="name" placeholder="Nom" defaultValue={animal?.name} />
+            <Input
+              name="race"
+              placeholder="Race(s)"
+              defaultValue={animal?.race}
+            />
 
             <p className="label">La taille de mon animal</p>
             <div className="radio">
