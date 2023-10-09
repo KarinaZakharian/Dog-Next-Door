@@ -175,6 +175,10 @@ const userController = {
           res.status(500).json({"message" : "Aucune modification a été apportée"});
         }
       },
+
+      createBooking : async (req,res)=> {
+        console.log("page petsitter booking");
+      }
     };
     
     module.exports = userController;

@@ -104,11 +104,11 @@ function Petsitter() {
               <Link to={'/petsitter/' + id + '/booking'}>
                 <Button prop="Booking" />
               </Link>
-            )}
-
-            <Link to={'/subscribe'}>
+            )}  
+            {!account && <Link to={'/subscribe'}>
               <Button prop="Booking" />
-            </Link>
+            </Link> }
+            
           </div>
         </div>
       </div>

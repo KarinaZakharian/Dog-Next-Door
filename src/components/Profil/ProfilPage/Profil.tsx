@@ -13,12 +13,14 @@ import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
 
 function Profil() {
+
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
-
+  const animals = useAppSelector((state) => state.animalForm.animals);
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const user_address = useAppSelector((state) => state.profil.user_address);
@@ -36,25 +38,8 @@ function Profil() {
     (state) => state.profil.disponibility_date
   );
 
-  const animals = ['cat', 'dog'];
-  console.log(
-    'first Name',
-    firstname,
-    'accomodation',
-    accommodation,
-    'size',
-    size,
-    'description',
-    description,
-    'garden',
-    garden,
-    'options',
-    additionnal_information,
-    'city',
-    user_address,
-    'disponib',
-    disponibility_date
-  );
+
+ console.log("animals" ,animals)
 
   const renderSize = () => {
     if (size !== undefined && size !== null) {
@@ -119,18 +104,18 @@ function Profil() {
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
-            {animals.map((animal) => (
+            {animals &&
               <AnimalCard
-                type={null}
-                name={null}
-                race={null}
-                age={null}
-                size={null}
-                pipi={null}
-                repa={null}
-                energy={null}
+                type={animals.animal}
+                name={animals.name}
+                race={animals.race}
+                age={animals.date_birth}
+                size={animals.size}
+                pipi={animals.walk}
+                repa={animals.mealhuars}
+                energy={animals.energy}
               />
-            ))}
+            }
             <Link className="link-animal" to={'/account/animal-form'}>
               <Button prop="Ajoutez votre animal de compagnie" />
             </Link>

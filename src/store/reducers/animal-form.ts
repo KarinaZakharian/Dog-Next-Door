@@ -8,13 +8,28 @@ import {
 import axios from 'axios';
 import axiosInstance from '../../utils/axios';
 
+interface OneAnimal{
+  animal: string | null ;
+  date_birth: string |null; 
+  energy : string | null ;
+  mealhuars: string | null ;
+  name :string |null ;
+  race : string | null ;
+  size : string | null;
+  walk : string | null;
+}
+
 interface AnimalState {
   message: string | null;
   error: unknown;
+  animals: OneAnimal ;
+ 
 }
 export const initialState: AnimalState = {
   message: null,
   error: null,
+  animals : null,
+  
 };
 
 export const fillAnimalForm = createAsyncThunk(
@@ -23,7 +38,7 @@ export const fillAnimalForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const data = await axiosInstance.post('/account/addanimal', objData);
-      return data;
+      return data   ;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -38,6 +53,8 @@ const animalFormReducer = createReducer(initialState, (builder) => {
       console.log('action rejected', action);
       state.error = action.payload.response.data.message;
       state.message = null;
+      
+      
     })
     .addCase(fillAnimalForm.fulfilled, (state, action) => {
       // state.logged = true;
@@ -45,6 +62,7 @@ const animalFormReducer = createReducer(initialState, (builder) => {
       // state.firstname = action.payload.firstname;
       state.error = null;
       state.message = action.payload.data.message;
+      state.animals=action.payload.data.newAnimal;
 
       // state.token = action.payload.token;
     })

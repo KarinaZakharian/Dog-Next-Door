@@ -62,7 +62,7 @@ const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
       // state.logged = true;
-      // console.log('action fulfilled', action);
+      console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.user_address = action.payload.user_address;

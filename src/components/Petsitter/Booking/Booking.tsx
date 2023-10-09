@@ -36,35 +36,35 @@ function Booking() {
 
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  const animal = useAppSelector((state) => state.profil.animal);
+ // const animal = useAppSelector((state) => state.animalForm.animals);
 
   // picking  the animal
-  const [pickedAnimal, setAnimal] = useState(animal || '');
+  const [pickedAnimal, setAnimal] = useState( '');
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
 
   //  picking the size of the animal
-  const [picked, setPicked] = useState(animal || '');
+  const [picked, setPicked] = useState( '');
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
   // picking the meal hours
-  const [pickedHour, setHour] = useState(animal || '');
+  const [pickedHour, setHour] = useState( '');
   function handleHourChange(value: string): void {
     setHour(value);
   }
 
   // picking the walking hours
-  const [pickedWalk, setWalk] = useState(animal || '');
+  const [pickedWalk, setWalk] = useState( '');
   function handleWalkChange(value: string): void {
     setWalk(value);
   }
 
   // picking energy level
 
-  const [pickedEnergy, setEnergy] = useState(animal || '');
+  const [pickedEnergy, setEnergy] = useState( '');
   function handleEnergyChange(value: string): void {
     setEnergy(value);
   }
@@ -132,8 +132,8 @@ function Booking() {
                 onRadioChange={handleAnimalChange}
               />
             </div>
-            <Input name="name" placeholder="Nom" defaultValue={animal} />
-            <Input name="race" placeholder="Race(s)" defaultValue={animal} />
+            <Input name="name" placeholder="Nom"  />
+            <Input name="race" placeholder="Race(s)"  />
 
             <p className="label">La taille de mon animal</p>
             <div className="radio">

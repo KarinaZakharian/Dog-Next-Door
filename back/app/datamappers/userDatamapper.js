@@ -24,7 +24,6 @@ const userDatamapper = {
             WHERE "id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);
-      console.log(userFound.rows[0]);
       return userFound.rows[0];
 
     } catch (error) {
@@ -104,9 +103,9 @@ const userDatamapper = {
             animal_size = ARRAY[$3],
             walking_duration = $4,
             additionnal_information = ARRAY[$5],
-            description = $6,
-            type= $7
-            WHERE id = $8`;
+            description = $6
+            WHERE id = $7;
+            `;
 
       const {
         accomodation,
@@ -114,8 +113,7 @@ const userDatamapper = {
         animal_size,
         walking_duration,
         additionnal_information,
-        description,
-        type
+        description
       } = userConcerned;
 
       const values = [
@@ -125,7 +123,6 @@ const userDatamapper = {
         walking_duration,
         additionnal_information,
         description,
-        type,
         userId,
       ];
       const result = await client.query(query, values);
