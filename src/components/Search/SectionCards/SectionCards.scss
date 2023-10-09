@@ -2,4 +2,14 @@
 
 .sectioncards {
   background-color: v.$color-main;
+  width: 50%;
+
+  &__noresult {
+    margin: 2rem;
+    text-align: center;
+
+    &-logo {
+      opacity: 10%;
+    }
+  }
 }

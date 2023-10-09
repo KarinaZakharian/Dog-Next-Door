@@ -1,11 +1,10 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import Button from '../../InputType/Button/Button';
 import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 import Radio from '../../InputType/Radio/Radio';
 import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
-
-import { search } from '../../../store/reducers/search';
+import { searchThunk } from '../../../store/reducers/search';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import dog from '../../../assets/icons8-dog-100.png';
@@ -18,13 +17,10 @@ import geant from '../../../assets/icons8-dog-64.png';
 import './InputSearch.scss';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 
-// import { addData } from '../../../store/reducers/home';
-import { searchThunk } from '../../../store/reducers/search';
-
 function InputSearch() {
   const animal = useAppSelector((state) => state.home.animal);
-  const city = useAppSelector((state) => state.home.user_address);
-  const date = useAppSelector((state) => state.home.disponibility_date);
+  const city = useAppSelector((state) => state.home.city);
+  const date = useAppSelector((state) => state.home.date);
   const size = useAppSelector((state) => state.home.size);
   const searchRadius = useAppSelector((state) => state.home.radius);
 
@@ -32,6 +28,7 @@ function InputSearch() {
   const dispatch = useAppDispatch();
 
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+  const center = useState({ lat: 0, lng: 0 });
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const handleSelectionChange1 = (selectedOptions: string[]) => {
@@ -53,17 +50,17 @@ function InputSearch() {
   }
 
   // picking the radius
-  const [pickedRadius, setRadius] = useState(searchRadius || '');
+  const [pickedRadius, setRadius] = useState(searchRadius);
   function handleRadiusChange(value: string): void {
     setRadius(value);
   }
 
-  const [picked, setPicked] = useState(size || '');
+  const [picked, setPicked] = useState(size);
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
-  const [pickedAnimal, setAnimal] = useState(animal || '');
+  const [pickedAnimal, setAnimal] = useState(animal);
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
@@ -75,9 +72,7 @@ function InputSearch() {
     const formData = new FormData(form);
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
-    // const objData = Object.fromEntries(formData);
     dispatch(searchThunk(formData));
-    // console.log(objData);
   }
 
   return (

@@ -12,7 +12,7 @@ function Search() {
   return (
     <>
       <Header />
-      <div className="search" id="Map">
+      <div className="search">
         <InputSearch />
         <SectionCards />
         <SectionMap />
