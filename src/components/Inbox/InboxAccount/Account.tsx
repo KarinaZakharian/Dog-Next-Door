@@ -38,6 +38,9 @@ function Account() {
               <Link className="content__link" to="/account/inbox/uppast">
                 Gardes passées
               </Link>
+              <Link className="content__link" to="/account/inbox/demands">
+                Votre demands
+              </Link>
             </div>
             <div>
               {animals.map((animal, index) => (

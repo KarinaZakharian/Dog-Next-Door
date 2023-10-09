@@ -17,6 +17,7 @@ import Booking from '../Petsitter/Booking/Booking';
 import Account from '../Inbox/InboxAccount/Account';
 import Upcoming from '../Inbox/InboxUpcoming/Upcoming';
 import Uppast from '../Inbox/InboxUppast/Uppast';
+import Demandes from '../Inbox/Demandes/Demandes';
 
 function App() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -33,6 +34,7 @@ function App() {
         <Route path="/account/inbox" element={<Account />} />
         <Route path="/account/inbox/upcoming" element={<Upcoming />} />
         <Route path="/account/inbox/uppast" element={<Uppast />} />
+        <Route path="/account/inbox/demands" element={<Demandes />} />
 
         {firstname && (
           <>

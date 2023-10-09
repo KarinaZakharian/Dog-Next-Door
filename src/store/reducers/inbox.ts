@@ -1,14 +1,10 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 
 import axiosInstance from '../../utils/axios';
 
-interface LoginState {
+interface InboxState {
   firstname: string | null;
   lastname: string | null;
   user_address: string | null;
@@ -21,7 +17,7 @@ interface LoginState {
   error: string | null;
   disponibility_date: string | null;
 }
-export const initialState: LoginState = {
+export const initialState: InboxState = {
   firstname: null,
   lastname: null,
   user_address: null,
@@ -35,9 +31,9 @@ export const initialState: LoginState = {
   disponibility_date: null,
 };
 
-export const fetchUser = createAsyncThunk('user/fetch', async () => {
+export const fetchBooking = createAsyncThunk('booking/fetch', async () => {
   try {
-    const { data } = await axiosInstance.get('/account');
+    const { data } = await axiosInstance.get('/account/inbox');
     //console.log(data);
 
     return data as {
@@ -58,9 +54,35 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
   }
 });
 
-const profilReducer = createReducer(initialState, (builder) => {
+export const acceptBooking = createAsyncThunk(
+  'accept/Booking',
+  async (formData: FormData, thunkAPI) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      const data = await axiosInstance.post('/account/inbox', objData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deliteBooking = createAsyncThunk(
+  'delite/Booking',
+  async (formData: FormData, thunkAPI) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      const data = await axiosInstance.delete('/account/inbox', objData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+const bookingReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchUser.fulfilled, (state, action) => {
+    .addCase(fetchBooking.fulfilled, (state, action) => {
       // state.logged = true;
       // console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
@@ -77,14 +99,20 @@ const profilReducer = createReducer(initialState, (builder) => {
 
       // state.token = action.payload.token;
     })
-    .addCase(fetchUser.rejected, (state, action) => {
+    .addCase(fetchBooking.rejected, (state, action) => {
       console.log('action rejected', action);
       state.error = action.payload.response.data;
       state.firstname = null;
       //  console.log(action.error.message)
       // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
-    });
+    })
+
+    .addCase(acceptBooking.fulfilled, (state, action) => {})
+    .addCase(acceptBooking.rejected, (state, action) => {})
+
+    .addCase(deliteBooking.fulfilled, (state, action) => {})
+    .addCase(deliteBooking.rejected, (state, action) => {});
 });
 
-export default profilReducer;
+export default bookingReducer;

@@ -1,0 +1,10 @@
+@use '../../../../styles/reset';
+@use '../../../../styles/variables' as v;
+
+.status-card {
+  @include v.card-styling;
+
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 80%;
+}
