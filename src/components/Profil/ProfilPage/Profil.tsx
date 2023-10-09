@@ -13,8 +13,6 @@ import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
 
 function Profil() {
-
-  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -38,8 +36,7 @@ function Profil() {
     (state) => state.profil.disponibility_date
   );
 
-
- console.log("animals" ,animals)
+  console.log('animals', animals);
 
   const renderSize = () => {
     if (size !== undefined && size !== null) {
@@ -104,7 +101,7 @@ function Profil() {
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
-            {animals &&
+            {animals && (
               <AnimalCard
                 type={animals.animal}
                 name={animals.name}
@@ -112,10 +109,10 @@ function Profil() {
                 age={animals.date_birth}
                 size={animals.size}
                 pipi={animals.walk}
-                repa={animals.mealhuars}
+                repa={animals.mealhours}
                 energy={animals.energy}
               />
-            }
+            )}
             <Link className="link-animal" to={'/account/animal-form'}>
               <Button prop="Ajoutez votre animal de compagnie" />
             </Link>
