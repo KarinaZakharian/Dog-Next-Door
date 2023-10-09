@@ -36,7 +36,13 @@ function Profil() {
     (state) => state.profil.disponibility_date
   );
 
-  console.log('animals', animals);
+  const type = useAppSelector((state) => state.profil.animal);
+  const name = useAppSelector((state) => state.profil.name);
+  const date_birth = useAppSelector((state) => state.profil.date_birth);
+  const size_animal = useAppSelector((state) => state.profil.size);
+  const walk = useAppSelector((state) => state.profil.walk);
+  const energy = useAppSelector((state) => state.profil.energy);
+  const food = useAppSelector((state) => state.profil.mealhuars);
 
   const renderSize = () => {
     if (size !== undefined && size !== null) {
@@ -103,14 +109,14 @@ function Profil() {
             {description && <p>{description}</p>}
             {animals && (
               <AnimalCard
-                type={animals.animal}
-                name={animals.name}
-                race={animals.race}
-                age={animals.date_birth}
-                size={animals.size}
-                pipi={animals.walk}
-                repa={animals.mealhours}
-                energy={animals.energy}
+                type={type}
+                name={name}
+                race={''}
+                age={date_birth}
+                size={size_animal}
+                pipi={walk}
+                repa={food}
+                energy={energy}
               />
             )}
             <Link className="link-animal" to={'/account/animal-form'}>

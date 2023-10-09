@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import axiosInstance from '../../utils/axios';
 
+
 interface LoginState {
   firstname: string | null;
   lastname: string | null;
@@ -20,6 +21,15 @@ interface LoginState {
   animal_size: string[] | null;
   error: string | null;
   disponibility_date: string | null;
+  animal: string | null ;
+  date_birth: string |null; 
+  energy : string | null ;
+  mealhuars: string | null ;
+  name :string |null ;
+  race : string | null ;
+  size : string | null;
+  walk : string | null;
+ 
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -33,6 +43,14 @@ export const initialState: LoginState = {
   walking_duration: null,
   animal_size: null,
   disponibility_date: null,
+  animal:  null ,
+  date_birth: null, 
+  energy :  null ,
+  mealhuars:  null ,
+  name :null ,
+  race :  null ,
+  size :  null,
+  walk :  null,
 };
 
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
@@ -52,6 +70,16 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       animal_size: string[];
       accomodation: string;
       disponibility_date: string;
+      animal: string  ;
+      date_birth: string; 
+      energy : string  ;
+      mealhuars: string  ;
+      name :string ;
+      race : string  ;
+      size : string ;
+      walk : string ;
+      
+  
     };
   } catch (error) {
     //console.log(error);
@@ -73,6 +101,15 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.additionnal_information = action.payload.additionnal_information;
       state.walking_duration = action.payload.walking_duration;
       state.disponibility_date = action.payload.disponibility_date;
+      state.animal = action.payload?.animal.type;
+      state.date_birth = action.payload?.animal.birth_date;
+      state.energy = action.payload?.animal.energy;
+      state.mealhuars = action.payload?.animal.mealhuars;
+      state.name = action.payload?.animal.name;
+      state.race = action.payload?.animal.race;
+      state.size = action.payload?.animal.size;
+      state.walk = action.payload?.animal.walk;
+
       state.error = null;
 
       // state.token = action.payload.token;

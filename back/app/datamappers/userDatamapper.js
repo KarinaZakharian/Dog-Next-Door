@@ -19,9 +19,10 @@ const userDatamapper = {
 
       const userId = id;
       const query = `
-            SELECT * 
-            FROM "user"
-            WHERE "id"=$1`;
+      SELECT u.*, json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal
+      FROM "user" u
+      JOIN "animal" a ON a."user_id" = u."id" 
+      WHERE u."id"=$1;`;
       const value = [userId];
       const userFound = await client.query(query, value);
       return userFound.rows[0];
@@ -184,6 +185,54 @@ const userDatamapper = {
       return error;
     }
   },
+
+  getUserDisponibility : async (id) => {
+    const userId = parseInt(id);
+    const query = `
+    SELECT * FROM "disponibility"
+    WHERE id IN
+    (
+      SELECT disponibility_id FROM user_has_disponibility
+      WHERE user_id = $1
+    )
+    `
+    const value = [userId];
+    const userDisponibilities = await client.query(query, value);
+    return userDisponibilities.rows;
+  },
+
+  getUserBooking : async (id) => {
+    const userId = parseInt(id);
+    const query = `
+    SELECT * FROM booking
+    JOIN "user" ON "user"."id" = "booking"."sender_id"
+    WHERE user_id = $1
+    `
+    const value = [userId];
+    const userBookings = await client.query(query, value);
+    return userBookings.rows;
+  },
+
+  addNewUserDisponibilitites : async (beginDate, finalDate, id) => {
+    const startDate = beginDate;
+    const endDate = finalDate;
+    const userId = id;
+
+    const query = `
+    INSERT INTO "disponibility"
+    ("start_date", "end_date")
+    VALUES($1, $2)
+    SELECT SCOPE IDENTITY() AS newDisponibilityId
+    INSERT INTO "user_has_disponibility"
+    ("user_id", "disponibility_id")
+    VALUES ($3, 'newDisponibilityId')
+    `;
+    const values = [beginDate, finalDate, id];
+    const result = await client.query(query, values);
+    console.log(result);
+  },
+
+  
 };
 
 module.exports = userDatamapper;

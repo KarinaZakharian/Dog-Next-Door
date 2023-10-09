@@ -18,15 +18,9 @@ function DateRangeComp() {
   ];
 
   /* Set the open state and handle interactions */
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  const toggleCalendar = () => {
-    setOpen(!open);
-  };
-
-  const handleDateChange = (item) => {
-    // Do nothing when the user tries to change the dates
-  };
+ 
 
   return (
     <div className="calendarWrap">
@@ -35,13 +29,13 @@ function DateRangeComp() {
         value={`${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`}
         readOnly
         className="inputBox"
-        onClick={toggleCalendar}
+       
       />
 
       <div>
         {open && (
           <DateRange
-            onChange={handleDateChange}
+            
             editableDateInputs={false}
             moveRangeOnFirstSelection={false}
             ranges={dateRange}

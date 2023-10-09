@@ -75,7 +75,7 @@ const userController = {
       try {
         const userId = parseInt(req.userId);
         const user = await userDatamapper.getOneUserById(userId);
-        
+        console.log(user);
         res.json(user);
       } catch (error) {
         res.status(500).json(error.toString());
@@ -189,7 +189,27 @@ const userController = {
 
       createBooking : async (req,res)=> {
         console.log("page petsitter booking");
-      }
+      },
+
+      findUserWithCalendar : async (req, res) => {
+        const petsitterId = req.params.id;
+        const petSitter = await userDatamapper.getOneUserById(petsitterId);
+        const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
+        const petSitterDisponibility = await userDatamapper.getUserDisponibility(petsitterId);
+        res.json({user : petSitter, booking : petSitterBooking, disponibility : petSitterDisponibility});
+    },
+
+      findUserdisponibility : async (req, res) => {
+        const petsitterId = req.params.id;
+        const petSitterDisponibility = await userDatamapper.getUserDisponibility(petsitterId);
+        res.json(petSitterDisponibility);
+    },
+
+    findUserBooking : async (req, res) => {
+      const petsitterId = req.params.id;
+      const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
+      res.json(petSitterBooking);
+    },
     };
     
     module.exports = userController;
