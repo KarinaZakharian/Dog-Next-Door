@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { success } from '../../../store/reducers/booking';
 
-import dog from '../../../assets/dog-area.png';
+import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
 import small from '../../../assets/icons8-dog-20.png';
 import medium from '../../../assets/icons8-dog-35.png';
@@ -24,7 +24,7 @@ import React from 'react';
 
 import { fillBookingForm } from '../../../store/reducers/booking';
 import { fetchUser } from '../../../store/reducers/profil';
-import { DateRangePicker } from 'react-date-range';
+import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
 
 function Booking() {
   const navigate = useNavigate();
@@ -36,35 +36,35 @@ function Booking() {
 
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
- // const animal = useAppSelector((state) => state.animalForm.animals);
+  // const animal = useAppSelector((state) => state.animalForm.animals);
 
   // picking  the animal
-  const [pickedAnimal, setAnimal] = useState( '');
+  const [pickedAnimal, setAnimal] = useState('');
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
 
   //  picking the size of the animal
-  const [picked, setPicked] = useState( '');
+  const [picked, setPicked] = useState('');
   function handleRadioChange(value: string): void {
     setPicked(value);
   }
 
   // picking the meal hours
-  const [pickedHour, setHour] = useState( '');
+  const [pickedHour, setHour] = useState('');
   function handleHourChange(value: string): void {
     setHour(value);
   }
 
   // picking the walking hours
-  const [pickedWalk, setWalk] = useState( '');
+  const [pickedWalk, setWalk] = useState('');
   function handleWalkChange(value: string): void {
     setWalk(value);
   }
 
   // picking energy level
 
-  const [pickedEnergy, setEnergy] = useState( '');
+  const [pickedEnergy, setEnergy] = useState('');
   function handleEnergyChange(value: string): void {
     setEnergy(value);
   }
@@ -132,8 +132,8 @@ function Booking() {
                 onRadioChange={handleAnimalChange}
               />
             </div>
-            <Input name="name" placeholder="Nom"  />
-            <Input name="race" placeholder="Race(s)"  />
+            <Input name="name" placeholder="Nom" />
+            <Input name="race" placeholder="Race(s)" />
 
             <p className="label">La taille de mon animal</p>
             <div className="radio">
@@ -246,7 +246,7 @@ function Booking() {
                 onRadioChange={handleEnergyChange}
               />
             </div>
-            <DateRangePicker />
+            <DateRangePickerComp legend={'Date de booking'} />
             <Button prop="Submit" />
           </form>
         </div>

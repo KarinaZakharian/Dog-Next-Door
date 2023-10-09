@@ -25,41 +25,38 @@ function AnimalCard({
   energy,
 }: AnimalProps) {
   return (
-    <div className="animal-card">
+    <div className="myAnimal-card">
       <div className="main-info">
-        {type && type === 'cat' && (
-          <img className="animal-card__image" src={cat} alt="Avatar" />
+        {type && type === 'Cat' && (
+          <img className="myAnimal-card__image" src={cat} alt="Avatar" />
         )}
-        {type && type === 'dog' && (
-          <img className="animal-card__image" src={dog} alt="Avatar" />
+        {type && type === 'Dog' && (
+          <img className="myAnimal-card__image" src={dog} alt="Avatar" />
         )}
-        {name && <span className="animal-card__info">{name}</span>}
-        {race && <span className="animal-card__info">{race}</span>}
-        {age && (
-          <span className="animal-card__info">
-            {' '}
-            className='card__info'{age}
-          </span>
-        )}
+        {name && <span className="myAnimal-card__info">{name}</span>}
+        {race && <span className="myAnimal-card__info">{race}</span>}
+        {age && <span className="myAnimal-card__info">{age}</span>}
       </div>
       {size && (
-        <p className="animal-card__label">
-          La taille de {name} {size}
+        <p className="myAnimal-card__label">
+          La taille de {name} est {size}.
         </p>
       )}
       {repa && (
-        <p className="animal-card__label">
-          {' '}
-          {name} mange {repa}
+        <p className="myAnimal-card__label">
+          {name} mange {repa} .
         </p>
       )}
       {energy && (
-        <p className="animal-card__label">
-          Niveau d'energie de {name} est {energy}
+        <p className="myAnimal-card__label">
+          Niveau d'energie de {name} est : {energy} .
         </p>
       )}
       {pipi && (
-        <p className="animal-card__label"> Horaires des pauses pipi : {pipi}</p>
+        <p className="myAnimal-card__label">
+          {' '}
+          Horaires des pauses pipi : {pipi}
+        </p>
       )}
     </div>
   );

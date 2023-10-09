@@ -1,31 +1,34 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
-.animal-card {
+.myAnimal-card {
   @include v.card-styling;
+  flex-direction: column;
+  align-items: flex-start;
 
   .main-info {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+    width: 100%;
+  }
 
-    &__image {
-      max-width: 100px;
-      max-height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+  &__image {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 
-    &__info {
-      font-weight: bold;
-      font-size: 18px;
-      color: #333;
-    }
+  &__info {
+    @include v.label;
   }
 
   &__label {
-    font-size: 16px;
-    color: #555;
-    margin: 5px 0;
+    display: flex;
+    justify-content: flex-start;
+    @include v.label;
   }
 }
