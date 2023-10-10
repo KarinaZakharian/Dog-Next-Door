@@ -138,7 +138,7 @@ function InputSearch() {
             />
           </div>
           <DateRangePickerComp legend="Pour ces jours" />
-          <p className="inputSearch__title-size">La taille de mon animal</p>
+          {/* <p className="inputSearch__title-size">La taille de mon animal</p>
           <div className="inputSearch__radio">
             <Radio
               name="size"
@@ -215,7 +215,7 @@ function InputSearch() {
               value="+ 8 heures"
               onRadioChange={handleWalkChange}
             />
-          </div>
+          </div> */}
           <Button prop="Rechercher" />
         </form>
       </div>

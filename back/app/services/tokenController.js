@@ -39,6 +39,7 @@ const tokenController = {
         const authorization = req.headers.authorization;
         if (authorization) {
             const token = authorization.split(' ')[1];
+            
             try {
                 const userData = jwt.clearCookie("access_token");
                 res.json({"message": "Vous avez été déconnecté" });

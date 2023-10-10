@@ -18,7 +18,7 @@ function Profil() {
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
-  const animals = useAppSelector((state) => state.animalForm.animals);
+  const animals = useAppSelector((state) => state.profil.animal);
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const user_address = useAppSelector((state) => state.profil.user_address);

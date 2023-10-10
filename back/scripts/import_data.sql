@@ -29,6 +29,7 @@ VALUES
 ('Charlotte', 'Green', 'charlottegreen@example.com', 'password20', '1994-01-04', 'avatar20.jpg', '20', 'Rue de Lyon', '69005', 'Lyon', 'France', '45.7640', '4.8357'),
 ('Matthew', 'Baker', 'matthewbaker@example.com', 'password21', '1989-05-21', 'avatar21.jpg', '21', 'Rue de Paris', '75006', 'Paris', 'France', '48.8495', '2.3515'),
 ('Amelia', 'Adams', 'ameliaadams@example.com', 'password22', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119');
+('Amelia', 'Adams', 'ameliaadams@example.com', 'password22', '1993-11-27', '', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119');
 
 
 
