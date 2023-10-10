@@ -42,12 +42,7 @@ function SectionMap() {
 
   return (
     <div className="map-container">
-      <LeafletMap
-        key={center.toString()}
-        center={center}
-        zoom={13}
-        scrollZooom={false}
-      >
+      <LeafletMap key={center.toString()} center={center} zoom={13}>
         {users.map((user: UserProps) => (
           <Marker
             key={user.id}

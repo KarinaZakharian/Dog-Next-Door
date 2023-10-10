@@ -1,8 +1,5 @@
-@use '../../../styles/variables' as v;
-
 .sectioncards {
-  background-color: v.$color-main;
-  width: 50%;
+  width: 60%;
 
   &__noresult {
     margin: 2rem;
@@ -11,5 +8,13 @@
     &-logo {
       opacity: 10%;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 100%;
   }
 }

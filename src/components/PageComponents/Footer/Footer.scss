@@ -4,6 +4,10 @@
 .footer__wrapper {
   background-color: v.$color-border;
   padding: 20px;
+  @media screen and (max-width: 768px) {
+    z-index: 20000;
+    position: relative;
+  }
 }
 
 .footer__container {

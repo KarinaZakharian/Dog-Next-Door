@@ -76,149 +76,80 @@ function InputSearch() {
   }
 
   return (
-    <main className="inputSearch">
-      <div className="inputSearch__container">
-        <form className="inputSearch__form" onSubmit={handleSubmit}>
-          <p className="inputSearch__title-animal">
-            Je recherche un service pour mon
-          </p>
-          <div className="inputSearch__radio-animal">
-            <Radio
-              name="animal"
-              id="cat"
-              value="Cat"
-              picked={pickedAnimal}
-              img={cat}
-              label=""
-              onRadioChange={handleAnimalChange}
-            />
-            <Radio
-              name="animal"
-              id="dog"
-              value="Dog"
-              picked={pickedAnimal}
-              img={dog}
-              label=""
-              onRadioChange={handleAnimalChange}
-            />
-          </div>
-          <AutoComplete
-            style={{ borderColor: 'initial' }}
-            setCoordinates={setCoordinates}
-          />
-          <p>Distance autour de chez moi</p>
-          <div className="radiosimple-wrapper">
-            <RadioSimple
-              name="radius"
-              id="5km"
-              picked={pickedRadius}
-              value="5"
-              onRadioChange={handleRadiusChange}
-            />
-            <RadioSimple
-              name="radius"
-              id="10km"
-              picked={pickedRadius}
-              value="10"
-              onRadioChange={handleRadiusChange}
-            />
-            <RadioSimple
-              name="radius"
-              id="20"
-              picked={pickedRadius}
-              value="20"
-              onRadioChange={handleRadiusChange}
-            />
-            <RadioSimple
-              name="radius"
-              id="35"
-              picked={pickedRadius}
-              value="35"
-              onRadioChange={handleRadiusChange}
-            />
-          </div>
-          <DateRangePickerComp legend="Pour ces jours" />
-          {/* <p className="inputSearch__title-size">La taille de mon animal</p>
-          <div className="inputSearch__radio">
-            <Radio
-              name="size"
-              id="small"
-              value="Petit"
-              picked={picked}
-              img={small}
-              label="0-7 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="medium"
-              value="Moyen"
-              picked={picked}
-              img={medium}
-              label="7-18 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="large"
-              value="Grand"
-              picked={picked}
-              img={big}
-              label="18-45 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="geant"
-              value="Geant"
-              picked={picked}
-              img={geant}
-              label="45+ kg"
-              onRadioChange={handleRadioChange}
+    <main className="inputsearch">
+      <p className="inputsearch__title-animal">
+        Je recherche un service pour mon
+      </p>
+      <form className="inputsearch__form" onSubmit={handleSubmit}>
+        <div className="inputsearch__container">
+          <div className="inputsearch__left">
+            <div className="inputsearch__radio-animal">
+              <Radio
+                name="animal"
+                id="cat"
+                value="Cat"
+                picked={pickedAnimal}
+                img={cat}
+                label=""
+                onRadioChange={handleAnimalChange}
+              />
+              <Radio
+                name="animal"
+                id="dog"
+                value="Dog"
+                picked={pickedAnimal}
+                img={dog}
+                label=""
+                onRadioChange={handleAnimalChange}
+              />
+            </div>
+
+            <AutoComplete
+              style={{ borderColor: 'initial' }}
+              setCoordinates={setCoordinates}
             />
           </div>
 
-          <CheckboxGroup
-            name="additional options"
-            legend="À quoi les propriétaires peuvent-ils s'attendre lorsqu'ils vous confient la garde de leur animal de compagnie ?"
-            options={options}
-            onSelectionChange={handleSelectionChange1}
-          />
+          <div className="inputsearch__right">
+            <div className="inputsearch__radio-animal">
+              <p>Distance autour de chez moi</p>
+              <div className="radiosimple-wrapper">
+                <RadioSimple
+                  name="radius"
+                  id="5km"
+                  picked={pickedRadius}
+                  value="5"
+                  onRadioChange={handleRadiusChange}
+                />
+                <RadioSimple
+                  name="radius"
+                  id="10km"
+                  picked={pickedRadius}
+                  value="10"
+                  onRadioChange={handleRadiusChange}
+                />
+                <RadioSimple
+                  name="radius"
+                  id="20"
+                  picked={pickedRadius}
+                  value="20"
+                  onRadioChange={handleRadiusChange}
+                />
+                <RadioSimple
+                  name="radius"
+                  id="35"
+                  picked={pickedRadius}
+                  value="35"
+                  onRadioChange={handleRadiusChange}
+                />
+              </div>
+            </div>
 
-          <p>Horaires des pauses pipi</p>
-          <div className="radiosimple-wrapper">
-            <RadioSimple
-              name="walk"
-              id="1"
-              picked={pickedWalk}
-              value="Entre 0 et 2 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="2"
-              picked={pickedWalk}
-              value="Entre 2 et 4 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="3"
-              picked={pickedWalk}
-              value="Entre 4 et 8 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="4"
-              picked={pickedWalk}
-              value="+ 8 heures"
-              onRadioChange={handleWalkChange}
-            />
-          </div> */}
-          <Button prop="Rechercher" />
-        </form>
-      </div>
+            <DateRangePickerComp legend="Pour ces jours" />
+          </div>
+        </div>
+        <Button className="inputsearch__button" prop="Rechercher" />
+      </form>
     </main>
   );
 }

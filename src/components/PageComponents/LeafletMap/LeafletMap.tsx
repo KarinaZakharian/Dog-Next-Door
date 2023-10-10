@@ -11,6 +11,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({
       center={center}
       zoom={zoom}
       style={{ height: '100%', width: '100%' }}
+      scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
