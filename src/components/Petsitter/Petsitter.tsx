@@ -1,44 +1,48 @@
-/* eslint-disable prettier/prettier */
-
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import swal from 'sweetalert';
-
 import Header from '../../components/PageComponents/Header/Header';
 import Footer from '../../components/PageComponents/Footer/Footer';
-
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserById } from '../../store/reducers/sitter';
-
 import avatar from '../../assets/Logo-ODogNextDoor.svg';
 import DateRangeComp from '../InputType/DatePiker/DateRangeSelect';
 import Button from '../InputType/Button/Button';
-
+import L, { LatLngExpression, latLng, LatLngLiteral } from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
+import marker from '../../assets/dog-area.png';
+import shadow from '../../assets/dog-area-shadow.png';
+import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
 function Petsitter() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  console.log(id);
+  useEffect(() => {
+    dispatch(fetchUserById(Number(id)));
+  }, [id]);
   const account = useAppSelector((state) => state.login.firstname);
   const user = useAppSelector((state) => state.sitter.user);
   console.log('petsitter', user);
-
   const firstname = user?.lastname;
   const lastname = user?.firstname;
   const user_address = user?.user_address;
   const size = user?.size;
   const description = user?.description;
   const garden = user?.garden;
-  ('');
   const accommodation = user?.accomodation;
   const additionnal_information = user?.additional_information;
   const disponibilite = user?.disponibility_date;
-
-  const dispatch = useAppDispatch();
-
-  const { id } = useParams();
-  console.log(id);
-
-  useEffect(() => {
-    dispatch(fetchUserById(Number(id)));
-  }, [id]);
-
+  const longitude = user?.longitude;
+  const latitude = user?.latitude;
+  const center: LatLngExpression = latLng(latitude, longitude);
+  const myIcon = new L.Icon({
+    iconUrl: marker,
+    iconRetinaUrl: marker,
+    shadowUrl: shadow,
+    popupAnchor: [-0, -0],
+    iconSize: [40, 40],
+    shadowSize: [40, 40],
+    shadowAnchor: [4, 22],
+  });
   const renderSize = () => {
     if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
@@ -53,7 +57,6 @@ function Petsitter() {
     }
     return null;
   };
-
   const renderOptions = () => {
     if (
       additionnal_information !== undefined &&
@@ -72,7 +75,6 @@ function Petsitter() {
     }
     return null;
   };
-
   return (
     <div className="page-wrapper">
       <Header />
@@ -80,7 +82,6 @@ function Petsitter() {
         <div className="container-profil">
           <div className="aside-profil">
             <img className="main-img" src={avatar} />
-
             <h3 className="profil-title">
               {lastname} peut effectuer la garde à son domicile
             </h3>
@@ -100,22 +101,40 @@ function Petsitter() {
               {firstname} {lastname}
             </h1>
             {description && <p>{description}</p>}
+            {latitude && (
+              <div className="leflet-container">
+                <LeafletMap key={center.toString()} center={center} zoom={15} children={undefined}>
+                  <Marker
+                    position={L.latLng(latitude, longitude)}
+                    icon={myIcon}
+                  >
+                    <Popup>
+                      <img src={avatar} alt="Avatar" />
+                      <div>
+                        <h2>
+                          {firstname} {lastname}
+                        </h2>
+                      </div>
+                    </Popup>
+                  </Marker>
+                </LeafletMap>
+              </div>
+            )}
             {account && (
               <Link to={'/petsitter/' + id + '/booking'}>
                 <Button prop="Booking" />
               </Link>
-            )}  
-            {!account && <Link to={'/subscribe'}>
-              <Button prop="Booking" />
-            </Link> }
-            
+            )}
+            {!account && (
+              <Link to={'/subscribe'}>
+                <Button prop="Booking" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
 }
-
 export default Petsitter;
