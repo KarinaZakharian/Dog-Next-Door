@@ -1,6 +1,5 @@
 BEGIN;
 
-
 INSERT INTO "user" ("firstname","lastname","email","user_password","date_birth","avatar","street_number","street_name","zip_code","town","country", "latitude", "longitude")
 VALUES 
 ('Soufiane','IBNAICHE','soufiane.ibnaiche@oclock.school','$2a$12$2dTR4OLRqpIcRnuSx/IlZebFkTv4hypGvlL8LwYjsoPIqNvyhQLbS','1990-03-05','soufiane.jpg', '3', 'Avenue Charles Floquet', '75007','Paris', 'France', '48.85640670533029', '2.2941727989822835'),
@@ -29,8 +28,5 @@ VALUES
 ('Charlotte', 'Green', 'charlottegreen@example.com', 'password20', '1994-01-04', 'avatar20.jpg', '20', 'Rue de Lyon', '69005', 'Lyon', 'France', '45.7640', '4.8357'),
 ('Matthew', 'Baker', 'matthewbaker@example.com', 'password21', '1989-05-21', 'avatar21.jpg', '21', 'Rue de Paris', '75006', 'Paris', 'France', '48.8495', '2.3515'),
 ('Amelia', 'Adams', 'ameliaadams@example.com', 'password22', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119');
-('Amelia', 'Adams', 'ameliaadams@example.com', 'password22', '1993-11-27', '', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119');
-
-
 
 COMMIT;
