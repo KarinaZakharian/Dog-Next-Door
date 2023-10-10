@@ -21,7 +21,7 @@ const userDatamapper = {
       const query = `
       SELECT u.*, json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal
       FROM "user" u
-      JOIN "animal" a ON a."user_id" = u."id" 
+      LEFT JOIN "animal" a ON a."user_id" = u."id" 
       WHERE u."id"=$1;`;
       const value = [userId];
       const userFound = await client.query(query, value);
