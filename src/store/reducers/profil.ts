@@ -24,12 +24,13 @@ interface LoginState {
   animal: string | null ;
   date_birth: string |null; 
   energy : string | null ;
-  mealhuars: string | null ;
+  mealhours: string | null ;
   name :string |null ;
   race : string | null ;
   size : string | null;
   walk : string | null;
- 
+  latitude: number | null;
+  longitude: number | null;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -46,11 +47,13 @@ export const initialState: LoginState = {
   animal:  null ,
   date_birth: null, 
   energy :  null ,
-  mealhuars:  null ,
+  mealhours:  null ,
   name :null ,
   race :  null ,
   size :  null,
   walk :  null,
+  latitude: null,
+  longitude: null,
 };
 
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
@@ -73,13 +76,13 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       animal: string  ;
       date_birth: string; 
       energy : string  ;
-      mealhuars: string  ;
+      mealhours: string  ;
       name :string ;
       race : string  ;
       size : string ;
       walk : string ;
-      
-  
+      latitude: number;
+      longitude: number;
     };
   } catch (error) {
     //console.log(error);
@@ -94,6 +97,8 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.user_address = action.payload.user_address;
+      state.longitude = action.payload.longitude;
+      state.latitude = action.payload.latitude;
       state.description = action.payload.description;
       state.garden = action.payload.garden;
       state.animal_size = action.payload.animal_size;
@@ -104,7 +109,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.animal = action.payload?.animal.type;
       state.date_birth = action.payload?.animal.birth_date;
       state.energy = action.payload?.animal.energy;
-      state.mealhuars = action.payload?.animal.mealhuars;
+      state.mealhours = action.payload?.animal.mealhours;
       state.name = action.payload?.animal.name;
       state.race = action.payload?.animal.race;
       state.size = action.payload?.animal.size;
