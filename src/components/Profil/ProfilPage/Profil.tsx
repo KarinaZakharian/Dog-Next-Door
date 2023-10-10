@@ -44,7 +44,7 @@ function Profil() {
   const size_animal = useAppSelector((state) => state.profil.size);
   const walk = useAppSelector((state) => state.profil.walk);
   const energy = useAppSelector((state) => state.profil.energy);
-  const food = useAppSelector((state) => state.profil.mealhuars);
+  const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
   console.log(longitude, latitude);
   const center: LatLngExpression = latLng(latitude, longitude);
