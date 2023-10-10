@@ -104,7 +104,7 @@ function Profil() {
               <h3 className="profil-title">
                 {lastname} peut effectuer la garde à domicile {user_address}
               </h3>
-              <div className="leflet-container">
+              {longitude &&   <div className="leflet-container">
                 <LeafletMap key={center.toString()} center={center} zoom={10} children={undefined}>
                   <Marker
                     position={L.latLng(latitude, longitude)}
@@ -120,7 +120,7 @@ function Profil() {
                     </Popup>
                   </Marker>
                 </LeafletMap>
-              </div>
+              </div> }
               {size && (
                 <p className="profil-title">
                   {lastname} garde les animaux de taille :
