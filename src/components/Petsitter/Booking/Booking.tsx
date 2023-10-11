@@ -82,7 +82,6 @@ function Booking() {
     dispatch(fillBookingForm(formData));
 
     // dispatch(fillProfilForm(formData));
-    // console.log(objData);
   };
 
   useEffect(() => {
