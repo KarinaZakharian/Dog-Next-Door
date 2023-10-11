@@ -28,7 +28,7 @@ function Header() {
             <img className="menu__logo" src={mainLogo} alt="main-logo" />
           </NavLink>
           <NavLink className="menu__menu-item" to="/search">
-            Search
+            Recherche
           </NavLink>
         </div>
         <NavLink className="menu__menu-item" to="/account/inbox">

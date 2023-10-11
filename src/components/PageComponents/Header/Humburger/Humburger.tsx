@@ -55,10 +55,10 @@ function Humburger() {
           </>
         )}
         <NavLink className="menu-item" to="/">
-          Home
+          Accuel
         </NavLink>
         <NavLink className="menu-item" to="/search">
-          Search
+          Recherche
         </NavLink>
         <NavLink className="menu-item" to="/login">
           Connexion

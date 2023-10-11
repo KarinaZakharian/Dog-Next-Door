@@ -10,9 +10,9 @@ import AnimalCard from '../AnimalCard/AnimalCard';
 import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 import L, { LatLngExpression, latLng, LatLngLiteral } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
-import marker from '../../../assets/dog-area.png';
-import shadow from '../../../assets/dog-area-shadow.png';
-import avatarNone from '../../../assets/Logo-ODogNextDoor.svg';
+import marker from '../../../assets/dog-area-blue.png';
+import shadow from '../../../assets/dog-area-shadow-blur.png';
+import avatarNone from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
 function Profil() {
   const dispatch = useAppDispatch();
@@ -53,9 +53,9 @@ function Profil() {
     iconRetinaUrl: marker,
     shadowUrl: shadow,
     popupAnchor: [-0, -0],
-    iconSize: [32, 40],
-    shadowSize: [40, 40],
-    shadowAnchor: [4, 22],
+    iconSize: [28, 40],
+    shadowSize: [35, 40],
+    shadowAnchor: [3, 17],
   });
   const renderSize = () => {
     if (size !== undefined && size !== null) {
@@ -92,20 +92,22 @@ function Profil() {
   return (
     <div className="page-wrapper">
       <Header />
-        <div className="profil-wrapper">
-          <div className="container-profil">
-            <div className="aside-profil">
-              {/* <img className="main-img" src={avatar} /> */}
-              <img
-                className="card-image"
-                src={avatarNone}
-                alt="Avatar"
-              />
-              <h3 className="profil-title">
-                {lastname} peut effectuer la garde à domicile {user_address}
-              </h3>
-              {longitude &&   <div className="leflet-container">
-                <LeafletMap key={center.toString()} center={center} zoom={10} children={undefined}>
+      <div className="profil-wrapper">
+        <div className="container-profil">
+          <div className="aside-profil">
+            {/* <img className="main-img" src={avatar} /> */}
+            <img className="card-image" src={avatarNone} alt="Avatar" />
+            <h3 className="profil-title">
+              {lastname} peut effectuer la garde à domicile {user_address}
+            </h3>
+            {longitude && (
+              <div className="leflet-container">
+                <LeafletMap
+                  key={center.toString()}
+                  center={center}
+                  zoom={15}
+                  children={undefined}
+                >
                   <Marker
                     position={L.latLng(latitude, longitude)}
                     icon={myIcon}
@@ -120,53 +122,54 @@ function Profil() {
                     </Popup>
                   </Marker>
                 </LeafletMap>
-              </div> }
-              {size && (
-                <p className="profil-title">
-                  {lastname} garde les animaux de taille :
-                </p>
-              )}
-              <ul>{renderSize()}</ul>
-              {accommodation || garden || additionnal_information ? (
-                <p className="profil-title">
-                  À propos du domicile de {lastname}:
-                </p>
-              ) : null}
-              <ul>
-                {accommodation && <li>{accommodation}</li>}
-                {garden && <li>{garden}</li>}
-                {renderOptions()}
-              </ul>
-              {walking_duration && (
-                <p className="profil-title">Disponibilité de promenade</p>
-              )}
-              {walking_duration && <p>{walking_duration}</p>}
-              {disponibility_date && (
-                <p className="profil-title">Disponibilité de {lastname}</p>
-              )}
-              {disponibility_date && <DateRangeComp />}
-            </div>
-            <div className="main-profil">
-              <h1>
-                {firstname} {lastname}
-              </h1>
-              {description && <p>{description}</p>}
-              <AnimalCard
-                type={type}
-                name={name}
-                race={race}
-                age={date_birth}
-                size={size_animal}
-                pipi={walk}
-                repa={food}
-                energy={energy}
-              />
-              <Link className="link-animal" to={'/account/animal-form'}>
-                <Button prop="Ajoutez votre animal de compagnie" />
-              </Link>
-            </div>
+              </div>
+            )}
+            {size && (
+              <p className="profil-title">
+                {lastname} garde les animaux de taille :
+              </p>
+            )}
+            <ul>{renderSize()}</ul>
+            {accommodation || garden || additionnal_information ? (
+              <p className="profil-title">
+                À propos du domicile de {lastname}:
+              </p>
+            ) : null}
+            <ul>
+              {accommodation && <li>{accommodation}</li>}
+              {garden && <li>{garden}</li>}
+              {renderOptions()}
+            </ul>
+            {walking_duration && (
+              <p className="profil-title">Disponibilité de promenade</p>
+            )}
+            {walking_duration && <p>{walking_duration}</p>}
+            {disponibility_date && (
+              <p className="profil-title">Disponibilité de {lastname}</p>
+            )}
+            {disponibility_date && <DateRangeComp />}
+          </div>
+          <div className="main-profil">
+            <h1>
+              {firstname} {lastname}
+            </h1>
+            {description && <p>{description}</p>}
+            <AnimalCard
+              type={type}
+              name={name}
+              race={race}
+              age={date_birth}
+              size={size_animal}
+              pipi={walk}
+              repa={food}
+              energy={energy}
+            />
+            <Link className="link-animal" to={'/account/animal-form'}>
+              <Button prop="Ajoutez votre animal de compagnie" />
+            </Link>
           </div>
         </div>
+      </div>
       <Footer />
     </div>
   );

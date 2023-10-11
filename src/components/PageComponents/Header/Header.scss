@@ -14,10 +14,11 @@
   max-width: 1500px;
 
   &__logo {
-    font-size: 24px;
-    font-weight: bold;
-    width: 75px;
-    height: 65px;
+    width: 150px;
+
+    @media screen and (max-width: 768px) {
+      width: 80px;
+    }
   }
 
   &__nav-wrapper {

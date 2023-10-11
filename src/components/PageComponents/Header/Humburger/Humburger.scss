@@ -4,12 +4,13 @@
 .menuHumburger {
   display: none;
   justify-content: space-between;
+  align-items: center;
 }
 
 .menu-bar {
   width: 45px;
   height: 40px;
-  margin: 30px 0 20px 20px;
+  margin: 30px 0 5px 20px;
   cursor: pointer;
   position: relative;
 }

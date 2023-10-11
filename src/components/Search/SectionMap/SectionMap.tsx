@@ -2,8 +2,8 @@ import { Marker, Popup } from 'react-leaflet';
 import { useAppSelector } from '../../../hooks/redux';
 import L, { LatLngExpression } from 'leaflet';
 
-import marker from '../../../assets/dog-area.png';
-import shadow from '../../../assets/dog-area-shadow.png';
+import marker from '../../../assets/dog-area-blue.png';
+import shadow from '../../../assets/dog-area-shadow-blur.png';
 import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor.svg';
 
@@ -21,9 +21,9 @@ function SectionMap() {
     iconRetinaUrl: marker,
     shadowUrl: shadow,
     popupAnchor: [-0, -0],
-    iconSize: [40, 40],
-    shadowSize: [40, 40],
-    shadowAnchor: [4, 22],
+    iconSize: [28, 40],
+    shadowSize: [35, 40],
+    shadowAnchor: [3, 17],
   });
 
   const userOne =
