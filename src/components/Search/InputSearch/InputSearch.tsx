@@ -77,9 +77,9 @@ function InputSearch() {
 
   return (
     <main className="inputsearch">
-      <p className="inputsearch__title-animal">
+      <h3 className="inputsearch__title-animal">
         Je recherche un service pour mon
-      </p>
+      </h3>
       <form className="inputsearch__form" onSubmit={handleSubmit}>
         <div className="inputsearch__container">
           <div className="inputsearch__left">
@@ -145,10 +145,10 @@ function InputSearch() {
               </div>
             </div>
 
-            <DateRangePickerComp legend="Pour ces jours" />
+            <DateRangePickerComp legend="Disponibilités" />
           </div>
         </div>
-        <Button className="inputsearch__button" prop="Rechercher" />
+        <Button prop="Rechercher" />
       </form>
     </main>
   );

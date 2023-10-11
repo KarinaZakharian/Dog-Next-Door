@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
+import { addData } from '../../store/reducers/home';
+import { searchThunk } from '../../store/reducers/search';
+
 import Footer from '../PageComponents/Footer/Footer';
 import Header from '../PageComponents/Header/Header';
 import Radio from '../InputType/Radio/Radio';
 import AutoComplete from '../InputType/Addresse/Addresse';
 import DateRangePickerComp from '../InputType/DatePiker/DateRangePicker';
+import Button from '../InputType/Button/Button';
+import RadioSimple from '../InputType/RadioSimple/RadioSimple';
 
 import dog from '../../assets/icons8-dog-100.png';
 import cat from '../../assets/icons8-cat-100.png';
@@ -11,15 +18,11 @@ import small from '../../assets/icons8-dog-20.png';
 import medium from '../../assets/icons8-dog-35.png';
 import big from '../../assets/icons8-dog-55.png';
 import geant from '../../assets/icons8-dog-64.png';
-
+import search from '../../assets/search.png';
+import swap from '../../assets/swap.png';
+import security from '../../assets/security.png';
+import marketImg from '../../assets/marketImg.png';
 import './index.scss';
-import Button from '../InputType/Button/Button';
-import { addData } from '../../store/reducers/home';
-import { searchThunk } from '../../store/reducers/search';
-
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useNavigate } from 'react-router-dom';
-import RadioSimple from '../InputType/RadioSimple/RadioSimple';
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -168,6 +171,47 @@ function Home() {
           </form>
         </div>
       </main>
+      <section className="fonctionnality">
+        <div className="fonctionnality__card">
+          <img src={swap} alt="" className="fonctionnality__img" />
+          <h2 className="fonctionnality__title">Échanger</h2>
+          <p className="fonctionnality__content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
+            illo neque!
+          </p>
+        </div>
+        <div className="fonctionnality__card">
+          <img src={search} alt="" className="fonctionnality__img" />
+          <h2 className="fonctionnality__title">Rechercher</h2>
+          <p className="fonctionnality__content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
+            illo neque!
+          </p>
+        </div>
+        <div className="fonctionnality__card">
+          <img src={security} alt="" className="fonctionnality__img" />
+          <h2 className="fonctionnality__title">Identité validé</h2>
+          <p className="fonctionnality__content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
+            illo neque!
+          </p>
+        </div>
+      </section>
+      <section className="marketing">
+        <div className="marketing__left-space"></div>
+        <div className="marketing__right-space">
+          <h3 className="marketing__title">Partager</h3>
+          <p className="marketing__content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut dolores
+            numquam aliquam ut minima accusantium quaerat, amet quisquam harum
+            error molestias magnam consequuntur minus debitis, dolore alias,
+            iusto nesciunt vero.
+          </p>
+        </div>
+      </section>
       <Footer />
     </div>
   );

@@ -2,7 +2,6 @@
 @use '../../../../styles/variables' as v;
 
 .menuHumburger {
-  z-index: 2;
   display: none;
   justify-content: space-between;
 }
@@ -45,7 +44,6 @@
 }
 
 .menu-bg {
-  z-index: 1;
   width: 0;
   height: 0;
   margin: 112px 15px 20px 65px;
@@ -116,5 +114,7 @@
 @media screen and (max-width: 768px) {
   .menuHumburger {
     display: flex;
+    z-index: 10000;
+    position: relative;
   }
 }
