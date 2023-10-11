@@ -52,3 +52,15 @@ export interface HomeState {
   longitude: string | null;
   latitude: string | null;
 }
+
+export interface LoginState {
+  firstname: string | null;
+  lastname: string | null;
+  user_address: string | null;
+  description: string | null;
+  accomodation: string | null;
+  garden: string | null;
+  additionnal_information: string[] | null;
+  animal_size: string[] | null;
+  error: string | null;
+}
