@@ -1,28 +1,32 @@
-import { fetchUser } from '../../../store/reducers/profil';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { fetchUser } from '../../../store/reducers/profil';
+
+import L, { LatLngExpression, latLng } from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
+import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
+
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
-import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
-import L, { LatLngExpression, latLng, LatLngLiteral } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
+
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
 import avatarNone from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
+
 function Profil() {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
-  const loading = useAppSelector((state) => state.profil.loading);
+
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
-  const user_address = useAppSelector((state) => state.profil.user_address);
   const longitude = useAppSelector((state) => state.profil.longitude);
   const latitude = useAppSelector((state) => state.profil.latitude);
   const size = useAppSelector((state) => state.profil.animal_size);
@@ -57,6 +61,7 @@ function Profil() {
     shadowSize: [35, 40],
     shadowAnchor: [3, 17],
   });
+
   const renderSize = () => {
     if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
@@ -71,6 +76,7 @@ function Profil() {
     }
     return null;
   };
+
   const renderOptions = () => {
     if (
       additionnal_information !== undefined &&
@@ -89,84 +95,102 @@ function Profil() {
     }
     return null;
   };
+
   return (
     <div className="page-wrapper">
       <Header />
-      <div className="profil-wrapper">
-        <div className="container-profil">
-          <div className="aside-profil">
-            {/* <img className="main-img" src={avatar} /> */}
-            <img className="card-image" src={avatarNone} alt="Avatar" />
-            <h3 className="profil-title">
-              {lastname} peut effectuer la garde à domicile {user_address}
-            </h3>
-            {longitude && (
-              <div className="leflet-container">
-                <LeafletMap
-                  key={center.toString()}
-                  center={center}
-                  zoom={15}
-                  children={undefined}
-                >
-                  <Marker
-                    position={L.latLng(latitude, longitude)}
-                    icon={myIcon}
-                  >
-                    <Popup>
-                      <img src={avatarNone} alt="Avatar" />
-                      <div>
-                        <h2>
-                          {firstname} {lastname}
-                        </h2>
-                      </div>
-                    </Popup>
-                  </Marker>
-                </LeafletMap>
+      <div className="profil__wrapper">
+        <div className="profil__container">
+          {/* -----------------------------profil user-------------------------- */}
+          <div className="profil__user">
+            <div className="profil__user-header">
+              <h1 className="profil__user-name">
+                {firstname} {lastname}
+              </h1>
+            </div>
+            <div className="profil__user-card">
+              <div className="profil__user-pref">
+                <img
+                  className="profil__user-pref-img"
+                  src={avatarNone}
+                  alt="Avatar"
+                />
+                {description && <p>{description}</p>}
+                {size && (
+                  <h3 className="profil-title">
+                    {firstname} garde les animaux de taille :
+                  </h3>
+                )}
+                <ul>{renderSize()}</ul>
+
+                {walking_duration && (
+                  <h3 className="profil-title">Disponibilité de promenade</h3>
+                )}
+                {walking_duration && <p>{walking_duration}</p>}
+                {disponibility_date && (
+                  <h3 className="profil-title">Disponibilité de {lastname}</h3>
+                )}
+                {disponibility_date && <DateRangeComp />}
               </div>
-            )}
-            {size && (
-              <p className="profil-title">
-                {lastname} garde les animaux de taille :
-              </p>
-            )}
-            <ul>{renderSize()}</ul>
-            {accommodation || garden || additionnal_information ? (
-              <p className="profil-title">
-                À propos du domicile de {lastname}:
-              </p>
-            ) : null}
-            <ul>
-              {accommodation && <li>{accommodation}</li>}
-              {garden && <li>{garden}</li>}
-              {renderOptions()}
-            </ul>
-            {walking_duration && (
-              <p className="profil-title">Disponibilité de promenade</p>
-            )}
-            {walking_duration && <p>{walking_duration}</p>}
-            {disponibility_date && (
-              <p className="profil-title">Disponibilité de {lastname}</p>
-            )}
-            {disponibility_date && <DateRangeComp />}
+
+              <div className="profil__user-home">
+                {longitude && (
+                  <div className="leflet-container">
+                    <LeafletMap
+                      key={center.toString()}
+                      center={center}
+                      zoom={13}
+                    >
+                      <Marker
+                        position={L.latLng(latitude, longitude)}
+                        icon={myIcon}
+                      >
+                        <Popup>
+                          <img src={avatarNone} alt="Avatar" />
+                          <div>
+                            <h2>
+                              {firstname} {lastname}
+                            </h2>
+                          </div>
+                        </Popup>
+                      </Marker>
+                    </LeafletMap>
+                  </div>
+                )}
+                {accommodation || garden || additionnal_information ? (
+                  <h3 className="profil-title">
+                    À propos du domicile de {firstname}:
+                  </h3>
+                ) : null}
+                <ul>
+                  {accommodation && <li>{accommodation}</li>}
+                  {garden && <li>{garden}</li>}
+                  {renderOptions()}
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="main-profil">
-            <h1>
-              {firstname} {lastname}
-            </h1>
-            {description && <p>{description}</p>}
-            <AnimalCard
-              type={type}
-              name={name}
-              race={race}
-              age={date_birth}
-              size={size_animal}
-              pipi={walk}
-              repa={food}
-              energy={energy}
-            />
-            <Link className="link-animal" to={'/account/animal-form'}>
-              <Button prop="Ajoutez votre animal de compagnie" />
-            </Link>
+          {/* -----------------------------profil animal------------------------ */}
+          <div className="profil__animal">
+            <div className="profil__animal-header">
+              <h1 className="profil__animal-name">Mon animal de compagnie</h1>
+            </div>
+            {type ? (
+              <AnimalCard
+                type={type}
+                name={name}
+                race={race}
+                age={date_birth}
+                size={size_animal}
+                pipi={walk}
+                repa={food}
+                energy={energy}
+              />
+            ) : (
+              <Link className="link-animal" to={'/account/animal-form'}>
+                <Button prop="Ajoutez votre animal de compagnie" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -174,4 +198,5 @@ function Profil() {
     </div>
   );
 }
+
 export default Profil;

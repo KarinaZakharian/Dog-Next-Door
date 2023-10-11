@@ -1,12 +1,15 @@
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import './Header.scss';
-import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
-
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import { logout } from '../../../store/reducers/login';
 import Humburger from './Humburger/Humburger';
+
+import searchIcon from '../../../assets/search-blue.png';
+import inboxIcon from '../../../assets/inbox-96.png';
+import profilIcon from '../../../assets/customer-100.png';
+import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
+import './Header.scss';
 
 function Header() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -28,23 +31,24 @@ function Header() {
             <img className="menu__logo" src={mainLogo} alt="main-logo" />
           </NavLink>
           <NavLink className="menu__menu-item" to="/search">
-            Recherche
+            <img className="menu-icon" src={searchIcon} alt="search icon" />
           </NavLink>
         </div>
-        <NavLink className="menu__menu-item" to="/account/inbox">
-          Boite de reception
-        </NavLink>
+
         {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
-              <NavLink className="menu__menu-item" to="/account">
-                Profil
-              </NavLink>
               <NavLink className="menu__menu-item" to="/account/form">
                 Profil form
               </NavLink>
             </div>
             <div className="menu__menu-connection">
+              <NavLink className="menu__menu-item" to="/account/inbox">
+                <img className="menu-icon" src={inboxIcon} alt="inbox icon" />
+              </NavLink>
+              <NavLink className="menu__menu-item" to="/account">
+                <img className="menu-icon" src={profilIcon} alt="profil icon" />
+              </NavLink>
               <strong>{firstname}</strong>
               <button
                 className="menu__menu-button"

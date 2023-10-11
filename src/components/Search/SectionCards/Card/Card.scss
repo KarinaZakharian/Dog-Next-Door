@@ -25,10 +25,14 @@
     border-radius: 50%;
   }
 
+  &-title {
+    color: v.$color-dark;
+  }
+
   &-content {
     padding: 1rem;
     width: 100%;
-    color: v.$color-dark;
+    color: v.$color-text;
   }
 
   &-link {

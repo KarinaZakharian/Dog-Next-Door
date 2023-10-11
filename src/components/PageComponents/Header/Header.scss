@@ -8,10 +8,17 @@
   padding: 10px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
   justify-content: space-between;
   background-color: v.$color-main;
   max-width: 1500px;
+
+  &-icon {
+    width: 40px;
+    &:hover {
+      @include v.hover;
+    }
+  }
 
   &__logo {
     width: 150px;
@@ -37,7 +44,6 @@
     gap: 15px;
   }
   &__menu-item {
-    margin-right: 20px;
     text-decoration: none;
     @include v.title-nav;
     @include v.transition;

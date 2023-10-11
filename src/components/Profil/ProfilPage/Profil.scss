@@ -1,45 +1,134 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
 
-.profil-wrapper {
+// ----------------------------wrapper------------------------------ //
+
+.profil__wrapper {
   min-height: 100vh;
-  background-image: url(../../../assets/chienv2.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  flex-grow: 1;
-  background-position: center;
+  background-color: v.$color-flash;
 }
-.container-profil {
+
+.profil__container {
   @include v.form-styling;
   max-width: 1300px;
+  flex-direction: column;
+  margin: 2rem auto;
+}
+// -------------------------profil user----------------------------- //
+
+.profil__user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  &-header {
+    background-color: v.$color-dark;
+    width: 100%;
+    border-radius: 10px;
+    color: v.$color-main;
+    text-align: center;
+  }
+}
+
+.profil__user-card {
+  @include v.card-styling;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
   flex-direction: row;
 }
-.aside-profil {
-  padding: 20px;
+
+.profil__user-pref {
   width: 50%;
-}
-.main-profil {
-  padding: 20px;
-  width: 50%;
-}
-.main-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-}
-.profil-title {
-  @include v.label;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-img {
+    width: 300px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
 }
 
-ul {
-  list-style: none;
+.profil__user-home {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.link-animal {
-  text-decoration: none;
-  @include v.transition;
+// -------------------------profil animal----------------------------- //
+
+.profil__animal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  &-header {
+    background-color: v.$color-dark;
+    width: 100%;
+    border-radius: 10px;
+    color: v.$color-main;
+    text-align: center;
+  }
 }
+
+.profil__animal-card {
+  @include v.card-styling;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+}
+
+// -------------------------Leaflet Map----------------------------- //
+
 .leflet-container {
+  @include v.card-styling;
+  padding: 0;
   height: 200px;
   width: 100%;
+  margin-bottom: 1rem;
 }
+
+// .container-profil {
+//   @include v.form-styling;
+//   max-width: 1300px;
+//   flex-direction: row;
+// }
+// .aside-profil {
+//   padding: 20px;
+//   width: 50%;
+// }
+// .main-profil {
+//   padding: 20px;
+//   width: 50%;
+// }
+// .main-img {
+//   width: 150px;
+//   height: 150px;
+//   border-radius: 50%;
+// }
+// .profil-title {
+//   @include v.label;
+// }
+
+// ul {
+//   list-style: none;
+// }
+
+// .link-animal {
+//   text-decoration: none;
+//   @include v.transition;
+// }
