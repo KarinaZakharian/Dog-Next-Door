@@ -1,32 +1,112 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
-.label {
-  @include v.label;
-  margin-bottom: 5px;
-  margin-top: 15px;
-}
-.animal-form {
-  @include v.form-styling;
-  width: 70%;
-}
-.radio-animal {
+
+.booking-container {
+  position: absolute;
+  top: 85px; /* Adjust as needed */
+  left: 0; /* Adjust as needed */
+
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(v.$color-border, 0.7);
   display: flex;
-  flex-direction: row;
-  gap: 40px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  background-color: v.$color-flash;
-  border-radius: 0 0 10px 10px;
-  padding-bottom: 10px;
-}
-.title-animal {
-  @include v.title-form-text;
-  background-color: v.$color-flash;
-  margin-bottom: 0;
-  border-radius: 10px 10px 0 0;
+
+  .booking-card {
+    @include v.form-styling;
+    width: 70%;
+    position: relative;
+    opacity: 100%;
+
+    &__title {
+      @include v.title-form-text;
+      margin-top: 20px;
+      background-color: v.$color-flash;
+      border-radius: 10px;
+
+      @media screen and (max-width: 414px) {
+        @include v.title-form-text-phone;
+      }
+    }
+
+    .main-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0 20px;
+      border-radius: 10px;
+      border: 2px solid v.$color-border;
+
+      @media screen and (max-width: 820px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media screen and (max-width: 414px) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &__image {
+      width: 100px;
+
+      @media screen and (max-width: 820px) {
+        width: 50px;
+      }
+    }
+
+    &__ad-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    &__ad-image {
+      width: 25px;
+    }
+
+    &__info {
+      @include v.label;
+      padding: 0 20px;
+
+      @media screen and (max-width: 820px) {
+        padding: 0;
+      }
+
+      @media screen and (max-width: 414px) {
+        @include v.label-phone;
+        padding: 0 0 10px 0;
+      }
+    }
+  }
+
+  .animal-form {
+    @include v.form-styling;
+    width: 100%;
+
+    @media screen and (max-width: 414px) {
+      padding: 10px;
+    }
+  }
 }
 
-@media screen and (max-width: 414px) {
-  .label {
-    @include v.label-phone;
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &__image {
+    max-width: 24px;
   }
+}
+.display {
+  display: none;
 }

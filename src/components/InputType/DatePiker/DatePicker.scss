@@ -28,8 +28,15 @@
   }
 }
 
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
 @media screen and (max-width: 414px) {
-  .rdrDefinedRangesWrapper {
-    display: none;
+  .rdrCalendarWrapper {
+    width: 245px;
+    position: absolute;
+    top: 517px;
+    left: 13px;
   }
 }

@@ -12,14 +12,24 @@ import { Marker, Popup } from 'react-leaflet';
 import marker from '../../assets/dog-area.png';
 import shadow from '../../assets/dog-area-shadow.png';
 import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
+import Booking from './Booking/Booking';
 function Petsitter() {
+  const [isBookingContainerVisible, setIsBookingContainerVisible] =
+    useState(false);
+
+  // Function to show the booking container
+  const showBookingContainer = () => {
+    setIsBookingContainerVisible(true);
+  };
+
   const dispatch = useAppDispatch();
   const { id } = useParams();
   console.log(id);
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
   }, [id]);
-  const account = useAppSelector((state) => state.login.firstname);
+  // const account = useAppSelector((state) => state.login.firstname);
+  const account = 'karina';
   const user = useAppSelector((state) => state.sitter.user);
   console.log('petsitter', user);
   const firstname = user?.lastname;
@@ -103,7 +113,12 @@ function Petsitter() {
             {description && <p>{description}</p>}
             {latitude && (
               <div className="leflet-container">
-                <LeafletMap key={center.toString()} center={center} zoom={15} children={undefined}>
+                <LeafletMap
+                  key={center.toString()}
+                  center={center}
+                  zoom={15}
+                  children={undefined}
+                >
                   <Marker
                     position={L.latLng(latitude, longitude)}
                     icon={myIcon}
@@ -120,11 +135,7 @@ function Petsitter() {
                 </LeafletMap>
               </div>
             )}
-            {account && (
-              <Link to={'/petsitter/' + id + '/booking'}>
-                <Button prop="Booking" />
-              </Link>
-            )}
+            {account && <button onClick={showBookingContainer}>Booking</button>}
             {!account && (
               <Link to={'/subscribe'}>
                 <Button prop="Booking" />
@@ -133,6 +144,10 @@ function Petsitter() {
           </div>
         </div>
       </div>
+      <Booking
+        isBookingContainerVisible={isBookingContainerVisible}
+        setIsBookingContainerVisible={setIsBookingContainerVisible}
+      />
       <Footer />
     </div>
   );

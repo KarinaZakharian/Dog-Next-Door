@@ -6,9 +6,10 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import './DatePicker.scss';
 import { useEffect, useRef, useState } from 'react';
 interface InputProps {
-  legend: string;
+  minDate: Date;
+  maxDate: Date;
 }
-function DateRangePickerComp({ legend }: InputProps) {
+function BookingRangePickerComp({ minDate, maxDate }: InputProps) {
   /* open close */
   const [open, setOpen] = useState(false);
 
@@ -47,7 +48,6 @@ function DateRangePickerComp({ legend }: InputProps) {
 
   return (
     <div className="calendarWrap">
-      <p className="legend">{legend}</p>
       <input
         name="disponibility_date"
         value={`${format(state.selection.startDate, ' dd/MM/YYY')} au ${format(
@@ -63,6 +63,8 @@ function DateRangePickerComp({ legend }: InputProps) {
         {open && (
           <DateRangePicker
             onChange={(item) => setState({ ...state, ...item })}
+            minDate={minDate}
+            maxDate={maxDate}
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             months={1}
@@ -78,4 +80,4 @@ function DateRangePickerComp({ legend }: InputProps) {
   );
 }
 
-export default DateRangePickerComp;
+export default BookingRangePickerComp;

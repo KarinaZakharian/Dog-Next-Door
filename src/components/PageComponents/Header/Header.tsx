@@ -34,6 +34,11 @@ function Header() {
         <NavLink className="menu__menu-item" to="/account/inbox">
           Boite de reception
         </NavLink>
+
+        <NavLink className="menu__menu-item" to="/petsitter/:id/booking">
+          Booking
+        </NavLink>
+
         {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
