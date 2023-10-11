@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Header.scss';
-import mainLogo from '../../../assets/Logo-ODogNextDoor.svg';
+import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 

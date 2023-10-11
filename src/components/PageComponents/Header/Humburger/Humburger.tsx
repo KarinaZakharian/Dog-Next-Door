@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { logout } from '../../../../store/reducers/login';
-import mainLogo from '../../../../assets/Logo-ODogNextDoor.svg';
+import mainLogo from '../../../../assets/Logo-ODogNextDoor-blue.png';
 
 import './Humburger.scss';
 

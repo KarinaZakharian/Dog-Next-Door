@@ -18,10 +18,12 @@ import small from '../../assets/icons8-dog-20.png';
 import medium from '../../assets/icons8-dog-35.png';
 import big from '../../assets/icons8-dog-55.png';
 import geant from '../../assets/icons8-dog-64.png';
-import search from '../../assets/search.png';
-import swap from '../../assets/swap.png';
-import security from '../../assets/security.png';
-import marketImg from '../../assets/marketImg.png';
+import search from '../../assets/search-blue.png';
+import swap from '../../assets/swap-blue.png';
+import security from '../../assets/security-blue.png';
+import avatar1 from '../../../public/avatar1.jpg';
+import avatar2 from '../../../public/avatar2.jpg';
+import avatar3 from '../../../public/avatar3.jpg';
 import './index.scss';
 
 function Home() {
@@ -210,6 +212,47 @@ function Home() {
             error molestias magnam consequuntur minus debitis, dolore alias,
             iusto nesciunt vero.
           </p>
+        </div>
+      </section>
+      <section className="testimonials">
+        <h2 className="testimonials__title">Votre avis compte</h2>
+        <div className="testimonials__cards">
+          <div className="testimonials__card">
+            <img
+              src={avatar1}
+              alt="avatar"
+              className="testimonials__card-avatar"
+            />
+            <h5 className="testimonials__card-name">Coralie H.</h5>
+            <p className="testimonials__card-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+              eaque?
+            </p>
+          </div>
+          <div className="testimonials__card">
+            <img
+              src={avatar2}
+              alt="avatar"
+              className="testimonials__card-avatar"
+            />
+            <h5 className="testimonials__card-name">John D.</h5>
+            <p className="testimonials__card-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+              eaque?
+            </p>
+          </div>
+          <div className="testimonials__card">
+            <img
+              src={avatar3}
+              alt="avatar"
+              className="testimonials__card-avatar"
+            />
+            <h5 className="testimonials__card-name">Brandon L.</h5>
+            <p className="testimonials__card-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+              eaque?
+            </p>
+          </div>
         </div>
       </section>
       <Footer />
