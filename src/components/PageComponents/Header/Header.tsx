@@ -37,11 +37,7 @@ function Header() {
 
         {firstname && (
           <div className="menu__nav-wrapper">
-            <div className="menu__nav-menu">
-              <NavLink className="menu__menu-item" to="/account/form">
-                Profil form
-              </NavLink>
-            </div>
+            <div className="menu__nav-menu"></div>
             <div className="menu__menu-connection">
               <NavLink className="menu__menu-item" to="/account/inbox">
                 <img className="menu-icon" src={inboxIcon} alt="inbox icon" />

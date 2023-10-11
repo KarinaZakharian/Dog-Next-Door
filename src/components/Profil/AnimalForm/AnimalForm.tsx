@@ -1,18 +1,8 @@
-/* eslint-disable prettier/prettier */
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import swal from 'sweetalert';
-// import { success, fillProfilForm } from '../../../store/reducers/profil-form';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { success, fillAnimalForm } from '../../../store/reducers/animal-form';
-
-import dog from '../../../assets/icons8-dog-100.png';
-import cat from '../../../assets/icons8-cat-100.png';
-import small from '../../../assets/icons8-dog-20.png';
-import medium from '../../../assets/icons8-dog-35.png';
-import big from '../../../assets/icons8-dog-55.png';
-import geant from '../../../assets/icons8-dog-64.png';
-import './AnimalForm.scss';
+import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -21,6 +11,14 @@ import Footer from '../../PageComponents/Footer/Footer';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import Radio from '../../InputType/Radio/Radio';
 import CalendarComp from '../../InputType/DatePiker/DateSelect';
+
+import dog from '../../../assets/icons8-dog-100.png';
+import cat from '../../../assets/icons8-cat-100.png';
+import small from '../../../assets/icons8-dog-20.png';
+import medium from '../../../assets/icons8-dog-35.png';
+import big from '../../../assets/icons8-dog-55.png';
+import geant from '../../../assets/icons8-dog-64.png';
+import './AnimalForm.scss';
 
 function AnimalForm() {
   const navigate = useNavigate();
@@ -54,7 +52,6 @@ function AnimalForm() {
   }
 
   // picking energy level
-
   const [pickedEnergy, setEnergy] = useState('');
   function handleEnergyChange(value: string): void {
     setEnergy(value);
@@ -62,17 +59,10 @@ function AnimalForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     const objData = Object.fromEntries(formData);
-    console.log(objData);
-
     dispatch(fillAnimalForm(formData));
-
-    // dispatch(fillProfilForm(formData));
-    // console.log(objData);
   };
 
   useEffect(() => {
@@ -102,8 +92,11 @@ function AnimalForm() {
       <main className="main">
         <div className="container">
           <form className="animal-form" onSubmit={handleSubmit}>
-            <p className="title-animal">Quel type d'animal ?</p>
-            <div className="radio-animal">
+            <h2 className="animal-form__title">
+              Ajouter votre animal de compagnie
+            </h2>
+
+            <div className="animal-form__type">
               <Radio
                 name="animal"
                 id="cat"
@@ -123,6 +116,7 @@ function AnimalForm() {
                 onRadioChange={handleAnimalChange}
               />
             </div>
+
             <Input name="name" placeholder="Nom" />
             <Input name="race" placeholder="Race(s)" />
             <CalendarComp />
@@ -166,6 +160,7 @@ function AnimalForm() {
                 onRadioChange={handleRadioChange}
               />
             </div>
+
             <p className="label">Horaires des pauses pipi</p>
             <div className="radio-wrapper">
               <RadioSimple
@@ -197,6 +192,7 @@ function AnimalForm() {
                 onRadioChange={handleWalkChange}
               />
             </div>
+
             <p className="label">Horaires des repas</p>
             <div className="radio-wrapper">
               <RadioSimple
@@ -214,6 +210,7 @@ function AnimalForm() {
                 onRadioChange={handleHourChange}
               />
             </div>
+
             <p className="label">Niveau d'énergie</p>
             <div className="radio-wrapper">
               <RadioSimple
@@ -238,9 +235,8 @@ function AnimalForm() {
                 onRadioChange={handleEnergyChange}
               />
             </div>
-            
-              <Button prop="Enregistrer" />
-            
+
+            <Button prop="Enregistrer" />
           </form>
         </div>
       </main>

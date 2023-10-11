@@ -1,28 +1,37 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
+
 .label {
   @include v.label;
   margin-bottom: 5px;
   margin-top: 15px;
 }
+
 .animal-form {
-  @include v.form-styling;
-  width: 70%;
-}
-.radio-animal {
   display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-  background-color: v.$color-flash;
-  border-radius: 0 0 10px 10px;
-  padding-bottom: 10px;
-}
-.title-animal {
-  @include v.title-form-text;
-  background-color: v.$color-flash;
-  margin-bottom: 0;
-  border-radius: 10px 10px 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 20px;
+
+  &__title {
+    background-color: v.$color-dark;
+    width: 100%;
+    border-radius: 10px;
+    color: v.$color-main;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  &__type {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    background-color: v.$color-flash;
+    border-radius: 10px;
+    margin: 2rem 0;
+  }
 }
 
 @media screen and (max-width: 414px) {

@@ -4,14 +4,12 @@ import {
   createReducer,
 } from '@reduxjs/toolkit';
 
-import axios from 'axios';
-
 import axiosInstance from '../../utils/axios';
-
 
 interface LoginState {
   firstname: string | null;
   lastname: string | null;
+  avatar: string | null;
   user_address: string | null;
   description: string | null;
   accomodation: string | null;
@@ -21,20 +19,21 @@ interface LoginState {
   animal_size: string[] | null;
   error: string | null;
   disponibility_date: string | null;
-  animal: string | null ;
-  date_birth: string |null; 
-  energy : string | null ;
-  mealhours: string | null ;
-  name :string |null ;
-  race : string | null ;
-  size : string | null;
-  walk : string | null;
+  animal: string | null;
+  date_birth: string | null;
+  energy: string | null;
+  mealhours: string | null;
+  name: string | null;
+  race: string | null;
+  size: string | null;
+  walk: string | null;
   latitude: number | null;
   longitude: number | null;
 }
 export const initialState: LoginState = {
   firstname: null,
   lastname: null,
+  avatar: null,
   user_address: null,
   error: null,
   description: null,
@@ -44,14 +43,14 @@ export const initialState: LoginState = {
   walking_duration: null,
   animal_size: null,
   disponibility_date: null,
-  animal:  null ,
-  date_birth: null, 
-  energy :  null ,
-  mealhours:  null ,
-  name :null ,
-  race :  null ,
-  size :  null,
-  walk :  null,
+  animal: null,
+  date_birth: null,
+  energy: null,
+  mealhours: null,
+  name: null,
+  race: null,
+  size: null,
+  walk: null,
   latitude: null,
   longitude: null,
 };
@@ -59,11 +58,11 @@ export const initialState: LoginState = {
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
-    //console.log(data);
 
     return data as {
       firstname: string;
       lastname: string;
+      avatar: string;
       user_address: string;
       description: string;
       accommodation: string;
@@ -73,29 +72,26 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       animal_size: string[];
       accomodation: string;
       disponibility_date: string;
-      animal: string  ;
-      date_birth: string; 
-      energy : string  ;
-      mealhours: string  ;
-      name :string ;
-      race : string  ;
-      size : string ;
-      walk : string ;
+      animal: string;
+      date_birth: string;
+      energy: string;
+      mealhours: string;
+      name: string;
+      race: string;
+      size: string;
+      walk: string;
       latitude: number;
       longitude: number;
     };
-  } catch (error) {
-    //console.log(error);
-  }
+  } catch (error) {}
 });
 
 const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
-      // state.logged = true;
-      console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
+      state.avatar = action.payload.avatar;
       state.user_address = action.payload.user_address;
       state.longitude = action.payload.longitude;
       state.latitude = action.payload.latitude;
@@ -116,16 +112,10 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.walk = action.payload?.animal.walk;
 
       state.error = null;
-
-      // state.token = action.payload.token;
     })
     .addCase(fetchUser.rejected, (state, action) => {
-      console.log('action rejected', action);
       state.error = action.payload.response.data;
       state.firstname = null;
-      //  console.log(action.error.message)
-      // state.error= action.error.messages
-      // je récupère l'erreur directement dans `action.error`
     });
 });
 

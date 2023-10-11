@@ -29,6 +29,7 @@
     border-radius: 10px;
     color: v.$color-main;
     text-align: center;
+    font-size: 1.5rem;
   }
 }
 
@@ -78,6 +79,7 @@
     border-radius: 10px;
     color: v.$color-main;
     text-align: center;
+    font-size: 1.5rem;
   }
 }
 
@@ -102,33 +104,15 @@
   margin-bottom: 1rem;
 }
 
-// .container-profil {
-//   @include v.form-styling;
-//   max-width: 1300px;
-//   flex-direction: row;
-// }
-// .aside-profil {
-//   padding: 20px;
-//   width: 50%;
-// }
-// .main-profil {
-//   padding: 20px;
-//   width: 50%;
-// }
-// .main-img {
-//   width: 150px;
-//   height: 150px;
-//   border-radius: 50%;
-// }
-// .profil-title {
-//   @include v.label;
-// }
+.link-animal {
+  @include v.transition;
+  text-decoration: none;
+  color: v.$color-dark;
+  margin: 0;
+}
 
-// ul {
-//   list-style: none;
-// }
-
-// .link-animal {
-//   text-decoration: none;
-//   @include v.transition;
-// }
+.link-profil {
+  @include v.transition;
+  text-decoration: none;
+  color: v.$color-dark;
+}

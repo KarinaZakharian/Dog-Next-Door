@@ -15,7 +15,7 @@ import AnimalCard from '../AnimalCard/AnimalCard';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
-import avatarNone from '../../../assets/Logo-ODogNextDoor-blue.png';
+import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
 
 function Profil() {
@@ -27,6 +27,7 @@ function Profil() {
 
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
+  const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);
   const latitude = useAppSelector((state) => state.profil.latitude);
   const size = useAppSelector((state) => state.profil.animal_size);
@@ -104,15 +105,15 @@ function Profil() {
           {/* -----------------------------profil user-------------------------- */}
           <div className="profil__user">
             <div className="profil__user-header">
-              <h1 className="profil__user-name">
+              <h2 className="profil__user-name">
                 {firstname} {lastname}
-              </h1>
+              </h2>
             </div>
             <div className="profil__user-card">
               <div className="profil__user-pref">
                 <img
                   className="profil__user-pref-img"
-                  src={avatarNone}
+                  src={avatar ? avatar : avatarLogo}
                   alt="Avatar"
                 />
                 {description && <p>{description}</p>}
@@ -122,7 +123,6 @@ function Profil() {
                   </h3>
                 )}
                 <ul>{renderSize()}</ul>
-
                 {walking_duration && (
                   <h3 className="profil-title">Disponibilité de promenade</h3>
                 )}
@@ -130,7 +130,7 @@ function Profil() {
                 {disponibility_date && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_date && <DateRangeComp />}
+                {disponibility_date && <DateRangeComp />}L
               </div>
 
               <div className="profil__user-home">
@@ -146,7 +146,7 @@ function Profil() {
                         icon={myIcon}
                       >
                         <Popup>
-                          <img src={avatarNone} alt="Avatar" />
+                          <img src={avatarLogo} alt="Avatar" />
                           <div>
                             <h2>
                               {firstname} {lastname}
@@ -169,11 +169,14 @@ function Profil() {
                 </ul>
               </div>
             </div>
+            <Link className="link-profil" to={'/account/form'}>
+              <Button prop="Modifier mes informations" />
+            </Link>
           </div>
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
             <div className="profil__animal-header">
-              <h1 className="profil__animal-name">Mon animal de compagnie</h1>
+              <h2 className="profil__animal-name">Mon animal de compagnie</h2>
             </div>
             {type ? (
               <AnimalCard

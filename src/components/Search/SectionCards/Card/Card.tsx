@@ -14,13 +14,12 @@ function Card({
   id,
   distance,
 }: CardProps) {
-  const avatarNone = avatarLogo;
   return (
     <Link className="card-link" to={'/petsitter/' + id}>
       <div className="card">
         <img
           className="card-image"
-          src={avatar ? avatar : avatarNone}
+          src={avatar ? avatar : avatarLogo}
           alt="Avatar"
         />
         <div className="card-content">
