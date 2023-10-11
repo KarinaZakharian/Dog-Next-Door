@@ -43,3 +43,12 @@ export interface BookingProps {
 //   zoom: number;
 //   scrollZooom: boolean;
 // } & MapOptions;
+export interface HomeState {
+  animal: string | null;
+  user_address: string | null;
+  disponibility_date: string | null;
+  size: string | null;
+  radius: string | null;
+  longitude: string | null;
+  latitude: string | null;
+}
