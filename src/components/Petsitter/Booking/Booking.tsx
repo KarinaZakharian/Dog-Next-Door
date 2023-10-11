@@ -1,11 +1,10 @@
-/* eslint-disable prettier/prettier */
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import swal from 'sweetalert';
-// import { success, fillProfilForm } from '../../../store/reducers/profil-form';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { success } from '../../../store/reducers/booking';
+import { success, fillBookingForm } from '../../../store/reducers/booking';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -14,26 +13,23 @@ import energy_icon from '../../../assets/icons8-energy-30.png';
 import food_icon from '../../../assets/icons8-dog-bowl-30.png';
 import close_icon from '../../../assets/icons8-close-64.png';
 
-import './Booking.scss';
-
-import { fillBookingForm } from '../../../store/reducers/booking';
-
 import Button from '../../InputType/Button/Button';
 import BookingRangePickerComp from '../../InputType/DatePiker/BookingDatePicker';
+import { BookingProps } from '../../../@types/user';
 
-interface BookingProps {
-  isBookingContainerVisible: boolean;
-  setIsBookingContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import './Booking.scss';
 
 function Booking({
   isBookingContainerVisible,
   setIsBookingContainerVisible,
 }: BookingProps) {
-  // Function to hide the booking container
-  const hideBookingContainer = () => {
-    setIsBookingContainerVisible(false);
-  };
+  // Initialize navigation and dispatch
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  // information from the Redux store
+  const error = useAppSelector((state) => state.booking.error);
+  const message = useAppSelector((state) => state.booking.message);
   //const type = useAppSelector((state) => state.profil.animal);
   //const name = useAppSelector((state) => state.profil.name);
   //const date_birth = useAppSelector((state) => state.profil.date_birth);
@@ -43,20 +39,12 @@ function Booking({
   //const food = useAppSelector((state) => state.profil.mealhours);
   //const race = useAppSelector((state) => state.profil.race);
 
-  const type = 'cat';
-  const name = 'anna';
-  const date_birth = '28-12-91';
-  const size_animal = 'small';
-  const energy = 'high';
-  const food = 'twice a day';
-  const race = 'home cat';
+  // Function to hide the booking container
+  const hideBookingContainer = () => {
+    setIsBookingContainerVisible(false);
+  };
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const error = useAppSelector((state) => state.booking.error);
-  const message = useAppSelector((state) => state.booking.message);
-
+  // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -71,7 +59,16 @@ function Booking({
     // dispatch(fillProfilForm(formData));
   };
 
+  const type = 'cat';
+  const name = 'anna';
+  const date_birth = '28-12-91';
+
+  const energy = 'high';
+  const food = 'twice a day';
+  const race = 'home cat';
+
   useEffect(() => {
+    // Handle success or error messages
     if (!error && message) {
       swal({
         icon: 'success',
