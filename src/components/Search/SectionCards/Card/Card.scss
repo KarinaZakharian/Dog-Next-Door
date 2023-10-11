@@ -1,4 +1,4 @@
-@use '../../../../styles/variables' as v;
+@use '../../../../styles/_variables' as v;
 
 .card {
   background-color: v.$color-main;
@@ -21,7 +21,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 150px;
     margin: 1rem;
     border-radius: 50%;
   }
@@ -29,10 +28,11 @@
   &-content {
     padding: 1rem;
     width: 100%;
+    color: v.$color-dark;
   }
 
   &-link {
-    color: #000;
+    color: v.$color-dark;
     text-decoration: none;
   }
 }

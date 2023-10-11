@@ -1,3 +1,5 @@
+@use '../../../styles/_variables' as v;
+
 .sectioncards {
   width: 60%;
 
@@ -7,6 +9,10 @@
 
     &-logo {
       opacity: 10%;
+    }
+
+    &-title {
+      color: v.$color-dark;
     }
   }
 

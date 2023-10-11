@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../../hooks/redux';
 import Card from './Card/Card';
-import logo from '../../../assets/Logo-ODogNextDoor.svg';
+import logo from '../../../assets/Logo-ODogNextDoor-blue.png';
 
 import './SectionCards.scss';
 import { UserProps } from '../../../@types/user';
@@ -29,7 +29,7 @@ function SectionCard() {
       ) : (
         <div className="sectioncards__noresult">
           <img src={logo} alt="" className="sectioncards__noresult-logo" />
-          <h2>Pas de résultat</h2>
+          <h2 className="sectioncards__noresult-title">Pas de résultat...</h2>
         </div>
       )}
     </div>
