@@ -11,6 +11,7 @@ import profilReduser from './profil';
 import bookingFormReducer from './booking';
 import bookingReducer from './inbox';
 import accountReducer from './account-inbox';
+import upcomingReducer from './upcoming-inbox';
 
 const reducer = {
   signup: signupReducer,
@@ -23,6 +24,7 @@ const reducer = {
   profil: profilReduser,
   booking: bookingFormReducer,
   inboxAccount: accountReducer,
+  inboxUpcoming: upcomingReducer,
 };
 
 export default reducer;

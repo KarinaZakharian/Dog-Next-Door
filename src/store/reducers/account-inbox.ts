@@ -6,11 +6,6 @@ import {
 
 import axiosInstance from '../../utils/axios';
 
-interface ValidationErrors {
-  errorMessage: string;
-  field_errors: Record<string, string>;
-}
-
 interface Card {
   type: string | null;
   name: string | null;
@@ -37,23 +32,22 @@ export const initialState: InboxState = {
   declineMessage: null,
 };
 
-export const fetchInboxAnimal = createAsyncThunk<
-  any, // type de la valeur retourné //  TODO
+export const fetchInboxAnimal =
+  createAsyncThunk<// type de la valeur retourné //  TODO
   {
     rejecValue: string;
-  }
->('inbox/fetchanimal', async (thunkAPI) => {
-  try {
-    const response = await axiosInstance.get(`account/inbox`);
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    if (typeof error === 'string') {
-      return thunkAPI.rejectWithValue(error);
+  }>('inbox/fetchanimal', async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`account/inbox`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      if (typeof error === 'string') {
+        return thunkAPI.rejectWithValue(error);
+      }
+      console.error(error);
     }
-    console.error(error);
-  }
-});
+  });
 
 export const clientAccept = createAsyncThunk<
   any, // type de la valeur retourné //  TODO

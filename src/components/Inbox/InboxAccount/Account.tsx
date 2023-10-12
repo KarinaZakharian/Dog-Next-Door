@@ -12,7 +12,7 @@ function Account() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchInboxAnimal);
+    dispatch(fetchInboxAnimal());
   }, []);
 
   const animals = useAppSelector((state) => state.inboxAccount.animal);

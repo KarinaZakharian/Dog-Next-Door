@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Footer from '../../PageComponents/Footer/Footer';
@@ -7,22 +7,15 @@ import AnimalCard from '../CardsInbox/Cards';
 
 import '../InboxAccount/Account.scss';
 import UpcomingCard from './CardsUpcoming/CardsUpcoming';
+import { fetchUpcomingAnimal } from '../../../store/reducers/upcoming-inbox';
+import state from 'sweetalert/typings/modules/state';
 
 function Account() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const animals = [
-    {
-      type: 'cat',
-      name: 'Whiskers',
-      dates: 'July 5, 2023 - July 10, 2023',
-    },
-    {
-      type: 'dog',
-      name: 'Rex',
-      dates: 'June 15, 2023 - June 22, 2023',
-    },
-  ];
+  useEffect(() => {
+    dispatch(fetchUpcomingAnimal());
+  }, []);
+  const animals = useAppSelector((state) => state.inboxUpcoming.animal);
   return (
     <div>
       <Header />
@@ -44,14 +37,15 @@ function Account() {
               </Link>
             </div>
             <div>
-              {animals.map((animal, index) => (
-                <UpcomingCard
-                  key={index} // It's a good practice to provide a unique key for each component
-                  type={animal.type}
-                  name={animal.name}
-                  dates={animal.dates}
-                />
-              ))}
+              {animals &&
+                animals.map((animal, index) => (
+                  <UpcomingCard
+                    key={index} // It's a good practice to provide a unique key for each component
+                    type={animal.type}
+                    name={animal.name}
+                    dates={animal.dates}
+                  />
+                ))}
             </div>
           </div>
         </div>
