@@ -58,7 +58,10 @@ export const fillDateForm = createAsyncThunk(
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await axiosInstance.patch('/account/form', objData);
+      const { data } = await axiosInstance.post(
+        '/account/adddisponibility',
+        objData
+      );
       return data as {
         message: string;
       };

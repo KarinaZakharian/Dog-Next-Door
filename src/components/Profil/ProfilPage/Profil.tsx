@@ -45,9 +45,13 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
-  const firstname = 'karina';
-  //const firstname = useAppSelector((state) => state.profil.firstname);
+  }, [
+    isSignupContainerVisible,
+    isFormContainerVisible,
+    isDateContainerVisible,
+  ]);
+  //const firstname = 'karina';
+  const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);
@@ -65,6 +69,8 @@ function Profil() {
   const disponibility_date = useAppSelector(
     (state) => state.profil.disponibility_date
   );
+
+  console.log(size, description, garden, accommodation);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
   const date_birth = useAppSelector((state) => state.profil.date_birth);
