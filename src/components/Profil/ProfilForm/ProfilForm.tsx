@@ -116,6 +116,8 @@ function ProfilForm({
           name="description"
           label="Ma description"
           placeholder="About me"
+          rows={5}
+          cols={33}
         />
         <p className="label-form">Mon logement</p>
         <div className="radio-wrapper">

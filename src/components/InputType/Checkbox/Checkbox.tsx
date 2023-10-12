@@ -17,7 +17,6 @@ function CheckboxGroup({
 }: CheckboxGroupProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   onSelectionChange(selectedOptions);
-  console.log(selectedOptions);
 
   const handleCheckboxChange = (option: string) => {
     if (selectedOptions.includes(option)) {

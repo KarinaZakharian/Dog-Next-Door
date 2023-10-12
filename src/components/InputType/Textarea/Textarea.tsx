@@ -1,19 +1,18 @@
-/* eslint-disable prettier/prettier */
 import './Textarea.scss';
-
-import { useState } from 'react';
+import { useState, ChangeEventHandler } from 'react';
 
 interface InputProps {
-  // je dois avoir une _prop_ `name` : une chaîne de caractères
   label: string;
   placeholder: string;
   name: string;
+  rows: number;
+  cols: number;
 }
 
 function TextareaInput({ name, label, placeholder }: InputProps) {
   const [value, setValue] = useState('');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     setValue(event.target.value);
   };
 
@@ -28,8 +27,8 @@ function TextareaInput({ name, label, placeholder }: InputProps) {
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        rows="5"
-        cols="33"
+        rows={5}
+        cols={33}
       />
     </div>
   );

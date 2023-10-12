@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import { FormEvent, useEffect } from 'react';
 import swal from 'sweetalert';
 import { success, fillDateForm } from '../../../store/reducers/profil-form';

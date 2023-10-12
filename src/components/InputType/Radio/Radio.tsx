@@ -44,5 +44,4 @@ function Radio({
   );
 }
 
-// == Export
 export default Radio;

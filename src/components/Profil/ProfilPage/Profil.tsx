@@ -50,7 +50,7 @@ function Profil() {
     isFormContainerVisible,
     isDateContainerVisible,
   ]);
-  //const firstname = 'karina';
+
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
@@ -96,7 +96,6 @@ function Profil() {
       if (Array.isArray(size)) {
         return size.map((item, index) => <li key={index}>{item}</li>);
       } else if (typeof size === 'string') {
-        // Assuming 'size' is a string like "Petit (0-7 kg)"
         const sizes = size.split(',');
         return sizes.map((item, index) => <li key={index}>{item}</li>);
       } else {

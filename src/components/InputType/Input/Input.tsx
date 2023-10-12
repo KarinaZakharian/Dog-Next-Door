@@ -17,8 +17,6 @@ function Input({ name, placeholder, defaultValue, ...props }: InputProps) {
     event.target.style.borderColor = 'initial';
   };
 
-  // console.log(name, value);
-
   return (
     <div className="input">
       <label htmlFor={name} className="input__label">

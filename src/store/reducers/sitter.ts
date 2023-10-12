@@ -4,8 +4,6 @@ import {
   createReducer,
 } from '@reduxjs/toolkit';
 
-import axios, { AxiosError } from 'axios';
-
 import axiosInstance from '../../utils/axios';
 
 interface ValidationErrors {
@@ -47,16 +45,7 @@ export const fetchUserById = createAsyncThunk<
     if (typeof error === 'string') {
       return thunkAPI.rejectWithValue(error);
     }
-
     console.error(error);
-
-    // à conserver au cas où
-    // let error = err as AxiosError<ValidationErrors> // cast the error for access
-    // if (!error.response) {
-    //   throw err
-    // }
-    // // We got validation errors, let's return those so we can reference in our component and set form errors
-    // return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
