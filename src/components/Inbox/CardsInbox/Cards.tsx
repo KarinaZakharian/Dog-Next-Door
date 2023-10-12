@@ -26,8 +26,8 @@ function AnimalCard({ type, name, dates }: AnimalProps) {
         <span className="animals-card__dates">{dates}</span>
       </div>
       <div className="row2">
-        <Button prop={'Accepter'} />
-        <Button prop={'Décline'} />
+        <button onClick={handleAccept}>Accepter</button>
+        <button onClick={handleDecline}>Décline</button>
       </div>
     </div>
   );
