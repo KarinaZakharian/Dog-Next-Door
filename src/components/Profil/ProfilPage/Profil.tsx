@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchUser } from '../../../store/reducers/profil';
@@ -17,15 +17,24 @@ import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
+import SignupForm from '../ProfilForm/SignupForm';
 
 function Profil() {
   const dispatch = useAppDispatch();
 
+  const [isSignupContainerVisible, setIsSignupContainerVisible] =
+    useState(false);
+
+  // Function to show the booking container
+  const showSignupContainer = () => {
+    setIsSignupContainerVisible(true);
+  };
+
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
-
-  const firstname = useAppSelector((state) => state.profil.firstname);
+  const firstname = 'karina';
+  //const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);
@@ -105,6 +114,8 @@ function Profil() {
           {/* -----------------------------profil user-------------------------- */}
           <div className="profil__user">
             <div className="profil__user-header">
+              <button onClick={showSignupContainer}>Booking</button>
+
               <h2 className="profil__user-name">
                 {firstname} {lastname}
               </h2>
@@ -197,6 +208,10 @@ function Profil() {
           </div>
         </div>
       </div>
+      <SignupForm
+        isSignupContainerVisible={isSignupContainerVisible}
+        setIsSignupContainerVisible={setIsSignupContainerVisible}
+      />
       <Footer />
     </div>
   );

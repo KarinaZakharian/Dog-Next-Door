@@ -20,8 +20,8 @@ import Uppast from '../Inbox/InboxUppast/Uppast';
 import Demandes from '../Inbox/Demandes/Demandes';
 
 function App() {
-  const firstname = useAppSelector((state) => state.login.firstname);
-  //const firstname = 'karina';
+  //const firstname = useAppSelector((state) => state.login.firstname);
+  const firstname = 'karina';
 
   return (
     <div className="app">
