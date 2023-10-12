@@ -130,7 +130,7 @@ function Profil() {
                 {disponibility_date && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_date && <DateRangeComp />}L
+                {disponibility_date && <DateRangeComp />}
               </div>
 
               <div className="profil__user-home">
