@@ -2,28 +2,29 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
 
-interface Card {
-  type: string | null;
-  name: string | null;
+interface User {
+  firstname: string | null;
+  lastname: string | null;
   dates: string | null;
+  status: string | null;
 }
 
 interface InboxState {
-  animal: Card | null;
+  user: User | null;
   error: string | undefined;
   message: string | null;
 }
 export const initialState: InboxState = {
-  animal: null,
+  user: null,
   error: undefined,
   message: null,
 };
 
-export const fetchUpcomingAnimal = createAsyncThunk<{
+export const fetchStatus = createAsyncThunk<{
   rejecValue: string;
-}>('inbox/upcominganimal', async (thunkAPI) => {
+}>('inbox/status', async (thunkAPI) => {
   try {
-    const response = await axiosInstance.get(`account/inbox/upcoming`);
+    const response = await axiosInstance.get(`account/inbox/demands`);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -35,9 +36,9 @@ export const fetchUpcomingAnimal = createAsyncThunk<{
 });
 
 // Create the  reducer
-const upcomingReducer = createReducer(initialState, (builder) => {
+const demandsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchUpcomingAnimal.rejected, (state, action) => {
+    .addCase(fetchStatus.rejected, (state, action) => {
       if (action.payload) {
         // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
         state.error = action.payload;
@@ -47,13 +48,13 @@ const upcomingReducer = createReducer(initialState, (builder) => {
       // state.error = action.payload.response.data;
       state.message = null;
     })
-    .addCase(fetchUpcomingAnimal.fulfilled, (state, action) => {
+    .addCase(fetchStatus.fulfilled, (state, action) => {
       console.log('fulffilled');
       console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
-      state.animal = action.payload;
+      state.user = action.payload;
     });
 });
 
-export default upcomingReducer;
+export default demandsReducer;
