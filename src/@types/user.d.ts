@@ -43,6 +43,10 @@ export interface SignupProps {
   setIsSignupContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface DateProps {
+  isDateContainerVisible: boolean;
+  setIsDateContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 export interface FormProps {
   isFormContainerVisible: boolean;
   setIsFormContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;

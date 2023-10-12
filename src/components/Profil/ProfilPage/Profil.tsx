@@ -19,6 +19,7 @@ import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
+import DateForm from '../ProfilForm/DateForm';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -27,6 +28,8 @@ function Profil() {
     useState(false);
 
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
+
+  const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
   // Function to show the booking container
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
@@ -34,6 +37,10 @@ function Profil() {
 
   const showFormContainer = () => {
     setIsFormContainerVisible(true);
+  };
+
+  const showDateContainer = () => {
+    setIsDateContainerVisible(true);
   };
 
   useEffect(() => {
@@ -187,6 +194,7 @@ function Profil() {
               </div>
             </div>
             <button onClick={showFormContainer}>Modif</button>
+            <button onClick={showDateContainer}>Modif date</button>
           </div>
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
@@ -219,6 +227,11 @@ function Profil() {
       <ProfilForm
         isFormContainerVisible={isFormContainerVisible}
         setIsFormContainerVisible={setIsFormContainerVisible}
+      />
+
+      <DateForm
+        isDateContainerVisible={isDateContainerVisible}
+        setIsDateContainerVisible={setIsDateContainerVisible}
       />
       <Footer />
     </div>
