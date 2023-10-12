@@ -30,15 +30,16 @@ function Booking({
   // information from the Redux store
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  //const type = useAppSelector((state) => state.profil.animal);
-  //const name = useAppSelector((state) => state.profil.name);
-  //const date_birth = useAppSelector((state) => state.profil.date_birth);
-  //const size_animal = useAppSelector((state) => state.profil.size);
-  //const walk = useAppSelector((state) => state.profil.walk);
-  //const energy = useAppSelector((state) => state.profil.energy);
-  //const food = useAppSelector((state) => state.profil.mealhours);
-  //const race = useAppSelector((state) => state.profil.race);
+  const type = useAppSelector((state) => state.profil.animal);
+  const name = useAppSelector((state) => state.profil.name);
+  const date_birth = useAppSelector((state) => state.profil.date_birth);
+  const size_animal = useAppSelector((state) => state.profil.size);
+  const walk = useAppSelector((state) => state.profil.walk);
+  const energy = useAppSelector((state) => state.profil.energy);
+  const food = useAppSelector((state) => state.profil.mealhours);
+  const race = useAppSelector((state) => state.profil.race);
 
+  console.log(type, name);
   // Function to hide the booking container
   const hideBookingContainer = () => {
     setIsBookingContainerVisible(false);
@@ -58,14 +59,6 @@ function Booking({
 
     // dispatch(fillProfilForm(formData));
   };
-
-  const type = 'cat';
-  const name = 'anna';
-  const date_birth = '28-12-91';
-
-  const energy = 'high';
-  const food = 'twice a day';
-  const race = 'home cat';
 
   useEffect(() => {
     // Handle success or error messages
@@ -101,9 +94,9 @@ function Booking({
         <p className="booking-card__title">Votre animal </p>
 
         <div className="main-info">
-          {type === 'cat' ? (
+          {type === 'Cat' ? (
             <img className="booking-card__image" src={cat} alt="Cat" />
-          ) : type === 'dog' ? (
+          ) : type === 'Dog' ? (
             <img className="booking-card__image" src={dog} alt="Dog" />
           ) : null}
           {name && <span className="booking-card__info">{name}</span>}

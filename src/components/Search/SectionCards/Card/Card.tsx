@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { CardProps } from '../../../../@types/user';
 
 import './Card.scss';
-import avatarLogo from '../../../../assets/Logo-ODogNextDoor.svg';
+import avatarLogo from '../../../../assets/Logo-ODogNextDoor-blue.png';
 
 function Card({
   avatar,

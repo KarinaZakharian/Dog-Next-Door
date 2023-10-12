@@ -13,7 +13,6 @@ import './Header.scss';
 
 function Header() {
   const firstname = useAppSelector((state) => state.login.firstname);
-  // const firstname = 'karina';
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -34,13 +33,6 @@ function Header() {
             <img className="menu-icon" src={searchIcon} alt="search icon" />
           </NavLink>
         </div>
-        <NavLink className="menu__menu-item" to="/account/inbox">
-          Boite de reception
-        </NavLink>
-
-        <NavLink className="menu__menu-item" to="/petsitter/:id/booking">
-          Booking
-        </NavLink>
 
         {firstname && (
           <div className="menu__nav-wrapper">

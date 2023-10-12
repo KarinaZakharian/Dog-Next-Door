@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserById } from '../../store/reducers/sitter';
@@ -10,13 +10,13 @@ import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
 import Header from '../PageComponents/Header/Header';
 import Footer from '../PageComponents/Footer/Footer';
 import DateRangeComp from '../InputType/DatePiker/DateRangeSelect';
-import Button from '../InputType/Button/Button';
-import L, { LatLngExpression, latLng, LatLngLiteral } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
-import marker from '../../assets/dog-area.png';
-import shadow from '../../assets/dog-area-shadow.png';
-import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
+import marker from '../../assets/dog-area-blue.png';
+import shadow from '../../assets/dog-area-shadow-blur.png';
 import Booking from './Booking/Booking';
+import AnimalCard from '../Profil/AnimalCard/AnimalCard';
+import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
+import Button from '../InputType/Button/Button';
+
 function Petsitter() {
   const [isBookingContainerVisible, setIsBookingContainerVisible] =
     useState(false);
@@ -32,8 +32,8 @@ function Petsitter() {
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
   }, [id]);
-  // const account = useAppSelector((state) => state.login.firstname);
-  const account = 'karina';
+  const account = useAppSelector((state) => state.login.firstname);
+
   const user = useAppSelector((state) => state.sitter.user);
   console.log('petsitter', user);
   const firstname = user?.lastname;
@@ -195,6 +195,12 @@ function Petsitter() {
               />
             )}
           </div>
+          {account && <button onClick={showBookingContainer}>Booking</button>}
+          {!account && (
+            <Link to={'/subscribe'}>
+              <Button prop="Booking" />
+            </Link>
+          )}
         </div>
       </div>
       <Booking
