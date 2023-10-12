@@ -16,6 +16,7 @@ import Booking from './Booking/Booking';
 import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
+import { UserProps } from '../../@types/user';
 
 function Petsitter() {
   const [isBookingContainerVisible, setIsBookingContainerVisible] =
@@ -32,28 +33,22 @@ function Petsitter() {
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
   }, [id]);
-  const account = useAppSelector((state) => state.login.firstname);
 
-  const user = useAppSelector((state) => state.sitter.user);
-  console.log('petsitter', user);
+  const user: UserProps = useAppSelector((state) => state.sitter.user);
+
   const firstname = user?.lastname;
   const lastname = user?.firstname;
   const avatar = user?.avatar;
   const size = user?.size;
   const description = user?.description;
   const garden = user?.garden;
-  const accommodation = user?.accomodation;
-  const additionnal_information = user?.additional_information;
-  const disponibilite = user?.disponibility_date;
+  const accommodation = user?.accommodation;
+  const additionnal_information = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
   const center: LatLngExpression = latLng(latitude, longitude);
-  const walking_duration = useAppSelector(
-    (state) => state.profil.walking_duration
-  );
-  const disponibility_date = useAppSelector(
-    (state) => state.profil.disponibility_date
-  );
+
+  const account = useAppSelector((state) => state.login.firstname);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
   const date_birth = useAppSelector((state) => state.profil.date_birth);
@@ -62,6 +57,12 @@ function Petsitter() {
   const energy = useAppSelector((state) => state.profil.energy);
   const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
+  const walking_duration = useAppSelector(
+    (state) => state.profil.walking_duration
+  );
+  const disponibility_date = useAppSelector(
+    (state) => state.profil.disponibility_date
+  );
 
   const myIcon = new L.Icon({
     iconUrl: marker,
@@ -86,6 +87,7 @@ function Petsitter() {
     }
     return null;
   };
+
   const renderOptions = () => {
     if (
       additionnal_information !== undefined &&
@@ -104,6 +106,7 @@ function Petsitter() {
     }
     return null;
   };
+
   return (
     <div className="page-wrapper">
       <Header />

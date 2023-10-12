@@ -5,14 +5,12 @@
 
 .profil__wrapper {
   min-height: 100vh;
-  background-color: v.$color-flash;
+  background-color: v.$color-border;
 }
 
 .profil__container {
   @include v.form-styling;
   max-width: 1300px;
-  flex-direction: column;
-  margin: 2rem auto;
 }
 // -------------------------profil user----------------------------- //
 
@@ -22,6 +20,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    padding: 0;
+  }
 
   &-header {
     background-color: v.$color-dark;
@@ -36,12 +39,13 @@
 .profil__user-card {
   @include v.card-styling;
   justify-content: space-between;
-  align-items: center;
   margin: 2rem 0;
-  padding: 20px;
   width: 100%;
   height: 100%;
-  flex-direction: row;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .profil__user-pref {
@@ -49,6 +53,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 
   &-img {
     width: 300px;
@@ -62,6 +70,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 // -------------------------profil animal----------------------------- //
@@ -72,6 +84,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
 
   &-header {
     background-color: v.$color-dark;
@@ -86,12 +102,9 @@
 .profil__animal-card {
   @include v.card-styling;
   justify-content: space-between;
-  align-items: center;
   margin: 2rem 0;
-  padding: 20px;
   width: 100%;
   height: 100%;
-  flex-direction: row;
 }
 
 // -------------------------Leaflet Map----------------------------- //

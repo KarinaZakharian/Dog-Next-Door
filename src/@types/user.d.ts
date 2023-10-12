@@ -1,19 +1,19 @@
 export interface UserProps {
-  description: string;
-  garden: string;
-  accommodation: string;
-  additionnal_information: string;
-  size: string;
-  distance: string;
-  id: string;
-  firstname: string;
-  lastname: string;
-  town: string;
-  country: string;
-  avatar: string;
-  latitude: number;
-  longitude: number;
-  user_address: string;
+  description: string | null;
+  garden: string | null;
+  accommodation: string | null;
+  additionnal_information: string | null;
+  size: string | null;
+  distance: string | null;
+  id: string | null;
+  firstname: string | null;
+  lastname: string | null;
+  town: string | null;
+  country: string | null;
+  avatar: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  user_address: string | null;
 }
 
 export interface CardProps {
