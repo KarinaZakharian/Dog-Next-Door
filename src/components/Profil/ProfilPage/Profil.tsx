@@ -20,6 +20,7 @@ import './Profil.scss';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
+import pencilForm from '../../../assets/pencil-white-64.png';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -132,11 +133,16 @@ function Profil() {
           {/* -----------------------------profil user-------------------------- */}
           <div className="profil__user">
             <div className="profil__user-header">
-              <button onClick={showSignupContainer}>Booking</button>
-
               <h2 className="profil__user-name">
                 {firstname} {lastname}
               </h2>
+              <div className="profil__user-header-button">
+                <img
+                  src={pencilForm}
+                  alt="pencil white"
+                  className="profil__user-header-button-img"
+                />
+              </div>
             </div>
             <div className="profil__user-card">
               <div className="profil__user-pref">
@@ -198,8 +204,54 @@ function Profil() {
                 </ul>
               </div>
             </div>
-            <button onClick={showFormContainer}>Modif</button>
-            <button onClick={showDateContainer}>Modif date</button>
+          </div>
+          {/* -------------------------------booking---------------------------- */}
+          <div className="profil__booking">
+            <div className="profil__booking-header">
+              <h2 className="profil__booking-title">Mes disponibilités</h2>
+            </div>
+            <div className="profil__booking-card">
+              <div className="profil__booking-button">
+                <h3 className="profil__booking-button-title">
+                  Modifier mes informations
+                </h3>
+                <button onClick={showSignupContainer}>
+                  Modifier mes informations
+                </button>
+              </div>
+
+              <div className="profil__booking-button">
+                <h3 className="profil__booking-button-title">
+                  Informations complémentaires
+                </h3>
+                <button onClick={showFormContainer}>
+                  Informations complémentaires
+                </button>
+              </div>
+
+              <div className="profil__booking-button">
+                <h3 className="profil__booking-button-title">
+                  ajouter une disponibilité
+                </h3>
+                <button onClick={showDateContainer}>
+                  ajouter une disponibilité
+                </button>
+              </div>
+            </div>
+            {/* -----------------------------popup form--------------------------- */}
+            <SignupForm
+              isSignupContainerVisible={isSignupContainerVisible}
+              setIsSignupContainerVisible={setIsSignupContainerVisible}
+            />
+            <ProfilForm
+              isFormContainerVisible={isFormContainerVisible}
+              setIsFormContainerVisible={setIsFormContainerVisible}
+            />
+
+            <DateForm
+              isDateContainerVisible={isDateContainerVisible}
+              setIsDateContainerVisible={setIsDateContainerVisible}
+            />
           </div>
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
@@ -225,19 +277,7 @@ function Profil() {
           </div>
         </div>
       </div>
-      <SignupForm
-        isSignupContainerVisible={isSignupContainerVisible}
-        setIsSignupContainerVisible={setIsSignupContainerVisible}
-      />
-      <ProfilForm
-        isFormContainerVisible={isFormContainerVisible}
-        setIsFormContainerVisible={setIsFormContainerVisible}
-      />
 
-      <DateForm
-        isDateContainerVisible={isDateContainerVisible}
-        setIsDateContainerVisible={setIsDateContainerVisible}
-      />
       <Footer />
     </div>
   );

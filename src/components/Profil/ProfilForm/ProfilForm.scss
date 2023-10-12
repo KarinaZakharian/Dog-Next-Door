@@ -24,9 +24,10 @@ p {
   margin-bottom: 15px;
 }
 .form__title {
-  background-color: v.$color-flash;
+  background-color: v.$color-dark;
   @include v.title-form-text;
   border-radius: 10px;
+  color: v.$color-main;
 }
 .main {
   height: 100%;
