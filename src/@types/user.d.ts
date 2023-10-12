@@ -42,6 +42,11 @@ export interface SignupProps {
   isSignupContainerVisible: boolean;
   setIsSignupContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface FormProps {
+  isFormContainerVisible: boolean;
+  setIsFormContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 // export type LeafletMapProps = {
 //   center: [number, number];
 //   children: ReactNode;

@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import { success, updateSignupForm } from '../../../store/reducers/profil-form';
@@ -25,8 +24,7 @@ function SignupForm({
   isSignupContainerVisible,
   setIsSignupContainerVisible,
 }: SignupProps) {
-  // Initialize navigation and dispatch
-  const navigate = useNavigate();
+  // Initialize dispatch
   const dispatch = useAppDispatch();
 
   // Function to hide the booking container

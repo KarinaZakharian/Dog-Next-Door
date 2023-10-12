@@ -18,6 +18,7 @@ import shadow from '../../../assets/dog-area-shadow-blur.png';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
 import SignupForm from '../ProfilForm/SignupForm';
+import ProfilForm from '../ProfilForm/ProfilForm';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -25,9 +26,14 @@ function Profil() {
   const [isSignupContainerVisible, setIsSignupContainerVisible] =
     useState(false);
 
+  const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
   // Function to show the booking container
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
+  };
+
+  const showFormContainer = () => {
+    setIsFormContainerVisible(true);
   };
 
   useEffect(() => {
@@ -180,9 +186,7 @@ function Profil() {
                 </ul>
               </div>
             </div>
-            <Link className="link-profil" to={'/account/form'}>
-              <Button prop="Modifier mes informations" />
-            </Link>
+            <button onClick={showFormContainer}>Modif</button>
           </div>
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
@@ -211,6 +215,10 @@ function Profil() {
       <SignupForm
         isSignupContainerVisible={isSignupContainerVisible}
         setIsSignupContainerVisible={setIsSignupContainerVisible}
+      />
+      <ProfilForm
+        isFormContainerVisible={isFormContainerVisible}
+        setIsFormContainerVisible={setIsFormContainerVisible}
       />
       <Footer />
     </div>
