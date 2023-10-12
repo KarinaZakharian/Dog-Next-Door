@@ -12,6 +12,7 @@ import bookingFormReducer from './booking';
 import accountReducer from './account-inbox';
 import upcomingReducer from './upcoming-inbox';
 import demandsReducer from './demandes-inbox';
+import messageReducer from './massage-inbox';
 
 const reducer = {
   signup: signupReducer,
@@ -26,6 +27,7 @@ const reducer = {
   inboxAccount: accountReducer,
   inboxUpcoming: upcomingReducer,
   inboxDemands: demandsReducer,
+  inboxUppast: messageReducer,
 };
 
 export default reducer;

@@ -3,12 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Footer from '../../PageComponents/Footer/Footer';
 import Header from '../../PageComponents/Header/Header';
-import AnimalCard from '../CardsInbox/Cards';
 
 import '../InboxAccount/Account.scss';
 import UpcomingCard from './CardsUpcoming/CardsUpcoming';
 import { fetchUpcomingAnimal } from '../../../store/reducers/upcoming-inbox';
-import state from 'sweetalert/typings/modules/state';
 
 function Account() {
   const dispatch = useAppDispatch();
