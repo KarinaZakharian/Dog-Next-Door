@@ -20,7 +20,8 @@ import './Profil.scss';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
-import pencilForm from '../../../assets/pencil-white-64.png';
+import pencilIcon from '../../../assets/pencil-white-64.png';
+import calendarIcon from '../../../assets/Calendar-Icon.png';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -138,13 +139,22 @@ function Profil() {
               </h2>
               <div className="profil__user-header-button">
                 <img
-                  src={pencilForm}
+                  src={pencilIcon}
                   alt="pencil white"
                   className="profil__user-header-button-img"
+                  onClick={showSignupContainer}
                 />
               </div>
             </div>
             <div className="profil__user-card">
+              <div className="profil__user-header-button">
+                <img
+                  src={pencilIcon}
+                  alt="pencil white"
+                  className="profil__user-header-button-img"
+                  onClick={showFormContainer}
+                />
+              </div>
               <div className="profil__user-pref">
                 <img
                   className="profil__user-pref-img"
@@ -213,29 +223,16 @@ function Profil() {
             <div className="profil__booking-card">
               <div className="profil__booking-button">
                 <h3 className="profil__booking-button-title">
-                  Modifier mes informations
-                </h3>
-                <button onClick={showSignupContainer}>
-                  Modifier mes informations
-                </button>
-              </div>
-
-              <div className="profil__booking-button">
-                <h3 className="profil__booking-button-title">
-                  Informations complémentaires
-                </h3>
-                <button onClick={showFormContainer}>
-                  Informations complémentaires
-                </button>
-              </div>
-
-              <div className="profil__booking-button">
-                <h3 className="profil__booking-button-title">
                   ajouter une disponibilité
                 </h3>
-                <button onClick={showDateContainer}>
-                  ajouter une disponibilité
-                </button>
+                <div className="profil__user-header-button">
+                  <img
+                    src={calendarIcon}
+                    alt="pencil white"
+                    className="profil__user-header-button-img"
+                    onClick={showDateContainer}
+                  />
+                </div>
               </div>
             </div>
             {/* -----------------------------popup form--------------------------- */}
