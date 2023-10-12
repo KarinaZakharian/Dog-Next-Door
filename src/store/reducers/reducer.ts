@@ -10,6 +10,7 @@ import sitterReducer from './sitter';
 import profilReduser from './profil';
 import bookingFormReducer from './booking';
 import bookingReducer from './inbox';
+import accountReducer from './account-inbox';
 
 const reducer = {
   signup: signupReducer,
@@ -21,7 +22,7 @@ const reducer = {
   sitter: sitterReducer,
   profil: profilReduser,
   booking: bookingFormReducer,
-  inbox: bookingReducer,
+  inboxAccount: accountReducer,
 };
 
 export default reducer;

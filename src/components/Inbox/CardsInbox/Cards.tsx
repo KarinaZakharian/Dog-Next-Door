@@ -1,16 +1,57 @@
+import { useEffect } from 'react';
+import swal from 'sweetalert';
 import cat from '../../../assets/icons8-cat-100.png';
 import dog from '../../../assets/icons8-dog-100.png';
-import Button from '../../InputType/Button/Button';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import {
+  clientAccept,
+  clientDecline,
+} from '../../../store/reducers/account-inbox';
 
 import './Cards.scss';
 
 interface AnimalProps {
-  type: string | null;
-  name: string | null;
+  type: string;
+  name: string;
   dates: string;
+  clientId: string;
 }
 
-function AnimalCard({ type, name, dates }: AnimalProps) {
+function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
+  const acceptMessage = useAppSelector(
+    (state) => state.inboxAccount.acceptMessage
+  );
+  const declineMessage = useAppSelector(
+    (state) => state.inboxAccount.declineMessage
+  );
+
+  const dispatch = useAppDispatch();
+  function handleAccept() {
+    dispatch(clientAccept(Number(clientId)));
+  }
+
+  function handleDecline() {
+    dispatch(clientDecline(Number(clientId)));
+  }
+
+  useEffect(() => {
+    if (acceptMessage) {
+      // Show a success message using a modal
+      swal(`${acceptMessage}`, {
+        icon: 'success',
+        timer: 1000,
+      });
+    }
+
+    if (declineMessage) {
+      // Show an error message using a modal
+      swal(`${declineMessage}`, {
+        icon: 'success',
+        timer: 1000,
+      });
+    }
+  }, [acceptMessage, declineMessage]);
+
   return (
     <div className="animals-card">
       <div className="row">
