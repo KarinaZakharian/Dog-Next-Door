@@ -1,14 +1,6 @@
-/* eslint-disable prettier/prettier */
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-
-import Input from '../../InputType/Input/Input';
-import Button from '../../InputType/Button/Button';
-import Header from '../../PageComponents/Header/Header';
-import Footer from '../../PageComponents/Footer/Footer';
-import AutoComplete from '../../InputType/Addresse/Addresse';
-import './Signup.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup, success } from '../../../store/reducers/signup';
@@ -20,27 +12,42 @@ import {
   citySchema,
 } from '../../../Validations/UserValidation';
 
+import Input from '../../InputType/Input/Input';
+import Button from '../../InputType/Button/Button';
+import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
+import AutoComplete from '../../InputType/Addresse/Addresse';
+import './Signup.scss';
+
 function SignUp() {
+  // Initialize navigation and dispatch
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  // State to manage validation for various form fields
   const [emailValid, setEmailIsValid] = useState(true);
   const [passwordValid, setPasswordIsValid] = useState(true);
   const [firstnameValid, setfirstnameIsValid] = useState(true);
   const [lastnameValid, setlastnameIsValid] = useState(true);
   const [cityValid, setCityIsValid] = useState(true);
+
+  // State to store coordinates for address selection
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
+  // Get error and success messages from the Redux store
   const error = useAppSelector((state) => state.signup.error);
-  // const firstname = useAppSelector((state) => state.signup.firstname);
   const message = useAppSelector((state) => state.signup.message);
+
+  // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    // Append coordinates to the form data
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    console.log('body envoyé dans la requête du signup', objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
@@ -67,10 +74,11 @@ function SignUp() {
     setlastnameIsValid(lastnameIsValid);
 
     const cityIsValid = await citySchema.isValid({
-      city: `${objData.city}`,
+      city: `${objData.user_address}`,
     });
     setCityIsValid(cityIsValid);
 
+    // If all validations pass, dispatch the signup action
     if (
       emailIsValid &&
       passwordIsValid &&
@@ -81,12 +89,13 @@ function SignUp() {
       dispatch(signup(formData));
     }
   };
-
+  // Handle success and error messages using useEffect
   useEffect(() => {
-    console.log('error', error);
-    console.log('message', message);
+    //console.log('error', error);
+    //console.log('message', message);
 
     if (!error && message) {
+      // Show a success message using a modal
       swal(`${message}`, {
         text: message,
         icon: 'success',
@@ -94,11 +103,13 @@ function SignUp() {
       });
       setTimeout(() => {
         dispatch(success());
+        // Redirect to the login page after a successful login
         navigate('/login', { replace: true });
       }, 1000);
     }
 
     if (error) {
+      // Show an error message using a modal
       swal(`${error}`, {
         icon: 'error',
         button: true,
@@ -132,7 +143,6 @@ function SignUp() {
             <AutoComplete
               style={{ borderColor: cityValid ? 'initial' : 'red' }}
               setCoordinates={setCoordinates}
-              
             />
             {!cityValid && <p className="error">Inscrivez votre adresse</p>}
             <Input

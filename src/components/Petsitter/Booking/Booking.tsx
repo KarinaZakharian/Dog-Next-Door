@@ -1,75 +1,50 @@
-/* eslint-disable prettier/prettier */
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import swal from 'sweetalert';
-// import { success, fillProfilForm } from '../../../store/reducers/profil-form';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { success } from '../../../store/reducers/booking';
+import { success, fillBookingForm } from '../../../store/reducers/booking';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
-import small from '../../../assets/icons8-dog-20.png';
-import medium from '../../../assets/icons8-dog-35.png';
-import big from '../../../assets/icons8-dog-55.png';
-import geant from '../../../assets/icons8-dog-64.png';
+import bd_icon from '../../../assets/icons8-birth-date-16.png';
+import energy_icon from '../../../assets/icons8-energy-30.png';
+import food_icon from '../../../assets/icons8-dog-bowl-30.png';
+import close_icon from '../../../assets/icons8-close-64.png';
+
+import Button from '../../InputType/Button/Button';
+import BookingRangePickerComp from '../../InputType/DatePiker/BookingDatePicker';
+import { BookingProps } from '../../../@types/user';
+
 import './Booking.scss';
 
-import Input from '../../InputType/Input/Input';
-import Button from '../../InputType/Button/Button';
-import Header from '../../PageComponents/Header/Header';
-import Footer from '../../PageComponents/Footer/Footer';
-import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
-import Radio from '../../InputType/Radio/Radio';
-import React from 'react';
-
-import { fillBookingForm } from '../../../store/reducers/booking';
-import { fetchUser } from '../../../store/reducers/profil';
-import DateRangePickerComp from '../../InputType/DatePiker/DateRangePicker';
-
-function Booking() {
+function Booking({
+  isBookingContainerVisible,
+  setIsBookingContainerVisible,
+}: BookingProps) {
+  // Initialize navigation and dispatch
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, []);
-
+  // information from the Redux store
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  const animal = useAppSelector((state) => state.animalForm.animals);
-  console.log(animal);
+  //const type = useAppSelector((state) => state.profil.animal);
+  //const name = useAppSelector((state) => state.profil.name);
+  //const date_birth = useAppSelector((state) => state.profil.date_birth);
+  //const size_animal = useAppSelector((state) => state.profil.size);
+  //const walk = useAppSelector((state) => state.profil.walk);
+  //const energy = useAppSelector((state) => state.profil.energy);
+  //const food = useAppSelector((state) => state.profil.mealhours);
+  //const race = useAppSelector((state) => state.profil.race);
 
-  // picking  the animal
-  const [pickedAnimal, setAnimal] = useState(animal?.animal || '');
-  function handleAnimalChange(value: string): void {
-    setAnimal(value);
-  }
+  // Function to hide the booking container
+  const hideBookingContainer = () => {
+    setIsBookingContainerVisible(false);
+  };
 
-  //  picking the size of the animal
-  const [picked, setPicked] = useState(animal?.size || '');
-  function handleRadioChange(value: string): void {
-    setPicked(value);
-  }
-
-  // picking the meal hours
-  const [pickedHour, setHour] = useState(animal?.mealhours || '');
-  function handleHourChange(value: string): void {
-    setHour(value);
-  }
-
-  // picking the walking hours
-  const [pickedWalk, setWalk] = useState(animal?.walk || '');
-  function handleWalkChange(value: string): void {
-    setWalk(value);
-  }
-
-  // picking energy level
-
-  const [pickedEnergy, setEnergy] = useState(animal?.energy || '');
-  function handleEnergyChange(value: string): void {
-    setEnergy(value);
-  }
-
+  // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -82,10 +57,18 @@ function Booking() {
     dispatch(fillBookingForm(formData));
 
     // dispatch(fillProfilForm(formData));
-    // console.log(objData);
   };
 
+  const type = 'cat';
+  const name = 'anna';
+  const date_birth = '28-12-91';
+
+  const energy = 'high';
+  const food = 'twice a day';
+  const race = 'home cat';
+
   useEffect(() => {
+    // Handle success or error messages
     if (!error && message) {
       swal({
         icon: 'success',
@@ -106,157 +89,68 @@ function Booking() {
   }, [error, message]);
 
   return (
-    <div className="page-wrapper">
-      <Header />
+    <div
+      className={`booking-container ${
+        isBookingContainerVisible ? '' : 'display'
+      }`}
+    >
+      <div className="booking-card">
+        <button className="close-button" onClick={hideBookingContainer}>
+          <img className="close-button__image" src={close_icon} alt="Cat" />
+        </button>
+        <p className="booking-card__title">Votre animal </p>
 
-      <main className="main">
-        <div className="container">
-          <form className="animal-form" onSubmit={handleSubmit}>
-            <p className="title-animal">Quel type d'animal ?</p>
-            <div className="radio-animal">
-              <Radio
-                name="animal"
-                id="cat"
-                value="Cat"
-                picked={pickedAnimal}
-                img={cat}
-                label=""
-                onRadioChange={handleAnimalChange}
+        <div className="main-info">
+          {type === 'cat' ? (
+            <img className="booking-card__image" src={cat} alt="Cat" />
+          ) : type === 'dog' ? (
+            <img className="booking-card__image" src={dog} alt="Dog" />
+          ) : null}
+          {name && <span className="booking-card__info">{name}</span>}
+          {race && <span className="booking-card__info">{race}</span>}
+          {date_birth && (
+            <div className="booking-card__ad-info">
+              <img
+                className="booking-card__ad-image"
+                src={bd_icon}
+                alt="borth_date"
               />
-              <Radio
-                name="animal"
-                id="dog"
-                value="Dog"
-                picked={pickedAnimal}
-                img={dog}
-                label=""
-                onRadioChange={handleAnimalChange}
-              />
+              <span className="booking-card__info">{date_birth}</span>
             </div>
-            <Input name="name" placeholder="Nom" defaultValue={animal?.name} />
-            <Input
-              name="race"
-              placeholder="Race(s)"
-              defaultValue={animal?.race}
-            />
-
-            <p className="label">La taille de mon animal</p>
-            <div className="radio">
-              <Radio
-                name="size"
-                id="small"
-                value="Petit"
-                picked={picked}
-                img={small}
-                label="0-7 kg"
-                onRadioChange={handleRadioChange}
+          )}
+          {energy && (
+            <div className="booking-card__ad-info">
+              <img
+                className="booking-card__ad-image"
+                src={energy_icon}
+                alt="energy_level"
               />
-              <Radio
-                name="size"
-                id="medium"
-                value="Moyen"
-                picked={picked}
-                img={medium}
-                label="7-18 kg"
-                onRadioChange={handleRadioChange}
-              />
-              <Radio
-                name="size"
-                id="large"
-                value="Grand"
-                picked={picked}
-                img={big}
-                label="18-45 kg"
-                onRadioChange={handleRadioChange}
-              />
-              <Radio
-                name="size"
-                id="geant"
-                value="Geant"
-                picked={picked}
-                img={geant}
-                label="45+ kg"
-                onRadioChange={handleRadioChange}
-              />
+              <span className="booking-card__info">{energy}</span>
             </div>
-            <p className="label">Horaires des pauses pipi</p>
-            <div className="radio-wrapper">
-              <RadioSimple
-                name="walk"
-                id="1"
-                picked={pickedWalk}
-                value="Entre 0 et 2 heures"
-                onRadioChange={handleWalkChange}
+          )}
+          {food && (
+            <div className="booking-card__ad-info">
+              <img
+                className="booking-card__ad-image"
+                src={food_icon}
+                alt="borth_date"
               />
-              <RadioSimple
-                name="walk"
-                id="2"
-                picked={pickedWalk}
-                value="Entre 2 et 4 heures"
-                onRadioChange={handleWalkChange}
-              />
-              <RadioSimple
-                name="walk"
-                id="3"
-                picked={pickedWalk}
-                value="Entre 4 et 8 heures"
-                onRadioChange={handleWalkChange}
-              />
-              <RadioSimple
-                name="walk"
-                id="4"
-                picked={pickedWalk}
-                value="+ 8 heures"
-                onRadioChange={handleWalkChange}
-              />
+              <span className="booking-card__info">{food}</span>
             </div>
-            <p className="label">Horaires des repas</p>
-            <div className="radio-wrapper">
-              <RadioSimple
-                name="mealhours"
-                id="morning"
-                picked={pickedHour}
-                value="Le matin"
-                onRadioChange={handleHourChange}
-              />
-              <RadioSimple
-                name="mealhours"
-                id="twise"
-                picked={pickedHour}
-                value="Deux fois par jour"
-                onRadioChange={handleHourChange}
-              />
-            </div>
-            <p className="label">Niveau d'énergie</p>
-            <div className="radio-wrapper">
-              <RadioSimple
-                name="energy"
-                id="high"
-                picked={pickedEnergy}
-                value="Élève"
-                onRadioChange={handleEnergyChange}
-              />
-              <RadioSimple
-                name="energy"
-                id="middle"
-                picked={pickedEnergy}
-                value="Modéré"
-                onRadioChange={handleEnergyChange}
-              />
-              <RadioSimple
-                name="energy"
-                id="small"
-                picked={pickedEnergy}
-                value="Faible"
-                onRadioChange={handleEnergyChange}
-              />
-            </div>
-            <DateRangePickerComp legend={'Date de booking'} />
-            <Button prop="Submit" />
-          </form>
+          )}
         </div>
-      </main>
-      <Footer />
+
+        <form className="animal-form" onSubmit={handleSubmit}>
+          <p className="booking-card__title">
+            Sélectionnez les dates d'arrivée et de départ
+          </p>
+          <BookingRangePickerComp
+            minDate={new Date('2023-10-01')}
+            maxDate={new Date('2023-10-15')}
+          />
+          <Button prop="Submit" />
+        </form>
+      </div>
     </div>
   );
 }

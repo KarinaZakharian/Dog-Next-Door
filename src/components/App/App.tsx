@@ -41,7 +41,6 @@ function App() {
             <Route path="/account/animal-form" element={<AnimalForm />} />
             <Route path="/account" element={<Profil />} />
             <Route path="/account/form" element={<ProfilForm />} />
-            <Route path="/petsitter/:id/booking" element={<Booking />} />
           </>
         )}
 

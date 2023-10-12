@@ -11,22 +11,29 @@ import Header from '../PageComponents/Header/Header';
 import Footer from '../PageComponents/Footer/Footer';
 import DateRangeComp from '../InputType/DatePiker/DateRangeSelect';
 import Button from '../InputType/Button/Button';
-import AnimalCard from '../Profil/AnimalCard/AnimalCard';
-
-import marker from '../../assets/dog-area-blue.png';
-import shadow from '../../assets/dog-area-shadow-blur.png';
-import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
-import './Petsitter.scss';
-
+import L, { LatLngExpression, latLng, LatLngLiteral } from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
+import marker from '../../assets/dog-area.png';
+import shadow from '../../assets/dog-area-shadow.png';
+import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
+import Booking from './Booking/Booking';
 function Petsitter() {
+  const [isBookingContainerVisible, setIsBookingContainerVisible] =
+    useState(false);
+
+  // Function to show the booking container
+  const showBookingContainer = () => {
+    setIsBookingContainerVisible(true);
+  };
+
   const dispatch = useAppDispatch();
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
   }, [id]);
-
-  const account = useAppSelector((state) => state.login.firstname);
+  // const account = useAppSelector((state) => state.login.firstname);
+  const account = 'karina';
   const user = useAppSelector((state) => state.sitter.user);
   console.log('petsitter', user);
   const firstname = user?.lastname;
@@ -190,6 +197,10 @@ function Petsitter() {
           </div>
         </div>
       </div>
+      <Booking
+        isBookingContainerVisible={isBookingContainerVisible}
+        setIsBookingContainerVisible={setIsBookingContainerVisible}
+      />
       <Footer />
     </div>
   );

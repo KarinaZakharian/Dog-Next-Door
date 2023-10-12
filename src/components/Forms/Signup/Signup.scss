@@ -7,6 +7,9 @@
 .form {
   @include v.form-styling;
   width: 50%;
+  @media screen and (max-width: 820px) {
+    width: 80%;
+  }
 }
 .main-signup {
   height: 100vh;

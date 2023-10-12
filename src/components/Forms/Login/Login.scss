@@ -7,6 +7,9 @@
 .login__form {
   @include v.form-styling;
   width: 50%;
+  @media screen and (max-width: 414px) {
+    width: 80%;
+  }
 }
 
 .main-login {

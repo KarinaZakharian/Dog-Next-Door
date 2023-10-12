@@ -2,37 +2,38 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
-import Input from '../../InputType/Input/Input';
-import Button from '../../InputType/Button/Button';
-import Header from '../../PageComponents/Header/Header';
-import Footer from '../../PageComponents/Footer/Footer';
-import Main from '../../PageComponents/Main/Main';
-import './Login.scss';
-
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { login } from '../../../store/reducers/login';
 import { loginSchema } from '../../../Validations/UserValidation';
 
-function Login() {
-  const firstname = useAppSelector((state) => state.login.firstname);
-  const error = useAppSelector((state) => state.login.error);
-  // console.log('error:', error);
-  console.log('firstname', firstname);
-  console.log('firstname', firstname);
+import Input from '../../InputType/Input/Input';
+import Button from '../../InputType/Button/Button';
+import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
 
-  const [valid, setIsValid] = useState(true);
+import './Login.scss';
+
+function Login() {
+  // Initialize navigation and dispatch
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  // Get user data from Redux store
+  const firstname = useAppSelector((state) => state.login.firstname);
+  const error = useAppSelector((state) => state.login.error);
+
+  // State to manage form validation
+  const [valid, setIsValid] = useState(true);
+
+  // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
-    // console.log(objData);
-    // console.log(objData);
 
+    // Validate the form data using a schema
     const isValid = await loginSchema.isValid(objData);
     setIsValid(isValid);
 
@@ -40,19 +41,23 @@ function Login() {
       dispatch(login(formData));
     }
   };
+  // Handle success and error messages using useEffect
   useEffect(() => {
     if (firstname) {
+      // Show a success message using a modal
       swal({
         icon: 'success',
         timer: 1000,
       });
 
       setTimeout(() => {
+        // Redirect to the home page after a successful login
         navigate('/', { replace: true });
       }, 1000);
     }
 
     if (error) {
+      // Show an error message using a modal
       swal(`${error}`, {
         icon: 'error',
         button: true,
@@ -84,18 +89,14 @@ function Login() {
               aria-label="Mot de passe"
               style={{ borderColor: valid ? 'initial' : 'red' }}
             />
+            {/* Display an error message for invalid login */}
             {!valid && (
               <p className="error">
                 Le mot de passe ou l'email que vous avez saisi est incorrect.
                 Veuillez réessayer.
               </p>
             )}
-            {!valid && (
-              <p className="error">
-                Le mot de passe ou l'email que vous avez saisi est incorrect.
-                Veuillez réessayer.
-              </p>
-            )}
+
             <Button prop="Connexion" />
           </form>
         </div>
