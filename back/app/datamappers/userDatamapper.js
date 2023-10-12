@@ -1,5 +1,5 @@
+const { log } = require('console');
 const client = require('../services/clientPg');
-
 const userDatamapper = {
   getOneUserByEmail: async (newUser) => {
     try {
@@ -16,7 +16,6 @@ const userDatamapper = {
 
   getOneUserById: async (id) => {
     try {
-
       const userId = id;
       const query = `
       SELECT u.*, json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal
@@ -26,7 +25,6 @@ const userDatamapper = {
       const value = [userId];
       const userFound = await client.query(query, value);
       return userFound.rows[0];
-
     } catch (error) {
       return console.error('Problème de recherche BDD utilisateur');
     }
@@ -114,7 +112,7 @@ const userDatamapper = {
         animal_size,
         walking_duration,
         additionnal_information,
-        description
+        description,
       } = userConcerned;
 
       const values = [
@@ -146,11 +144,8 @@ const userDatamapper = {
             user_address = $4,
             user_password = $5,
             latitude = $6,
-            longitude = $7,
-            disponibility_date = $8,
-            startDate = $9,
-            endDate = $10
-            WHERE id = $11`;
+            longitude = $7
+            WHERE id = $8`;
 
       const {
         firstname,
@@ -160,9 +155,6 @@ const userDatamapper = {
         user_password,
         latitude,
         longitude,
-        disponibility_date,
-        startDate,
-        endDate
       } = userConcerned;
 
       const values = [
@@ -173,20 +165,18 @@ const userDatamapper = {
         user_password,
         latitude,
         longitude,
-        disponibility_date,
-        startDate,
-        endDate,
         userId,
       ];
       const result = await client.query(query, values);
 
       return result;
     } catch (error) {
+      console.log(error);
       return error;
     }
   },
 
-  getUserDisponibility : async (id) => {
+  getUserDisponibility: async (id) => {
     const userId = parseInt(id);
     const query = `
     SELECT * FROM "disponibility"
@@ -195,44 +185,44 @@ const userDatamapper = {
       SELECT disponibility_id FROM user_has_disponibility
       WHERE user_id = $1
     )
-    `
+    `;
     const value = [userId];
     const userDisponibilities = await client.query(query, value);
     return userDisponibilities.rows;
   },
 
-  getUserBooking : async (id) => {
+  getUserBooking: async (id) => {
     const userId = parseInt(id);
     const query = `
     SELECT * FROM booking
     JOIN "user" ON "user"."id" = "booking"."sender_id"
     WHERE user_id = $1
-    `
+    `;
     const value = [userId];
     const userBookings = await client.query(query, value);
     return userBookings.rows;
   },
 
-  addNewUserDisponibilitites : async (beginDate, finalDate, id) => {
+  addNewUserDisponibilitites: async (beginDate, finalDate, id) => {
     const startDate = beginDate;
     const endDate = finalDate;
     const userId = id;
 
     const query = `
-    INSERT INTO "disponibility"
-    ("start_date", "end_date")
-    VALUES($1, $2)
-    SELECT SCOPE IDENTITY() AS newDisponibilityId
-    INSERT INTO "user_has_disponibility"
-    ("user_id", "disponibility_id")
-    VALUES ($3, 'newDisponibilityId')
+      WITH insert_disponibility AS(
+      INSERT INTO
+      "disponibility" ("start_date", "end_date")
+      VALUES ($1, $2)
+      RETURNING "disponibility"."id" AS dispo_id
+      )
+      INSERT INTO "user_has_disponibility"
+      ("user_id", "disponibility_id")
+      VALUES ($3, (SELECT dispo_id FROM insert_disponibility))
     `;
     const values = [beginDate, finalDate, id];
     const result = await client.query(query, values);
-    console.log(result);
+    return result;
   },
-
-  
 };
 
 module.exports = userDatamapper;

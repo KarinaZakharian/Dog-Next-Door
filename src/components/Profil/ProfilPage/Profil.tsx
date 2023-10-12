@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchUser } from '../../../store/reducers/profil';
@@ -17,14 +17,40 @@ import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Profil.scss';
+import SignupForm from '../ProfilForm/SignupForm';
+import ProfilForm from '../ProfilForm/ProfilForm';
+import DateForm from '../ProfilForm/DateForm';
 
 function Profil() {
   const dispatch = useAppDispatch();
 
+  const [isSignupContainerVisible, setIsSignupContainerVisible] =
+    useState(false);
+
+  const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
+
+  const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
+  // Function to show the booking container
+  const showSignupContainer = () => {
+    setIsSignupContainerVisible(true);
+  };
+
+  const showFormContainer = () => {
+    setIsFormContainerVisible(true);
+  };
+
+  const showDateContainer = () => {
+    setIsDateContainerVisible(true);
+  };
+
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
-
+  }, [
+    isSignupContainerVisible,
+    isFormContainerVisible,
+    isDateContainerVisible,
+  ]);
+  //const firstname = 'karina';
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
@@ -43,6 +69,8 @@ function Profil() {
   const disponibility_date = useAppSelector(
     (state) => state.profil.disponibility_date
   );
+
+  console.log(size, description, garden, accommodation);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
   const date_birth = useAppSelector((state) => state.profil.date_birth);
@@ -105,6 +133,8 @@ function Profil() {
           {/* -----------------------------profil user-------------------------- */}
           <div className="profil__user">
             <div className="profil__user-header">
+              <button onClick={showSignupContainer}>Booking</button>
+
               <h2 className="profil__user-name">
                 {firstname} {lastname}
               </h2>
@@ -169,9 +199,8 @@ function Profil() {
                 </ul>
               </div>
             </div>
-            <Link className="link-profil" to={'/account/form'}>
-              <Button prop="Modifier mes informations" />
-            </Link>
+            <button onClick={showFormContainer}>Modif</button>
+            <button onClick={showDateContainer}>Modif date</button>
           </div>
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
@@ -197,6 +226,19 @@ function Profil() {
           </div>
         </div>
       </div>
+      <SignupForm
+        isSignupContainerVisible={isSignupContainerVisible}
+        setIsSignupContainerVisible={setIsSignupContainerVisible}
+      />
+      <ProfilForm
+        isFormContainerVisible={isFormContainerVisible}
+        setIsFormContainerVisible={setIsFormContainerVisible}
+      />
+
+      <DateForm
+        isDateContainerVisible={isDateContainerVisible}
+        setIsDateContainerVisible={setIsDateContainerVisible}
+      />
       <Footer />
     </div>
   );

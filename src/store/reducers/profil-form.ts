@@ -4,7 +4,6 @@ import {
   createAction,
 } from '@reduxjs/toolkit';
 
-import axios from 'axios';
 import axiosInstance from '../../utils/axios';
 
 interface ProfilState {
@@ -12,12 +11,16 @@ interface ProfilState {
   error: unknown;
   myMessage: string | null;
   myError: unknown;
+  dateMessage: string | null;
+  dateError: unknown;
 }
 export const initialState: ProfilState = {
   message: null,
   error: null,
   myError: null,
   myMessage: null,
+  dateError: null,
+  dateMessage: null,
 };
 
 export const fillProfilForm = createAsyncThunk(
@@ -50,6 +53,23 @@ export const updateSignupForm = createAsyncThunk(
   }
 );
 
+export const fillDateForm = createAsyncThunk(
+  'dateform/update',
+  async (formData: FormData, thunkAPI) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      const { data } = await axiosInstance.post(
+        '/account/adddisponibility',
+        objData
+      );
+      return data as {
+        message: string;
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 export const success = createAction('form/success ');
 
 const profilFormReducer = createReducer(initialState, (builder) => {
@@ -79,6 +99,21 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       // state.firstname = action.payload.firstname;
       state.myError = null;
       state.myMessage = action.payload;
+
+      // state.token = action.payload.token;
+    })
+
+    .addCase(fillDateForm.rejected, (state, action) => {
+      console.log('action rejected', action);
+      state.dateError = action.payload.response.data.message;
+      state.dateMessage = null;
+    })
+    .addCase(fillDateForm.fulfilled, (state, action) => {
+      // state.logged = true;
+      console.log('action fulfilled', action);
+      // state.firstname = action.payload.firstname;
+      state.dateError = null;
+      state.dateMessage = action.payload;
 
       // state.token = action.payload.token;
     })

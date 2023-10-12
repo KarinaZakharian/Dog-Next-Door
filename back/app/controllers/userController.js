@@ -14,202 +14,198 @@ const userController = {
       delete userConnected.user_password;
       return res.status(200).json(userConnected);
     }
-    
+
     // Recherche utilisateur via ses identifiants de connection
     const userFound = await userController.findUserByEmail(req, res);
-    
+
     if (!userFound) {
       res.status(401).json("Vous n'avez pas accès");
       return;
     }
-    
+
     const passwordUserCheck = await bcrypt.compare(
       req.body.user_password,
       userFound.user_password
-      );
-      if (passwordUserCheck) {
-        delete userFound.user_password;
-        const userToken = tokenController.createToken(userFound.id);
-        userFound.token = userToken;
-        
-        res
+    );
+    if (passwordUserCheck) {
+      delete userFound.user_password;
+      const userToken = tokenController.createToken(userFound.id);
+      userFound.token = userToken;
+
+      res
         .cookie('access_token', userToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
         })
         .status(200)
         .json(userFound);
-        // req.session.user = [userToken];
-        // console.log(req.session.user);
-      } else {
-        res.json('Couple identifiant mot de passe incorrect');
+      // req.session.user = [userToken];
+      // console.log(req.session.user);
+    } else {
+      res.json('Couple identifiant mot de passe incorrect');
+      return;
+    }
+  },
+
+  findUserByEmail: async (req, res) => {
+    const userInput = req.body;
+    try {
+      const user = await userDatamapper.getOneUserByEmail(userInput);
+      return user;
+    } catch (error) {
+      res.status(500).json(error.toString());
+    }
+  },
+
+  findUserById: async (req, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      const user = await userDatamapper.getOneUserById(userId);
+
+      res.json(user);
+    } catch (error) {
+      res.status(500).json(error.toString());
+    }
+  },
+
+  findUser: async (req, res) => {
+    try {
+      const userId = parseInt(req.userId);
+      const user = await userDatamapper.getOneUserById(userId);
+      console.log(user);
+      res.json(user);
+    } catch (error) {
+      res.status(500).json(error.toString());
+    }
+  },
+
+  createUser: async (req, res) => {
+    const newUser = req.body;
+    console.log(newUser);
+
+    try {
+      // Vérification de l'existence du compte
+      const userExist = await userDatamapper.getOneUserByEmail(newUser);
+      if (userExist) {
+        res.json('Cet email est déjà utilisé ! Veuillez vous logger');
         return;
       }
-    },
-    
-    findUserByEmail: async (req, res) => {
-      const userInput = req.body;
-      try {
-        const user = await userDatamapper.getOneUserByEmail(userInput);
-        return user;
-      } catch (error) {
-        res.status(500).json(error.toString());
+
+      // Remplacement du mdp par un mdp crypté
+      newUser.user_password = await bcrypt.hash(
+        newUser.user_password,
+        parseInt(process.env.SALT)
+      );
+
+      // Vérification de l'emial du nouvel utilisateur
+      if (!validator.isEmail(newUser.email)) {
+        res.json('Email invalide');
+        return;
       }
-    },
-    
-    findUserById: async (req, res) => {
-      
-      try {
-        const userId = parseInt(req.params.id);
-        
-        const user = await userDatamapper.getOneUserById(userId);
-        
-        res.json(user);
-      } catch (error) {
-        res.status(500).json(error.toString());
+
+      //! Validation de la longitude et lattitude via API Gouv
+
+      const response = await userDatamapper.addUser(newUser);
+      console.log(response);
+      res.json('Ajout utilisateur');
+    } catch (error) {
+      res.status(404).json('Erreur de connexion server');
+    }
+  },
+
+  findUserByDistance: async (req, res) => {
+    const searchParameters = req.body;
+    console.log(searchParameters);
+    try {
+      const users = await userDatamapper.getUsersByDistance(searchParameters);
+      res.json(users);
+    } catch (error) {
+      res.status(500).json(error.toString());
+    }
+  },
+
+  updateOptionnalInformation: async (req, res) => {
+    const intendedUser = req.body;
+    console.log(req.body);
+    const userId = req.userId;
+
+    try {
+      // Vérification de l'existence du compte
+      const userExist = await userDatamapper.getOneUserById(userId);
+
+      if (!userExist) {
+        res.json("Cet utilisateur n'est pas enregistré en BDD");
+        return;
       }
-    },
 
-    findUser: async (req, res) => {
-      
-      try {
-        const userId = parseInt(req.userId);
-        const user = await userDatamapper.getOneUserById(userId);
-        console.log(user);
-        res.json(user);
-      } catch (error) {
-        res.status(500).json(error.toString());
-      }
-    },
-      
-    createUser: async (req, res) => {
-      const newUser = req.body;
-      console.log(newUser);
-      
-      try {
-        // Vérification de l'existence du compte
-        const userExist = await userDatamapper.getOneUserByEmail(newUser);
-        if (userExist) {
-          res.json('Cet email est déjà utilisé ! Veuillez vous logger');
-          return;
-        }
-        
-        // Remplacement du mdp par un mdp crypté
-        newUser.user_password = await bcrypt.hash(
-          newUser.user_password,
-          parseInt(process.env.SALT)
-          );
-          
-          // Vérification de l'emial du nouvel utilisateur
-          if (!validator.isEmail(newUser.email)) {
-            res.json('Email invalide');
-            return;
-          }
-          
-          //! Validation de la longitude et lattitude via API Gouv
-          
-          const response = await userDatamapper.addUser(newUser);
-          console.log(response);
-          res.json('Ajout utilisateur');
-        } catch (error) {
-          res.status(404).json('Erreur de connexion server');
-        }
-      },
-      
-      findUserByDistance: async (req, res) => {
-        const searchParameters = req.body;
-        console.log(searchParameters);
-        try {
-          const users = await userDatamapper.getUsersByDistance(searchParameters);
-          res.json(users);
-        } catch (error) {
-          res.status(500).json(error.toString());
-        }
-      },
-      
-      updateOptionnalInformation: async (req, res) => {
-        const intendedUser = req.body;
-        console.log(req.body);
-        const userId = req.userId;
-        
-        try {
-          // Vérification de l'existence du compte
-          const userExist = await userDatamapper.getOneUserById(userId);
-          
-          if (!userExist) {
-            res.json("Cet utilisateur n'est pas enregistré en BDD");
-            return;
-          }
-          
-          const response = await userDatamapper.addOptionnalInformations(intendedUser,userId);
-          console.log(response);
-          res.json('Vos informations ont été ajoutées avec succès');
-          
-        } catch (error) {
-          res.status(500).json({"message" : "Aucune modification a été apportée"});
-        }
-      },
+      const response = await userDatamapper.addOptionnalInformations(
+        intendedUser,
+        userId
+      );
+      console.log(response);
+      res.json('Vos informations ont été ajoutées avec succès');
+    } catch (error) {
+      res.status(500).json({ message: 'Aucune modification a été apportée' });
+    }
+  },
 
-      updatePersonnalInformation: async (req, res) => {
-        const intendedUser = req.body;
-        console.log("body req",req.body);
-        const userId = req.userId;
-      
-        try {
-          // Vérification de l'existence du compte
-          const userExist = await userDatamapper.getOneUserById(userId);
-          
+  updatePersonnalInformation: async (req, res) => {
+    const intendedUser = req.body;
+    const userId = req.userId;
 
-          // Remplacement du mdp par un mdp crypté
-          intendedUser.user_password = await bcrypt.hash(
-            intendedUser.user_password,
-          parseInt(process.env.SALT)
-          );
+    try {
+      // Vérification de l'existence du compte
+      const userExist = await userDatamapper.getOneUserById(userId);
 
-          const dateRange = intendedUser.disponibility_date;
-          
-          const dates = dateRange.split(" au ");
-          // Assurez-vous que le format de date est "dd/MM/yyyy"
-          const dateFormat = "MM/dd/yyyy";
+      // Remplacement du mdp par un mdp crypté
+      intendedUser.user_password = await bcrypt.hash(
+        intendedUser.user_password,
+        parseInt(process.env.SALT)
+      );
 
-          const startDate = new Date(dates[0].replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
-          const endDate = new Date(dates[1].replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
+      const response = await userDatamapper.addPersonnalInformation(
+        intendedUser,
+        userId
+      );
 
-          intendedUser.startDate = startDate;
-          intendedUser.endDate = endDate;
-          
-          const response = await userDatamapper.addPersonnalInformation(intendedUser,userId);
-          
-          res.json('Vos informations ont été ajoutées avec succès');
-          
-        } catch (error) {
-          res.status(500).json({"message" : "Aucune modification a été apportée"});
-        }
-      },
+      res.json('Vos informations ont été ajoutées avec succès');
+    } catch (error) {
+      res.status(500).json({ message: 'Aucune modification a été apportée' });
+    }
+  },
 
-      createBooking : async (req,res)=> {
-        console.log("page petsitter booking");
-      },
+  createBooking: async (req, res) => {
+    console.log('page petsitter booking');
+  },
 
-      findUserWithCalendar : async (req, res) => {
-        const petsitterId = req.params.id;
-        const petSitter = await userDatamapper.getOneUserById(petsitterId);
-        const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
-        const petSitterDisponibility = await userDatamapper.getUserDisponibility(petsitterId);
-        res.json({user : petSitter, booking : petSitterBooking, disponibility : petSitterDisponibility});
-    },
+  findUserWithCalendar: async (req, res) => {
+    const petsitterId = req.params.id;
+    const petSitter = await userDatamapper.getOneUserById(petsitterId);
+    const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
+    const petSitterDisponibility = await userDatamapper.getUserDisponibility(
+      petsitterId
+    );
+    res.json({
+      user: petSitter,
+      booking: petSitterBooking,
+      disponibility: petSitterDisponibility,
+    });
+  },
 
-      findUserdisponibility : async (req, res) => {
-        const petsitterId = req.params.id;
-        const petSitterDisponibility = await userDatamapper.getUserDisponibility(petsitterId);
-        res.json(petSitterDisponibility);
-    },
+  findUserdisponibility: async (req, res) => {
+    const petsitterId = req.params.id;
+    const petSitterDisponibility = await userDatamapper.getUserDisponibility(
+      petsitterId
+    );
+    res.json(petSitterDisponibility);
+  },
 
-    findUserBooking : async (req, res) => {
-      const petsitterId = req.params.id;
-      const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
-      res.json(petSitterBooking);
-    },
-    };
-    
-    module.exports = userController;
+  findUserBooking: async (req, res) => {
+    const petsitterId = req.params.id;
+    const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
+    res.json(petSitterBooking);
+  },
+};
+
+module.exports = userController;
