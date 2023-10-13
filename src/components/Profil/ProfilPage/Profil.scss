@@ -80,6 +80,13 @@
   }
 }
 
+.profil__booking-button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .profil__user-header-button {
   background-color: v.$color-dark;
   width: 50px;
@@ -87,11 +94,7 @@
   border-radius: 10px;
   @include v.transition;
   cursor: pointer;
-
-  :hover {
-    background-color: v.$color-text;
-    transform: scale(1.1);
-  }
+  padding: 0.1rem;
 
   &-img {
     width: 100%;
@@ -99,6 +102,11 @@
     object-fit: cover;
     border-radius: 10px;
     @include v.transition;
+  }
+
+  :hover {
+    background-color: v.$color-text;
+    transform: scale(1.1);
   }
 }
 

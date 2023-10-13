@@ -223,7 +223,7 @@ function Profil() {
             <div className="profil__booking-card">
               <div className="profil__booking-button">
                 <h3 className="profil__booking-button-title">
-                  ajouter une disponibilité
+                  Ajouter une disponibilité
                 </h3>
                 <div className="profil__user-header-button">
                   <img
