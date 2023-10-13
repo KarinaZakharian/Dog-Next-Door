@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserById } from '../../store/reducers/sitter';
-
 import L, { LatLngExpression, latLng } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
-
 import Header from '../PageComponents/Header/Header';
 import Footer from '../PageComponents/Footer/Footer';
 import DateRangeComp from '../InputType/DatePiker/DateRangeSelect';
@@ -17,26 +15,20 @@ import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
 import { UserProps } from '../../@types/user';
-
 function Petsitter() {
   const [isBookingContainerVisible, setIsBookingContainerVisible] =
     useState(false);
-
   // Function to show the booking container
   const showBookingContainer = () => {
     setIsBookingContainerVisible(true);
   };
-
   const dispatch = useAppDispatch();
   const { id } = useParams();
-
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
   }, [id]);
-
   const user: UserProps = useAppSelector((state) => state.sitter.user);
   console.log(user);
-
   const firstname = user?.lastname;
   const lastname = user?.firstname;
   const avatar = user?.avatar;
@@ -47,13 +39,17 @@ function Petsitter() {
   const additionnal_information = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
-
+  const typeAnimal = user?.animal?.type;
+  const nameAnimal = user?.animal?.name;
+  const date_birthAnimal = user?.animal?.birth_date;
+  const size_animalAnimal = user?.animal?.size;
+  const walkAnimal = user?.animal?.walk;
+  const energyAnimal = user?.animal?.energy;
+  const foodAnimal = user?.animal?.mealhours;
+  const raceAnimal = user?.animal?.race;
   const disponibility_date = user?.disponibility;
-
   console.log(disponibility_date);
-
   const center: LatLngExpression = latLng(latitude, longitude);
-
   const account = useAppSelector((state) => state.login.firstname);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
@@ -66,11 +62,9 @@ function Petsitter() {
   const walking_duration = useAppSelector(
     (state) => state.profil.walking_duration
   );
-
   const disponibility_dateUser = useAppSelector(
-    (state) => state.profil.disponibility_date
+    (state) => state.profil.disponibility
   );
-
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -80,7 +74,6 @@ function Petsitter() {
     shadowSize: [35, 40],
     shadowAnchor: [3, 17],
   });
-
   const renderSize = () => {
     if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
@@ -94,7 +87,6 @@ function Petsitter() {
     }
     return null;
   };
-
   const renderOptions = () => {
     if (
       additionnal_information !== undefined &&
@@ -113,7 +105,6 @@ function Petsitter() {
     }
     return null;
   };
-
   return (
     <div className="page-wrapper">
       <Header />
@@ -154,7 +145,6 @@ function Petsitter() {
                   />
                 )}
               </div>
-
               <div className="profil__user-home">
                 {longitude && (
                   <div className="leflet-container">
@@ -199,14 +189,14 @@ function Petsitter() {
             </div>
             {type && (
               <AnimalCard
-                type={type}
-                name={name}
-                race={race}
-                age={date_birth}
-                size={size_animal}
-                pipi={walk}
-                repa={food}
-                energy={energy}
+                type={typeAnimal}
+                name={nameAnimal}
+                race={raceAnimal}
+                age={date_birthAnimal}
+                size={size_animalAnimal}
+                pipi={walkAnimal}
+                repa={foodAnimal}
+                energy={energyAnimal}
               />
             )}
           </div>
