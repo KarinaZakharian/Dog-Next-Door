@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //* Utilise un fichier statique pour stocker les images
-app.use(express.static('../public'));
+// app.use(express.static('../public'));
 //* Redis
 // const sessionMiddleware = session({
 //     store: redisStore,

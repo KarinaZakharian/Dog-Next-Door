@@ -66,7 +66,7 @@ function Petsitter() {
   const walking_duration = useAppSelector(
     (state) => state.profil.walking_duration
   );
-  const disponibility_dateUser = useAppSelector(
+
   const disponibility_dateUser = useAppSelector(
     (state) => state.profil.disponibility_date
   );
