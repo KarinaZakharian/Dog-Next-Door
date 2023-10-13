@@ -23,7 +23,7 @@ export const fetchUpcomingAnimal = createAsyncThunk<{
   rejecValue: string;
 }>('inbox/upcominganimal', async (thunkAPI) => {
   try {
-    const response = await axiosInstance.get(`account/inbox/upcoming`);
+    const response = await axiosInstance.get(`/inbox/upcoming`);
     console.log(response.data);
     return response.data;
   } catch (error) {

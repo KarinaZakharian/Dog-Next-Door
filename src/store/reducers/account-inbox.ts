@@ -38,7 +38,7 @@ export const fetchInboxAnimal =
     rejecValue: string;
   }>('inbox/fetchanimal', async (thunkAPI) => {
     try {
-      const response = await axiosInstance.get(`account/inbox`);
+      const response = await axiosInstance.get(`/inbox/awaiting`);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -51,34 +51,14 @@ export const fetchInboxAnimal =
 
 export const clientAccept = createAsyncThunk<
   any, // type de la valeur retourné //  TODO
-  number, // type de userID // paramètre du callback
+  FormData, // type de userID // paramètre du callback
   {
     rejectValue: string;
   }
->('inbox/accept', async (clientId, thunkAPI) => {
-  console.log('reduser userId' + clientId);
+>('inbox/accept-decline', async (formData: FormData, thunkAPI) => {
+  const objData = Object.fromEntries(formData);
   try {
-    const response = await axiosInstance.post('account/accept', clientId);
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    if (typeof error === 'string') {
-      return thunkAPI.rejectWithValue(error);
-    }
-    console.error(error);
-  }
-});
-
-export const clientDecline = createAsyncThunk<
-  any, // type de la valeur retourné //  TODO
-  number, // type de userID // paramètre du callback
-  {
-    rejectValue: string;
-  }
->('inbox/decline', async (clientId, thunkAPI) => {
-  console.log('reduser userId' + clientId);
-  try {
-    const response = await axiosInstance.post('account/decline', clientId);
+    const response = await axiosInstance.post('/inbox/awaiting', objData);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -131,22 +111,6 @@ const accountReducer = createReducer(initialState, (builder) => {
       console.log(action);
       state.acceptError = undefined;
       state.acceptMessage = action.payload.message; // You can customize this message
-    })
-    .addCase(clientDecline.rejected, (state, action) => {
-      if (action.payload) {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.declineError = action.payload;
-      } else {
-        state.declineError = action.error.message;
-      }
-      // state.error = action.payload.response.data;
-      state.acceptMessage = null;
-    })
-    .addCase(clientDecline.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
-      state.declineError = undefined;
-      state.declineMessage = action.payload.message; // You can customize this message
     });
 });
 

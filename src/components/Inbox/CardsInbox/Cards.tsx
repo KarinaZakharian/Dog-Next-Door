@@ -3,10 +3,7 @@ import swal from 'sweetalert';
 import cat from '../../../assets/icons8-cat-100.png';
 import dog from '../../../assets/icons8-dog-100.png';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import {
-  clientAccept,
-  clientDecline,
-} from '../../../store/reducers/account-inbox';
+import { clientAccept } from '../../../store/reducers/account-inbox';
 
 import './Cards.scss';
 
@@ -27,11 +24,17 @@ function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
 
   const dispatch = useAppDispatch();
   function handleAccept() {
-    dispatch(clientAccept(Number(clientId)));
+    const formData = new FormData();
+    formData.append('clientId', clientId.toString());
+    formData.append('answer', 'true');
+    dispatch(clientAccept(formData));
   }
 
   function handleDecline() {
-    dispatch(clientDecline(Number(clientId)));
+    const formData = new FormData();
+    formData.append('clientId', clientId.toString());
+    formData.append('answer', 'true');
+    dispatch(clientAccept(formData));
   }
 
   useEffect(() => {
