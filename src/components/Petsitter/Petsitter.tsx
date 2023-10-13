@@ -35,6 +35,7 @@ function Petsitter() {
   }, [id]);
 
   const user: UserProps = useAppSelector((state) => state.sitter.user);
+  console.log(user);
 
   const firstname = user?.lastname;
   const lastname = user?.firstname;
@@ -46,7 +47,11 @@ function Petsitter() {
   const additionnal_information = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
-  const disponibility_date=user?.disponibility;
+
+  const disponibility_date = user?.disponibility;
+
+  console.log(disponibility_date);
+
   const center: LatLngExpression = latLng(latitude, longitude);
 
   const account = useAppSelector((state) => state.login.firstname);
@@ -141,7 +146,12 @@ function Petsitter() {
                 {disponibility_date && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_date && <DateRangeComp />}
+                {disponibility_date && (
+                  <DateRangeComp
+                    start_date={disponibility_date.start_date}
+                    end_date={disponibility_date.end_date}
+                  />
+                )}
               </div>
 
               <div className="profil__user-home">
@@ -210,7 +220,7 @@ function Petsitter() {
       <Booking
         isBookingContainerVisible={isBookingContainerVisible}
         setIsBookingContainerVisible={setIsBookingContainerVisible}
-        disponibility={disponibility_date}
+        disponibility_date={disponibility_date}
       />
       <Footer />
     </div>
