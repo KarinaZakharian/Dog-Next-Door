@@ -3,10 +3,11 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
 
-function DateRangeComp(start_date: string, end_date: string) {
+function DateRangeComp(start_date: any, end_date: any) {
+  console.log(start_date, end_date);
   /* Set your desired start and end dates here */
-  const startDate = new Date(start_date);
-  const endDate = new Date(end_date);
+  const startDate = new Date('2023-10-20');
+  const endDate = new Date('223-10-28');
 
   /* Create a date range object */
   const dateRange = [
