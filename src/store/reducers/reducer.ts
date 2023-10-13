@@ -9,7 +9,10 @@ import searchReducer from './search';
 import sitterReducer from './sitter';
 import profilReduser from './profil';
 import bookingFormReducer from './booking';
-import bookingReducer from './inbox';
+import accountReducer from './account-inbox';
+import upcomingReducer from './upcoming-inbox';
+import demandsReducer from './demandes-inbox';
+import messageReducer from './massage-inbox';
 
 const reducer = {
   signup: signupReducer,
@@ -21,7 +24,10 @@ const reducer = {
   sitter: sitterReducer,
   profil: profilReduser,
   booking: bookingFormReducer,
-  inbox: bookingReducer,
+  inboxAccount: accountReducer,
+  inboxUpcoming: upcomingReducer,
+  inboxDemands: demandsReducer,
+  inboxUppast: messageReducer,
 };
 
 export default reducer;

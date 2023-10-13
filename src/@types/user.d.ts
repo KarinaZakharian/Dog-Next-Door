@@ -51,6 +51,12 @@ export interface FormProps {
   isFormContainerVisible: boolean;
   setIsFormContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface MessageProps {
+  clientId: string;
+  isMessageOpen: boolean;
+  setMessageOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 // export type LeafletMapProps = {
 //   center: [number, number];
 //   children: ReactNode;

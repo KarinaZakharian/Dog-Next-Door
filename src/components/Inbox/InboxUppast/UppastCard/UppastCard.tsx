@@ -1,6 +1,8 @@
+import { SetStateAction, useState } from 'react';
 import cat from '../../../../assets/icons8-cat-100.png';
 import dog from '../../../../assets/icons8-dog-100.png';
 import Button from '../../../InputType/Button/Button';
+import Comment from '../../InboxUppast/Message/Message';
 
 import './UppastCard.scss';
 
@@ -11,6 +13,11 @@ interface AnimalProps {
 }
 
 function PastCard({ type, name, dates }: AnimalProps) {
+  const [isMessageOpen, setMessageOpen] = useState(false);
+
+  function handelMessage() {
+    setMessageOpen(true);
+  }
   return (
     <div className="animals-card">
       <div className="row">
@@ -26,8 +33,13 @@ function PastCard({ type, name, dates }: AnimalProps) {
         <span className="animals-card__dates">{dates}</span>
       </div>
       <div className="row2">
-        <Button prop={'Add the commentaire '} />
+        <button onClick={handelMessage}>Add comment</button>
       </div>
+      <Comment
+        clientId={''}
+        isMessageOpen={isMessageOpen}
+        setMessageOpen={setMessageOpen}
+      />
     </div>
   );
 }
