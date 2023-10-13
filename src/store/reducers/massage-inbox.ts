@@ -47,14 +47,14 @@ export const fetchMessageUser =
 
 export const sendMessage = createAsyncThunk<
   any, // type de la valeur retourné //  TODO
-  number, // type de userID // paramètre du callback
+  FormData, // type de userID // paramètre du callback
   {
     rejectValue: string;
   }
->('inbox/sendmessage', async (clientId, thunkAPI) => {
-  console.log('reduser userId' + clientId);
+>('inbox/sendmessage', async (formData: FormData, thunkAPI) => {
   try {
-    const response = await axiosInstance.post('account/message', clientId);
+    const objData = Object.fromEntries(formData);
+    const response = await axiosInstance.post('account/message', objData);
     console.log(response.data);
     return response.data;
   } catch (error) {
