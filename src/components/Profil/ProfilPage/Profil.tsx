@@ -47,11 +47,7 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [
-    isSignupContainerVisible,
-    isFormContainerVisible,
-    isDateContainerVisible,
-  ]);
+  }, []);
 
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
@@ -68,11 +64,9 @@ function Profil() {
   const walking_duration = useAppSelector(
     (state) => state.profil.walking_duration
   );
-  const disponibility_date = useAppSelector(
-    (state) => state.profil.disponibility_date
-  );
-
-  console.log(size, description, garden, accommodation);
+  const start_date = useAppSelector((state) => state.profil.start_date);
+  const end_date = useAppSelector((state) => state.profil.end_date);
+  // console.log(size, description, garden, accommodation);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
   const date_birth = useAppSelector((state) => state.profil.date_birth);
@@ -81,7 +75,7 @@ function Profil() {
   const energy = useAppSelector((state) => state.profil.energy);
   const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
-  console.log(longitude, latitude);
+  // console.log(longitude, latitude);
   const center: LatLngExpression = latLng(latitude, longitude);
   const myIcon = new L.Icon({
     iconUrl: marker,
@@ -172,10 +166,6 @@ function Profil() {
                   <h3 className="profil-title">Disponibilité de promenade</h3>
                 )}
                 {walking_duration && <p>{walking_duration}</p>}
-                {disponibility_date && (
-                  <h3 className="profil-title">Disponibilité de {lastname}</h3>
-                )}
-                {disponibility_date && <DateRangeComp />}
               </div>
 
               <div className="profil__user-home">
@@ -233,6 +223,25 @@ function Profil() {
                     onClick={showDateContainer}
                   />
                 </div>
+              </div>
+              <div className="profil__booking-disponibility">
+                {start_date ? (
+                  <div className="profil__booking-disponibility">
+                    <h3 className="profil-title">
+                      Disponibilité de {firstname}:
+                    </h3>
+                    {/* <DateRangeComp
+                      start_date={start_date}
+                      end_date={end_date}
+                    /> */}
+                  </div>
+                ) : (
+                  <div className="profil__booking-disponibility-noresult">
+                    <h2 className="profil__booking-disponibility-noresult-title">
+                      Pas de disponibilité...
+                    </h2>
+                  </div>
+                )}
               </div>
             </div>
             {/* -----------------------------popup form--------------------------- */}

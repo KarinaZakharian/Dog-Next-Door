@@ -31,8 +31,8 @@ function DateForm({
   }
 
   useEffect(() => {
-    console.log('error', error);
-    console.log('message', message);
+    //console.log('error', error);
+    // console.log('message', message);
 
     if (!error && message) {
       swal(`${message}`, {

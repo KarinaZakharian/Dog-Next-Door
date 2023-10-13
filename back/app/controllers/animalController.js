@@ -1,6 +1,7 @@
 const { log } = require('console');
 const animalDatamapper = require('../datamappers/animalDatamapper');
 const APIError = require('../services/APIError.js');
+const jwt = require('jsonwebtoken') ;
 
 const animalController = {
     createNewAnimal : async (req, res) => {
@@ -20,6 +21,10 @@ const animalController = {
             res.status(err.status).json(err.message);
         }
     },
+
+    
+
+
 }
 
 module.exports = animalController;

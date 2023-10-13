@@ -86,8 +86,8 @@ const accountReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
+      // console.log('fulffilled');
+      //console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
       state.animal = action.payload;

@@ -1,4 +1,8 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
 import { LoginState } from '../../@types/user';
@@ -36,7 +40,7 @@ export const login = createAsyncThunk(
       const { data } = await axiosInstance.post('/login', objData);
       // Set the authorization header for future requests
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-
+      localStorage.setItem('token', data.token);
       delete data.token;
 
       return data as LoginState;
@@ -45,7 +49,7 @@ export const login = createAsyncThunk(
     }
   }
 );
-
+export const reconnect = createAction<string | null>('reconnect');
 // Define the loginReducer to handle the Login state
 const loginReducer = createReducer(initialState, (builder) => {
   builder
@@ -73,6 +77,12 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.firstname = null;
       // delete axiosInstance.defaults.headers.common.Authorization;
       delete axiosInstance.defaults.headers.common.Authorization;
+      localStorage.clear();
+    })
+    .addCase(reconnect, (state, action) => {
+      console.log('action', action);
+      console.log('state', state);
+      state.firstname = action.payload;
     });
 });
 

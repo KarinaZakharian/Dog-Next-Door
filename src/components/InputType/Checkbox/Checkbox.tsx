@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Checkbox.scss';
 
 interface CheckboxGroupProps {
@@ -16,7 +16,10 @@ function CheckboxGroup({
   onSelectionChange,
 }: CheckboxGroupProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  onSelectionChange(selectedOptions);
+
+  useEffect(() => {
+    onSelectionChange(selectedOptions);
+  }, []);
 
   const handleCheckboxChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -32,7 +35,7 @@ function CheckboxGroup({
     <div className="checkbox-wrap">
       <legend className="checkbox-title">{legend}</legend>
       {options.map((option) => (
-        <label key={option} className="container">
+        <label htmlFor={name} key={option} className="container">
           <input
             name={name}
             className="checkbox"

@@ -93,8 +93,8 @@ function SignupForm({
   };
 
   useEffect(() => {
-    console.log('error', myError);
-    console.log('message', myMessage);
+    // console.log('error', myError);
+    //console.log('message', myMessage);
 
     if (!myError && myMessage) {
       swal(`${myMessage}`, {

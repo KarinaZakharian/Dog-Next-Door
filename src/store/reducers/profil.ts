@@ -18,7 +18,6 @@ interface LoginState {
   additionnal_information: string[] | null;
   animal_size: string[] | null;
   error: string | null;
-  disponibility_date: string | null;
   animal: string | null;
   date_birth: string | null;
   energy: string | null;
@@ -29,6 +28,8 @@ interface LoginState {
   walk: string | null;
   latitude: number | null;
   longitude: number | null;
+  start_date: string | null;
+  end_date: string | null;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -42,7 +43,6 @@ export const initialState: LoginState = {
   additionnal_information: null,
   walking_duration: null,
   animal_size: null,
-  disponibility_date: null,
   animal: null,
   date_birth: null,
   energy: null,
@@ -53,12 +53,13 @@ export const initialState: LoginState = {
   walk: null,
   latitude: null,
   longitude: null,
+  start_date: null,
+  end_date: null,
 };
 
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
-
     return data as {
       firstname: string;
       lastname: string;
@@ -71,7 +72,6 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       additionnal_information: string[];
       animal_size: string[];
       accomodation: string;
-      disponibility_date: string;
       animal: string;
       date_birth: string;
       energy: string;
@@ -82,6 +82,8 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       walk: string;
       latitude: number;
       longitude: number;
+      start_date: string;
+      end_date: string;
     };
   } catch (error) {}
 });
@@ -89,6 +91,7 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
 const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
+      console.log('fetchuser', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.avatar = action.payload.avatar;
@@ -101,7 +104,8 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.accomodation = action.payload.accomodation;
       state.additionnal_information = action.payload.additionnal_information;
       state.walking_duration = action.payload.walking_duration;
-      state.disponibility_date = action.payload.disponibility_date;
+      state.start_date = action.payload?.disponibility.start_date;
+      state.end_date = action.payload?.disponibility.end_date;
       state.animal = action.payload?.animal.type;
       state.date_birth = action.payload?.animal.birth_date;
       state.energy = action.payload?.animal.energy;

@@ -11,8 +11,22 @@ const animalDatamapper = {
         const result = await client.query(query, values);
         return result.rowCount;
     },
-
-
+    
+    getUserWithAnimal : async (id) => {
+        
+        const userId = id;
+        const query = `
+        SELECT u.*
+        FROM "user" u
+        RIGHT JOIN "animal" a ON a."user_id" = u."id"
+        WHERE u."id" = $1;
+        `;
+        const value = [userId];
+        const result = await client.query(query, value);
+        console.log(result.rows[0]);
+    },
+    
+    
 };
 
 module.exports = animalDatamapper;

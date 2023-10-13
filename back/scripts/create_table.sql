@@ -29,9 +29,6 @@ CREATE TABLE "user" (
   animal_size TEXT[],
   additionnal_information TEXT[],
   walking_duration VARCHAR(42),
-  disponibility_date VARCHAR(42),
-  startDate DATE,
-  endDate DATE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );
@@ -56,8 +53,8 @@ CREATE TABLE animal (
 
 CREATE TABLE booking (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  start_date VARCHAR(42),
-  end_date VARCHAR(42),
+  start_date DATE,
+  end_date DATE,
   message TEXT,
   booking_status VARCHAR(42),
   user_id INTEGER NOT NULL REFERENCES "user"("id"),
@@ -68,8 +65,8 @@ CREATE TABLE booking (
 
 CREATE TABLE disponibility (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  start_date VARCHAR(42),
-  end_date VARCHAR(42),
+  start_date DATE,
+  end_date DATE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );
@@ -126,8 +123,8 @@ CREATE TABLE testimonial (
 
 CREATE TABLE user_has_disponibility (
   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  role_id INTEGER NOT NULL REFERENCES "role"("id"),
-  disponibility_id INTEGER NOT NULL REFERENCES "disponibility"("id"),
+  user_id INTEGER NOT NULL REFERENCES "user"("id"),
+  disponibility_id INTEGER NOT NULL REFERENCES "disponibility"("id") ON DELETE CASCADE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );

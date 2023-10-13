@@ -72,6 +72,7 @@ const userController = {
   findUser: async (req, res) => {
     try {
       const userId = parseInt(req.userId);
+
       const user = await userDatamapper.getOneUserById(userId);
       console.log(user);
       res.json(user);
@@ -88,7 +89,9 @@ const userController = {
       // Vérification de l'existence du compte
       const userExist = await userDatamapper.getOneUserByEmail(newUser);
       if (userExist) {
-        res.json('Cet email est déjà utilisé ! Veuillez vous logger');
+        res.status(401).json({
+          message: 'Cet email est déjà utilisé ! Veuillez vous logger',
+        });
         return;
       }
 
@@ -127,7 +130,6 @@ const userController = {
 
   updateOptionnalInformation: async (req, res) => {
     const intendedUser = req.body;
-    console.log(req.body);
     const userId = req.userId;
 
     try {
@@ -143,7 +145,7 @@ const userController = {
         intendedUser,
         userId
       );
-      console.log(response);
+
       res.json('Vos informations ont été ajoutées avec succès');
     } catch (error) {
       res.status(500).json({ message: 'Aucune modification a été apportée' });
@@ -175,10 +177,6 @@ const userController = {
     }
   },
 
-  createBooking: async (req, res) => {
-    console.log('page petsitter booking');
-  },
-
   findUserWithCalendar: async (req, res) => {
     const petsitterId = req.params.id;
     const petSitter = await userDatamapper.getOneUserById(petsitterId);
@@ -205,6 +203,27 @@ const userController = {
     const petsitterId = req.params.id;
     const petSitterBooking = await userDatamapper.getUserBooking(petsitterId);
     res.json(petSitterBooking);
+  },
+
+  createUserNewDisponibility: async (req, res) => {
+    const intendedUser = req.body;
+    const userId = req.userId;
+
+    const dateRange = intendedUser.disponibility_date;
+    const [startDateString, endDateString] = dateRange.split(' au ');
+
+    const startDate = new Date(startDateString.split('/').reverse().join('-'));
+    const endDate = new Date(endDateString.split('/').reverse().join('-'));
+
+    const sqlStartDate = startDate.toISOString().split('T')[0];
+    const sqlEndDate = endDate.toISOString().split('T')[0];
+
+    const disponilityAdded = await userDatamapper.addNewUserDisponibilitites(
+      sqlStartDate,
+      sqlEndDate,
+      userId
+    );
+    res.json('Vous venez de créer une disponibilité');
   },
 };
 

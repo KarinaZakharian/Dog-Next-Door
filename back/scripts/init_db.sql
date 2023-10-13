@@ -1,5 +1,3 @@
--- Permet de lancer POSTGRES
-sudo -i -u david psql
 
 -- On supprime les rôles S'IL EXISTE
 DROP USER IF EXISTS odog;
