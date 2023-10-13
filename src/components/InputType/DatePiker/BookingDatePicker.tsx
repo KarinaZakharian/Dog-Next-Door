@@ -63,8 +63,7 @@ function BookingRangePickerComp({ minDate, maxDate }: InputProps) {
         {open && (
           <DateRangePicker
             onChange={(item) => setState({ ...state, ...item })}
-            minDate={minDate}
-            maxDate={maxDate}
+           
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             months={1}

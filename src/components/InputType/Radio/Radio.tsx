@@ -36,7 +36,7 @@ function Radio({
         checked={picked === value}
         onChange={handleChange}
       />
-      <label htmlFor={name} className="form__radio-label small">
+      <label htmlFor={id} className="form__radio-label small">
         <img className="form__icon" src={img} alt="hotel" />
         <span className="form__text">{label}</span>
       </label>

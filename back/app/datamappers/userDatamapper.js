@@ -104,7 +104,8 @@ const userDatamapper = {
         )
         
         SELECT *
-        FROM user_search
+        FROM "user_search" us
+        LEFT JOIN "animal"
         WHERE distance <= $3 
         ORDER BY distance ASC`;
 

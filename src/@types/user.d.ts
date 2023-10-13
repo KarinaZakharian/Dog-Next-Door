@@ -1,3 +1,9 @@
+interface DisponibilityProps{
+  id : number | null ;
+  start_date: string |null ;
+  end_date: string | null;
+}
+
 export interface UserProps {
   description: string | null;
   garden: string | null;
@@ -14,6 +20,7 @@ export interface UserProps {
   latitude: number | null;
   longitude: number | null;
   user_address: string | null;
+  disponibility_date: DisponibilityProps[]| nulle;
 }
 
 export interface CardProps {
@@ -36,6 +43,7 @@ interface LeafletMapProps {
 export interface BookingProps {
   isBookingContainerVisible: boolean;
   setIsBookingContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  disponibility_date : DisponibilityProps;
 }
 
 export interface SignupProps {

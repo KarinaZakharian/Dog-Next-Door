@@ -22,6 +22,7 @@ import './Booking.scss';
 function Booking({
   isBookingContainerVisible,
   setIsBookingContainerVisible,
+  disponibility_date,
 }: BookingProps) {
   // Initialize navigation and dispatch
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function Booking({
   const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
 
-  console.log(type, name);
+  console.log(disponibility_date);
   // Function to hide the booking container
   const hideBookingContainer = () => {
     setIsBookingContainerVisible(false);
@@ -51,6 +52,7 @@ function Booking({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+  
 
     const objData = Object.fromEntries(formData);
     console.log(objData);

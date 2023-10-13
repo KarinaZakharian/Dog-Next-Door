@@ -24,8 +24,36 @@ VALUES
 ('Andrew', 'Scott', 'andrewscott@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1991-08-17', 'avatar19.jpg', '19', 'Rue de Marseille', '13005', 'Marseille', 'France', '43.2965', '5.3698'),
 ('Charlotte', 'Green', 'charlottegreen@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1994-01-04', 'avatar20.jpg', '20', 'Rue de Lyon', '69005', 'Lyon', 'France', '45.7640', '4.8357'),
 ('Matthew', 'Baker', 'matthewbaker@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1989-05-21', 'avatar21.jpg', '21', 'Rue de Paris', '75006', 'Paris', 'France', '48.8495', '2.3515'),
-('Amelia', 'Adams', 'ameliaadams@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119');
+('Amelia', 'Adams', 'ameliaadams@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119'),
+('Chris', 'MOBY', 'moby@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1980-11-27', 'avatar-Chris.png', '22', 'Paris 75007', '75007', 'Paris', 'France', '48.859', '2.347'),
+('Amaury', 'JEUNOT', 'amaury@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-11-27', 'avatar-Amaury.png', '22', 'Paris 75019', '75019', 'Paris', 'France', '48.866667', '2.333333');
 
+INSERT INTO "disponibility" ("start_date","end_date")
+VALUES
+('20/10/2023', '28/10/2023'),
+('18/10/2023', '25/10/2023'),
+('03/11/2023', '15/11/2023'),
+('05/11/2023', '10/11/2023'),
+('20/10/2023', '25/10/2023'),
+('18/10/2023', '20/10/2023'),
+('20/11/2023', '28/11/2023'),
+('19/10/2023', '26/10/2023'),
+('29/10/2023', '14/11/2023'),
+('22/10/2023', '16/11/2023'),
+('21/11/2023', '25/11/2023');
 
+INSERT INTO "user_has_disponibility" ("user_id","disponibility_id")
+VALUES
+(24,1),
+(23,10),
+(5,2),
+(24,3),
+(5,4),
+(13,11),
+(5,7),
+(13,5),
+(13,9),
+(20,8),
+(23,6);
 
 COMMIT;
