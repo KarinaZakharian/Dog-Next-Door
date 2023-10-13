@@ -24,7 +24,7 @@ userRouter.get('/petsitter/:id', cw(userController.findUserById));
 userRouter.get('/account', checkTokenMember, cw(userController.findUser));
 // userRouter.get("/logout", checkTokenRemove);
 //!Route POST
-userRouter.post('/login', checkTokenLogin, cw(userController.logInUser));
+userRouter.post('/login', cw(userController.logInUser));
 userRouter.post('/subscribe', cw(userController.createUser));
 userRouter.post('/search', cw(userController.findUserByDistance));
 userRouter.post(

@@ -46,6 +46,7 @@ function Petsitter() {
   const additionnal_information = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
+  const disponibility_date=user?.disponibility;
   const center: LatLngExpression = latLng(latitude, longitude);
 
   const account = useAppSelector((state) => state.login.firstname);
@@ -60,7 +61,7 @@ function Petsitter() {
   const walking_duration = useAppSelector(
     (state) => state.profil.walking_duration
   );
-  const disponibility_date = useAppSelector(
+  const disponibility_dateUser = useAppSelector(
     (state) => state.profil.disponibility_date
   );
 
@@ -209,6 +210,7 @@ function Petsitter() {
       <Booking
         isBookingContainerVisible={isBookingContainerVisible}
         setIsBookingContainerVisible={setIsBookingContainerVisible}
+        disponibility={disponibility_date}
       />
       <Footer />
     </div>

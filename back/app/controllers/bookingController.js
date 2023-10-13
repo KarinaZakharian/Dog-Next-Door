@@ -5,12 +5,11 @@ const bookingController = {
   
   createNewBooking : async (req,res) => {
     
-    const userId = parseInt(req.userId);
     const petSitterId = parseInt(req.params.id);
     const newBooking = req.body;
     
     const disponibilityExist = await bookingDatamapper.getOneUserDisponibility(petSitterId, newBooking.disponibility_id);
-    
+    console.log(disponibilityExist);
     //! Si aucune disponibilité est enregistré, on envoie un message d'erreur
     if(!disponibilityExist){
       res.status(401).json({"message":"Aucune disponibilité n'a été enregistré"});

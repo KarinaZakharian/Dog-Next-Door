@@ -46,6 +46,8 @@ function App() {
         // Si j'ai une erreur, peut importe la quelle, je supprime mon token
         .catch((error) => {
           localStorage.clear();
+          delete axiosInstance.defaults.headers.common.Authorization;
+          
         });
     }
   }, []);
