@@ -5,11 +5,10 @@ import swal from 'sweetalert';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { success, fillBookingForm } from '../../../../store/reducers/booking';
 
-import close_icon from '../../../assets/icons8-close-64.png';
+// import close_icon from '../../../../assets/icons/close_icon.svg';
 
 import Button from '../../../InputType/Button/Button';
 
-import './Booking.scss';
 import TextareaInput from '../../../InputType/Textarea/Textarea';
 import { MessageProps } from '../../../../@types/user';
 import { sendMessage } from '../../../../store/reducers/massage-inbox';

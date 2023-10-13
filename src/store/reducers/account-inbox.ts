@@ -142,7 +142,7 @@ const accountReducer = createReducer(initialState, (builder) => {
       // state.error = action.payload.response.data;
       state.acceptMessage = null;
     })
-    .addCase(clientAccept.fulfilled, (state, action) => {
+    .addCase(clientDecline.fulfilled, (state, action) => {
       console.log('fulffilled');
       console.log(action);
       state.declineError = undefined;
