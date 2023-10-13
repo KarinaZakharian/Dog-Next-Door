@@ -63,8 +63,10 @@ function Petsitter() {
     (state) => state.profil.walking_duration
   );
   const disponibility_dateUser = useAppSelector(
-    (state) => state.profil.disponibility
+    (state) => state.profil.disponibility_date
   );
+  console.log("user dispo", disponibility_dateUser);
+  console.log("sitter dispo", disponibility_date);
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -187,7 +189,7 @@ function Petsitter() {
             <div className="profil__animal-header">
               <h2 className="profil__animal-name">Son animal de compagnie</h2>
             </div>
-            {type && (
+            {typeAnimal && (
               <AnimalCard
                 type={typeAnimal}
                 name={nameAnimal}
@@ -212,6 +214,7 @@ function Petsitter() {
         isBookingContainerVisible={isBookingContainerVisible}
         setIsBookingContainerVisible={setIsBookingContainerVisible}
         disponibility_date={disponibility_date}
+        id={id}
       />
       <Footer />
     </div>

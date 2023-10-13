@@ -31,13 +31,14 @@ const bookingDatamapper = {
     `;
     const values = [sitterId, disponibilityId];
     const result = await client.query(query, values);
-    console.log(result.rows[0]);
+    
     return result.rows[0];
   },
 
-  addBooking: async (id, booking) => {
+  addBooking: async (petSitterId,userId, booking) => {
     try {
-      const userId = id;
+      const pet_sitter_id = petSitterId;
+      const idConnectedUser = userId;
       const {
         start_date,
         end_date,
@@ -55,12 +56,13 @@ const bookingDatamapper = {
       const values = [
         start_date,
         end_date,
-        message,
-        booking_status,
-        user_id,
-        sender_id,
+        'Réservation accepté',
+        'en attente',
+        pet_sitter_id,
+        idConnectedUser,
         disponibility_id,
       ];
+      console.log(values);
       const result = await client.query(query, values);
       return result.rows[0];
     } catch (error) {

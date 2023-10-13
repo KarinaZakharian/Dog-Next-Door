@@ -23,7 +23,7 @@ export const fillBookingForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     console.log(objData)
     try {
-      const data = await axiosInstance.post(`/petsitter/${objData.id}/booking`, objData);
+      const data = await axiosInstance.post(`/petsitter/${objData.petsitterId}/booking`, objData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

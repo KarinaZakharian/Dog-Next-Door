@@ -23,8 +23,10 @@ function Booking({
   isBookingContainerVisible,
   setIsBookingContainerVisible,
   disponibility_date,
+  id
 }: BookingProps) {
   // Initialize navigation and dispatch
+  console.log(disponibility_date);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -40,7 +42,7 @@ function Booking({
   const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
 
-  console.log(disponibility_date);
+ 
   // Function to hide the booking container
   const hideBookingContainer = () => {
     setIsBookingContainerVisible(false);
@@ -52,6 +54,11 @@ function Booking({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+   
+    formData.append('petsitterId', id);
+    formData.append('start_date', disponibility_date.start_date);
+    formData.append('end_date', disponibility_date.end_date);
+    formData.append('disponibility_id', disponibility_date.id);
   
 
     const objData = Object.fromEntries(formData);
@@ -65,7 +72,7 @@ function Booking({
   useEffect(() => {
     // Handle success or error messages
     if (!error && message) {
-      swal({
+      swal(`${message}`,{
         icon: 'success',
         timer: 1000,
       });

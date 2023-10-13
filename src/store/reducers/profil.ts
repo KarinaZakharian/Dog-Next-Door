@@ -7,6 +7,7 @@ import {
 import axiosInstance from '../../utils/axios';
 
 interface LoginState {
+  disponibility_date: string | null;
   firstname: string | null;
   lastname: string | null;
   avatar: string | null;
@@ -28,8 +29,7 @@ interface LoginState {
   walk: string | null;
   latitude: number | null;
   longitude: number | null;
-  start_date: string | null;
-  end_date: string | null;
+  disponibility_date: string | null ;
 }
 export const initialState: LoginState = {
   firstname: null,
@@ -53,8 +53,7 @@ export const initialState: LoginState = {
   walk: null,
   latitude: null,
   longitude: null,
-  start_date: null,
-  end_date: null,
+ disponibility_date: null ,
 };
 
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
@@ -82,8 +81,7 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       walk: string;
       latitude: number;
       longitude: number;
-      start_date: string;
-      end_date: string;
+      disponibility_date:string;
     };
   } catch (error) {}
 });
@@ -104,8 +102,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.accomodation = action.payload.accomodation;
       state.additionnal_information = action.payload.additionnal_information;
       state.walking_duration = action.payload.walking_duration;
-      state.start_date = action.payload?.disponibility.start_date;
-      state.end_date = action.payload?.disponibility.end_date;
+     state.disponibility_date=action.payload?.disponibility_date;
       state.animal = action.payload?.animal.type;
       state.date_birth = action.payload?.animal.birth_date;
       state.energy = action.payload?.animal.energy;
