@@ -8,6 +8,7 @@ import { success, fillBookingForm } from '../../../../store/reducers/booking';
 // import close_icon from '../../../../assets/icons/close_icon.svg';
 
 import Button from '../../../InputType/Button/Button';
+import close_icon from '../../../../assets/icons8-close-64.png'
 
 import TextareaInput from '../../../InputType/Textarea/Textarea';
 import { MessageProps } from '../../../../@types/user';
@@ -15,7 +16,8 @@ import { sendMessage } from '../../../../store/reducers/massage-inbox';
 
 function Comment({ isMessageOpen, setMessageOpen, clientId }: MessageProps) {
   // Initialize navigation and dispatch
-
+  const messageError = useAppSelector((state) => state.inboxUppast.messageError);
+  const messageMessage = useAppSelector((state) => state.inboxUppast.messageMessage);
   function handelMessage() {
     setMessageOpen(false);
   }

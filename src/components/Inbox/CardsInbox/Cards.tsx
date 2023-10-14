@@ -8,19 +8,20 @@ import { clientAccept } from '../../../store/reducers/account-inbox';
 import './Cards.scss';
 
 interface AnimalProps {
-  type: string;
+  type: 'cat'| 'dog';
   name: string;
-  dates: string;
+  start_date: string;
+  end_date : string ;
   clientId: string;
 }
 
-function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
+function AnimalCard({ type, name, start_date, end_date,clientId }: AnimalProps) {
+  console.log(type)
+ 
   const acceptMessage = useAppSelector(
     (state) => state.inboxAccount.acceptMessage
   );
-  const declineMessage = useAppSelector(
-    (state) => state.inboxAccount.declineMessage
-  );
+
 
   const dispatch = useAppDispatch();
   function handleAccept() {
@@ -30,12 +31,7 @@ function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
     dispatch(clientAccept(formData));
   }
 
-  function handleDecline() {
-    const formData = new FormData();
-    formData.append('clientId', clientId.toString());
-    formData.append('answer', 'true');
-    dispatch(clientAccept(formData));
-  }
+ 
 
   useEffect(() => {
     if (acceptMessage) {
@@ -46,14 +42,8 @@ function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
       });
     }
 
-    if (declineMessage) {
-      // Show an error message using a modal
-      swal(`${declineMessage}`, {
-        icon: 'success',
-        timer: 1000,
-      });
-    }
-  }, [acceptMessage, declineMessage]);
+  
+  }, [acceptMessage]);
 
   return (
     <div className="animals-card">
@@ -67,11 +57,11 @@ function AnimalCard({ type, name, dates, clientId }: AnimalProps) {
           )}
           {name && <span className="animal-card__info">{name}</span>}
         </div>
-        <span className="animals-card__dates">{dates}</span>
+        <span className="animals-card__dates">{start_date}{end_date}</span>
       </div>
       <div className="row2">
         <button onClick={handleAccept}>Accepter</button>
-        <button onClick={handleDecline}>Décline</button>
+       
       </div>
     </div>
   );

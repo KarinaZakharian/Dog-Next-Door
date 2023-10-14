@@ -1,5 +1,5 @@
 const express = require("express");
-const {inboxController} = require('../controllers/index.js');
+const {inboxController, bookingController} = require('../controllers/index.js');
 const inboxRouter= express.Router();
 const { checkTokenMember } = require('../services/tokenController.js')
 
@@ -8,11 +8,13 @@ const { controlWrapper:cw } = require('../services/errorService.js')
 
 //!Route GET
 
-inboxRouter.get("/inbox", checkTokenMember, cw(inboxController.findMessageByUser));
-// inboxRouter.get("/inbox/past", checkTokenMember, cw(inboxController.findPastMessages));
-// inboxRouter.get("/inbox/upcoming", checkTokenMember, cw(inboxController.findUpcomingMessages));
-// inboxRouter.get("/inbox/awaiting", checkTokenMember, cw(inboxController.findawaitingMessages));
+inboxRouter.get("/inbox/awaiting", checkTokenMember, cw(inboxController.findBookingReceived));
+inboxRouter.get("/inbox/past", checkTokenMember, cw(inboxController.findPastBooking));
+inboxRouter.get("/inbox/upcoming", checkTokenMember, cw(inboxController.findUpcomingBooking));
+inboxRouter.get("/inbox/demands", checkTokenMember, cw(inboxController.findBookingRequest));
 
 //!Route POST
+
+inboxRouter.post("/inbox/awaiting", checkTokenMember, cw(inboxController.acceptBooking));
 
 module.exports = inboxRouter;

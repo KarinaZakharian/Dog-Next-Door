@@ -7,14 +7,15 @@ import {
 import axiosInstance from '../../utils/axios';
 
 interface Card {
-  firstname: string | null;
-  lastname: string | null;
-  dates: string | null;
-  id: string | null;
+  firstname: string ;
+  lastname: string ;
+  start_date: string;
+  end_date: string;
+  id: string ;
 }
 
 interface InboxState {
-  user: Card | null;
+  user: Card[] | null;
   error: string | undefined;
   message: string | null;
   messageError: string | undefined;
@@ -34,7 +35,7 @@ export const fetchMessageUser =
     rejecValue: string;
   }>('inbox/fetchmessageuser', async (thunkAPI) => {
     try {
-      const response = await axiosInstance.get(`account/inbox/uppast`);
+      const response = await axiosInstance.get(`/inbox/past`);
       console.log(response.data);
       return response.data;
     } catch (error) {

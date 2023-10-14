@@ -59,10 +59,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/petsitter/:id" element={<Petsitter />} />
-        <Route path="/account/inbox" element={<Account />} />
-        <Route path="/account/inbox/upcoming" element={<Upcoming />} />
-        <Route path="/account/inbox/uppast" element={<Uppast />} />
-        <Route path="/account/inbox/demands" element={<Demandes />} />
+        <Route path="/inbox/awaiting" element={<Account />} />
+        <Route path="/inbox/upcoming" element={<Upcoming />} />
+        <Route path="/inbox/uppast" element={<Uppast />} />
+        <Route path="/inbox/demands" element={<Demandes />} />
 
         {firstname && (
           <>

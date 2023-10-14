@@ -3,18 +3,21 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axios';
 
 interface Card {
-  type: string | null;
-  name: string | null;
-  dates: string | null;
+  type: 'cat' | 'dog';
+  name: string ;
+  start_date: string ;
+  end_date: string ;
+  clientId: string ;
+ 
 }
 
 interface InboxState {
-  animal: Card | null;
+  user: Card []| null;
   error: string | undefined;
   message: string | null;
 }
 export const initialState: InboxState = {
-  animal: null,
+  user: null,
   error: undefined,
   message: null,
 };
@@ -52,7 +55,7 @@ const upcomingReducer = createReducer(initialState, (builder) => {
       console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
-      state.animal = action.payload;
+      state.user = action.payload;
     });
 });
 

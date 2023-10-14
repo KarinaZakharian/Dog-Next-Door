@@ -13,7 +13,8 @@ function Account() {
   useEffect(() => {
     dispatch(fetchUpcomingAnimal());
   }, []);
-  const animals = useAppSelector((state) => state.inboxUpcoming.animal);
+  const user = useAppSelector((state) => state.inboxUpcoming.user);
+  console.log(user)
   return (
     <div>
       <Header />
@@ -21,29 +22,30 @@ function Account() {
         <div className="container">
           <div className="content">
             <div className="content__header">
-              <Link className="content__link" to="/account/inbox">
+            <Link className="content__link" to="/inbox/awaiting">
                 Demandes en attente
               </Link>
-              <Link className="content__link" to="/account/inbox/upcoming">
+              <Link className="content__link" to="/inbox/upcoming">
                 Gardes à venir
               </Link>
-              <Link className="content__link" to="/account/inbox/uppast">
+              <Link className="content__link" to="/inbox/uppast">
                 Gardes passées
               </Link>
-              <Link className="content__link" to="/account/inbox/demands">
+              <Link className="content__link" to="/inbox/demands">
                 Votre demands
               </Link>
             </div>
             <div>
-              {animals &&
-                animals.map((animal, index) => (
+              {user &&
+              
                   <UpcomingCard
-                    key={index} // It's a good practice to provide a unique key for each component
-                    type={animal.type}
-                    name={animal.name}
-                    dates={animal.dates}
+                  type={user.animal.type}
+                  name={user.animal.name}
+                  start_date={user.booking.start_date}
+                  end_date={user.booking.end_date}
+                 
                   />
-                ))}
+             }
             </div>
           </div>
         </div>

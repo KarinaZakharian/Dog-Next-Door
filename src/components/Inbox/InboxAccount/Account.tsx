@@ -15,7 +15,8 @@ function Account() {
     dispatch(fetchInboxAnimal());
   }, []);
 
-  const animals = useAppSelector((state) => state.inboxAccount.animal);
+  const user = useAppSelector((state) => state.inboxAccount.user);
+  console.log(user)
   return (
     <div>
       <Header />
@@ -23,46 +24,56 @@ function Account() {
         <div className="container">
           <div className="content">
             <div className="content__header">
-              <Link className="content__link" to="/account/inbox">
+              <Link className="content__link" to="/inbox/awaiting">
                 Demandes en attente
               </Link>
-              <Link className="content__link" to="/account/inbox/upcoming">
+              <Link className="content__link" to="/inbox/upcoming">
                 Gardes à venir
               </Link>
-              <Link className="content__link" to="/account/inbox/uppast">
+              <Link className="content__link" to="/inbox/uppast">
                 Gardes passées
               </Link>
-              <Link className="content__link" to="/account/inbox/demands">
+              <Link className="content__link" to="/inbox/demands">
                 Votre demands
               </Link>
             </div>
             <div>
-              {animals ? (
-                animals.map((animal, index) => (
-                  <AnimalCard
-                    key={index} // It's a good practice to provide a unique key for each component
-                    type={animal.type}
-                    name={animal.name}
-                    dates={animal.dates}
-                    id={animal.user.id}
-                  />
-                ))
-              ) : (
-                <div className="content__link-no-demand-container">
-                  <h2 className="content__link-no-demand-title">
-                    Vous n'avez pas de messages non lus...
-                  </h2>
-                  <p className="content__link-no-demand-content">
-                    Vous trouverez ici les messages que vous avez échangés avec
-                    un pet sitter lorsque que vous n'avez pas encore confirmé la
-                    réservation.
-                  </p>
-                  <p className="content__link-no-demand-content">
-                    Les messages concernant vos prochaines gardes se trouvent
-                    dans l'onglet Gardes à venir.
-                  </p>
-                </div>
-              )}
+           
+            {Array.isArray(user) ? (
+  user.map((user, index) => (
+    <AnimalCard
+      key={index} // Use a unique key for each user
+      type={user.animal.type}
+      name={user.animal.name}
+      start_date={user.booking.start_date}
+      end_date={user.booking.end_date}
+      clientId={user.id}
+    />
+  ))
+) : user ? (
+  <AnimalCard
+    type={user.animal.type}
+    name={user.animal.name}
+    start_date={user.booking.start_date}
+    end_date={user.booking.end_date}
+    clientId={user.id}
+  />
+) : (
+  <div className="content__link-no-demand-container">
+    <h2 className="content__link-no-demand-title">
+      Vous n'avez pas de messages non lus...
+    </h2>
+    <p className="content__link-no-demand-content">
+      Vous trouverez ici les messages que vous avez échangés avec
+      un pet sitter lorsque que vous n'avez pas encore confirmé la
+      réservation.
+    </p>
+    <p className="content__link-no-demand-content">
+      Les messages concernant vos prochaines gardes se trouvent
+      dans l'onglet Gardes à venir.
+    </p>
+  </div>
+)}
             </div>
           </div>
         </div>

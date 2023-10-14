@@ -3,10 +3,11 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axios';
 
 interface User {
-  firstname: string | null;
-  lastname: string | null;
-  dates: string | null;
-  status: string | null;
+  firstname: string  ;
+  lastname: string  ;
+  start_date: string ;
+  end_date : string;
+  status: string  ;
 }
 
 interface InboxState {
@@ -24,7 +25,7 @@ export const fetchStatus = createAsyncThunk<{
   rejecValue: string;
 }>('inbox/status', async (thunkAPI) => {
   try {
-    const response = await axiosInstance.get(`account/inbox/demands`);
+    const response = await axiosInstance.get(`/inbox/demands`);
     console.log(response.data);
     return response.data;
   } catch (error) {

@@ -4,12 +4,13 @@ import dog from '../../../../assets/icons8-dog-100.png';
 import './CardsUpcoming.scss';
 
 interface AnimalProps {
-  type: string | null;
-  name: string | null;
-  dates: string;
+  type: 'cat'| 'dog';
+  name: string ;
+  start_date: string;
+  end_date:string ;
 }
 
-function UpcomingCard({ type, name, dates }: AnimalProps) {
+function UpcomingCard({ type, name, start_date, end_date }: AnimalProps) {
   return (
     <div className="animal-card">
       <div className="main-info">
@@ -21,7 +22,7 @@ function UpcomingCard({ type, name, dates }: AnimalProps) {
         )}
         {name && <span className="animal-card__info">{name}</span>}
       </div>
-      <span className="animal-card__dates">{dates}</span>
+      <span className="animal-card__dates">{start_date} {end_date}</span>
     </div>
   );
 }

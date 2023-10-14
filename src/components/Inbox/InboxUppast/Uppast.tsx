@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Footer from '../../PageComponents/Footer/Footer';
@@ -6,22 +6,16 @@ import Header from '../../PageComponents/Header/Header';
 import PastCard from './UppastCard/UppastCard';
 
 import '../InboxAccount/Account.scss';
+import { fetchMessageUser } from '../../../store/reducers/massage-inbox';
 
 function Uppast() {
+
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const animals = [
-    {
-      type: 'cat',
-      name: 'Whiskers',
-      dates: 'July 5, 2023 - July 10, 2023',
-    },
-    {
-      type: 'dog',
-      name: 'Rex',
-      dates: 'June 15, 2023 - June 22, 2023',
-    },
-  ];
+  useEffect(() => {
+    dispatch(fetchMessageUser());
+  }, []);
+  const user = useAppSelector((state) => state.inboxUppast.user);
+  console.log(user)
   return (
     <div>
       <Header />
@@ -29,28 +23,30 @@ function Uppast() {
         <div className="container">
           <div className="content">
             <div className="content__header">
-              <Link className="content__link" to="/account/inbox">
+              <Link className="content__link" to="/inbox/awaiting">
                 Demandes en attente
               </Link>
-              <Link className="content__link" to="/account/inbox/upcoming">
+              <Link className="content__link" to="/inbox/upcoming">
                 Gardes à venir
               </Link>
-              <Link className="content__link" to="/account/inbox/uppast">
+              <Link className="content__link" to="/inbox/uppast">
                 Gardes passées
               </Link>
-              <Link className="content__link" to="/account/inbox/demands">
+              <Link className="content__link" to="/inbox/demands">
                 Votre demands
               </Link>
             </div>
             <div>
-              {animals.map((animal, index) => (
+              {user &&
                 <PastCard
-                  key={index} // It's a good practice to provide a unique key for each component
-                  type={animal.type}
-                  name={animal.name}
-                  dates={animal.dates}
+             // It's a good practice to provide a unique key for each component
+                  firstname={user.firstname}
+                  lastname={user.lastname}
+                  id={user.id}
+                  start_date={user.booking.start_date}
+                  end_date={user.booking.end_date}
                 />
-              ))}
+             }
             </div>
           </div>
         </div>

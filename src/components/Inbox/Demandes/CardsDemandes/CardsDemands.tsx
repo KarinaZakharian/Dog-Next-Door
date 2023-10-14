@@ -7,18 +7,19 @@ import './CardsDemands.scss';
 interface UserProps {
   firstname: string;
   lastname: string;
-  dates: string;
+  start_date : string ;
+  end_date : string ;
   status: string;
 }
 
-function DemandesCard({ firstname, lastname, dates, status }: UserProps) {
+function DemandesCard({ firstname, lastname, start_date, end_date,status }: UserProps) {
   return (
     <div className="status-card">
       <span className="status-card__name">
         {firstname}
         {lastname}
       </span>
-      <span className="status-card__dates">{dates}</span>
+      <span className="status-card__dates">{start_date} {end_date}</span>
       <span className="status-card__status">{status}</span>
     </div>
   );

@@ -38,7 +38,7 @@ function Header() {
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu"></div>
             <div className="menu__menu-connection">
-              <NavLink className="menu__menu-item" to="/account/inbox">
+              <NavLink className="menu__menu-item" to="/inbox/awaiting">
                 <img className="menu-icon" src={inboxIcon} alt="inbox icon" />
               </NavLink>
               <NavLink className="menu__menu-item" to="/account">

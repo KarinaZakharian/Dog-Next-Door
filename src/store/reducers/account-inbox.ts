@@ -7,14 +7,16 @@ import {
 import axiosInstance from '../../utils/axios';
 
 interface Card {
-  type: string | null;
-  name: string | null;
-  dates: string | null;
-  id: string | null;
+  type: 'cat' | 'dog';
+  name: string ;
+  start_date: string ;
+  end_date: string ;
+  clientId: string ;
+ 
 }
 
 interface InboxState {
-  animal: Card | null;
+  user: Card []| null;
   error: string | undefined;
   message: string | null;
   acceptError: string | undefined;
@@ -23,7 +25,7 @@ interface InboxState {
   declineMessage: string | null;
 }
 export const initialState: InboxState = {
-  animal: null,
+  user: null,
   error: undefined,
   message: null,
   acceptError: undefined,
@@ -57,6 +59,7 @@ export const clientAccept = createAsyncThunk<
   }
 >('inbox/accept-decline', async (formData: FormData, thunkAPI) => {
   const objData = Object.fromEntries(formData);
+  console.log(objData)
   try {
     const response = await axiosInstance.post('/inbox/awaiting', objData);
     console.log(response.data);
@@ -86,11 +89,11 @@ const accountReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
-      // console.log('fulffilled');
-      //console.log(action);
+      console.log('fulffilled',action);
+      console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
-      state.animal = action.payload;
+      state.user = action.payload;
     })
     .addCase(fetchAnimalSuccess, (state) => {
       state.error = undefined;

@@ -6,13 +6,15 @@ import Comment from '../../InboxUppast/Message/Message';
 
 import './UppastCard.scss';
 
-interface AnimalProps {
-  type: string | null;
-  name: string | null;
-  dates: string;
+interface PastCardProps {
+ firstname: string;
+ lastname : string;
+ start_date: string ;
+ end_date :string ;
+ id : string
 }
 
-function PastCard({ type, name, dates }: AnimalProps) {
+function PastCard({ firstname, lastname, start_date, end_date, id }: PastCardProps) {
   const [isMessageOpen, setMessageOpen] = useState(false);
 
   function handelMessage() {
@@ -22,21 +24,16 @@ function PastCard({ type, name, dates }: AnimalProps) {
     <div className="animals-card">
       <div className="row">
         <div className="main-info">
-          {type && type === 'cat' && (
-            <img className="animals-card__image" src={cat} alt="Avatar" />
-          )}
-          {type && type === 'dog' && (
-            <img className="animals-card__image" src={dog} alt="Avatar" />
-          )}
-          {name && <span className="animal-card__info">{name}</span>}
+          {firstname}{lastname}
         </div>
-        <span className="animals-card__dates">{dates}</span>
+        <span className="animals-card__dates">{end_date}</span>
+        <span className="animals-card__dates">{start_date}</span>
       </div>
       <div className="row2">
         <button onClick={handelMessage}>Add comment</button>
       </div>
       <Comment
-        clientId={''}
+        clientId={id}
         isMessageOpen={isMessageOpen}
         setMessageOpen={setMessageOpen}
       />

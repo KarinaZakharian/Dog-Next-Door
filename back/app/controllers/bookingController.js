@@ -40,7 +40,7 @@ const bookingController = {
       
       disponibilityExist.start_date = disponibilityExist.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'})
       disponibilityExist.end_date = disponibilityExist.end_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'})
-      console.log(userId);
+      
       const booking = await bookingDatamapper.addBooking(petSitterId,userId, newBooking);
       // console.log("bookin : ",booking);
       res.json({"message" : "Votre réservation a bien été pris en compte", booking});
