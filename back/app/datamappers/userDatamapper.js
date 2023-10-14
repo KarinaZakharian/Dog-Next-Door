@@ -35,7 +35,8 @@ const userDatamapper = {
       const query = `
       SELECT u.*, 
       json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal,
-      json_build_object('id', d.id, 'start_date', d.start_date, 'end_date', d.end_date) as disponibility
+      json_build_object('id', d.id, 'start_date', d.start_date, 'end_date', d.end_date) as disponibility,
+	  json_build_object('id', b.id, 'start_date', b.start_date, 'end_date', b.end_date, 'message',b.message, 'booking_status', b.booking_status,'user_id',b.user_id,'sender_id', b.sender_id) as booking
       FROM "user" u
       LEFT JOIN "animal" a ON a."user_id" = u."id" 
       LEFT JOIN "disponibility" d ON d."id" IN (
@@ -43,7 +44,8 @@ const userDatamapper = {
         FROM "user_has_disponibility"
         WHERE "user_id" = $1
         )
-        WHERE u."id"=$1;`;
+	  LEFT JOIN "booking" b ON b."user_id" = u."id"
+        WHERE u."id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);
       return userFound.rows[0];

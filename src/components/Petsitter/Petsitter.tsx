@@ -48,7 +48,12 @@ function Petsitter() {
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
   const disponibility_date = user?.disponibility;
+  const booking_start=user?.booking?.start_date;
+  const booking_end=user?.booking?.end_date;
   console.log(disponibility_date);
+
+
+
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
   const type = useAppSelector((state) => state.profil.animal);
@@ -215,6 +220,8 @@ function Petsitter() {
         setIsBookingContainerVisible={setIsBookingContainerVisible}
         disponibility_date={disponibility_date}
         id={id}
+        bookingStart={booking_start}
+        bookingEnd={booking_end}
       />
       <Footer />
     </div>

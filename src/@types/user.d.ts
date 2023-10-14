@@ -45,6 +45,8 @@ export interface BookingProps {
   setIsBookingContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
   disponibility_date : DisponibilityProps;
   id:string;
+  bookingEnd: string;
+  bookingStart: string ;
 }
 
 export interface SignupProps {

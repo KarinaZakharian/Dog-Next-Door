@@ -23,7 +23,9 @@ function Booking({
   isBookingContainerVisible,
   setIsBookingContainerVisible,
   disponibility_date,
-  id
+  id,
+  bookingEnd,
+  bookingStart,
 }: BookingProps) {
   // Initialize navigation and dispatch
   console.log(disponibility_date);
