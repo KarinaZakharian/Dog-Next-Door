@@ -3,7 +3,7 @@
     <div className="aside-profil">
       <img className="main-img" src={avatar} />
       <h3 className="profil-title">
-        {lastname} peut effectuer la garde à son domicile
+        {lastname} peut effectuer la garde à son mon domicile
       </h3>
       <ul>{renderSize()}</ul>
       <h3 className="profil-title">À propos du domicile du {lastname}</h3>
