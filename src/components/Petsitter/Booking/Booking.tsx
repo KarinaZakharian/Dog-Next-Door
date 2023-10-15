@@ -24,11 +24,16 @@ function Booking({
   setIsBookingContainerVisible,
   disponibility_date,
   id,
-  bookingEnd,
-  bookingStart,
+  bookingNotAvailibleStart,
+  bookingNotAvailibleEnd,
 }: BookingProps) {
   // Initialize navigation and dispatch
-  console.log(disponibility_date);
+  console.log('Sitter dispo in booking ', disponibility_date);
+  console.log(
+    'Dates not availible',
+    bookingNotAvailibleEnd,
+    bookingNotAvailibleStart
+  );
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -38,13 +43,11 @@ function Booking({
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
   const date_birth = useAppSelector((state) => state.profil.date_birth);
-  const size_animal = useAppSelector((state) => state.profil.size);
-  const walk = useAppSelector((state) => state.profil.walk);
+
   const energy = useAppSelector((state) => state.profil.energy);
   const food = useAppSelector((state) => state.profil.mealhours);
   const race = useAppSelector((state) => state.profil.race);
 
- 
   // Function to hide the booking container
   const hideBookingContainer = () => {
     setIsBookingContainerVisible(false);
@@ -56,12 +59,11 @@ function Booking({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-   
+
     formData.append('petsitterId', id);
     formData.append('start_date', disponibility_date.start_date);
     formData.append('end_date', disponibility_date.end_date);
     formData.append('disponibility_id', disponibility_date.id);
-  
 
     const objData = Object.fromEntries(formData);
     console.log(objData);
@@ -74,7 +76,7 @@ function Booking({
   useEffect(() => {
     // Handle success or error messages
     if (!error && message) {
-      swal(`${message}`,{
+      swal(`${message}`, {
         icon: 'success',
         timer: 1000,
       });
@@ -149,8 +151,8 @@ function Booking({
             Sélectionnez les dates d'arrivée et de départ
           </p>
           <BookingRangePickerComp
-            minDate={new Date('2023-10-01')}
-            maxDate={new Date('2023-10-15')}
+            minDate={new Date(`${disponibility_date.start_date}`)}
+            maxDate={new Date(`${disponibility_date.end_date}`)}
           />
           <Button prop="Submit" />
         </form>

@@ -1,7 +1,7 @@
-interface DisponibilityProps{
-  id : number | null ;
-  start_date: string |null ;
-  end_date: string | null;
+interface DisponibilityProps {
+  id: string;
+  start_date: string;
+  end_date: string;
 }
 
 export interface UserProps {
@@ -20,7 +20,7 @@ export interface UserProps {
   latitude: number | null;
   longitude: number | null;
   user_address: string | null;
-  disponibility_date: DisponibilityProps[]| nulle;
+  disponibility_date: DisponibilityProps[] | nulle;
 }
 
 export interface CardProps {
@@ -43,10 +43,10 @@ interface LeafletMapProps {
 export interface BookingProps {
   isBookingContainerVisible: boolean;
   setIsBookingContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  disponibility_date : DisponibilityProps;
-  id:string;
-  bookingEnd: string;
-  bookingStart: string ;
+  disponibility_date: DisponibilityProps;
+  id: string;
+  bookingNotAvailibleEnd: string;
+  bookingNotAvailibleStart: string;
 }
 
 export interface SignupProps {

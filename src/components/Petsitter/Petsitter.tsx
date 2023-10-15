@@ -49,29 +49,19 @@ function Petsitter() {
   const energyAnimal = user?.animal?.energy;
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
-  const disponibility = user?.disponibility;
+  const disponibility_Sitter = user?.disponibility;
   const booking_start = user?.booking?.start_date;
   const booking_end = user?.booking?.end_date;
-  console.log(disponibility);
+  console.log('sitter booking taken', booking_end, booking_start);
 
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
-  const type = useAppSelector((state) => state.profil.animal);
-  const name = useAppSelector((state) => state.profil.name);
-  const date_birth = useAppSelector((state) => state.profil.date_birth);
-  const size_animal = useAppSelector((state) => state.profil.size);
-  const walk = useAppSelector((state) => state.profil.walk);
-  const energy = useAppSelector((state) => state.profil.energy);
-  const food = useAppSelector((state) => state.profil.mealhours);
-  const race = useAppSelector((state) => state.profil.race);
-  const walking_duration = useAppSelector(
-    (state) => state.profil.walking_duration
-  );
+
   const disponibility_dateUser = useAppSelector(
     (state) => state.profil.disponibility
   );
   console.log('user dispo', disponibility_dateUser);
-  console.log('sitter dispo', disponibility);
+  console.log('sitter dispo', disponibility_Sitter);
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -138,16 +128,16 @@ function Petsitter() {
                   </h3>
                 )}
                 <ul>{renderSize()}</ul>
-                {walking_duration && (
+                {walkAnimal && (
                   <h3 className="profil-title">Disponibilité de promenade</h3>
                 )}
-                {walking_duration && <p>{walking_duration}</p>}
+                {walkAnimal && <p>{walkAnimal}</p>}
 
-                {disponibility && (
+                {disponibility_Sitter && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility && (
-                  <DateRangeComp disponibility={disponibility} />
+                {disponibility_Sitter && (
+                  <DateRangeComp disponibility={disponibility_Sitter} />
                 )}
               </div>
               <div className="profil__user-home">
@@ -188,11 +178,12 @@ function Petsitter() {
             </div>
           </div>
           {/* -----------------------------profil animal------------------------ */}
-          <div className="profil__animal">
-            <div className="profil__animal-header">
-              <h2 className="profil__animal-name">Son animal de compagnie</h2>
-            </div>
-            {typeAnimal && (
+
+          {typeAnimal && (
+            <div className="profil__animal">
+              <div className="profil__animal-header">
+                <h2 className="profil__animal-name">Son animal de compagnie</h2>
+              </div>
               <AnimalCard
                 type={typeAnimal}
                 name={nameAnimal}
@@ -203,9 +194,12 @@ function Petsitter() {
                 repa={foodAnimal}
                 energy={energyAnimal}
               />
-            )}
-          </div>
-          {account && <button onClick={showBookingContainer}>Booking</button>}
+            </div>
+          )}
+
+          {account && disponibility_Sitter && (
+            <button onClick={showBookingContainer}>Booking</button>
+          )}
           {!account && (
             <Link to={'/subscribe'}>
               <Button prop="Booking" />
@@ -213,14 +207,17 @@ function Petsitter() {
           )}
         </div>
       </div>
-      <Booking
-        isBookingContainerVisible={isBookingContainerVisible}
-        setIsBookingContainerVisible={setIsBookingContainerVisible}
-        disponibility_date={disponibility}
-        id={id}
-        bookingStart={booking_start}
-        bookingEnd={booking_end}
-      />
+      {disponibility_Sitter && (
+        <Booking
+          isBookingContainerVisible={isBookingContainerVisible}
+          setIsBookingContainerVisible={setIsBookingContainerVisible}
+          disponibility_date={disponibility_Sitter}
+          id={id}
+          bookingNotAvailibleStart={booking_start}
+          bookingNotAvailibleEnd={booking_end}
+        />
+      )}
+
       <Footer />
     </div>
   );
