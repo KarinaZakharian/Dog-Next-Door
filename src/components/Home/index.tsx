@@ -176,29 +176,37 @@ function Home() {
       <section className="fonctionnality">
         <div className="fonctionnality__card">
           <img src={swap} alt="" className="fonctionnality__img" />
-          <h2 className="fonctionnality__title">Échanger</h2>
+          <h2 className="fonctionnality__title">Échange</h2>
           <p className="fonctionnality__content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
-            illo neque!
+            Chez <strong>O'Dog Next Door</strong>, le pet sitting est un échange
+            chaleureux et convivial entre passionnés d'animaux. Offrez
+            l'hospitalité à l'animal d'un autre membre, et en retour, votre
+            propre compagnon est accueilli chez eux, le tout gratuitement.
+            Ainsi, l'hébergement de vos petits amis reste accessible et basé sur
+            un échange équitable et bienveillant.
           </p>
         </div>
         <div className="fonctionnality__card">
           <img src={search} alt="" className="fonctionnality__img" />
           <h2 className="fonctionnality__title">Rechercher</h2>
           <p className="fonctionnality__content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
-            illo neque!
+            Trouvez le pet sitter idéal près de chez vous avec{' '}
+            <strong>O'Dog Next Door</strong> ! Naviguez à travers les profils de
+            nos membres partout en France et découvrez un univers dédié à
+            l'amour des animaux. Votre compagnon à quatre pattes sera choyé par
+            une communauté fiable et attentionnée à deux pas de votre domicile.
           </p>
         </div>
         <div className="fonctionnality__card">
           <img src={security} alt="" className="fonctionnality__img" />
-          <h2 className="fonctionnality__title">Identité validé</h2>
+          <h2 className="fonctionnality__title">Identité vérifié</h2>
           <p className="fonctionnality__content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-            porro. Accusamus sint porro quam delectus. Magni assumenda delectus
-            illo neque!
+            Soyez assurés de la confiance et de la sécurité avec{' '}
+            <strong>O'Dog Next Door</strong>. Tous nos pet sitters valident leur
+            identité et leur adresse avant de rejoindre la communauté. Nous
+            mettons un point d'honneur à vérifier chaque profil pour que vous
+            puissiez confier votre animal avec une tranquillité d’esprit
+            absolue. O'Dog Next Door, votre réseau de pet sitting de confiance !
           </p>
         </div>
       </section>
@@ -207,10 +215,14 @@ function Home() {
         <div className="marketing__right-space">
           <h3 className="marketing__title">Partager</h3>
           <p className="marketing__content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut dolores
-            numquam aliquam ut minima accusantium quaerat, amet quisquam harum
-            error molestias magnam consequuntur minus debitis, dolore alias,
-            iusto nesciunt vero.
+            Chez <strong>O'Dog Next Door</strong>, partager des moments précieux
+            est au cœur de notre mission. En confiant votre animal à notre
+            communauté de pet sitters dévoués, non seulement vous assurez à
+            votre compagnon un environnement bienveillant, mais aussi une
+            opportunité d’enrichissement social en côtoyant d'autres animaux.
+            Laissez votre petit ami profiter de nouvelles aventures tout en
+            bénéficiant vous-même d'une tranquillité d'esprit, sachant qu'il
+            crée des liens joyeux et sécurisants dans un foyer aimant.
           </p>
         </div>
       </section>
@@ -225,8 +237,9 @@ function Home() {
             />
             <h5 className="testimonials__card-name">Coralie H.</h5>
             <p className="testimonials__card-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-              eaque?
+              Expérience top avec O'Dog Next Door ! Bella a été chouchoutée par
+              un pet sitter attentionné, et j’ai voyagé l’esprit léger. Service
+              hautement recommandé !
             </p>
           </div>
           <div className="testimonials__card">
@@ -237,8 +250,9 @@ function Home() {
             />
             <h5 className="testimonials__card-name">John D.</h5>
             <p className="testimonials__card-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-              eaque?
+              Partir en week-end est désormais un plaisir sans culpabilité.
+              Oscar et Missy ont été aimés et dorlotés comme à la maison. O'Dog
+              Next Door, c'est notre choix sûr pour chaque absence !
             </p>
           </div>
           <div className="testimonials__card">
@@ -249,8 +263,9 @@ function Home() {
             />
             <h5 className="testimonials__card-name">Brandon L.</h5>
             <p className="testimonials__card-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-              eaque?
+              Un vrai bonheur d'utiliser O'Dog Next Door ! Nougat est revenu de
+              son séjour aussi joyeux et détendu que nous de nos vacances. Une
+              solution en or pour nos escapades !
             </p>
           </div>
         </div>

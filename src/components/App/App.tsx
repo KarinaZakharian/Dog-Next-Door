@@ -47,7 +47,6 @@ function App() {
         .catch((error) => {
           localStorage.clear();
           delete axiosInstance.defaults.headers.common.Authorization;
-          
         });
     }
   }, []);
@@ -63,6 +62,8 @@ function App() {
         <Route path="/inbox/upcoming" element={<Upcoming />} />
         <Route path="/inbox/uppast" element={<Uppast />} />
         <Route path="/inbox/demands" element={<Demandes />} />
+        {/* <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} /> */}
 
         {firstname && (
           <>
