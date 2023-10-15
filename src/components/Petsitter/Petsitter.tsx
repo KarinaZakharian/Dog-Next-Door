@@ -16,18 +16,20 @@ import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
 import { UserProps } from '../../@types/user';
 function Petsitter() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  useEffect(() => {
+    dispatch(fetchUserById(Number(id)));
+  }, [id]);
+
   const [isBookingContainerVisible, setIsBookingContainerVisible] =
     useState(false);
   // Function to show the booking container
   const showBookingContainer = () => {
     setIsBookingContainerVisible(true);
   };
-  const dispatch = useAppDispatch();
-  const { id } = useParams();
-  useEffect(() => {
-    dispatch(fetchUserById(Number(id)));
-  }, [id]);
-  const user: UserProps = useAppSelector((state) => state.sitter.user);
+
+  const user = useAppSelector((state) => state.sitter.user);
   console.log(user);
   const firstname = user?.lastname;
   const lastname = user?.firstname;
@@ -47,12 +49,10 @@ function Petsitter() {
   const energyAnimal = user?.animal?.energy;
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
-  const disponibility_date = user?.disponibility;
-  const booking_start=user?.booking?.start_date;
-  const booking_end=user?.booking?.end_date;
-  console.log(disponibility_date);
-
-
+  const disponibility = user?.disponibility;
+  const booking_start = user?.booking?.start_date;
+  const booking_end = user?.booking?.end_date;
+  console.log(disponibility);
 
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
@@ -68,10 +68,10 @@ function Petsitter() {
     (state) => state.profil.walking_duration
   );
   const disponibility_dateUser = useAppSelector(
-    (state) => state.profil.disponibility_date
+    (state) => state.profil.disponibility
   );
-  console.log("user dispo", disponibility_dateUser);
-  console.log("sitter dispo", disponibility_date);
+  console.log('user dispo', disponibility_dateUser);
+  console.log('sitter dispo', disponibility);
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -142,14 +142,12 @@ function Petsitter() {
                   <h3 className="profil-title">Disponibilité de promenade</h3>
                 )}
                 {walking_duration && <p>{walking_duration}</p>}
-                {disponibility_date && (
+
+                {disponibility && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_date && (
-                  <DateRangeComp
-                    start_date={disponibility_date.start_date}
-                    end_date={disponibility_date.end_date}
-                  />
+                {disponibility && (
+                  <DateRangeComp disponibility={disponibility} />
                 )}
               </div>
               <div className="profil__user-home">
@@ -218,7 +216,7 @@ function Petsitter() {
       <Booking
         isBookingContainerVisible={isBookingContainerVisible}
         setIsBookingContainerVisible={setIsBookingContainerVisible}
-        disponibility_date={disponibility_date}
+        disponibility_date={disponibility}
         id={id}
         bookingStart={booking_start}
         bookingEnd={booking_end}
