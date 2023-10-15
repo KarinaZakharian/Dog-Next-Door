@@ -10,11 +10,52 @@ interface ValidationErrors {
   errorMessage: string;
   field_errors: Record<string, string>;
 }
-
 interface User {
+  accomodation: string | null;
+  additionnal_information: (null | any)[];
+  animal: Animal | null;
+  animal_size: (null | any)[];
+  avatar: string | null;
+  booking: Booking | null;
+  description: string | null;
+  disponibility: Disponibility | null;
+  email: string | null;
   firstname: string | null;
+  garden: string | null;
+  id: number | null;
   lastname: string | null;
+  latitude: number | null;
+  longitude: number | null;
   user_address: string | null;
+  walking_duration: string | null;
+  size: string | null;
+  error: string | null;
+}
+interface Animal {
+  name: string | null;
+  size: string | null;
+  birth_date: string | null;
+  type: string | null;
+  energy: string | null;
+  mealhours: string | null;
+  walk: string | null;
+  race: string | null;
+  // Add more properties as needed
+}
+interface Booking {
+  id: number | null;
+  start_date: string | null;
+  end_date: string | null;
+  message: string | null;
+  booking_status: string | null;
+  // Add more properties as needed
+}
+
+interface Disponibility {
+  id: number | null;
+  start_date: string | null;
+  end_date: string | null;
+  // Add more properties as needed
 }
 
 interface SitterState {

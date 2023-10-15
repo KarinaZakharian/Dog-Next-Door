@@ -37,7 +37,7 @@ function Petsitter() {
   const size = user?.size;
   const description = user?.description;
   const garden = user?.garden;
-  const accommodation = user?.accommodation;
+  const accommodation = user?.accomodation;
   const additionnal_information = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
