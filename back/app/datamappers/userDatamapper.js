@@ -88,18 +88,20 @@ const userDatamapper = {
     }
   },
 
-  getUsersByDistance: async (searchParameters) => {
+  getUsersByDistance: async (searchParameters, id) => {
     // try{
     const resultSearch = searchParameters;
     const latitude = parseFloat(resultSearch.latitude);
     const longitude = parseFloat(resultSearch.longitude);
+    const userId = parseInt(id);
 
     const radius_km = parseInt(resultSearch.radius);
-
-    const values = [latitude, longitude, radius_km];
-
+    let values = [];
+    let query= ``;
+    
     //! Requête qui permet de rechercher un utilisateur dans un périmètre donné en choisissant le rayon au km
-    const query = `WITH user_search AS(
+    if(userId){
+       query = `WITH user_search AS(
         SELECT * , ROUND(CAST(6371 * (2 * ATAN2(SQRT((SIN((RADIANS("user"."latitude" - $1)) / 2)* SIN((RADIANS("user"."latitude" - $1)) / 2) + COS(RADIANS($1)) * COS(RADIANS("user"."latitude")) * SIN((RADIANS("user"."longitude" - $2)) / 2) * SIN((RADIANS("user"."longitude" - $2)) / 2))), SQRT(1 - (SIN((RADIANS("user"."latitude" - $1)) / 2) * SIN((RADIANS("user"."latitude" - $1)) / 2) + COS(RADIANS($1)) * COS(RADIANS("user"."latitude")) * SIN((RADIANS("user"."longitude" - $2)) / 2) * SIN((RADIANS("user"."longitude" - $2)) / 2))))) AS numeric),2) 
         AS distance
         FROM "user"
@@ -107,9 +109,22 @@ const userDatamapper = {
         
         SELECT *
         FROM "user_search"
-        WHERE distance <= $3 
+        WHERE distance <= $3 AND id != $4
         ORDER BY distance ASC`;
-
+       values = [latitude, longitude, radius_km, userId];
+    }else{
+       query = `WITH user_search AS(
+          SELECT * , ROUND(CAST(6371 * (2 * ATAN2(SQRT((SIN((RADIANS("user"."latitude" - $1)) / 2)* SIN((RADIANS("user"."latitude" - $1)) / 2) + COS(RADIANS($1)) * COS(RADIANS("user"."latitude")) * SIN((RADIANS("user"."longitude" - $2)) / 2) * SIN((RADIANS("user"."longitude" - $2)) / 2))), SQRT(1 - (SIN((RADIANS("user"."latitude" - $1)) / 2) * SIN((RADIANS("user"."latitude" - $1)) / 2) + COS(RADIANS($1)) * COS(RADIANS("user"."latitude")) * SIN((RADIANS("user"."longitude" - $2)) / 2) * SIN((RADIANS("user"."longitude" - $2)) / 2))))) AS numeric),2) 
+          AS distance
+          FROM "user"
+          )
+          
+          SELECT *
+          FROM "user_search"
+          WHERE distance <= $3
+          ORDER BY distance ASC`;
+       values = [latitude, longitude, radius_km];
+    };
     const usersFound = await client.query(query, values);
     return usersFound.rows;
   },
@@ -227,7 +242,7 @@ const userDatamapper = {
     return userBookings.rows;
   },
 
-  addNewUserDisponibilitites: async (beginDate, finalDate, id) => {
+  addNewUserDisponibilities: async (beginDate, finalDate, id) => {
     const startDate = beginDate;
     const endDate = finalDate;
     const userId = id;

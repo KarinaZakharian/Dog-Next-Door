@@ -118,7 +118,7 @@ function Petsitter() {
               <div className="profil__user-pref">
                 <img
                   className="profil__user-pref-img"
-                  src={avatar ? avatar : avatarLogo}
+                  src={avatar ? '/' + avatar : avatarLogo}
                   alt="Avatar"
                 />
                 {description && <p>{description}</p>}
@@ -133,10 +133,10 @@ function Petsitter() {
                 )}
                 {walkAnimal && <p>{walkAnimal}</p>}
 
-                {disponibility_Sitter !==null  && (
+                {disponibility_Sitter?.end_date  && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_Sitter !==null && (
+                {disponibility_Sitter?.end_date && (
                   <DateRangeComp disponibility={disponibility_Sitter} />
                 )}
               </div>
@@ -196,10 +196,11 @@ function Petsitter() {
               />
             </div>
           )}
-
-          {account && disponibility_Sitter && (
-            <button onClick={showBookingContainer}>Booking</button>
-          )}
+{account && disponibility_Sitter?.end_date ? (
+  <button onClick={showBookingContainer}>Booking</button>
+) : (
+  <p>Cet utilisateur n'a pas de disponibilité</p>
+)}
           {!account && (
             <Link to={'/subscribe'}>
               <Button prop="Booking" />
@@ -207,7 +208,7 @@ function Petsitter() {
           )}
         </div>
       </div>
-      {disponibility_Sitter && (
+      {disponibility_Sitter?.end_date && (
         <Booking
           isBookingContainerVisible={isBookingContainerVisible}
           setIsBookingContainerVisible={setIsBookingContainerVisible}

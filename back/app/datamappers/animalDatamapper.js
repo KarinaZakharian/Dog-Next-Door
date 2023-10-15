@@ -23,7 +23,7 @@ const animalDatamapper = {
         `;
         const value = [userId];
         const result = await client.query(query, value);
-        console.log(result.rows[0]);
+        return result.rows[0];
     },
     
     

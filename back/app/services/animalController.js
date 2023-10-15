@@ -8,12 +8,13 @@ const animalController = {
     checkGetAnimal : async (req,res,next) => {
       const userId = parseInt(req.userId);
       const userGetAnimal = await animalDatamapper.getUserWithAnimal(userId);
+      
       //! Si c'est pas le cas , on renvoi une erreur
       if(!userGetAnimal) {
-        res.status(401).json({"message": "Vous devez enregistrer un animal pour réserver"})
+        return res.status(401).json({"message": "Vous devez enregistrer un animal pour réserver"})
       }else {
          //! Sinon on continue,
-        next();
+        return next();
       }
   },
 

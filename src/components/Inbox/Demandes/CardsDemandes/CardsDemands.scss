@@ -21,10 +21,20 @@
 
 .yellow-text {
   @include v.label;
-  color: yellow;
+  color: yellowgreen;
 }
 
 .green-text {
   @include v.label;
   color: green;
+}
+
+.orange-text {
+  @include v.label;
+  color: orangered;
+}
+
+.red-text {
+  @include v.label;
+  color: red;
 }

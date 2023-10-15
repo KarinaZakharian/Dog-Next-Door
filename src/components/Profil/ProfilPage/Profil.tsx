@@ -32,6 +32,7 @@ function Profil() {
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
 
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
+
   // Function to show the booking container
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
@@ -65,8 +66,7 @@ function Profil() {
     (state) => state.profil.walking_duration
   );
   const disponibility = useAppSelector((state) => state.profil.disponibility);
-  console.log( "Profil disponibility",disponibility);
-  // console.log(size, description, garden, accommodation);
+  const user_adress=useAppSelector((state) => state.profil.user_address);
   const animal = useAppSelector((state) => state.profil.animal);
 
   // Access specific properties within the 'animal' object
@@ -78,8 +78,8 @@ function Profil() {
   const energy = animal?.energy || null;
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
-  // console.log(longitude, latitude);
   const center: LatLngExpression = latLng(latitude, longitude);
+
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -122,6 +122,7 @@ function Profil() {
     }
     return null;
   };
+console.log("user description", description);
 
   return (
     <div className="page-wrapper">
@@ -155,10 +156,13 @@ function Profil() {
               <div className="profil__user-pref">
                 <img
                   className="profil__user-pref-img"
-                  src={avatar ? avatar : avatarLogo}
+                  src={avatar ? '/' + avatar : avatarLogo}
                   alt="Avatar"
                 />
-                {description && <p>{description}</p>}
+                {description && 
+                  <blockquote>
+                    <p>{description}</p>
+                  </blockquote>}
                 {size && (
                   <h3 className="profil-title">
                     {firstname} garde les animaux de taille :
@@ -172,6 +176,7 @@ function Profil() {
               </div>
 
               <div className="profil__user-home">
+              
                 {longitude && (
                   <div className="leflet-container">
                     <LeafletMap
@@ -229,7 +234,7 @@ function Profil() {
               </div>
               <div className="profil__booking-disponibility">
 
-                {disponibility &&  <div className="profil__booking-disponibility">
+                {disponibility?.end_date &&  <div className="profil__booking-disponibility">
                     <h3 className="profil-title">
                       Disponibilité de {firstname}:
                     </h3>

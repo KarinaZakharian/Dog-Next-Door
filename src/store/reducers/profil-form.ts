@@ -122,6 +122,8 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       state.message = null;
       state.myError = null;
       state.myMessage = null;
+      state.dateError=null;
+      state.dateMessage=null
     });
 });
 

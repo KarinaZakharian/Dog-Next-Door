@@ -18,24 +18,24 @@ function DateForm({
     setIsDateContainerVisible(false);
   };
   const dispatch = useAppDispatch();
-  const error = useAppSelector((state) => state.profilForm.dateError);
-  const message = useAppSelector((state) => state.profilForm.dateMessage);
+  const dateError = useAppSelector((state) => state.profilForm.dateError);
+  const dateMessage = useAppSelector((state) => state.profilForm.dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     dispatch(fillDateForm(formData));
+   
   }
 
   useEffect(() => {
     //console.log('error', error);
     // console.log('message', message);
 
-    if (!error && message) {
-      swal(`${message}`, {
+    if (!dateError && dateMessage) {
+      swal(`${dateMessage}`, {
         icon: 'success',
         timer: 1000,
       });
@@ -45,21 +45,20 @@ function DateForm({
       }, 1000);
     }
 
-    if (error) {
-      swal(`${error}`, {
+    if (dateError) {
+      swal(`${dateError}`, {
         icon: 'error',
         button: true,
       });
     }
-  }, [error, message]);
-
+  }, [dateError, dateMessage]);
   return (
     <div
       className={`form-container ${isDateContainerVisible ? '' : 'display'}`}
     >
       <div className="booking-card">
         <button className="close-button" onClick={hideDateContainer}>
-          <img className="close-button__image" src={close_icon} alt="Cat" />
+          <img className="close-button__image" src={close_icon} alt="Close icon" />
         </button>
       </div>
       <form className="profil-form" onSubmit={handleSubmit}>

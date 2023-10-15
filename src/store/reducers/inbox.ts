@@ -67,34 +67,26 @@ export const acceptBooking = createAsyncThunk(
   }
 );
 
-export const deliteBooking = createAsyncThunk(
-  'delite/Booking',
-  async (formData: FormData, thunkAPI) => {
-    const objData = Object.fromEntries(formData);
-    try {
-      const data = await axiosInstance.delete('/account/inbox', objData);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
+
 
 const bookingReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchBooking.fulfilled, (state, action) => {
       // state.logged = true;
       // console.log('action fulfilled', action);
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.user_address = action.payload.user_address;
-      state.description = action.payload.description;
-      state.garden = action.payload.garden;
-      state.animal_size = action.payload.animal_size;
-      state.accomodation = action.payload.accomodation;
-      state.additionnal_information = action.payload.additionnal_information;
-      state.walking_duration = action.payload.walking_duration;
-      state.disponibility_date = action.payload.disponibility_date;
+      if(action.payload){
+        state.firstname = action.payload.firstname;
+        state.lastname = action.payload.lastname;
+        state.user_address = action.payload.user_address;
+        state.description = action.payload.description;
+        state.garden = action.payload.garden;
+        state.animal_size = action.payload.animal_size;
+        state.accomodation = action.payload.accomodation;
+        state.additionnal_information = action.payload.additionnal_information;
+        state.walking_duration = action.payload.walking_duration;
+        state.disponibility_date = action.payload.disponibility_date;
+      }
+      
       state.error = null;
 
       // state.token = action.payload.token;

@@ -8,6 +8,7 @@ const {
   checkTokenLogin,
   checkTokenMember,
   checkTokenRemove,
+  checkToken
 } = require('../services/tokenController.js');
 const { checkGetAnimal } = require('../services/animalController.js');
 // Import des services
@@ -26,7 +27,8 @@ userRouter.get('/account', checkTokenMember, cw(userController.findUser));
 //!Route POST
 userRouter.post('/login', cw(userController.logInUser));
 userRouter.post('/subscribe', cw(userController.createUser));
-userRouter.post('/search', cw(userController.findUserByDistance));
+
+userRouter.post('/search', checkToken, cw(userController.findUserByDistance));
 userRouter.post(
   '/account/adddisponibility',
   checkTokenMember,

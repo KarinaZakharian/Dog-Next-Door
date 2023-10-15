@@ -15,7 +15,7 @@ const { bookingController } = require("../controllers/index.js");
 //Routes get
 
 // Routes post
-bookingRouter.post("/account", checkGetAnimal, cw(bookingController.addNewBooking));
-bookingRouter.post("/petsitter/:id/booking", checkTokenMember ,bookingController.createNewBooking);
+bookingRouter.post("/account", cw(bookingController.addNewBooking));
+bookingRouter.post("/petsitter/:id/booking", checkTokenMember,checkGetAnimal ,bookingController.createNewBooking);
 
 module.exports = bookingRouter;

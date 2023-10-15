@@ -57,7 +57,7 @@ const bookingDatamapper = {
         start_date,
         end_date,
         'Réservation accepté',
-        'en attente',
+        'En attente',
         pet_sitter_id,
         idConnectedUser,
         disponibility_id,

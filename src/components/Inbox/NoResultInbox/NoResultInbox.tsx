@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import Footer from '../../PageComponents/Footer/Footer';
-import Header from '../../PageComponents/Header/Header';
 import AnimalCard from '../CardsInbox/Cards';
 
 import './Account.scss';
@@ -16,29 +14,9 @@ function Account() {
   }, []);
 
   const user = useAppSelector((state) => state.inboxAccount.user);
-  console.log(user)
+
   return (
-    <div>
-      <Header />
-      <main className="main-account">
-        <div className="container">
           <div className="content">
-            <div className="content__header">
-              <Link className="content__link" to="/inbox/awaiting">
-                Demandes en attente
-              </Link>
-              <Link className="content__link" to="/inbox/upcoming">
-                Gardes à venir
-              </Link>
-              <Link className="content__link" to="/inbox/uppast">
-                Gardes passées
-              </Link>
-              <Link className="content__link" to="/inbox/demands">
-                Votre demands
-              </Link>
-            </div>
-            <div>
-           
             {Array.isArray(user) ? (
               user.map((user, index) => (
                 <AnimalCard
@@ -74,12 +52,7 @@ function Account() {
                 </p>
               </div>
             )}
-            </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
   );
 }
 

@@ -116,17 +116,19 @@ function InputSearch() {
               <div className="radiosimple-wrapper">
                 <RadioSimple
                   name="radius"
-                  id="5km"
+                  id="5"
                   picked={pickedRadius}
                   value="5"
                   onRadioChange={handleRadiusChange}
+                  label="5 km"
                 />
                 <RadioSimple
                   name="radius"
-                  id="10km"
+                  id="10"
                   picked={pickedRadius}
                   value="10"
                   onRadioChange={handleRadiusChange}
+                  label="5 km"
                 />
                 <RadioSimple
                   name="radius"
@@ -134,6 +136,7 @@ function InputSearch() {
                   picked={pickedRadius}
                   value="20"
                   onRadioChange={handleRadiusChange}
+                  label="5 km"
                 />
                 <RadioSimple
                   name="radius"
@@ -141,11 +144,12 @@ function InputSearch() {
                   picked={pickedRadius}
                   value="35"
                   onRadioChange={handleRadiusChange}
+                  label="5 km"
                 />
               </div>
             </div>
 
-            <DateRangePickerComp legend="Disponibilités" />
+            {/* <DateRangePickerComp legend="Disponibilités" /> */}
           </div>
         </div>
         <Button prop="Rechercher" />

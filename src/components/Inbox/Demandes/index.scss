@@ -6,11 +6,6 @@
   flex-direction: column;
 }
 
-.wrapper-container {
-  width: 1300px;
-  margin: 0 auto;
-}
-
 .main {
   height: 100vh;
   background-image: url(../../assets/chienv2.jpg);
@@ -218,7 +213,6 @@
   &__card {
     border: 2px solid #e7e7e7;
     border-radius: 10px;
-    background-color: v.$color-main;
     text-align: center;
     display: flex;
     flex-direction: column;

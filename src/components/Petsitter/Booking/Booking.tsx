@@ -82,19 +82,23 @@ function Booking({
     if (!error && message) {
       swal(`${message}`, {
         icon: 'success',
-        timer: 1000,
+        timer: 1500,
       });
       setTimeout(() => {
         dispatch(success());
         navigate('/', { replace: true });
-      }, 1000);
+      }, 1500);
     }
 
     if (error) {
       swal(`${error}`, {
         icon: 'error',
-        timer: 1000,
+        timer: 1500,
       });
+      setTimeout(() => {
+        dispatch(success());
+        navigate('/account', { replace: true });
+      }, 1500);
     }
   }, [error, message]);
 

@@ -227,13 +227,7 @@ function AnimalForm() {
                 value="Modéré"
                 onRadioChange={handleEnergyChange}
               />
-              <RadioSimple
-                name="energy"
-                id="small"
-                picked={pickedEnergy}
-                value="Faible"
-                onRadioChange={handleEnergyChange}
-              />
+             
             </div>
 
             <Button prop="Enregistrer" />

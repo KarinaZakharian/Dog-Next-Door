@@ -29,6 +29,7 @@ function AnimalCard({
   repa,
   energy,
 }: AnimalProps) {
+  console.log(type)
   return (
     <div className="myAnimal-card">
       <div className="section-animal">

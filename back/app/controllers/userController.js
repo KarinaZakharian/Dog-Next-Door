@@ -118,10 +118,12 @@ const userController = {
   },
 
   findUserByDistance: async (req, res) => {
+    const userId = req.userId;
     const searchParameters = req.body;
     console.log(searchParameters);
+    console.log(userId);
     try {
-      const users = await userDatamapper.getUsersByDistance(searchParameters);
+      const users = await userDatamapper.getUsersByDistance(searchParameters, userId);
       res.json(users);
     } catch (error) {
       res.status(500).json(error.toString());
@@ -215,10 +217,10 @@ const userController = {
     const startDate = new Date(startDateString.split('/').reverse().join('-'));
     const endDate = new Date(endDateString.split('/').reverse().join('-'));
 
-    const sqlStartDate = startDate.toISOString().split('T')[0];
-    const sqlEndDate = endDate.toISOString().split('T')[0];
+    const sqlStartDate = startDate.toLocaleDateString().split('T')[0];
+    const sqlEndDate = endDate.toLocaleDateString().split('T')[0];
 
-    const disponilityAdded = await userDatamapper.addNewUserDisponibilitites(
+    const disponilityAdded = await userDatamapper.addNewUserDisponibilities(
       sqlStartDate,
       sqlEndDate,
       userId

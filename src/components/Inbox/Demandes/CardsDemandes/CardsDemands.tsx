@@ -20,11 +20,23 @@ function DemandesCard({
   status,
 }: UserProps) {
   let statusClass = '';
-
-  if (status === 'en attente') {
-    statusClass = 'yellow-text';
-  } else if (status === 'approuvé') {
-    statusClass = 'green-text';
+  switch (status) {
+    case 'En attente':
+      statusClass = 'yellow-text';
+      break;
+    case 'Validé':
+      statusClass = 'green-text';
+      break;
+    case 'A venir':
+      statusClass = 'orange-text';
+      break;
+    case 'Passé':
+      statusClass = 'red-text';
+      break;
+    default:
+      // Handle cases where status doesn't match any of the known values
+      statusClass = 'unknown-text';
+      break;
   }
 
   return (

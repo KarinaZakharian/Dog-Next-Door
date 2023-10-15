@@ -34,9 +34,9 @@ const bookingController = {
     newBooking.start_date = sqlStartDate;
     newBooking.end_date = sqlEndDate;
 
-    //! Si date de début et de fin de la réservation correspondent à celles de la disponibilité 
-    console.log(newBooking);
-    if(disponibilityExist.start_date.toLocaleDateString('fr-FR') == startDateFr && disponibilityExist.end_date.toLocaleDateString('fr-FR') == endDateFr){
+    //! Si date de début et de fin de la réservation correspondent à celle de la disponibilité 
+   
+    if(disponibilityExist.start_date.toLocaleDateString('fr-FR') == startDateString && disponibilityExist.end_date.toLocaleDateString('fr-FR') == endDateString){
       
       disponibilityExist.start_date = disponibilityExist.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'})
       disponibilityExist.end_date = disponibilityExist.end_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'})
@@ -48,6 +48,8 @@ const bookingController = {
       return;
     }else {
       console.log("il ne rentre pas dans la condition")
+      console.log(startDateString,endDateString)
+      console.log(disponibilityExist.start_date.toLocaleDateString('fr-FR'),disponibilityExist.end_date.toLocaleDateString('fr-FR'))
     }
     
     // ! Si la date de début de la résa = celle de la dispo, mais que la date de fin de résa est inférieur à celle de la dispo

@@ -17,7 +17,7 @@ const tokenController = {
     const token = jwt.sign(payload, SECRET_KEY, options);
     return token;
   },
-
+  
   checkTokenLogin: async (req, res, next) => {
     const authorization = req.headers.authorization;
     console.log('req headers', req.headers);
@@ -25,7 +25,7 @@ const tokenController = {
     if (!authorization) {
       return next();
     }
-
+    
     try {
       const token = authorization.split(' ')[1];
       const userData = jwt.verify(token, process.env.SECRET_KEY);
@@ -43,7 +43,7 @@ const tokenController = {
     const authorization = req.headers.authorization;
     if (authorization) {
       const token = authorization.split(' ')[1];
-
+      
       try {
         const userData = jwt.clearCookie('access_token');
         res.json({ message: 'Vous avez été déconnecté' });
@@ -52,27 +52,47 @@ const tokenController = {
       }
     }
   },
-
+  
   checkTokenMember: async (req, res, next) => {
     const authorization = req.headers.authorization;
-
+    
     if (!authorization) {
       return res.status(401).json({
         message: 'Connectez-vous pour pouvoir accéder à cette page',
       });
     }
     const token = authorization.split(' ')[1];
-
+    
     try {
       const userData = jwt.verify(token, process.env.SECRET_KEY);
-
+      
       req.userId = userData.id;
-
+      
       return next();
     } catch (error) {
       return res.status(401).json({
         message: 'Connectez-vous pour pouvoir accéder à cette page',
       });
+    }
+  },
+  
+  checkToken: async (req, res, next) => {
+    const authorization = req.headers.authorization;
+    
+    if (!authorization) {
+      return next();
+    }
+    
+    const token = authorization.split(' ')[1];
+    
+    try {
+      const userData = jwt.verify(token, process.env.SECRET_KEY);
+      
+      req.userId = userData.id;
+      
+      return next();
+    } catch (error) {
+      return next();
     }
   },
 };

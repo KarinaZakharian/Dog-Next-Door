@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION add_booking(startDate DATE, endDate DATE, messageBook
  DELETE FROM "disponibility"
     WHERE "disponibility"."id" =$7;
   INSERT INTO "booking" ("start_date", "end_date", "message","booking_status","user_id","sender_id")
-    VALUES ($1, $2, 'Réservation accepté', 'en attente', $5, $6) RETURNING *;
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
 $$ LANGUAGE SQL STRICT;
 
 

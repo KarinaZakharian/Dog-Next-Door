@@ -24,8 +24,6 @@ function CalendarComp() {
   };
 
   const hideOnClickOutside = (e) => {
-    console.log(refOne.current);
-    console.log(e.target);
     if (refOne.current && !refOne.current.contains(e.target)) {
       setOpen(false);
     }
