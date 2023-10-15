@@ -53,7 +53,7 @@ function Petsitter() {
   const booking_start = user?.booking?.start_date;
   const booking_end = user?.booking?.end_date;
   console.log('sitter booking taken', booking_end, booking_start);
-
+  console.log('dispo sitter' , disponibility_Sitter)
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
 
@@ -133,10 +133,10 @@ function Petsitter() {
                 )}
                 {walkAnimal && <p>{walkAnimal}</p>}
 
-                {disponibility_Sitter && (
+                {disponibility_Sitter !==null  && (
                   <h3 className="profil-title">Disponibilité de {lastname}</h3>
                 )}
-                {disponibility_Sitter && (
+                {disponibility_Sitter !==null && (
                   <DateRangeComp disponibility={disponibility_Sitter} />
                 )}
               </div>

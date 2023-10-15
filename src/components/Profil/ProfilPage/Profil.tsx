@@ -65,7 +65,7 @@ function Profil() {
     (state) => state.profil.walking_duration
   );
   const disponibility = useAppSelector((state) => state.profil.disponibility);
-  //console.log(disponibility);
+  console.log( "Profil disponibility",disponibility);
   // console.log(size, description, garden, accommodation);
   const animal = useAppSelector((state) => state.profil.animal);
 
@@ -228,20 +228,15 @@ function Profil() {
                 </div>
               </div>
               <div className="profil__booking-disponibility">
-                {disponibility ? (
-                  <div className="profil__booking-disponibility">
+
+                {disponibility &&  <div className="profil__booking-disponibility">
                     <h3 className="profil-title">
                       Disponibilité de {firstname}:
                     </h3>
                     <DateRangeComp disponibility={disponibility} />
-                  </div>
-                ) : (
-                  <div className="profil__booking-disponibility-noresult">
-                    <h2 className="profil__booking-disponibility-noresult-title">
-                      Pas de disponibilité...
-                    </h2>
-                  </div>
-                )}
+                  </div>}
+                  
+               
               </div>
             </div>
             {/* -----------------------------popup form--------------------------- */}

@@ -21,6 +21,7 @@ import Upcoming from '../Inbox/InboxUpcoming/Upcoming';
 import Uppast from '../Inbox/InboxUppast/Uppast';
 import Demandes from '../Inbox/Demandes/Demandes';
 import { reconnect } from '../../store/reducers/login';
+import AboutUs from '../Forms/About/AboutUs';
 
 function App() {
   const firstname = useAppSelector((state) => state.login.firstname);
@@ -62,8 +63,8 @@ function App() {
         <Route path="/inbox/upcoming" element={<Upcoming />} />
         <Route path="/inbox/uppast" element={<Uppast />} />
         <Route path="/inbox/demands" element={<Demandes />} />
-        {/* <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} /> */}
+        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/about" element={<AboutUs />} />
 
         {firstname && (
           <>
