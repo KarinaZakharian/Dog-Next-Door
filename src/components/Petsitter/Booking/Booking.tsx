@@ -40,13 +40,17 @@ function Booking({
   // information from the Redux store
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  const type = useAppSelector((state) => state.profil.animal);
-  const name = useAppSelector((state) => state.profil.name);
-  const date_birth = useAppSelector((state) => state.profil.date_birth);
+  const animal = useAppSelector((state) => state.profil.animal);
 
-  const energy = useAppSelector((state) => state.profil.energy);
-  const food = useAppSelector((state) => state.profil.mealhours);
-  const race = useAppSelector((state) => state.profil.race);
+  // Access specific properties within the 'animal' object
+  const type = animal?.type || null;
+  const name = animal?.name || null;
+  const date_birth = animal?.birth_date || null;
+  const size_animal = animal?.size || null;
+  const walk = animal?.walk || null;
+  const energy = animal?.energy || null;
+  const food = animal?.mealhours || null;
+  const race = animal?.race || null;
 
   // Function to hide the booking container
   const hideBookingContainer = () => {

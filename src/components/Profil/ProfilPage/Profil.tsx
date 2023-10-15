@@ -67,14 +67,17 @@ function Profil() {
   const disponibility = useAppSelector((state) => state.profil.disponibility);
   //console.log(disponibility);
   // console.log(size, description, garden, accommodation);
-  const type = useAppSelector((state) => state.profil.animal);
-  const name = useAppSelector((state) => state.profil.name);
-  const date_birth = useAppSelector((state) => state.profil.date_birth);
-  const size_animal = useAppSelector((state) => state.profil.size);
-  const walk = useAppSelector((state) => state.profil.walk);
-  const energy = useAppSelector((state) => state.profil.energy);
-  const food = useAppSelector((state) => state.profil.mealhours);
-  const race = useAppSelector((state) => state.profil.race);
+  const animal = useAppSelector((state) => state.profil.animal);
+
+  // Access specific properties within the 'animal' object
+  const type = animal?.type || null;
+  const name = animal?.name || null;
+  const date_birth = animal?.birth_date || null;
+  const size_animal = animal?.size || null;
+  const walk = animal?.walk || null;
+  const energy = animal?.energy || null;
+  const food = animal?.mealhours || null;
+  const race = animal?.race || null;
   // console.log(longitude, latitude);
   const center: LatLngExpression = latLng(latitude, longitude);
   const myIcon = new L.Icon({
