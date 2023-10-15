@@ -17,6 +17,7 @@
     width: 40px;
     &:hover {
       @include v.hover;
+      filter: grayscale(100%) contrast(0%);
     }
   }
 

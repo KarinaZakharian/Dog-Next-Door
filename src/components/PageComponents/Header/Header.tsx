@@ -7,7 +7,6 @@ import Humburger from './Humburger/Humburger';
 
 import searchIcon from '../../../assets/search-blue.png';
 import inboxIcon from '../../../assets/inbox-96.png';
-import profilIcon from '../../../assets/customer-100.png';
 import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Header.scss';
 
@@ -42,9 +41,8 @@ function Header() {
                 <img className="menu-icon" src={inboxIcon} alt="inbox icon" />
               </NavLink>
               <NavLink className="menu__menu-item" to="/account">
-                <img className="menu-icon" src={profilIcon} alt="profil icon" />
+                <strong>{firstname}</strong>
               </NavLink>
-              <strong>{firstname}</strong>
               <button
                 className="menu__menu-button"
                 type="button"
