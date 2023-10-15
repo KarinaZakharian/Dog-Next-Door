@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Footer.scss';
-import logo from '../../../assets/logo-ODogNextDoor.svg';
+import logo from '../../../assets/Logo-ODogNextDoor.svg';
 import insta from '../../../assets/instagram-logo.png';
 import facebook from '../../../assets/Facebook-logo.png';
-import pinterest from '../../../assets/Pinterest-logo.png';
+import pinterest from '../../../assets/Pinterest-Logo.png';
 import { useAppSelector } from '../../../hooks/redux';
 
 function Footer() {
