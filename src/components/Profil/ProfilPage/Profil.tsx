@@ -64,8 +64,8 @@ function Profil() {
   const walking_duration = useAppSelector(
     (state) => state.profil.walking_duration
   );
-  const start_date = useAppSelector((state) => state.profil.start_date);
-  const end_date = useAppSelector((state) => state.profil.end_date);
+  const disponibility = useAppSelector((state) => state.profil.disponibility);
+  //console.log(disponibility);
   // console.log(size, description, garden, accommodation);
   const type = useAppSelector((state) => state.profil.animal);
   const name = useAppSelector((state) => state.profil.name);
@@ -225,15 +225,12 @@ function Profil() {
                 </div>
               </div>
               <div className="profil__booking-disponibility">
-                {start_date ? (
+                {disponibility ? (
                   <div className="profil__booking-disponibility">
                     <h3 className="profil-title">
                       Disponibilité de {firstname}:
                     </h3>
-                    {/* <DateRangeComp
-                      start_date={start_date}
-                      end_date={end_date}
-                    /> */}
+                    <DateRangeComp disponibility={disponibility} />
                   </div>
                 ) : (
                   <div className="profil__booking-disponibility-noresult">

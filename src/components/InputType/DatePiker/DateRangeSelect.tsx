@@ -3,11 +3,14 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
 
-function DateRangeComp(start_date: any, end_date: any) {
-  console.log(start_date, end_date);
+function DateRangeComp(disponibility) {
+  console.log(disponibility);
+  const start = disponibility.disponibility.start_date;
+  const end = disponibility.disponibility.end_date;
+  console.log(start, end);
   /* Set your desired start and end dates here */
-  const startDate = new Date('2023-10-20');
-  const endDate = new Date('223-10-28');
+  const startDate = new Date(`${start}`);
+  const endDate = new Date(`${end}`);
 
   /* Create a date range object */
   const dateRange = [
@@ -20,6 +23,9 @@ function DateRangeComp(start_date: any, end_date: any) {
 
   /* Set the open state and handle interactions */
   const [open, setOpen] = useState(true);
+
+  // Empty onChange function to block interactions
+  const handleDateRangeChange = () => {};
 
   return (
     <div className="calendarWrap">
@@ -39,6 +45,7 @@ function DateRangeComp(start_date: any, end_date: any) {
             months={1}
             direction="horizontal"
             className="calendarElement"
+            onChange={handleDateRangeChange} // Provide the empty function
           />
         )}
       </div>

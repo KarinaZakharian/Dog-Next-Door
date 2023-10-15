@@ -6,8 +6,7 @@ import {
 
 import axiosInstance from '../../utils/axios';
 
-interface LoginState {
-  disponibility_date: string | null;
+interface ProfilState {
   firstname: string | null;
   lastname: string | null;
   avatar: string | null;
@@ -29,9 +28,9 @@ interface LoginState {
   walk: string | null;
   latitude: number | null;
   longitude: number | null;
-  disponibility_date: string | null ;
+  disponibility: string | null;
 }
-export const initialState: LoginState = {
+export const initialState: ProfilState = {
   firstname: null,
   lastname: null,
   avatar: null,
@@ -53,7 +52,7 @@ export const initialState: LoginState = {
   walk: null,
   latitude: null,
   longitude: null,
- disponibility_date: null ,
+  disponibility: null,
 };
 
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
@@ -81,7 +80,7 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
       walk: string;
       latitude: number;
       longitude: number;
-      disponibility_date:string;
+      disponibility: string;
     };
   } catch (error) {}
 });
@@ -102,7 +101,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.accomodation = action.payload.accomodation;
       state.additionnal_information = action.payload.additionnal_information;
       state.walking_duration = action.payload.walking_duration;
-     state.disponibility_date=action.payload?.disponibility_date;
+      state.disponibility = action.payload?.disponibility;
       state.animal = action.payload?.animal.type;
       state.date_birth = action.payload?.animal.birth_date;
       state.energy = action.payload?.animal.energy;
