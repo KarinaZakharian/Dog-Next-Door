@@ -7,20 +7,40 @@ import './CardsDemands.scss';
 interface UserProps {
   firstname: string;
   lastname: string;
-  start_date : string ;
-  end_date : string ;
+  start_date: string;
+  end_date: string;
   status: string;
 }
 
-function DemandesCard({ firstname, lastname, start_date, end_date,status }: UserProps) {
+function DemandesCard({
+  firstname,
+  lastname,
+  start_date,
+  end_date,
+  status,
+}: UserProps) {
+  let statusClass = '';
+
+  if (status === 'en attente') {
+    statusClass = 'yellow-text';
+  } else if (status === 'approuvé') {
+    statusClass = 'green-text';
+  }
+
   return (
     <div className="status-card">
-      <span className="status-card__name">
-        {firstname}
-        {lastname}
-      </span>
-      <span className="status-card__dates">{start_date} {end_date}</span>
-      <span className="status-card__status">{status}</span>
+      <div className="status-card__info">
+        <span>{firstname}</span>
+        <span> {lastname}</span>
+      </div>
+      <div className="status-card__info">
+        <span>{start_date}</span>
+        <span>au</span>
+        <span> {end_date}</span>
+      </div>
+      <div className={` ${statusClass}`}>
+        <span>{status}</span>
+      </div>
     </div>
   );
 }

@@ -59,7 +59,7 @@ function Home() {
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
     dispatch(searchThunk(formData));
-    // console.log(objData);
+    console.log(objData);
     dispatch(addData(objData));
     navigate('/search', { replace: true });
   }

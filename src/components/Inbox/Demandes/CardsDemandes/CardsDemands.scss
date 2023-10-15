@@ -7,4 +7,24 @@
   justify-content: space-between;
   margin: 20px auto;
   width: 80%;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__info {
+    display: flex;
+    gap: 10px;
+    @include v.label;
+  }
+}
+
+.yellow-text {
+  @include v.label;
+  color: yellow;
+}
+
+.green-text {
+  @include v.label;
+  color: green;
 }
