@@ -161,7 +161,7 @@ function Profil() {
                     {firstname} garde les animaux de taille :
                   </h3>
                 )}
-                <ul>{renderSize()}</ul>
+                {size && <ul>{renderSize()}</ul>}
                 {walking_duration && (
                   <h3 className="profil-title">Disponibilité de promenade</h3>
                 )}
