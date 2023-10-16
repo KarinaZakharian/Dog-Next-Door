@@ -6,7 +6,7 @@ const inboxController = {
         const id = req.userId;
         try {
             const userMessage = await inboxDatamapper.getMessagesById(id);
-            console.log("userMessage", userMessage);
+            
             res.json(userMessage);
 
         } catch (error) {
@@ -20,7 +20,7 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getPastMessages(id);
-            console.log("userMessage", userMessage);
+            
             res.json(userMessage);
 
         } catch (error) {
@@ -35,7 +35,7 @@ const inboxController = {
         
             
             const userMessage = await inboxDatamapper.getUpcomingMessages(id);
-            console.log("userMessage", userMessage);
+            
             res.json(userMessage);
 
         } catch (error) {
@@ -49,7 +49,9 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getBookingRequest(userId);
-            console.log("userMessage", userMessage);
+            userMessage.booking.start_date = userMessage.booking.start_date.split("-").reverse().join("/");
+            userMessage.booking.end_date = userMessage.booking.end_date.split("-").reverse().join("/");
+            console.log("find booking request");
             res.json(userMessage);
 
         } catch (error) {
@@ -63,7 +65,7 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getBookingReceived(id);
-            console.log("userMessage", userMessage);
+            
             res.json(userMessage);
 
         } catch (error) {
@@ -83,7 +85,7 @@ const inboxController = {
                 const bookingAccept = await inboxDatamapper.bookingAccepted(information.clientId);
                 
                 if(bookingAccept){
-                   res.json({"message" : "Vous venez de valider votre réservation"})
+                   return res.json({"message" : "Vous venez de valider votre réservation"})
                 }
                 
             }else {
@@ -102,7 +104,10 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getUpcomingBooking(id);
-            console.log("userMessage", userMessage);
+            
+            // userMessage.start_date = userMessage.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'});
+            userMessage.start_date = userMessage.start_date.split("-").reverse().join('/');
+            console.log(userMessage);
             res.json(userMessage);
 
         } catch (error) {
@@ -118,7 +123,7 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getPastBooking(id);
-            console.log("userMessage", userMessage);
+            
             res.json(userMessage);
 
         } catch (error) {

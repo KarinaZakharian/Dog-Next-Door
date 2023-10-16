@@ -98,9 +98,9 @@ const inboxDatamapper = {
             json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal
             FROM "user" u
             LEFT JOIN "booking" b ON u."id" = b."user_id"
-            LEFT JOIN "animal" a ON u."id"= a."user_id"
+            LEFT JOIN "animal" a ON b."sender_id" = a."user_id"
            
-            WHERE b."user_id" = $1 AND b."booking_status" = 'en attente'`;
+            WHERE b."user_id" = $1 AND b."booking_status" = 'En attente'`;
             
             const value = [userId];
             const bookingFound = await client.query(query, value);
@@ -132,12 +132,10 @@ const inboxDatamapper = {
             const userId = id;
             const query = `
             SELECT *,  
-            json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'message', b.message,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
-            json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal
-            FROM "user" u
-            LEFT JOIN "booking" b ON u."id" = b."user_id"
-            LEFT JOIN "animal" a ON u."id"= a."user_id"
-            WHERE b."user_id"=$1 AND b."booking_status" = 'à venir'`;
+            json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
+            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race) as animal
+            FROM "user" u, "booking" b, "animal" a
+            WHERE b."user_id"=$1 AND b."booking_status" = 'A venir'`;
             
             const value = [userId];
             const bookingFound = await client.query(query, value);

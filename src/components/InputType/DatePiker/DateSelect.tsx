@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Calendar } from 'react-date-range';
 import format from 'date-fns/format';
 import 'react-date-range/dist/styles.css'; // main style file

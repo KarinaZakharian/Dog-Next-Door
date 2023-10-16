@@ -21,9 +21,9 @@ import geant from '../../assets/icons8-dog-64.png';
 import search from '../../assets/search-blue.png';
 import swap from '../../assets/swap-blue.png';
 import security from '../../assets/security-blue.png';
-import avatar1 from '../../../public/avatar1.jpg';
-import avatar2 from '../../../public/avatar2.jpg';
-import avatar3 from '../../../public/avatar3.jpg';
+import avatar1 from '/avatar1.jpg?url';
+import avatar2 from '/avatar2.jpg?url';
+import avatar3 from '/avatar3.jpg?url';
 import './index.scss';
 
 function Home() {

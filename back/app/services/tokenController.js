@@ -29,7 +29,6 @@ const tokenController = {
     try {
       const token = authorization.split(' ')[1];
       const userData = jwt.verify(token, process.env.SECRET_KEY);
-      console.log('user dans token', userData);
       req.userId = userData.id;
       const userConnected = await userDatamapper.getOneUserById(req.userId);
       res.status(200).json(userConnected);

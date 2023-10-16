@@ -64,7 +64,7 @@ function Footer() {
           <ul className="footer__section-list">
             <li>
               <Link className="footer__section-link" to="/">
-                Accuel
+                Accueul
               </Link>
             </li>
             <li>
@@ -74,7 +74,7 @@ function Footer() {
             </li>
             <li>
               <Link className="footer__section-link" to="/login">
-                Connection
+                Connexion
               </Link>
             </li>
             <li>

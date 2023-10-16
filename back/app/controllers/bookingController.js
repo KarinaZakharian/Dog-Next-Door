@@ -47,9 +47,7 @@ const bookingController = {
       console.log("condition 1: booking créé et dispo surppimé");
       return;
     }else {
-      console.log("il ne rentre pas dans la condition")
-      console.log(startDateString,endDateString)
-      console.log(disponibilityExist.start_date.toLocaleDateString('fr-FR'),disponibilityExist.end_date.toLocaleDateString('fr-FR'))
+      console.log("il ne rentre pas dans la condition");
     }
     
     // ! Si la date de début de la résa = celle de la dispo, mais que la date de fin de résa est inférieur à celle de la dispo

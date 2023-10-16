@@ -38,6 +38,10 @@ app.use(express.json());
 
 //   app.use(sessionMiddleware);
 
+// Actualisation des booking
+const updateBooking = require('./app/services/updateClientDB');
+updateBooking.updatePassedBookingStatus();
+
 //* Router
 app.use(router);
 

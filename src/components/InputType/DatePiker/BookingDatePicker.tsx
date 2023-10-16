@@ -50,7 +50,7 @@ function BookingRangePickerComp({ minDate, maxDate }: InputProps) {
     <div className="calendarWrap">
       <input
         name="booking_date"
-        value={`${format(state.selection.startDate, ' dd/MM/YYY')} au ${format(
+        value={`${format(state.selection.startDate, 'dd/MM/YYY')} au ${format(
           state.selection.endDate,
           'dd/MM/YYY'
         )}`}

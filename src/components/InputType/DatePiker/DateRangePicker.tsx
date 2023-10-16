@@ -50,7 +50,7 @@ function DateRangePickerComp({ legend }: InputProps) {
       <p className="legend">{legend}</p>
       <input
         name="disponibility_date"
-        value={`${format(state.selection.startDate, ' dd/MM/YYY')} au ${format(
+        value={`${format(state.selection.startDate, 'dd/MM/YYY')} au ${format(
           state.selection.endDate,
           'dd/MM/YYY'
         )}`}
