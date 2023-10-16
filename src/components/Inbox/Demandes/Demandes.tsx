@@ -45,6 +45,7 @@ function Demandes() {
                   users.map((user,index)=>(
                     <DemandesCard
                     // It's a good practice to provide a unique key for each component
+                    key={index}
                     lastname={user.lastname}
                     firstname={user.firstname}
                     start_date={user.booking.start_date}
