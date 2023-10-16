@@ -20,8 +20,13 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getPastMessages(id);
-            
-            res.json(userMessage);
+            const userMessageList = userMessage.map(message => { 
+
+                message.booking.start_date = message.booking.start_date.split("-").reverse().join("/");
+                message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
+                 return message
+          });
+            res.json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -29,30 +34,36 @@ const inboxController = {
         
     },
     
-    findUpcomingMessages : async (req,res) => {
-        const id = req.userId;
-        try {
+    // findUpcomingMessages : async (req,res) => {
+    //     const id = req.userId;
+    //     try {
         
             
-            const userMessage = await inboxDatamapper.getUpcomingMessages(id);
+    //         const userMessage = await inboxDatamapper.getUpcomingMessages(id);
             
-            res.json(userMessage);
+    //         res.json(userMessage);
 
-        } catch (error) {
-            res.status(500).json(error.toString());
-        }
+    //     } catch (error) {
+    //         res.status(500).json(error.toString());
+    //     }
         
-    },
+    // },
     
     findBookingRequest : async (req,res) => {
         const userId = req.userId;
         try {
            
             const userMessage = await inboxDatamapper.getBookingRequest(userId);
-            userMessage.booking.start_date = userMessage.booking.start_date.split("-").reverse().join("/");
-            userMessage.booking.end_date = userMessage.booking.end_date.split("-").reverse().join("/");
-            console.log("find booking request");
-            res.json(userMessage);
+            
+            const userMessageList = userMessage.map(message => { 
+                
+                message.booking.start_date = message.booking.start_date.split("-").reverse().join("/");
+                message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
+                 return message
+          });
+            
+          console.log("find booking request",userMessageList);
+            res.json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -65,8 +76,13 @@ const inboxController = {
         try {
            
             const userMessage = await inboxDatamapper.getBookingReceived(id);
-            
-            res.json(userMessage);
+            const userMessageList = userMessage.map(message => { 
+
+                message.booking.start_date = message.booking.start_date.split("-").reverse().join("/");
+                message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
+                 return message
+          });
+            res.json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -103,13 +119,13 @@ const inboxController = {
         const id = req.userId;
         const sender_id = req.params.sender_id;
         try {
-           console.log("id controller",id);
+           
 
             const searchSender = await inboxDatamapper.getSenderBooking(id);
-            console.log("searchSender :", searchSender);
+            
             
             const userMessage = await inboxDatamapper.getUpcomingBooking(id,searchSender.sender_id);
-            console.log("user message ligne 109",userMessage)
+           
           
             // userMessage.start_date = userMessage.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'});
             const userMessageList = userMessage.map(message => { 
@@ -132,12 +148,19 @@ const inboxController = {
 
     findPastBooking : async (req,res) => {
         const id = req.userId;
-        console.log(id);
         try {
-           
-            const userMessage = await inboxDatamapper.getPastBooking(id);
+            const searchSender = await inboxDatamapper.getSenderBooking(id);
             
-            res.json(userMessage);
+            
+            const userMessage = await inboxDatamapper.getPastBooking(id, searchSender.sender_id);
+            const userMessageList = userMessage.map(message => { 
+
+                message.booking.start_date = message.booking.start_date.split("-").reverse().join('/');
+                message.booking.end_date = message.booking.end_date.split("-").reverse().join('/');
+                 return message
+          });
+            
+            res.json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());

@@ -9,7 +9,7 @@ const { controlWrapper:cw } = require('../services/errorService.js')
 //!Route GET
 
 inboxRouter.get("/inbox/awaiting", checkTokenMember, cw(inboxController.findBookingReceived));
-inboxRouter.get("/inbox/past", checkTokenMember, cw(inboxController.findPastBooking));
+inboxRouter.get("/inbox/uppast", checkTokenMember, cw(inboxController.findPastBooking));
 inboxRouter.get("/inbox/upcoming", checkTokenMember, cw(inboxController.findUpcomingBooking));
 inboxRouter.get("/inbox/demands", checkTokenMember, cw(inboxController.findBookingRequest));
 
