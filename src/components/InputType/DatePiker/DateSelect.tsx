@@ -16,7 +16,6 @@ function CalendarComp() {
 
   /* hide dropdown on ESC press */
   const hideOnEscape = (e) => {
-    console.log(e.key);
     if (e.key === 'Enter') {
       setOpen(false);
     }

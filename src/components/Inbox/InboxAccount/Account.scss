@@ -3,6 +3,8 @@
 
 .main-account {
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 .content {
   @include v.form-styling;
@@ -36,8 +38,9 @@
 }
 
 .container {
-  margin: 0 auto;
+  margin: 3rem auto;
   max-width: 1300px;
+  position: absolute;
 }
 
 .content__link-no-demand-container {

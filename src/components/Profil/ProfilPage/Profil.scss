@@ -5,12 +5,11 @@
 
 .profil__wrapper {
   min-height: 100vh;
-  background-color: v.$color-border;
 }
 
 .profil__container {
   @include v.form-styling;
-  max-width: 1300px;
+  max-width: 1000px;
 }
 // -------------------------profil user----------------------------- //
 
@@ -63,7 +62,7 @@
   }
 
   &-img {
-    width: 300px;
+    width: 200px;
     border-radius: 50%;
     margin-bottom: 1rem;
   }

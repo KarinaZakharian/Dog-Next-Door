@@ -15,6 +15,7 @@ import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
 import { UserProps } from '../../@types/user';
+import Main from '../PageComponents/Main/Main';
 
 function Petsitter() {
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ function Petsitter() {
   const booking_start = user?.booking?.start_date;
   const booking_end = user?.booking?.end_date;
   console.log('sitter booking taken', booking_end, booking_start);
-  console.log('dispo sitter' , disponibility_Sitter)
+  console.log('dispo sitter', disponibility_Sitter);
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
 
@@ -106,152 +107,158 @@ function Petsitter() {
   return (
     <div className="page-wrapper">
       <Header />
-      <div className="profil__wrapper">
-        <div className="profil__container">
-          {/* -----------------------------profil user-------------------------- */}
-          <div className="profil__user">
-            <div className="profil__user-header">
-              <h2 className="profil__user-name">
-                {firstname} {lastname}
-              </h2>
-            </div>
-            <div className="profil__user-card">
-              <div className="profil__user-pref">
-                <img
-                  className="profil__user-pref-img"
-                  src={avatar ? '/' + avatar : avatarLogo}
-                  alt="Avatar"
-                />
-                {description && <p>{description}</p>}
-                {size && (
-                  <h3 className="profil-title">
-                    {firstname} garde les animaux de taille :
-                  </h3>
-                )}
-                <ul>{renderSize()}</ul>
-                {walkAnimal && (
-                  <h3 className="profil-title">Disponibilité de promenade</h3>
-                )}
-                {walkAnimal && <p>{walkAnimal}</p>}
-
-                {disponibility_Sitter?.end_date  && (
-                  <h3 className="profil-title">Disponibilité de {lastname}</h3>
-                )}
-                {disponibility_Sitter?.end_date && (
-                  <DateRangeComp disponibility={disponibility_Sitter} />
-                )}
+      <Main>
+        <div className="profil__wrapper">
+          <div className="profil__container">
+            {/* -----------------------------profil user-------------------------- */}
+            <div className="profil__user">
+              <div className="profil__user-header">
+                <h2 className="profil__user-name">
+                  {firstname} {lastname}
+                </h2>
               </div>
-              <div className="profil__user-home">
-                {longitude && (
-                  <div className="leflet-container">
-                    <LeafletMap
-                      key={center.toString()}
-                      center={center}
-                      zoom={13}
-                    >
-                      <Marker
-                        position={L.latLng(latitude, longitude)}
-                        icon={myIcon}
-                      >
-                        <Popup>
-                          <img src={avatarLogo} alt="Avatar" />
-                          <div>
-                            <h2>
-                              {firstname} {lastname}
-                            </h2>
-                          </div>
-                        </Popup>
-                      </Marker>
-                    </LeafletMap>
-                  </div>
-                )}
-                {accommodation || garden || additionnal_information ? (
-                  <h3 className="profil-title">
-                    À propos du domicile de {firstname}:
-                  </h3>
-                ) : null}
-                <ul>
-                  {accommodation && <li>{accommodation}</li>}
-                  {garden && <li>{garden}</li>}
-                  {renderOptions()}
-                </ul>
-              </div>
-            </div>
-          </div>
-          {/* -------------------------------booking---------------------------- */}
-          {/* <div className="profil__booking">
-            <div className="profil__booking-header">
-              <h2 className="profil__booking-title">Mes disponibilités</h2>
-            </div>
-            <div className="profil__booking-card">
-              <div className="profil__booking-button">
-                <h3 className="profil__booking-button-title">
-                  Ajouter une disponibilité
-                </h3>
-                <div className="profil__user-header-button">
+              <div className="profil__user-card">
+                <div className="profil__user-pref">
                   <img
-                    src={calendarIcon}
-                    alt="pencil white"
-                    className="profil__user-header-button-img"
-                    onClick={showDateContainer}
+                    className="profil__user-pref-img"
+                    src={avatar ? '/' + avatar : avatarLogo}
+                    alt="Avatar"
+                  />
+                  {description && <p>{description}</p>}
+                  {size && (
+                    <h3 className="profil-title">
+                      {firstname} garde les animaux de taille :
+                    </h3>
+                  )}
+                  <ul>{renderSize()}</ul>
+                  {walkAnimal && (
+                    <h3 className="profil-title">Disponibilité de promenade</h3>
+                  )}
+                  {walkAnimal && <p>{walkAnimal}</p>}
+
+                  {disponibility_Sitter?.end_date && (
+                    <h3 className="profil-title">
+                      Disponibilité de {lastname}
+                    </h3>
+                  )}
+                  {disponibility_Sitter?.end_date && (
+                    <DateRangeComp disponibility={disponibility_Sitter} />
+                  )}
+                </div>
+                <div className="profil__user-home">
+                  {longitude && (
+                    <div className="leflet-container">
+                      <LeafletMap
+                        key={center.toString()}
+                        center={center}
+                        zoom={13}
+                      >
+                        <Marker
+                          position={L.latLng(latitude, longitude)}
+                          icon={myIcon}
+                        >
+                          <Popup>
+                            <img src={avatarLogo} alt="Avatar" />
+                            <div>
+                              <h2>
+                                {firstname} {lastname}
+                              </h2>
+                            </div>
+                          </Popup>
+                        </Marker>
+                      </LeafletMap>
+                    </div>
+                  )}
+                  {accommodation || garden || additionnal_information ? (
+                    <h3 className="profil-title">
+                      À propos du domicile de {firstname}:
+                    </h3>
+                  ) : null}
+                  <ul>
+                    {accommodation && <li>{accommodation}</li>}
+                    {garden && <li>{garden}</li>}
+                    {renderOptions()}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {/* -------------------------------booking---------------------------- */}
+            {/* <div className="profil__booking">
+              <div className="profil__booking-header">
+                <h2 className="profil__booking-title">Mes disponibilités</h2>
+              </div>
+              <div className="profil__booking-card">
+                <div className="profil__booking-button">
+                  <h3 className="profil__booking-button-title">
+                    Ajouter une disponibilité
+                  </h3>
+                  <div className="profil__user-header-button">
+                    <img
+                      src={calendarIcon}
+                      alt="pencil white"
+                      className="profil__user-header-button-img"
+                      onClick={showDateContainer}
+                    />
+                  </div>
+                </div>
+                <div className="profil__booking-disponibility">
+
+                  {disponibility?.end_date &&  
+                    <div className="profil__booking-disponibility">
+                      <h3 className="profil-title">
+                        Disponibilité de {firstname}:
+                      </h3>
+                      <DateRangeComp disponibility={disponibility} />
+                    </div>}
+                
+                </div>
+              </div>
+            <div/> */}
+            {/* -----------------------------profil animal------------------------ */}
+            <div className="profil__animal">
+              {typeAnimal && (
+                <div className="profil__animal">
+                  <div className="profil__animal-header">
+                    <h2 className="profil__animal-name">
+                      Son animal de compagnie
+                    </h2>
+                  </div>
+                  <AnimalCard
+                    type={typeAnimal}
+                    name={nameAnimal}
+                    race={raceAnimal}
+                    age={date_birthAnimal}
+                    size={size_animalAnimal}
+                    pipi={walkAnimal}
+                    repa={foodAnimal}
+                    energy={energyAnimal}
                   />
                 </div>
-              </div>
-              <div className="profil__booking-disponibility">
-
-                {disponibility?.end_date &&  
-                  <div className="profil__booking-disponibility">
-                    <h3 className="profil-title">
-                      Disponibilité de {firstname}:
-                    </h3>
-                    <DateRangeComp disponibility={disponibility} />
-                  </div>}
-               
-              </div>
-            </div>
-          <div/> */}
-          {/* -----------------------------profil animal------------------------ */}
-          <div className='profil__animal'>
-            {typeAnimal && (
-              <div className="profil__animal">
-                <div className="profil__animal-header">
-                  <h2 className="profil__animal-name">Son animal de compagnie</h2>
-                </div>
-                <AnimalCard
-                  type={typeAnimal}
-                  name={nameAnimal}
-                  race={raceAnimal}
-                  age={date_birthAnimal}
-                  size={size_animalAnimal}
-                  pipi={walkAnimal}
-                  repa={foodAnimal}
-                  energy={energyAnimal}
-                />
-              </div>
-            )}
+              )}
               {account && disponibility_Sitter?.end_date ? (
                 <button onClick={showBookingContainer}>Booking</button>
               ) : (
                 <p>Cet utilisateur n'a pas de disponibilité</p>
               )}
-            {!account && (
-              <Link to={'/subscribe'}>
-                <Button prop="Booking" />
-              </Link>
-            )}
-            {disponibility_Sitter?.end_date && (
-              <Booking
-                isBookingContainerVisible={isBookingContainerVisible}
-                setIsBookingContainerVisible={setIsBookingContainerVisible}
-                disponibility_date={disponibility_Sitter}
-                id={id}
-                bookingNotAvailibleStart={booking_start}
-                bookingNotAvailibleEnd={booking_end}
-              />
-            )}
+              {!account && (
+                <Link to={'/subscribe'}>
+                  <Button prop="Booking" />
+                </Link>
+              )}
+              {disponibility_Sitter?.end_date && (
+                <Booking
+                  isBookingContainerVisible={isBookingContainerVisible}
+                  setIsBookingContainerVisible={setIsBookingContainerVisible}
+                  disponibility_date={disponibility_Sitter}
+                  id={id}
+                  bookingNotAvailibleStart={booking_start}
+                  bookingNotAvailibleEnd={booking_end}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Main>
       <Footer />
     </div>
   );
