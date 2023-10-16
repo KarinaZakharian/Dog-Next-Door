@@ -46,4 +46,6 @@ userRouter.patch(
   checkTokenMember,
   cw(userController.updatePersonnalInformation)
 );
+
+userRouter.patch("/account/update-disponibility", checkTokenMember, cw(userController.updateDisponibility))
 module.exports = userRouter;

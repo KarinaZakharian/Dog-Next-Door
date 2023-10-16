@@ -178,6 +178,9 @@ const userController = {
       res.status(500).json({ message: 'Aucune modification a été apportée' });
     }
   },
+  updateDisponibility : async (req,res) => {
+
+  },
 
   findUserWithCalendar: async (req, res) => {
     const petsitterId = req.params.id;
@@ -227,6 +230,7 @@ const userController = {
     );
     res.json('Vous venez de créer une disponibilité');
   },
+  
 };
 
 module.exports = userController;
