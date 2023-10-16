@@ -42,14 +42,16 @@ function Demandes() {
               </div>
               <div>
                 {users ? (
-                  <DemandesCard
+                  users.map((user,index)=>(
+                    <DemandesCard
                     // It's a good practice to provide a unique key for each component
-                    lastname={users.lastname}
-                    firstname={users.firstname}
-                    start_date={users.booking.start_date}
-                    end_date={users.booking.end_date}
-                    status={users.booking.booking_status}
+                    lastname={user.lastname}
+                    firstname={user.firstname}
+                    start_date={user.booking.start_date}
+                    end_date={user.booking.end_date}
+                    status={user.booking.booking_status}
                   />
+                  ))
                 ) : (
                   <div className="content__link-no-demand-container">
                     <h2 className="content__link-no-demand-title">
