@@ -1,37 +1,33 @@
-import React from 'react';
+import './AboutUs.scss';
 
 interface CardProps {
   avatar: string;
   firstname: string;
   lastname: string;
-  linkidin: string;
-  position: string;
+  status: string;
+  spe: string;
+  position: number;
 }
 
 function PeopleCard({
   avatar,
   firstname,
   lastname,
-  linkidin,
+  status,
+  spe,
   position,
 }: CardProps) {
   return (
     <div className="people-card">
-      <div>
-        <img src={avatar} alt="Person Avatar" />
-        <span>
+      <div className="people-card-imgcont">
+        <img className="people-card-avatar" src={avatar} alt="Person Avatar" />
+      </div>
+      <div className="people-card-content">
+        <span className="people-card-name">
           {firstname} {lastname}
         </span>
-      </div>
-
-      <div>
-        <img />
-        <span>{linkidin}</span>
-      </div>
-
-      <div>
-        <img />
-        <span>{position}</span>
+        <span className="people-card-status">{status}</span>
+        <span className="people-card-spe">{spe}</span>
       </div>
     </div>
   );
