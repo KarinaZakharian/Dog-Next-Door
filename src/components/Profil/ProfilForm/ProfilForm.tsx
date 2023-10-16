@@ -28,6 +28,8 @@ function ProfilForm({
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
+   
+
 
   const handleSelectionChange1 = (selectedOptions: string[]) => {
     setSelectedOptions1(selectedOptions);
@@ -71,7 +73,7 @@ function ProfilForm({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
+    
     dispatch(fillProfilForm(formData));
   }
 
@@ -86,6 +88,7 @@ function ProfilForm({
       });
       setTimeout(() => {
         dispatch(success());
+        
         hideFormContainer();
       }, 1000);
     }

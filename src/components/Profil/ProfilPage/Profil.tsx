@@ -51,6 +51,7 @@ function Profil() {
   }, []);
 
   const firstname = useAppSelector((state) => state.profil.firstname);
+  console.log("firstname", firstname)
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);

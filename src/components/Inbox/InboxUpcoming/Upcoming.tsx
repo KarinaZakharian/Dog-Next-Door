@@ -13,8 +13,8 @@ function Account() {
   useEffect(() => {
     dispatch(fetchUpcomingAnimal());
   }, []);
-  const user = useAppSelector((state) => state.inboxUpcoming.user);
-  console.log('upcoming',user)
+  const users = useAppSelector((state) => state.inboxUpcoming.user);
+  console.log('upcoming',users)
   return (
     <div>
       <Header />
@@ -22,7 +22,7 @@ function Account() {
         <div className="container">
           <div className="content">
             <div className="content__header">
-            <Link className="content__link" to="/inbox/awaiting">
+              <Link className="content__link" to="/inbox/awaiting">
                 Demandes en attente
               </Link>
               <Link className="content__link" to="/inbox/upcoming">
@@ -32,34 +32,33 @@ function Account() {
                 Gardes passées
               </Link>
               <Link className="content__link" to="/inbox/demands">
-                Votre demands
+                Votre demande
               </Link>
             </div>
             <div>
-              {user ?
-              
+              {users ? (
+                users.map((user, index) => (
                   <UpcomingCard
-                  type={user.animal.type}
-                  name={user.animal.name}
-                  start_date={user.booking.start_date}
-                  end_date={user.booking.end_date}
-                 
-                  />:
-                  <div className="content__link-no-demand-container">
+                    key={index}
+                    type={user.animal.type}
+                    name={user.animal.name}
+                    start_date={user.booking.start_date}
+                    end_date={user.booking.end_date}
+                  />
+                ))
+              ) : (
+                <div className="content__link-no-demand-container">
                   <h2 className="content__link-no-demand-title">
                     Vous n'avez pas de messages non lus...
                   </h2>
                   <p className="content__link-no-demand-content">
-                    Vous trouverez ici les messages que vous avez échangés avec
-                    un pet sitter lorsque que vous n'avez pas encore confirmé la
-                    réservation.
+                    Vous trouverez ici les messages que vous avez échangés avec un pet sitter lorsque vous n'avez pas encore confirmé la réservation.
                   </p>
                   <p className="content__link-no-demand-content">
-                    Les messages concernant vos prochaines gardes se trouvent
-                    dans l'onglet Gardes à venir.
+                    Les messages concernant vos prochaines gardes se trouvent dans l'onglet Gardes à venir.
                   </p>
                 </div>
-             }
+              )}
             </div>
           </div>
         </div>
@@ -67,6 +66,12 @@ function Account() {
       <Footer />
     </div>
   );
+
+  
+  
+  
+  
+  
 }
 
 export default Account;

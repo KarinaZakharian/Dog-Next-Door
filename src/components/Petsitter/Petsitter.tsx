@@ -15,6 +15,7 @@ import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
 import { UserProps } from '../../@types/user';
+
 function Petsitter() {
   const dispatch = useAppDispatch();
   const { id } = useParams();
@@ -178,7 +179,7 @@ function Petsitter() {
             </div>
           </div>
           {/* -------------------------------booking---------------------------- */}
-          <div className="profil__booking">
+          {/* <div className="profil__booking">
             <div className="profil__booking-header">
               <h2 className="profil__booking-title">Mes disponibilités</h2>
             </div>
@@ -208,49 +209,49 @@ function Petsitter() {
                
               </div>
             </div>
-          <div/>
+          <div/> */}
           {/* -----------------------------profil animal------------------------ */}
-
-          {typeAnimal && (
-            <div className="profil__animal">
-              <div className="profil__animal-header">
-                <h2 className="profil__animal-name">Son animal de compagnie</h2>
+          <div className='profil__animal'>
+            {typeAnimal && (
+              <div className="profil__animal">
+                <div className="profil__animal-header">
+                  <h2 className="profil__animal-name">Son animal de compagnie</h2>
+                </div>
+                <AnimalCard
+                  type={typeAnimal}
+                  name={nameAnimal}
+                  race={raceAnimal}
+                  age={date_birthAnimal}
+                  size={size_animalAnimal}
+                  pipi={walkAnimal}
+                  repa={foodAnimal}
+                  energy={energyAnimal}
+                />
               </div>
-              <AnimalCard
-                type={typeAnimal}
-                name={nameAnimal}
-                race={raceAnimal}
-                age={date_birthAnimal}
-                size={size_animalAnimal}
-                pipi={walkAnimal}
-                repa={foodAnimal}
-                energy={energyAnimal}
+            )}
+              {account && disponibility_Sitter?.end_date ? (
+                <button onClick={showBookingContainer}>Booking</button>
+              ) : (
+                <p>Cet utilisateur n'a pas de disponibilité</p>
+              )}
+            {!account && (
+              <Link to={'/subscribe'}>
+                <Button prop="Booking" />
+              </Link>
+            )}
+            {disponibility_Sitter?.end_date && (
+              <Booking
+                isBookingContainerVisible={isBookingContainerVisible}
+                setIsBookingContainerVisible={setIsBookingContainerVisible}
+                disponibility_date={disponibility_Sitter}
+                id={id}
+                bookingNotAvailibleStart={booking_start}
+                bookingNotAvailibleEnd={booking_end}
               />
-            </div>
-          )}
-{account && disponibility_Sitter?.end_date ? (
-  <button onClick={showBookingContainer}>Booking</button>
-) : (
-  <p>Cet utilisateur n'a pas de disponibilité</p>
-)}
-          {!account && (
-            <Link to={'/subscribe'}>
-              <Button prop="Booking" />
-            </Link>
-          )}
+            )}
+          </div>
         </div>
       </div>
-      {disponibility_Sitter?.end_date && (
-        <Booking
-          isBookingContainerVisible={isBookingContainerVisible}
-          setIsBookingContainerVisible={setIsBookingContainerVisible}
-          disponibility_date={disponibility_Sitter}
-          id={id}
-          bookingNotAvailibleStart={booking_start}
-          bookingNotAvailibleEnd={booking_end}
-        />
-      )}
-
       <Footer />
     </div>
   );

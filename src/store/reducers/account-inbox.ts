@@ -8,34 +8,31 @@ import axiosInstance from '../../utils/axios';
 
 interface Card {
   type: 'cat' | 'dog';
-  name: string ;
-  start_date: string ;
-  end_date: string ;
-  clientId: string ;
- 
+  name: string;
+  start_date: string;
+  end_date: string;
+  clientId: string;
+  message: string | null | undefined;
 }
 
 interface InboxState {
-  user: Card []| null;
-  error: string | undefined;
+  user: Card[] | null;
+  error: unknown;
   message: string | null;
   acceptError: string | undefined;
   acceptMessage: string | null;
-  declineError: string | undefined;
-  declineMessage: string | null;
 }
 export const initialState: InboxState = {
+  message: null,
   user: null,
   error: undefined,
-  message: null,
   acceptError: undefined,
   acceptMessage: null,
-  declineError: undefined,
-  declineMessage: null,
 };
 
-export const fetchInboxAnimal =
-  createAsyncThunk<Card, void>('inbox/fetchanimal', async (_,thunkAPI) => {
+export const fetchInboxAnimal = createAsyncThunk<Card, void>(
+  'inbox/fetchanimal',
+  async (_, thunkAPI) => {
     try {
       const response = await axiosInstance.get(`/inbox/awaiting`);
       console.log(response.data);
@@ -46,25 +43,24 @@ export const fetchInboxAnimal =
       }
       console.error(error);
     }
-  });
+  }
+);
 
 export const clientAccept = createAsyncThunk<
   any, // type de la valeur retourné //  TODO
   FormData, // type de userID // paramètre du callback
   {
-    rejectValue: string;
+    rejectValue: unknown;
   }
 >('inbox/accept-decline', async (formData: FormData, thunkAPI) => {
   const objData = Object.fromEntries(formData);
-  console.log(objData)
+  console.log(objData);
   try {
     const response = await axiosInstance.post('/inbox/awaiting', objData);
     console.log(response.data);
     return response.data;
   } catch (error) {
-    if (typeof error === 'string') {
-      return thunkAPI.rejectWithValue(error);
-    }
+    return thunkAPI.rejectWithValue(error);
     console.error(error);
   }
 });
@@ -86,7 +82,7 @@ const accountReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
-      console.log('fulffilled',action);
+      console.log('fulffilled', action);
       console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
