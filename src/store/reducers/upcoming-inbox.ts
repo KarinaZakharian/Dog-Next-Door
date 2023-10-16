@@ -22,9 +22,7 @@ export const initialState: InboxState = {
   message: null,
 };
 
-export const fetchUpcomingAnimal = createAsyncThunk<{
-  rejecValue: string;
-}>('inbox/upcominganimal', async (thunkAPI) => {
+export const fetchUpcomingAnimal = createAsyncThunk<Card, void>('inbox/upcominganimal', async (_,thunkAPI) => {
   try {
     const response = await axiosInstance.get(`/inbox/upcoming`);
     console.log(response.data);

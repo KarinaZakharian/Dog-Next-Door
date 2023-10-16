@@ -18,6 +18,7 @@ import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import './Signup.scss';
+import Main from '../../PageComponents/Main/Main';
 
 function SignUp() {
   // Initialize navigation and dispatch
@@ -120,58 +121,61 @@ function SignUp() {
   return (
     <div className="page-wrapper">
       <Header />
+      <Main>
+        <main className="main-signup">
+          <div className="container-signup">
+            <form className="form" onSubmit={handleSubmit}>
+              <Input
+                name="lastname"
+                type="text"
+                placeholder="Nom"
+                aria-label="Votre Nom"
+                style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
+              />
+              {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
+              <Input
+                name="firstname"
+                type="text"
+                placeholder="Prénom"
+                aria-label="Votre Prenom"
+                style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
+              />
+              {!firstnameValid && (
+                <p className="error">Inscrivez votre prénom</p>
+              )}
+              <AutoComplete
+                style={{ borderColor: cityValid ? 'initial' : 'red' }}
+                setCoordinates={setCoordinates}
+              />
+              {!cityValid && <p className="error">Inscrivez votre adresse</p>}
+              <Input
+                name="email"
+                type="email"
+                placeholder="Adresse E-mail"
+                aria-label="Adresse E-mail"
+                style={{ borderColor: emailValid ? 'initial' : 'red' }}
+              />
+              {!emailValid && (
+                <p className="error">
+                  Votre adresse e-mail n&apos;est pas valide
+                </p>
+              )}
+              <Input
+                name="user_password"
+                type="password"
+                placeholder="Mot de passe"
+                aria-label="Mot de passe"
+                style={{ borderColor: passwordValid ? 'initial' : 'red' }}
+              />
+              {!passwordValid && (
+                <p className="error">Votre password n'est pas valide</p>
+              )}
 
-      <main className="main-signup">
-        <div className="container-signup">
-          <form className="form" onSubmit={handleSubmit}>
-            <Input
-              name="lastname"
-              type="text"
-              placeholder="Nom"
-              aria-label="Votre Nom"
-              style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
-            />
-            {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
-            <Input
-              name="firstname"
-              type="text"
-              placeholder="Prénom"
-              aria-label="Votre Prenom"
-              style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
-            />
-            {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
-            <AutoComplete
-              style={{ borderColor: cityValid ? 'initial' : 'red' }}
-              setCoordinates={setCoordinates}
-            />
-            {!cityValid && <p className="error">Inscrivez votre adresse</p>}
-            <Input
-              name="email"
-              type="email"
-              placeholder="Adresse E-mail"
-              aria-label="Adresse E-mail"
-              style={{ borderColor: emailValid ? 'initial' : 'red' }}
-            />
-            {!emailValid && (
-              <p className="error">
-                Votre adresse e-mail n&apos;est pas valide
-              </p>
-            )}
-            <Input
-              name="user_password"
-              type="password"
-              placeholder="Mot de passe"
-              aria-label="Mot de passe"
-              style={{ borderColor: passwordValid ? 'initial' : 'red' }}
-            />
-            {!passwordValid && (
-              <p className="error">Votre password n'est pas valide</p>
-            )}
-
-            <Button prop="S'inscrire" />
-          </form>
-        </div>
-      </main>
+              <Button prop="S'inscrire" />
+            </form>
+          </div>
+        </main>
+      </Main>
       <Footer />
     </div>
   );

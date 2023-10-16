@@ -234,13 +234,13 @@ console.log("user description", description);
               </div>
               <div className="profil__booking-disponibility">
 
-                {disponibility?.end_date &&  <div className="profil__booking-disponibility">
+                {disponibility?.end_date &&  
+                  <div className="profil__booking-disponibility">
                     <h3 className="profil-title">
                       Disponibilité de {firstname}:
                     </h3>
                     <DateRangeComp disponibility={disponibility} />
                   </div>}
-                  
                
               </div>
             </div>

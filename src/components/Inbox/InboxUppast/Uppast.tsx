@@ -15,7 +15,7 @@ function Uppast() {
     dispatch(fetchMessageUser());
   }, []);
   const user = useAppSelector((state) => state.inboxUppast.user);
-  console.log(user)
+  console.log('uppast data',user)
   return (
     <div>
       <Header />

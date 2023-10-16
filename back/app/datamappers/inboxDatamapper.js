@@ -127,19 +127,27 @@ const inboxDatamapper = {
         }
     },
 
-    getUpcomingBooking : async (id ) => {
+    getUpcomingBooking : async (id, sender_id) => {
         try {
             const userId = id;
-            const query = `
-            SELECT *,  
-            json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
-            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race) as animal
-            FROM "user" u, "booking" b, "animal" a
-            WHERE b."user_id"=$1 AND b."booking_status" = 'A venir'`;
             
-            const value = [userId];
+            console.log("id datamapper", userId);
+            console.log("sender_id datamapper", sender_id);
+
+            const query = `
+            WITH petsitter AS (
+                SELECT * FROM "user" WHERE "id" = $2
+            )
+            SELECT u.*, 
+            json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
+            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
+            FROM "user" u, "booking" b, "animal" a, petsitter p
+            WHERE u."id"=$1 AND b."booking_status" = 'A venir' AND a."user_id" = $2
+                        `;
+                        
+            const value = [userId, sender_id];
             const bookingFound = await client.query(query, value);
-            return bookingFound.rows[0];
+            return bookingFound.rows;
         } catch (error) {
             return console.error("Problème de recherche BDD utilisateur")
         }
@@ -164,6 +172,23 @@ const inboxDatamapper = {
             return console.error("Problème de recherche BDD utilisateur")
         }
     },
+
+    getSenderBooking : async (id) => {
+
+        
+        try {
+            const query = `
+                select * FROM booking WHERE "user_id" = $1
+            `;
+
+        const value = [id];
+        const result = await client.query(query, value);
+        return result.rows[0];
+
+        } catch (error) {
+            return console.error("Problème de recherche BDD utilisateur")
+        }
+    }
 
 
 };

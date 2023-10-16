@@ -3,10 +3,6 @@
 
 .main-account {
   height: 100vh;
-  background-image: url(../../../assets/chienv2.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  flex-grow: 1;
 }
 .content {
   @include v.form-styling;

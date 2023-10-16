@@ -177,6 +177,38 @@ function Petsitter() {
               </div>
             </div>
           </div>
+          {/* -------------------------------booking---------------------------- */}
+          <div className="profil__booking">
+            <div className="profil__booking-header">
+              <h2 className="profil__booking-title">Mes disponibilités</h2>
+            </div>
+            <div className="profil__booking-card">
+              <div className="profil__booking-button">
+                <h3 className="profil__booking-button-title">
+                  Ajouter une disponibilité
+                </h3>
+                <div className="profil__user-header-button">
+                  <img
+                    src={calendarIcon}
+                    alt="pencil white"
+                    className="profil__user-header-button-img"
+                    onClick={showDateContainer}
+                  />
+                </div>
+              </div>
+              <div className="profil__booking-disponibility">
+
+                {disponibility?.end_date &&  
+                  <div className="profil__booking-disponibility">
+                    <h3 className="profil-title">
+                      Disponibilité de {firstname}:
+                    </h3>
+                    <DateRangeComp disponibility={disponibility} />
+                  </div>}
+               
+              </div>
+            </div>
+          <div/>
           {/* -----------------------------profil animal------------------------ */}
 
           {typeAnimal && (

@@ -35,10 +35,7 @@ export const initialState: InboxState = {
 };
 
 export const fetchInboxAnimal =
-  createAsyncThunk<// type de la valeur retourné //  TODO
-  {
-    rejecValue: string;
-  }>('inbox/fetchanimal', async (thunkAPI) => {
+  createAsyncThunk<Card, void>('inbox/fetchanimal', async (_,thunkAPI) => {
     try {
       const response = await axiosInstance.get(`/inbox/awaiting`);
       console.log(response.data);

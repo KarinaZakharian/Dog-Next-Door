@@ -101,13 +101,26 @@ const inboxController = {
 
     findUpcomingBooking : async (req,res) => {
         const id = req.userId;
+        const sender_id = req.params.sender_id;
         try {
-           
-            const userMessage = await inboxDatamapper.getUpcomingBooking(id);
+           console.log("id controller",id);
+
+            const searchSender = await inboxDatamapper.getSenderBooking(id);
+            console.log("searchSender :", searchSender);
             
+            const userMessage = await inboxDatamapper.getUpcomingBooking(id,searchSender.sender_id);
+            console.log("user message ligne 109",userMessage)
+          
             // userMessage.start_date = userMessage.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'});
-            userMessage.start_date = userMessage.start_date.split("-").reverse().join('/');
-            console.log(userMessage);
+            const userMessageList = userMessage.map(message => { 
+
+                  message.booking.start_date = message.booking.start_date.split("-").reverse().join('/');
+                  message.booking.end_date = message.booking.end_date.split("-").reverse().join('/');
+                   return message
+            });
+
+            
+            console.log("userMessageList : ",userMessageList);
             res.json(userMessage);
 
         } catch (error) {

@@ -14,7 +14,7 @@ function Account() {
     dispatch(fetchUpcomingAnimal());
   }, []);
   const user = useAppSelector((state) => state.inboxUpcoming.user);
-  console.log(user)
+  console.log('upcoming',user)
   return (
     <div>
       <Header />

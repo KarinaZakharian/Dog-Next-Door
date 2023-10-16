@@ -16,7 +16,7 @@ function Account() {
   }, []);
 
   const user = useAppSelector((state) => state.inboxAccount.user);
-  console.log(user)
+  console.log('account data',user)
   return (
     <div>
       <Header />

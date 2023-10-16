@@ -17,6 +17,8 @@ const updateBooking = {
     counter ++;
     console.log(bookingsUpdated.rowCount, counter);
   },
+
+  
   
   updatePassedBookingStatus : async () => {
     let now = new Date();
