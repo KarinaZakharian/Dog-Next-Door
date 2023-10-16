@@ -6,11 +6,11 @@ const updateBooking = {
   launchUpdateBooking : async () => {
     const query = `
       UPDATE "booking"
-      SET "booking_status" = 'passed'
+      SET "booking_status" = 'Passé'
       WHERE "id" IN(
         SELECT "id"
         FROM "booking"
-        WHERE "end_date" < DATE( NOW() ) AND "booking_status" != 'passed'
+        WHERE "end_date" < DATE( NOW() ) AND "booking_status" != 'Passé'
       )
       `;
     const bookingsUpdated = await client.query(query);

@@ -11,7 +11,7 @@
   gap: 2rem;
   justify-content: space-between;
   background-color: v.$color-main;
-  max-width: 1500px;
+  max-width: 1300px;
 
   &-icon {
     width: 40px;
@@ -22,7 +22,7 @@
   }
 
   &__logo {
-    width: 150px;
+    width: 100px;
 
     @media screen and (max-width: 768px) {
       width: 80px;
@@ -81,7 +81,6 @@
 .visible-wrapper {
   display: flex;
   flex-direction: row;
-  gap: 15px;
   align-items: center;
 }
 
@@ -89,4 +88,23 @@
   .menu {
     display: none;
   }
+}
+
+.menu__title-1 {
+  color: v.$color-dark;
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0 0 0 1rem;
+}
+
+.menu__title-2 {
+  color: v.$color-dark;
+  font-size: 2rem;
+}
+
+.header__menu-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }

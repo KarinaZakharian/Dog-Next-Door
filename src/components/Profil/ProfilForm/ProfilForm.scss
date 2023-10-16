@@ -3,7 +3,7 @@
 
 .form-container {
   position: absolute;
-  top: 85px; /* Adjust as needed */
+  top: 10px; /* Adjust as needed */
   left: 0; /* Adjust as needed */
 
   min-height: 100vh;
@@ -34,7 +34,7 @@ p {
 }
 .profil-form {
   @include v.form-styling;
-  width: 70%;
+  width: 60%;
 }
 
 .label-form {
@@ -68,7 +68,8 @@ p {
   cursor: pointer;
 
   &__image {
-    max-width: 24px;
+    width: 60px;
+    height: 60px;
   }
 }
 .display {

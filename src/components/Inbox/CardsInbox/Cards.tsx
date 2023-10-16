@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import cat from '../../../assets/icons8-cat-100.png';
 import dog from '../../../assets/icons8-dog-100.png';
@@ -8,7 +9,7 @@ import { clientAccept } from '../../../store/reducers/account-inbox';
 import './Cards.scss';
 
 interface AnimalProps {
-  type: 'cat'| 'dog';
+  type: 'Cat'| 'Dog';
   name: string;
   start_date: string;
   end_date : string ;
@@ -16,7 +17,9 @@ interface AnimalProps {
 }
 
 function AnimalCard({ type, name, start_date, end_date,clientId }: AnimalProps) {
-  console.log(type)
+
+  const navigate = useNavigate();
+  
  
   const acceptMessage = useAppSelector(
     (state) => state.inboxAccount.acceptMessage
@@ -31,7 +34,6 @@ function AnimalCard({ type, name, start_date, end_date,clientId }: AnimalProps) 
     dispatch(clientAccept(formData));
   }
 
- 
 
   useEffect(() => {
     if (acceptMessage) {
@@ -40,6 +42,10 @@ function AnimalCard({ type, name, start_date, end_date,clientId }: AnimalProps) 
         icon: 'success',
         timer: 1000,
       });
+      setTimeout(() => {
+        // Redirect to the home page after a successful login
+        navigate('/inbox/upcoming', { replace: true });
+      }, 1000);
     }
 
   
@@ -49,18 +55,23 @@ function AnimalCard({ type, name, start_date, end_date,clientId }: AnimalProps) 
     <div className="animals-card">
       <div className="row">
         <div className="main-info">
-          {type && type === 'cat' && (
+          {type && type === 'Cat' && (
             <img className="animals-card__image" src={cat} alt="Avatar" />
           )}
-          {type && type === 'dog' && (
+          {type && type === 'Dog' && (
             <img className="animals-card__image" src={dog} alt="Avatar" />
           )}
           {name && <span className="animal-card__info">{name}</span>}
         </div>
-        <span className="animals-card__dates">{start_date}{end_date}</span>
+        <div className="main-info">
+        <span className="animals-card__dates">{start_date} au</span>
+        <span className="animals-card__dates">{end_date}</span>
+
+        </div>
+        
       </div>
       <div className="row2">
-        <button onClick={handleAccept}>Accepter</button>
+        <button className="card-button" onClick={handleAccept}>Accepter</button>
        
       </div>
     </div>

@@ -58,6 +58,7 @@ function AnimalCard({
           <img src={sizeIcon} alt="size icon" className="myAnimal-card__icon" />
           {size && <p className="myAnimal-card__label">{size}</p>}
         </div>
+        
 
         <div className="myAnimal-card__meal">
           <img src={mealIcon} alt="meal icon" className="myAnimal-card__icon" />

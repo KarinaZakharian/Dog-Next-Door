@@ -236,7 +236,7 @@ function Petsitter() {
                 </div>
               )}
               {account && disponibility_Sitter?.end_date ? (
-                <button onClick={showBookingContainer}>Booking</button>
+                <button className="card-button" onClick={showBookingContainer}>Booking</button>
               ) : (
                 <p>Cet utilisateur n'a pas de disponibilité</p>
               )}

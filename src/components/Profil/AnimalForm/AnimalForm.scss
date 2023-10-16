@@ -8,12 +8,12 @@
 }
 
 .animal-form {
-  display: flex;
-  flex-direction: column;
+  @include v.form-styling;
   justify-content: space-between;
   align-items: left;
   padding: 20px;
   background-color: v.$color-main;
+  width:50%;
 
   &__title {
     background-color: v.$color-dark;

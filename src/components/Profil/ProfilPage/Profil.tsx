@@ -49,7 +49,7 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [showDateContainer]);
 
   const firstname = useAppSelector((state) => state.profil.firstname);
   console.log('firstname', firstname);

@@ -46,8 +46,9 @@ function Demandes() {
                     <DemandesCard
                     // It's a good practice to provide a unique key for each component
                     key={index}
-                    lastname={user.lastname}
-                    firstname={user.firstname}
+                    
+                    lastname={user.animal.petsitter_lastname}
+                    firstname={user.animal.petsitter_firstname}
                     start_date={user.booking.start_date}
                     end_date={user.booking.end_date}
                     status={user.booking.booking_status}

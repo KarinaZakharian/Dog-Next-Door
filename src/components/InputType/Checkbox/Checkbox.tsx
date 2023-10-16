@@ -35,7 +35,7 @@ function CheckboxGroup({
     <div className="checkbox-wrap">
       <legend className="checkbox-title">{legend}</legend>
       {options.map((option) => (
-        <label key={option} className="container">
+        <label key={option} className="container-checkbox">
           <input
             name={name}
             className="checkbox"

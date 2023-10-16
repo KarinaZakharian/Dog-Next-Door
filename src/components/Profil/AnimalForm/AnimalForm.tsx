@@ -11,6 +11,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import Radio from '../../InputType/Radio/Radio';
 import CalendarComp from '../../InputType/DatePiker/DateSelect';
+import Main from '../../PageComponents/Main/Main'
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -19,6 +20,7 @@ import medium from '../../../assets/icons8-dog-35.png';
 import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
+
 
 function AnimalForm() {
   const navigate = useNavigate();
@@ -89,8 +91,9 @@ function AnimalForm() {
     <div className="page-wrapper">
       <Header />
 
-      <main className="main">
-        <div className="container">
+     
+        <Main > 
+        <div className="container-animalform">
           <form className="animal-form" onSubmit={handleSubmit}>
             <h2 className="animal-form__title">
               Ajouter votre animal de compagnie
@@ -233,7 +236,9 @@ function AnimalForm() {
             <Button prop="Enregistrer" />
           </form>
         </div>
-      </main>
+          </Main>
+        
+    
       <Footer />
     </div>
   );

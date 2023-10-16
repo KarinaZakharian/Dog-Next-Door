@@ -37,3 +37,16 @@
   flex-direction: row;
   gap: 10px;
 }
+.card-button{
+  background-color: v.$color-flash;
+  border-radius: 10px;
+  border: 1px solid v.$color-border;
+  @include v.label;
+  @include v.transition;
+
+  &:hover{
+   background-color: v.$color-main;
+   border: 1px solid v.$color-flash;
+
+  }
+}
