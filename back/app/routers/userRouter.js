@@ -8,7 +8,7 @@ const {
   checkTokenLogin,
   checkTokenMember,
   checkTokenRemove,
-  checkToken
+  checkToken,
 } = require('../services/tokenController.js');
 const { checkGetAnimal } = require('../services/animalController.js');
 // Import des services
