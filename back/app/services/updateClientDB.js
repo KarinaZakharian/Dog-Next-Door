@@ -14,8 +14,6 @@ const updateBooking = {
       )
       `;
     const bookingsUpdated = await client.query(query);
-    counter ++;
-    console.log(bookingsUpdated.rowCount, counter);
   },
 
   
