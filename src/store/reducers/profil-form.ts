@@ -29,6 +29,7 @@ export const fillProfilForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.patch('/account/form', objData);
+
       return data as {
         message: string;
       };
@@ -44,6 +45,7 @@ export const updateSignupForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.patch('/account/form2', objData);
+      //  thunkAPI.dispatch(fillProfilUpdated(objData))
       return data as {
         myMessage: string;
       };
@@ -122,8 +124,8 @@ const profilFormReducer = createReducer(initialState, (builder) => {
       state.message = null;
       state.myError = null;
       state.myMessage = null;
-      state.dateError=null;
-      state.dateMessage=null
+      state.dateError = null;
+      state.dateMessage = null;
     });
 });
 

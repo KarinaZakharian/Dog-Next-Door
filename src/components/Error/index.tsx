@@ -1,7 +1,7 @@
 import Footer from '../PageComponents/Footer/Footer';
 import Header from '../PageComponents/Header/Header';
 import Main from '../PageComponents/Main/Main';
-import './Error.scss';
+
 
 function Error() {
   return (
