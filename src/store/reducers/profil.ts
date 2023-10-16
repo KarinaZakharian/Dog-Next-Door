@@ -73,17 +73,54 @@ const initialUserState: User = {
   error: null,
 };
 
+export const getSignupFormUpdate = createAction(
+  'getUpdate/signupform',
+  (objData) => {
+    return {
+      payload: {
+        objData,
+      },
+    };
+  }
+);
+
+export const getAditionalFormUpdate = createAction(
+  'getUpdate/aditionalform',
+  (objData) => {
+    return {
+      payload: {
+        objData,
+      },
+    };
+  }
+);
+
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
+    console.log('profil fetchUser data', data);
     return data as User;
   } catch (error) {}
 });
+export const fillProfilFormUser = createAsyncThunk(
+  'user/form',
+  async (formData: FormData, thunkAPI) => {
+    console.log('profil fillProfilForm starting');
+    const objData = Object.fromEntries(formData);
+    try {
+      const { data } = await axiosInstance.patch('/account/form', objData);
+      console.log('profil fillProfilForm data', data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const profilReducer = createReducer(initialUserState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
-      console.log('fetchuser', action);
+      console.log('profil fetchuser', action);
       const userData = action.payload;
 
       if (userData) {
@@ -123,6 +160,30 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       }
 
       state.firstname = null;
+    })
+
+    .addCase(getSignupFormUpdate, (state, action) => {
+      console.log(action.payload);
+      if (action.payload) {
+        state.lastname = action.payload.objData.lastname;
+        state.firstname = action.payload.objData.firstname;
+        state.user_address = action.payload.objData.user_address;
+        state.latitude = action.payload.objData.latitude;
+        state.longitude = action.payload.objData.longitude;
+      }
+    })
+    .addCase(getAditionalFormUpdate, (state, action) => {
+      console.log('get anditional form update', action.payload);
+      const userData = action.payload.objData;
+      if (userData) {
+        state.description = userData.description;
+        state.garden = userData.garden;
+        state.animal_size = userData.animal_size;
+        state.accomodation = userData.accomodation;
+        state.additionnal_information = userData.additionnal_information;
+        state.walking_duration = userData.walking_duration;
+        state.disponibility = userData.disponibility;
+      }
     });
 });
 

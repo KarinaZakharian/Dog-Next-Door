@@ -31,6 +31,17 @@ export const logout = createAsyncThunk('user/logout', async () => {
   }
 });
 
+export const getLoginUpdate = createAction(
+  'getUpdate/aditionalform',
+  (objData) => {
+    return {
+      payload: {
+        objData,
+      },
+    };
+  }
+);
+
 // Create an async thunk for user login
 export const login = createAsyncThunk(
   'user/login',
@@ -57,12 +68,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       // console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
-      state.user_address = action.payload.user_address;
-      state.description = action.payload.description;
-      state.garden = action.payload.garden;
-      state.animal_size = action.payload.animal_size;
-      state.accomodation = action.payload.accomodation;
-      state.additionnal_information = action.payload.additionnal_information;
+
       state.error = null;
     })
     .addCase(login.rejected, (state, action) => {
@@ -78,6 +84,13 @@ const loginReducer = createReducer(initialState, (builder) => {
       // delete axiosInstance.defaults.headers.common.Authorization;
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
+    })
+    .addCase(getLoginUpdate, (state, action) => {
+      console.log('we are in the shit', action.payload);
+      if (action.payload.objData.lastname) {
+        state.lastname = action.payload.objData.lastname;
+        state.firstname = action.payload.objData.firstname;
+      }
     })
     .addCase(reconnect, (state, action) => {
       console.log('action', action);

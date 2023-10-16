@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
-
 import { FormEvent, useEffect, useState } from 'react';
 import swal from 'sweetalert';
-import { success, fillProfilForm } from '../../../store/reducers/profil-form';
+import { fillProfilForm, success } from '../../../store/reducers/profil-form';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { FormProps } from '../../../@types/user';
 
@@ -23,13 +22,12 @@ function ProfilForm({
   };
   const dispatch = useAppDispatch();
 
-  const error = useAppSelector((state) => state.profilForm.error);
-  const message = useAppSelector((state) => state.profilForm.message);
+  const error = useAppSelector((state) => state.profilForm.fillError);
+  const message = useAppSelector((state) => state.profilForm.fillMessage);
+  console.log('profil form ', error, message);
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
-   
-
 
   const handleSelectionChange1 = (selectedOptions: string[]) => {
     setSelectedOptions1(selectedOptions);
@@ -69,17 +67,19 @@ function ProfilForm({
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+    console.log('profil nform before event');
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    
+
     dispatch(fillProfilForm(formData));
   }
 
   useEffect(() => {
     // console.log('error', error);
     // console.log('message', message);
+    console.log('useffect fom profill form');
 
     if (!error && message) {
       swal(`${message}`, {
@@ -88,7 +88,6 @@ function ProfilForm({
       });
       setTimeout(() => {
         dispatch(success());
-        
         hideFormContainer();
       }, 1000);
     }
@@ -224,3 +223,4 @@ function ProfilForm({
 }
 
 export default ProfilForm;
+

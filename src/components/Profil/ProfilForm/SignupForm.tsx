@@ -19,6 +19,7 @@ import {
 } from '../../../Validations/UserValidation';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import { SignupProps } from '../../../@types/user';
+import { fillProfilForm } from '../../../store/reducers/profil-form';
 
 function SignupForm({
   isSignupContainerVisible,
@@ -41,6 +42,8 @@ function SignupForm({
 
   const myMessage = useAppSelector((state) => state.profilForm.myMessage);
   const myError = useAppSelector((state) => state.profilForm.myError);
+  console.log('error signup form', myError);
+  console.log('message signup form', myMessage);
 
   // Function to handle form submission
   const handleMySubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -95,13 +98,15 @@ function SignupForm({
   useEffect(() => {
     // console.log('error', myError);
     //console.log('message', myMessage);
-
+    console.log('useffect from signup form');
     if (!myError && myMessage) {
+      console.log('signup form swall');
       swal(`${myMessage}`, {
         icon: 'success',
         timer: 1000,
       });
       setTimeout(() => {
+        console.log('i am in set timeout');
         dispatch(success());
         hideSignupContainer();
       }, 1000);
@@ -178,3 +183,4 @@ function SignupForm({
 }
 
 export default SignupForm;
+
