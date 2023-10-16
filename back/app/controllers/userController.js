@@ -31,6 +31,7 @@ const userController = {
       delete userFound.user_password;
       const userToken = tokenController.createToken(userFound.id);
       userFound.token = userToken;
+      console.log("user Found login",userFound.token);
 
       res
         .cookie('access_token', userToken, {

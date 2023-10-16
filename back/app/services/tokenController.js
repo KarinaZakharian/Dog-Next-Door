@@ -20,8 +20,6 @@ const tokenController = {
   
   checkTokenLogin: async (req, res, next) => {
     const authorization = req.headers.authorization;
-    console.log('req headers', req.headers);
-    console.log('authorization', authorization);
     if (!authorization) {
       return next();
     }
@@ -34,7 +32,6 @@ const tokenController = {
       res.status(200).json(userConnected);
       //next();
     } catch (error) {
-      console.log(error);
       return next(error);
     }
   },

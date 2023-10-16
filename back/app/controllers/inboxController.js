@@ -1,3 +1,4 @@
+const { log } = require('console');
 const {inboxDatamapper} = require('../datamappers');
 
 const inboxController = {
@@ -51,10 +52,13 @@ const inboxController = {
     
     findBookingRequest : async (req,res) => {
         const userId = req.userId;
+        console.log("userid: ", userId);
         try {
+
+            const searchPetSitter = await inboxDatamapper.getSenderBooking(userId);
+            console.log("search petsitter : ",searchPetSitter.user_id);
+            const userMessage = await inboxDatamapper.getBookingRequest(userId,searchPetSitter.user_id);
            
-            const userMessage = await inboxDatamapper.getBookingRequest(userId);
-            
             const userMessageList = userMessage.map(message => { 
                 
                 message.booking.start_date = message.booking.start_date.split("-").reverse().join("/");
@@ -62,7 +66,6 @@ const inboxController = {
                  return message
           });
             
-          console.log("find booking request",userMessageList);
             res.json(userMessageList);
 
         } catch (error) {
@@ -117,7 +120,6 @@ const inboxController = {
 
     findUpcomingBooking : async (req,res) => {
         const id = req.userId;
-        const sender_id = req.params.sender_id;
         try {
            
 
