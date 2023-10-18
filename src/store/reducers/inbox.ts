@@ -31,22 +31,12 @@ export const initialState: InboxState = {
 
 export const fetchBooking = createAsyncThunk('booking/fetch', async () => {
   try {
-    const { data } = await axiosInstance.get('/account/inbox');
-    return data as {
-      firstname: string;
-      lastname: string;
-      user_address: string;
-      description: string;
-      accommodation: string;
-      garden: string;
-      walking_duration: string;
-      additionnal_information: string[];
-      animal_size: string[];
-      accomodation: string;
-      disponibility_date: string;
-    };
+    const { data } = await axiosInstance.get<Omit<InboxState, 'error'>>(
+      '/account/inbox'
+    );
+    return data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -67,33 +57,43 @@ const bookingReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchBooking.fulfilled, (state, action) => {
       if (action.payload) {
-        state.firstname = action.payload.firstname;
-        state.lastname = action.payload.lastname;
-        state.user_address = action.payload.user_address;
-        state.description = action.payload.description;
-        state.garden = action.payload.garden;
-        state.animal_size = action.payload.animal_size;
-        state.accomodation = action.payload.accomodation;
-        state.additionnal_information = action.payload.additionnal_information;
-        state.walking_duration = action.payload.walking_duration;
-        state.disponibility_date = action.payload.disponibility_date;
+        const {
+          firstname,
+          lastname,
+          user_address: userAddress,
+          description,
+          garden,
+          walking_duration: walkingDuration,
+          additionnal_information: additionnalInformation,
+          animal_size: animalSize,
+          accomodation,
+          disponibility_date: disponibilityDate,
+        } = action.payload;
+
+        state.firstname = firstname;
+        state.lastname = lastname;
+        state.user_address = userAddress;
+        state.description = description;
+        state.garden = garden;
+        state.animal_size = animalSize;
+        state.accomodation = accomodation;
+        state.additionnal_information = additionnalInformation;
+        state.walking_duration = walkingDuration;
+        state.disponibility_date = disponibilityDate;
       }
 
       state.error = null;
-
-      // state.token = action.payload.token;
     })
     .addCase(fetchBooking.rejected, (state, action) => {
       state.error = action.payload.response.data;
       state.firstname = null;
-      // je récupère l'erreur directement dans `action.error`
-    })
+    });
 
-    .addCase(acceptBooking.fulfilled, (state, action) => {})
-    .addCase(acceptBooking.rejected, (state, action) => {})
+  // .addCase(acceptBooking.fulfilled, (state, action) => {})
+  // .addCase(acceptBooking.rejected, (state, action) => {})
 
-    .addCase(deliteBooking.fulfilled, (state, action) => {})
-    .addCase(deliteBooking.rejected, (state, action) => {});
+  // .addCase(deliteBooking.fulfilled, (state, action) => {})
+  // .addCase(deliteBooking.rejected, (state, action) => {});
 });
 
 export default bookingReducer;

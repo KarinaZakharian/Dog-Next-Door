@@ -36,18 +36,19 @@ function App() {
       axiosInstance
         .post('/login')
         // Vu que je suis dans un useEffect, je ne pas utilisé async/await, j'utilise les prommesses classique pour récupérer les data dans .then ou l'erreur dans le catch
-        .then((response) => {
-          const firstname = response.data.firstname;
+        .then(() => {
+          // response
+          // const { firstname } = response.data;
           // Si j'ai une réponse positive de la base de donnée, je dispatche mon action pour reconnecté mon utilisateur : firstname = valeur
           dispatch(reconnect(firstname));
         })
         // Si j'ai une erreur, peut importe la quelle, je supprime mon token
-        .catch((error) => {
+        .catch(() => {
           localStorage.clear();
           delete axiosInstance.defaults.headers.common.Authorization;
         });
     }
-  }, []);
+  }, [dispatch, firstname]);
   return (
     <div className="app">
       <Routes>

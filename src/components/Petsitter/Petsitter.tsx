@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Marker, Popup } from 'react-leaflet';
+import L, { LatLngExpression, latLng } from 'leaflet';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchUserById } from '../../store/reducers/sitter';
-import L, { LatLngExpression, latLng } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
 import LeafletMap from '../PageComponents/LeafletMap/LeafletMap';
 import Header from '../PageComponents/Header/Header';
 import Footer from '../PageComponents/Footer/Footer';
@@ -14,7 +14,6 @@ import Booking from './Booking/Booking';
 import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
-import { UserProps } from '../../@types/user';
 import Main from '../PageComponents/Main/Main';
 
 function Petsitter() {
@@ -32,7 +31,6 @@ function Petsitter() {
   };
 
   const user = useAppSelector((state) => state.sitter.user);
-  console.log(user);
   const firstname = user?.lastname;
   const lastname = user?.firstname;
   const avatar = user?.avatar;
@@ -54,16 +52,12 @@ function Petsitter() {
   const disponibility_Sitter = user?.disponibility;
   const booking_start = user?.booking?.start_date;
   const booking_end = user?.booking?.end_date;
-  console.log('sitter booking taken', booking_end, booking_start);
-  console.log('dispo sitter', disponibility_Sitter);
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
 
   const disponibility_dateUser = useAppSelector(
     (state) => state.profil.disponibility
   );
-  console.log('user dispo', disponibility_dateUser);
-  console.log('sitter dispo', disponibility_Sitter);
   const myIcon = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
@@ -77,12 +71,12 @@ function Petsitter() {
     if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
         return size.map((item, index) => <li key={index}>{item}</li>);
-      } else if (typeof size === 'string') {
+      }
+      if (typeof size === 'string') {
         const sizes = size.split(',');
         return sizes.map((item, index) => <li key={index}>{item}</li>);
-      } else {
-        return <li>{size}</li>;
       }
+      return <li>{size}</li>;
     }
     return null;
   };
@@ -95,12 +89,12 @@ function Petsitter() {
         return additionnal_information.map((item, index) => (
           <li key={index}>{item}</li>
         ));
-      } else if (typeof additionnal_information === 'string') {
+      }
+      if (typeof additionnal_information === 'string') {
         const options = additionnal_information.split(',');
         return options.map((item, index) => <li key={index}>{item}</li>);
-      } else {
-        return <li>{additionnal_information}</li>;
       }
+      return <li>{additionnal_information}</li>;
     }
     return null;
   };
@@ -121,7 +115,7 @@ function Petsitter() {
                 <div className="profil__user-pref">
                   <img
                     className="profil__user-pref-img"
-                    src={avatar ? '/' + avatar : avatarLogo}
+                    src={avatar ? `/${avatar}` : avatarLogo}
                     alt="Avatar"
                   />
                   {description && <p>{description}</p>}
@@ -182,38 +176,6 @@ function Petsitter() {
                 </div>
               </div>
             </div>
-            {/* -------------------------------booking---------------------------- */}
-            {/* <div className="profil__booking">
-              <div className="profil__booking-header">
-                <h2 className="profil__booking-title">Mes disponibilités</h2>
-              </div>
-              <div className="profil__booking-card">
-                <div className="profil__booking-button">
-                  <h3 className="profil__booking-button-title">
-                    Ajouter une disponibilité
-                  </h3>
-                  <div className="profil__user-header-button">
-                    <img
-                      src={calendarIcon}
-                      alt="pencil white"
-                      className="profil__user-header-button-img"
-                      onClick={showDateContainer}
-                    />
-                  </div>
-                </div>
-                <div className="profil__booking-disponibility">
-
-                  {disponibility?.end_date &&  
-                    <div className="profil__booking-disponibility">
-                      <h3 className="profil-title">
-                        Disponibilité de {firstname}:
-                      </h3>
-                      <DateRangeComp disponibility={disponibility} />
-                    </div>}
-                
-                </div>
-              </div>
-            <div/> */}
             {/* -----------------------------profil animal------------------------ */}
             <div className="profil__animal">
               {typeAnimal && (
@@ -236,12 +198,14 @@ function Petsitter() {
                 </div>
               )}
               {account && disponibility_Sitter?.end_date ? (
-                <button className="card-button" onClick={showBookingContainer}>Booking</button>
+                <button className="card-button" onClick={showBookingContainer}>
+                  Booking
+                </button>
               ) : (
-                <p>Cet utilisateur n'a pas de disponibilité</p>
+                <p>Cet utilisateur n&apos;a pas de disponibilité</p>
               )}
               {!account && (
-                <Link to={'/subscribe'}>
+                <Link to="/subscribe">
                   <Button prop="Booking" />
                 </Link>
               )}
