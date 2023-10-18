@@ -1,7 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
-import axios from 'axios';
-
 import axiosInstance from '../../utils/axios';
 
 interface InboxState {
@@ -34,8 +32,6 @@ export const initialState: InboxState = {
 export const fetchBooking = createAsyncThunk('booking/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account/inbox');
-    //console.log(data);
-
     return data as {
       firstname: string;
       lastname: string;
@@ -50,7 +46,7 @@ export const fetchBooking = createAsyncThunk('booking/fetch', async () => {
       disponibility_date: string;
     };
   } catch (error) {
-    //console.log(error);
+    console.log(error);
   }
 });
 
@@ -67,14 +63,10 @@ export const acceptBooking = createAsyncThunk(
   }
 );
 
-
-
 const bookingReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchBooking.fulfilled, (state, action) => {
-      // state.logged = true;
-      // console.log('action fulfilled', action);
-      if(action.payload){
+      if (action.payload) {
         state.firstname = action.payload.firstname;
         state.lastname = action.payload.lastname;
         state.user_address = action.payload.user_address;
@@ -86,17 +78,14 @@ const bookingReducer = createReducer(initialState, (builder) => {
         state.walking_duration = action.payload.walking_duration;
         state.disponibility_date = action.payload.disponibility_date;
       }
-      
+
       state.error = null;
 
       // state.token = action.payload.token;
     })
     .addCase(fetchBooking.rejected, (state, action) => {
-      console.log('action rejected', action);
       state.error = action.payload.response.data;
       state.firstname = null;
-      //  console.log(action.error.message)
-      // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
     })
 

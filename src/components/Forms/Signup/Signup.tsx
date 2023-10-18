@@ -17,8 +17,8 @@ import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import AutoComplete from '../../InputType/Addresse/Addresse';
-import './Signup.scss';
 import Main from '../../PageComponents/Main/Main';
+import './Signup.scss';
 
 function SignUp() {
   // Initialize navigation and dispatch
@@ -92,9 +92,6 @@ function SignUp() {
   };
   // Handle success and error messages using useEffect
   useEffect(() => {
-    //console.log('error', error);
-    //console.log('message', message);
-
     if (!error && message) {
       // Show a success message using a modal
       swal(`${message}`, {
@@ -113,10 +110,10 @@ function SignUp() {
       // Show an error message using a modal
       swal(`${error}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
-  }, [error, message]);
+  }, [dispatch, error, message, navigate]);
 
   return (
     <div className="page-wrapper">
@@ -168,7 +165,7 @@ function SignUp() {
                 style={{ borderColor: passwordValid ? 'initial' : 'red' }}
               />
               {!passwordValid && (
-                <p className="error">Votre password n'est pas valide</p>
+                <p className="error">Votre password n&apos;est pas valide</p>
               )}
 
               <Button prop="S'inscrire" />

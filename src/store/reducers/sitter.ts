@@ -80,13 +80,12 @@ export const fetchUserById = createAsyncThunk<
   console.log('reduser userId' + userId);
   try {
     const response = await axiosInstance.get(`petsitter/${userId}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     if (typeof error === 'string') {
       return thunkAPI.rejectWithValue(error);
     }
-    console.error(error);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -108,8 +107,6 @@ const sitterReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchUserById.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
       state.error = undefined;
       state.message = 'User fetched successfully'; // You can customize this message
       state.user = action.payload;

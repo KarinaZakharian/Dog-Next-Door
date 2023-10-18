@@ -61,10 +61,10 @@ function Login() {
       // Show an error message using a modal
       swal(`${error}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
-  }, [firstname, error]);
+  }, [firstname, error, navigate]);
 
   return (
     <div className="page-wrapper">
@@ -81,7 +81,6 @@ function Login() {
                 aria-label="Adresse E-mail"
                 style={{ borderColor: valid ? 'initial' : 'red' }}
               />
-
               <Input
                 label="password"
                 name="user_password"
@@ -93,11 +92,10 @@ function Login() {
               {/* Display an error message for invalid login */}
               {!valid && (
                 <p className="error">
-                  Le mot de passe ou l'email que vous avez saisi est incorrect.
-                  Veuillez réessayer.
+                  Le mot de passe ou l&aps;email que vous avez saisi est
+                  incorrect. Veuillez réessayer.
                 </p>
               )}
-
               <Button prop="Connexion" />
             </form>
           </div>

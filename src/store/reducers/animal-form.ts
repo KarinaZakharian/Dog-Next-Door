@@ -37,16 +37,14 @@ const animalFormReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fillAnimalForm.rejected, (state, action) => {
       // Handle form submission rejection
-      //console.log('action rejected', action);
-      if(action.payload){
+      if (action.payload) {
         state.error = action.payload.response.data.message;
       }
-     
+
       state.message = null;
     })
     .addCase(fillAnimalForm.fulfilled, (state, action) => {
       // Handle a successful form submission
-      //console.log('action fulfilled', action);
       state.error = null;
       state.message = action.payload.data.message;
     })

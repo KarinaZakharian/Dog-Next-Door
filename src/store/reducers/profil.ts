@@ -8,9 +8,9 @@ import axiosInstance from '../../utils/axios';
 
 interface User {
   accomodation: string | null;
-  additionnal_information: (null | any)[];
+  additionnal_information: (null | unknown)[];
   animal: Animal | null;
-  animal_size: (null | any)[];
+  animal_size: (null | unknown)[];
   avatar: string | null;
   booking: Booking | null;
   description: string | null;
@@ -98,18 +98,15 @@ export const getAditionalFormUpdate = createAction(
 export const fetchUser = createAsyncThunk('user/fetch', async () => {
   try {
     const { data } = await axiosInstance.get('/account');
-    console.log('profil fetchUser data', data);
     return data as User;
   } catch (error) {}
 });
 export const fillProfilFormUser = createAsyncThunk(
   'user/form',
   async (formData: FormData, thunkAPI) => {
-    console.log('profil fillProfilForm starting');
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.patch('/account/form', objData);
-      console.log('profil fillProfilForm data', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -120,7 +117,6 @@ export const fillProfilFormUser = createAsyncThunk(
 const profilReducer = createReducer(initialUserState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
-      console.log('profil fetchuser', action);
       const userData = action.payload;
 
       if (userData) {
@@ -163,7 +159,6 @@ const profilReducer = createReducer(initialUserState, (builder) => {
     })
 
     .addCase(getSignupFormUpdate, (state, action) => {
-      console.log(action.payload);
       if (action.payload) {
         state.lastname = action.payload.objData.lastname;
         state.firstname = action.payload.objData.firstname;
@@ -173,7 +168,6 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       }
     })
     .addCase(getAditionalFormUpdate, (state, action) => {
-      console.log('get anditional form update', action.payload);
       const userData = action.payload.objData;
       if (userData) {
         state.description = userData.description;

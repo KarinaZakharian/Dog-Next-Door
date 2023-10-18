@@ -24,11 +24,8 @@ export const initialState: LoginState = {
 export const logout = createAsyncThunk('user/logout', async () => {
   try {
     const { data } = await axiosInstance.get('/logout');
-    //console.log(data);
     return data;
-  } catch (error) {
-    //console.log(error);
-  }
+  } catch (error) {}
 });
 
 export const getLoginUpdate = createAction(
@@ -65,36 +62,28 @@ export const reconnect = createAction<string | null>('reconnect');
 const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
-      // console.log('action fulfilled', action);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
 
       state.error = null;
     })
     .addCase(login.rejected, (state, action) => {
-      console.log('action rejected', action);
       state.error = action.payload.response.data;
       state.firstname = null;
-      //  console.log(action.error.message)
-      // state.error= action.error.messages
       // je récupère l'erreur directement dans `action.error`
     })
     .addCase(logout.fulfilled, (state) => {
       state.firstname = null;
-      // delete axiosInstance.defaults.headers.common.Authorization;
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
     })
     .addCase(getLoginUpdate, (state, action) => {
-      console.log('we are in the shit', action.payload);
       if (action.payload.objData.lastname) {
         state.lastname = action.payload.objData.lastname;
         state.firstname = action.payload.objData.firstname;
       }
     })
     .addCase(reconnect, (state, action) => {
-      console.log('action', action);
-      console.log('state', state);
       state.firstname = action.payload;
     });
 });

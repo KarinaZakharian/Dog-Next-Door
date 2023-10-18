@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 import axiosInstance from '../../utils/axios';
 
 // On import nos composants de pages
@@ -7,15 +8,12 @@ import Search from '../Search/Search';
 import Login from '../Forms/Login/Login';
 import Signup from '../Forms/Signup/Signup';
 import Error from '../Error';
-import ProfilForm from '../Profil/ProfilForm/ProfilForm';
 import AnimalForm from '../Profil/AnimalForm/AnimalForm';
 import Profil from '../Profil/ProfilPage/Profil';
 import Petsitter from '../Petsitter/Petsitter';
+
 // on import le css
-import './App.scss';
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import Booking from '../Petsitter/Booking/Booking';
 import Account from '../Inbox/InboxAccount/Account';
 import Upcoming from '../Inbox/InboxUpcoming/Upcoming';
 import Uppast from '../Inbox/InboxUppast/Uppast';
@@ -26,7 +24,6 @@ import AboutUs from '../Forms/About/AboutUs';
 function App() {
   const firstname = useAppSelector((state) => state.login.firstname);
   const dispatch = useAppDispatch();
-  //const firstname = 'karina';
   // Au premier chargement de l'application
   useEffect(() => {
     // je récupère mon token dans le localstorage
@@ -65,14 +62,12 @@ function App() {
         <Route path="/inbox/demands" element={<Demandes />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/about" element={<AboutUs />} />
-
         {firstname && (
           <>
             <Route path="/account/animal-form" element={<AnimalForm />} />
             <Route path="/account" element={<Profil />} />
           </>
         )}
-
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

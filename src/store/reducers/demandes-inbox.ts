@@ -29,13 +29,11 @@ export const fetchStatus = createAsyncThunk<User, void>(
   async (_, thunkAPI) => {
     try {
       const response = await axiosInstance.get(`/inbox/demands`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       if (typeof error === 'string') {
         return thunkAPI.rejectWithValue(error);
       }
-      console.error(error);
       throw error; // You should throw the error to maintain the rejected state
     }
   }
@@ -51,12 +49,9 @@ const demandsReducer = createReducer(initialState, (builder) => {
       } else {
         state.error = action.error.message;
       }
-      // state.error = action.payload.response.data;
       state.message = null;
     })
     .addCase(fetchStatus.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
       state.user = action.payload;

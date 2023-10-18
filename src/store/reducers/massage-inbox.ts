@@ -1,17 +1,13 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
 
 interface Card {
-  firstname: string ;
-  lastname: string ;
+  firstname: string;
+  lastname: string;
   start_date: string;
   end_date: string;
-  id: string ;
+  id: string;
 }
 
 interface InboxState {
@@ -56,13 +52,12 @@ export const sendMessage = createAsyncThunk<
   try {
     const objData = Object.fromEntries(formData);
     const response = await axiosInstance.post('account/message', objData);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     if (typeof error === 'string') {
       return thunkAPI.rejectWithValue(error);
     }
-    console.error(error);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -80,8 +75,6 @@ const messageReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchMessageUser.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
       state.user = action.payload;
@@ -98,8 +91,6 @@ const messageReducer = createReducer(initialState, (builder) => {
       state.messageMessage = null;
     })
     .addCase(sendMessage.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
       state.messageError = undefined;
       state.messageMessage = action.payload.message; // You can customize this message
     });

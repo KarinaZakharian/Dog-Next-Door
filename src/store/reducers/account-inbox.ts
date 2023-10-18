@@ -35,7 +35,6 @@ export const fetchInboxAnimal = createAsyncThunk<Card, void>(
   async (_, thunkAPI) => {
     try {
       const response = await axiosInstance.get(`/inbox/awaiting`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       if (typeof error === 'string') {
@@ -54,14 +53,11 @@ export const clientAccept = createAsyncThunk<
   }
 >('inbox/accept-decline', async (formData: FormData, thunkAPI) => {
   const objData = Object.fromEntries(formData);
-  console.log(objData);
   try {
     const response = await axiosInstance.post('/inbox/awaiting', objData);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
-    console.error(error);
   }
 });
 
@@ -78,12 +74,9 @@ const accountReducer = createReducer(initialState, (builder) => {
       } else {
         state.error = action.error.message;
       }
-      // state.error = action.payload.response.data;
       state.message = null;
     })
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
-      console.log('fulffilled', action);
-      console.log(action);
       state.error = undefined;
       state.message = action.payload.message; // You can customize this message
       state.user = action.payload;
@@ -103,8 +96,6 @@ const accountReducer = createReducer(initialState, (builder) => {
       state.acceptMessage = null;
     })
     .addCase(clientAccept.fulfilled, (state, action) => {
-      console.log('fulffilled');
-      console.log(action);
       state.acceptError = undefined;
       state.acceptMessage = action.payload.message; // You can customize this message
     });

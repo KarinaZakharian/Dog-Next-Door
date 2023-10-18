@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux';
 import { addData } from '../../store/reducers/home';
 import { searchThunk } from '../../store/reducers/search';
 
@@ -21,9 +21,9 @@ import geant from '../../assets/icons8-dog-64.png';
 import search from '../../assets/search-blue.png';
 import swap from '../../assets/swap-blue.png';
 import security from '../../assets/security-blue.png';
-import avatar1 from '/avatar1.jpg?url';
-import avatar2 from '/avatar2.jpg?url';
-import avatar3 from '/avatar3.jpg?url';
+import avatar1 from '../../../public/avatar1.jpg';
+import avatar2 from '../../../public/avatar2.jpg';
+import avatar3 from '../../../public/avatar3.jpg';
 import './index.scss';
 import Main from '../PageComponents/Main/Main';
 
@@ -31,8 +31,6 @@ function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const error = useAppSelector((state) => state.search.error);
-  const message = useAppSelector((state) => state.search.message);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [picked, setPicked] = useState('');
@@ -60,7 +58,6 @@ function Home() {
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
     dispatch(searchThunk(formData));
-    console.log(objData);
     dispatch(addData(objData));
     navigate('/search', { replace: true });
   }
@@ -181,12 +178,13 @@ function Home() {
               <img src={swap} alt="" className="fonctionnality__img" />
               <h2 className="fonctionnality__title">Échange</h2>
               <p className="fonctionnality__content">
-                Chez <strong>O'Dog Next Door</strong>, le pet sitting est un
-                échange chaleureux et convivial entre passionnés d'animaux.
-                Offrez l'hospitalité à l'animal d'un autre membre, et en retour,
-                votre propre compagnon est accueilli chez eux, le tout
-                gratuitement. Ainsi, l'hébergement de vos petits amis reste
-                accessible et basé sur un échange équitable et bienveillant.
+                Chez <strong>O&apos;Dog Next Door</strong>, le pet sitting est
+                un échange chaleureux et convivial entre passionnés
+                d&apos;animaux. Offrez l&apos;hospitalité à l&apos;animal
+                d&apos;un autre membre, et en retour, votre propre compagnon est
+                accueilli chez eux, le tout gratuitement. Ainsi,
+                l&apos;hébergement de vos petits amis reste accessible et basé
+                sur un échange équitable et bienveillant.
               </p>
             </div>
             <div className="fonctionnality__card">
@@ -194,11 +192,11 @@ function Home() {
               <h2 className="fonctionnality__title">Rechercher</h2>
               <p className="fonctionnality__content">
                 Trouvez le pet sitter idéal près de chez vous avec{' '}
-                <strong>O'Dog Next Door</strong> ! Naviguez à travers les
+                <strong>O&apos;Dog Next Door</strong> ! Naviguez à travers les
                 profils de nos membres partout en France et découvrez un univers
-                dédié à l'amour des animaux. Votre compagnon à quatre pattes
-                sera choyé par une communauté fiable et attentionnée à deux pas
-                de votre domicile.
+                dédié à l&apos;amour des animaux. Votre compagnon à quatre
+                pattes sera choyé par une communauté fiable et attentionnée à
+                deux pas de votre domicile.
               </p>
             </div>
             <div className="fonctionnality__card">
@@ -206,29 +204,29 @@ function Home() {
               <h2 className="fonctionnality__title">Identité vérifié</h2>
               <p className="fonctionnality__content">
                 Soyez assurés de la confiance et de la sécurité avec{' '}
-                <strong>O'Dog Next Door</strong>. Tous nos pet sitters valident
-                leur identité et leur adresse avant de rejoindre la communauté.
-                Nous mettons un point d'honneur à vérifier chaque profil pour
-                que vous puissiez confier votre animal avec une tranquillité
-                d’esprit absolue. O'Dog Next Door, votre réseau de pet sitting
-                de confiance !
+                <strong>O&apos;Dog Next Door</strong>. Tous nos pet sitters
+                valident leur identité et leur adresse avant de rejoindre la
+                communauté. Nous mettons un point d&apos;honneur à vérifier
+                chaque profil pour que vous puissiez confier votre animal avec
+                une tranquillité d&apos;esprit absolue. O&apos;Dog Next Door,
+                votre réseau de pet sitting de confiance !
               </p>
             </div>
           </section>
           <section className="marketing">
-            <div className="marketing__left-space"></div>
+            <div className="marketing__left-space" />
             <div className="marketing__right-space">
               <h3 className="marketing__title">Partager</h3>
               <p className="marketing__content">
-                Chez <strong>O'Dog Next Door</strong>, partager des moments
+                Chez <strong>O&apos;Dog Next Door</strong>, partager des moments
                 précieux est au cœur de notre mission. En confiant votre animal
                 à notre communauté de pet sitters dévoués, non seulement vous
                 assurez à votre compagnon un environnement bienveillant, mais
                 aussi une opportunité d’enrichissement social en côtoyant
-                d'autres animaux. Laissez votre petit ami profiter de nouvelles
-                aventures tout en bénéficiant vous-même d'une tranquillité
-                d'esprit, sachant qu'il crée des liens joyeux et sécurisants
-                dans un foyer aimant.
+                d&apos;autres animaux. Laissez votre petit ami profiter de
+                nouvelles aventures tout en bénéficiant vous-même d&apos;une
+                tranquillité d&apos;esprit, sachant qu&apos;il crée des liens
+                joyeux et sécurisants dans un foyer aimant.
               </p>
             </div>
           </section>
@@ -243,9 +241,9 @@ function Home() {
                 />
                 <h5 className="testimonials__card-name">Coralie H.</h5>
                 <p className="testimonials__card-content">
-                  Expérience top avec O'Dog Next Door ! Bella a été chouchoutée
-                  par un pet sitter attentionné, et j’ai voyagé l’esprit léger.
-                  Service hautement recommandé !
+                  Expérience top avec O&apos;Dog Next Door ! Bella a été
+                  chouchoutée par un pet sitter attentionné, et j’ai voyagé
+                  l’esprit léger. Service hautement recommandé !
                 </p>
               </div>
               <div className="testimonials__card">
@@ -258,7 +256,8 @@ function Home() {
                 <p className="testimonials__card-content">
                   Partir en week-end est désormais un plaisir sans culpabilité.
                   Oscar et Missy ont été aimés et dorlotés comme à la maison.
-                  O'Dog Next Door, c'est notre choix sûr pour chaque absence !
+                  O&apos;Dog Next Door, c&apos;est notre choix sûr pour chaque
+                  absence !
                 </p>
               </div>
               <div className="testimonials__card">
@@ -269,9 +268,9 @@ function Home() {
                 />
                 <h5 className="testimonials__card-name">Brandon L.</h5>
                 <p className="testimonials__card-content">
-                  Un vrai bonheur d'utiliser O'Dog Next Door ! Nougat est revenu
-                  de son séjour aussi joyeux et détendu que nous de nos
-                  vacances. Une solution en or pour nos escapades !
+                  Un vrai bonheur d&apos;utiliser O&apos;Dog Next Door ! Nougat
+                  est revenu de son séjour aussi joyeux et détendu que nous de
+                  nos vacances. Une solution en or pour nos escapades !
                 </p>
               </div>
             </div>

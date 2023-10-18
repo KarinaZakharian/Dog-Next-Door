@@ -38,7 +38,6 @@ const searchReducer = createReducer(initialState, (builder) => {
       state.error = null;
       state.message = action.payload.data;
       state.users = action.payload.data;
-      console.log(action.payload.data);
     });
 });
 

@@ -6,17 +6,9 @@ interface CardProps {
   lastname: string;
   status: string;
   spe: string;
-  position: number;
 }
 
-function PeopleCard({
-  avatar,
-  firstname,
-  lastname,
-  status,
-  spe,
-  position,
-}: CardProps) {
+function PeopleCard({ avatar, firstname, lastname, status, spe }: CardProps) {
   return (
     <div className="people-card">
       <div className="people-card-imgcont">

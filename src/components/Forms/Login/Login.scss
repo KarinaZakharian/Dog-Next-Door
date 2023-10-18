@@ -1,9 +1,11 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
 }
+
 .login__form {
   @include v.form-styling;
   width: 50%;
@@ -16,6 +18,7 @@
   position: relative;
   height: 70vh;
 }
+
 .container-login {
   max-width: 1300px;
   margin: 0 auto;

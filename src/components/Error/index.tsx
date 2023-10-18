@@ -1,17 +1,12 @@
 import Footer from '../PageComponents/Footer/Footer';
 import Header from '../PageComponents/Header/Header';
-import './index.scss'
-
+import './index.scss';
 
 function Error() {
   return (
     <div>
       <Header />
-      <main className="main-404">
-      
-      </main>
-       
-      
+      <main className="main-404" />
       <Footer />
     </div>
   );

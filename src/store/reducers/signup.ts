@@ -4,7 +4,6 @@ import {
   createAction,
 } from '@reduxjs/toolkit';
 
-import axios from 'axios';
 import axiosInstance from '../../utils/axios';
 
 interface SignupState {
@@ -37,18 +36,12 @@ export const success = createAction('signup/success ');
 const signupReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(signup.rejected, (state, action) => {
-      //console.log('action rejected', action);
       state.error = action.payload;
       state.message = null;
     })
     .addCase(signup.fulfilled, (state, action) => {
-      // state.logged = true;
-      console.log('action fulfilled', action);
-      // state.firstname = action.payload.firstname;
       state.error = null;
       state.message = action.payload.data;
-
-      // state.token = action.payload.token;
     })
     .addCase(success, (state) => {
       state.error = null;

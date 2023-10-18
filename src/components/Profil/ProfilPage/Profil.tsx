@@ -1,10 +1,10 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import L, { LatLngExpression, latLng } from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchUser } from '../../../store/reducers/profil';
 
-import L, { LatLngExpression, latLng } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
 import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 
 import Header from '../../PageComponents/Header/Header';
@@ -16,13 +16,13 @@ import AnimalCard from '../AnimalCard/AnimalCard';
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
-import './Profil.scss';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import Main from '../../PageComponents/Main/Main';
+import './Profil.scss';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -49,10 +49,9 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [showDateContainer]);
+  }, []);
 
   const firstname = useAppSelector((state) => state.profil.firstname);
-  console.log('firstname', firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
   const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);
@@ -68,7 +67,6 @@ function Profil() {
     (state) => state.profil.walking_duration
   );
   const disponibility = useAppSelector((state) => state.profil.disponibility);
-  const user_adress = useAppSelector((state) => state.profil.user_address);
   const animal = useAppSelector((state) => state.profil.animal);
 
   // Access specific properties within the 'animal' object
@@ -115,12 +113,12 @@ function Profil() {
         return additionnal_information.map((item, index) => (
           <li key={index}>{item}</li>
         ));
-      } else if (typeof additionnal_information === 'string') {
+      }
+      if (typeof additionnal_information === 'string') {
         const options = additionnal_information.split(',');
         return options.map((item, index) => <li key={index}>{item}</li>);
-      } else {
-        return <li>{additionnal_information}</li>;
       }
+      return <li>{additionnal_information}</li>;
     }
     return null;
   };
