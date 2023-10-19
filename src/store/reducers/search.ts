@@ -9,8 +9,8 @@ interface SearchState {
 }
 export const initialState: SearchState = {
   users: [],
-  error: '',
-  message: '',
+  error: null,
+  message: null,
 };
 
 export const searchThunk = createAsyncThunk(
@@ -19,9 +19,12 @@ export const searchThunk = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const data = await axiosInstance.post('/search', objData);
-      return data;
+      return data; // Return the data in case of success
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      if (typeof error === 'string') {
+        return thunkAPI.rejectWithValue(error); // Return the error message in case of an error
+      }
+      throw error; // Throw the error to maintain the rejected state
     }
   }
 );
@@ -30,7 +33,12 @@ const searchReducer = createReducer(initialState, (builder) => {
   builder
 
     .addCase(searchThunk.rejected, (state, action) => {
-      state.error = action.payload.response.data;
+      if (action.payload) {
+        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
+        state.error = action.payload;
+      } else {
+        state.error = action.error.message;
+      }
       state.message = null;
     })
 
