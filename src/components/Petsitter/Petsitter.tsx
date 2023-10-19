@@ -21,7 +21,7 @@ function Petsitter() {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUserById(Number(id)));
-  }, [id]);
+  }, [dispatch, id]);
 
   const [isBookingContainerVisible, setIsBookingContainerVisible] =
     useState(false);
