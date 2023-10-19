@@ -15,21 +15,14 @@ export const initialState: SignupState = {
   error: null,
 };
 
-export const signup = createAsyncThunk<
-  any, // type de la valeur retourné //  TODO
-  FormData, // type de formData // paramètre du callback
-  {
-    rejectValue: string;
-  }
->('user/signup', async (formData: FormData, thunkAPI) => {
-  const objData = Object.fromEntries(formData);
-  try {
-    const data = await axiosInstance.post('/subscribe', objData);
+export const signup = createAsyncThunk(
+  'user/signup',
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData.entries());
+    const { data } = await axiosInstance.post('/subscribe', objData);
     return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
   }
-});
+);
 
 export const success = createAction('signup/success ');
 

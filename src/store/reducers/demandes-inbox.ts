@@ -14,7 +14,7 @@ interface User {
 }
 
 interface InboxState {
-  user: User | null;
+  user: User[] | null;
   error: string | undefined;
   message: string | null;
 }

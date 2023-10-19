@@ -3,13 +3,13 @@ import { HomeState } from '../../@types/user';
 
 // Define the initial state of the Home state
 export const initialState: HomeState = {
-  animal: '',
-  user_address: '',
-  disponibility_date: '',
-  size: '',
-  radius: '',
-  longitude: '',
-  latitude: '',
+  animal: null,
+  user_address: null,
+  disponibility_date: null,
+  size: null,
+  radius: null,
+  longitude: null,
+  latitude: null,
 };
 
 // Create an action to add data to the Home state
