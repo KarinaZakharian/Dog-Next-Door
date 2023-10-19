@@ -50,7 +50,7 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
 
   const firstname = useAppSelector((state) => state.profil.firstname);
   const lastname = useAppSelector((state) => state.profil.lastname);
@@ -95,12 +95,12 @@ function Profil() {
     if (size !== undefined && size !== null) {
       if (Array.isArray(size)) {
         return size.map((item, index) => <li key={index}>{item}</li>);
-      } else if (typeof size === 'string') {
+      }
+      if (typeof size === 'string') {
         const sizes = size.split(',');
         return sizes.map((item, index) => <li key={index}>{item}</li>);
-      } else {
-        return <li>{size}</li>;
       }
+      return <li>{size}</li>;
     }
     return null;
   };
@@ -123,7 +123,7 @@ function Profil() {
     }
     return null;
   };
-  console.log('user description', description);
+  // console.log('user description', description);
 
   return (
     <div className="page-wrapper">
@@ -158,7 +158,7 @@ function Profil() {
                 <div className="profil__user-pref">
                   <img
                     className="profil__user-pref-img"
-                    src={avatar ? '/' + avatar : avatarLogo}
+                    src={avatar ? `/${avatar}` : avatarLogo}
                     alt="Avatar"
                   />
                   {description && (

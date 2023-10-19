@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import swal from 'sweetalert';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
@@ -28,12 +27,8 @@ function Booking({
   bookingNotAvailibleEnd,
 }: BookingProps) {
   // Initialize navigation and dispatch
-  console.log('Sitter dispo in booking ', disponibility_date);
-  console.log(
-    'Dates not availible',
-    bookingNotAvailibleEnd,
-    bookingNotAvailibleStart
-  );
+  // console.log('Sitter dispo in booking ', disponibility_date);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -45,9 +40,7 @@ function Booking({
   // Access specific properties within the 'animal' object
   const type = animal?.type || null;
   const name = animal?.name || null;
-  const date_birth = animal?.birth_date || null;
-  const size_animal = animal?.size || null;
-  const walk = animal?.walk || null;
+  const dateBirth = animal?.birth_date || null;
   const energy = animal?.energy || null;
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
@@ -68,9 +61,6 @@ function Booking({
     formData.append('start_date', disponibility_date.start_date);
     formData.append('end_date', disponibility_date.end_date);
     formData.append('disponibility_id', disponibility_date.id);
-
-    const objData = Object.fromEntries(formData);
-    console.log(objData);
 
     dispatch(fillBookingForm(formData));
 
@@ -100,7 +90,7 @@ function Booking({
         navigate('/account', { replace: true });
       }, 1500);
     }
-  }, [error, message]);
+  }, [dispatch, error, message, navigate]);
 
   return (
     <div
@@ -109,27 +99,32 @@ function Booking({
       }`}
     >
       <div className="booking-card">
-        <button className="close-button" onClick={hideBookingContainer}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={hideBookingContainer}
+        >
           <img className="close-button__image" src={close_icon} alt="Cat" />
         </button>
         <p className="booking-card__title">Votre animal </p>
 
         <div className="main-info">
-          {type === 'Cat' ? (
+          {type === 'Cat' && (
             <img className="booking-card__image" src={cat} alt="Cat" />
-          ) : type === 'Dog' ? (
+          )}
+          {type === 'Dog' && (
             <img className="booking-card__image" src={dog} alt="Dog" />
-          ) : null}
+          )}
           {name && <span className="booking-card__info">{name}</span>}
           {race && <span className="booking-card__info">{race}</span>}
-          {date_birth && (
+          {dateBirth && (
             <div className="booking-card__ad-info">
               <img
                 className="booking-card__ad-image"
                 src={bd_icon}
                 alt="borth_date"
               />
-              <span className="booking-card__info">{date_birth}</span>
+              <span className="booking-card__info">{dateBirth}</span>
             </div>
           )}
           {energy && (

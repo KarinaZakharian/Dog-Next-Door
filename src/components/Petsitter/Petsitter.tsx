@@ -38,24 +38,23 @@ function Petsitter() {
   const description = user?.description;
   const garden = user?.garden;
   const accommodation = user?.accomodation;
-  const additionnal_information = user?.additionnal_information;
+  const additionnalInformation = user?.additionnal_information;
   const longitude = user?.longitude;
   const latitude = user?.latitude;
   const typeAnimal = user?.animal?.type;
   const nameAnimal = user?.animal?.name;
-  const date_birthAnimal = user?.animal?.birth_date;
-  const size_animalAnimal = user?.animal?.size;
+  const dateBirthAnimal = user?.animal?.birth_date;
+  const sizeAnimalAnimal = user?.animal?.size;
   const walkAnimal = user?.animal?.walk;
   const energyAnimal = user?.animal?.energy;
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
-  const disponibility_Sitter = user?.disponibility;
-  const booking_start = user?.booking?.start_date;
-  const booking_end = user?.booking?.end_date;
+  const disponibilitySitter = user?.disponibility;
+
   const center: LatLngExpression = latLng(latitude, longitude);
   const account = useAppSelector((state) => state.login.firstname);
 
-  const disponibility_dateUser = useAppSelector(
+  const disponibilityDateUser = useAppSelector(
     (state) => state.profil.disponibility
   );
   const myIcon = new L.Icon({
@@ -73,6 +72,7 @@ function Petsitter() {
         return size.map((item, index) => <li key={index}>{item}</li>);
       }
       if (typeof size === 'string') {
+        // Assuming 'size' is a string like "Petit (0-7 kg)"
         const sizes = size.split(',');
         return sizes.map((item, index) => <li key={index}>{item}</li>);
       }
@@ -82,19 +82,19 @@ function Petsitter() {
   };
   const renderOptions = () => {
     if (
-      additionnal_information !== undefined &&
-      additionnal_information !== null
+      additionnalInformation !== undefined &&
+      additionnalInformation !== null
     ) {
-      if (Array.isArray(additionnal_information)) {
-        return additionnal_information.map((item, index) => (
+      if (Array.isArray(additionnalInformation)) {
+        return additionnalInformation.map((item, index) => (
           <li key={index}>{item}</li>
         ));
       }
-      if (typeof additionnal_information === 'string') {
-        const options = additionnal_information.split(',');
+      if (typeof additionnalInformation === 'string') {
+        const options = additionnalInformation.split(',');
         return options.map((item, index) => <li key={index}>{item}</li>);
       }
-      return <li>{additionnal_information}</li>;
+      return <li>{additionnalInformation}</li>;
     }
     return null;
   };
@@ -130,13 +130,13 @@ function Petsitter() {
                   )}
                   {walkAnimal && <p>{walkAnimal}</p>}
 
-                  {disponibility_Sitter?.end_date && (
+                  {disponibilitySitter?.end_date && (
                     <h3 className="profil-title">
                       Disponibilité de {lastname}
                     </h3>
                   )}
-                  {disponibility_Sitter?.end_date && (
-                    <DateRangeComp disponibility={disponibility_Sitter} />
+                  {disponibilitySitter?.end_date && (
+                    <DateRangeComp disponibility={disponibilitySitter} />
                   )}
                 </div>
                 <div className="profil__user-home">
@@ -163,7 +163,7 @@ function Petsitter() {
                       </LeafletMap>
                     </div>
                   )}
-                  {accommodation || garden || additionnal_information ? (
+                  {accommodation || garden || additionnalInformation ? (
                     <h3 className="profil-title">
                       À propos du domicile de {firstname}:
                     </h3>
@@ -189,16 +189,20 @@ function Petsitter() {
                     type={typeAnimal}
                     name={nameAnimal}
                     race={raceAnimal}
-                    age={date_birthAnimal}
-                    size={size_animalAnimal}
+                    age={dateBirthAnimal}
+                    size={sizeAnimalAnimal}
                     pipi={walkAnimal}
                     repa={foodAnimal}
                     energy={energyAnimal}
                   />
                 </div>
               )}
-              {account && disponibility_Sitter?.end_date ? (
-                <button className="card-button" onClick={showBookingContainer}>
+              {account && disponibilitySitter?.end_date ? (
+                <button
+                  type="button"
+                  className="card-button"
+                  onClick={showBookingContainer}
+                >
                   Booking
                 </button>
               ) : (
@@ -209,14 +213,12 @@ function Petsitter() {
                   <Button prop="Booking" />
                 </Link>
               )}
-              {disponibility_Sitter?.end_date && (
+              {disponibilitySitter?.end_date && (
                 <Booking
                   isBookingContainerVisible={isBookingContainerVisible}
                   setIsBookingContainerVisible={setIsBookingContainerVisible}
-                  disponibility_date={disponibility_Sitter}
+                  disponibility_date={disponibilitySitter}
                   id={id}
-                  bookingNotAvailibleStart={booking_start}
-                  bookingNotAvailibleEnd={booking_end}
                 />
               )}
             </div>

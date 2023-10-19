@@ -24,7 +24,7 @@ function ProfilForm({
 
   const error = useAppSelector((state) => state.profilForm.fillError);
   const message = useAppSelector((state) => state.profilForm.fillMessage);
-  console.log('profil form ', error, message);
+  // console.log('profil form ', error, message);
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
@@ -67,7 +67,7 @@ function ProfilForm({
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-    console.log('profil nform before event');
+    // console.log('profil nform before event');
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -79,7 +79,7 @@ function ProfilForm({
   useEffect(() => {
     // console.log('error', error);
     // console.log('message', message);
-    console.log('useffect fom profill form');
+    // console.log('useffect fom profill form');
 
     if (!error && message) {
       swal(`${message}`, {
@@ -95,7 +95,7 @@ function ProfilForm({
     if (error) {
       swal(`${error}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
   }, [error, message]);
@@ -105,7 +105,11 @@ function ProfilForm({
       className={`form-container ${isFormContainerVisible ? '' : 'display'}`}
     >
       <div className="booking-card">
-        <button className="close-button" onClick={hideFormContainer}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={hideFormContainer}
+        >
           <img className="close-button__image" src={close_icon} alt="Cat" />
         </button>
       </div>
@@ -118,8 +122,6 @@ function ProfilForm({
           name="description"
           label="Ma description"
           placeholder="About me"
-          rows={5}
-          cols={33}
         />
         <p className="label-form">Mon logement</p>
         <div className="radio-wrapper">
@@ -223,4 +225,3 @@ function ProfilForm({
 }
 
 export default ProfilForm;
-

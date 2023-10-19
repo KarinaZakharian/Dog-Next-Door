@@ -13,9 +13,9 @@ function Account() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchUpcomingAnimal());
-  }, []);
+  }, [dispatch]);
   const users = useAppSelector((state) => state.inboxUpcoming.user);
-  console.log('upcoming', users);
+  // console.log('upcoming', users);
 
   return (
     <div>
@@ -52,16 +52,16 @@ function Account() {
                 ) : (
                   <div className="content__link-no-demand-container">
                     <h2 className="content__link-no-demand-title">
-                      Vous n'avez pas de messages non lus...
+                      Vous n&apos;avez pas de messages non lus...
                     </h2>
                     <p className="content__link-no-demand-content">
                       Vous trouverez ici les messages que vous avez échangés
-                      avec un pet sitter lorsque vous n'avez pas encore confirmé
-                      la réservation.
+                      avec un pet sitter lorsque vous n&apos;avez pas encore
+                      confirmé la réservation.
                     </p>
                     <p className="content__link-no-demand-content">
                       Les messages concernant vos prochaines gardes se trouvent
-                      dans l'onglet Gardes à venir.
+                      dans l&apos;onglet Gardes à venir.
                     </p>
                   </div>
                 )}

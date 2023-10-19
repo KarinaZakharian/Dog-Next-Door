@@ -13,11 +13,11 @@ function Demandes() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchStatus());
-  }, []);
+  }, [dispatch]);
 
   const users = useAppSelector((state) => state.inboxDemands.user);
 
-  console.log('demand data', users);
+  // console.log('demand data', users);
 
   return (
     <div>
@@ -42,22 +42,21 @@ function Demandes() {
               </div>
               <div>
                 {users ? (
-                  users.map((user,index)=>(
+                  users.map((user, index) => (
                     <DemandesCard
-                    // It's a good practice to provide a unique key for each component
-                    key={index}
-                    
-                    lastname={user.animal.petsitter_lastname}
-                    firstname={user.animal.petsitter_firstname}
-                    start_date={user.booking.start_date}
-                    end_date={user.booking.end_date}
-                    status={user.booking.booking_status}
-                  />
+                      // It's a good practice to provide a unique key for each component
+                      key={index}
+                      lastname={user.animal.petsitter_lastname}
+                      firstname={user.animal.petsitter_firstname}
+                      start_date={user.booking.start_date}
+                      end_date={user.booking.end_date}
+                      status={user.booking.booking_status}
+                    />
                   ))
                 ) : (
                   <div className="content__link-no-demand-container">
                     <h2 className="content__link-no-demand-title">
-                      Vous n'avez pas de messages non lus...
+                      Vous n&apos;avez pas de messages non lus...
                     </h2>
                     <p className="content__link-no-demand-content">
                       Vous trouverez ici les messages que vous avez échangés

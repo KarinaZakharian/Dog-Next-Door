@@ -1,6 +1,6 @@
 import { Marker, Popup } from 'react-leaflet';
-import { useAppSelector } from '../../../hooks/redux';
 import L, { LatLngExpression } from 'leaflet';
+import { useAppSelector } from '../../../hooks/redux';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';

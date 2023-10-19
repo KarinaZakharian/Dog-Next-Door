@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { logout } from '../../../../store/reducers/login';
@@ -25,12 +24,28 @@ function Humburger() {
     navigate('/login', { replace: true });
   };
 
+  // Add a keyboard listener for Enter key press
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === 'Enter') {
+        setIsMenuOpen(!isMenuOpen);
+      }
+    },
+    [isMenuOpen]
+  );
+
   return (
-    <div className="menuHumburger" onClick={handleMenuClick}>
+    <div
+      className="menuHumburger"
+      onClick={handleMenuClick}
+      onKeyPress={handleKeyPress} // Listen for keyboard events
+      role="button" // Add the role="button" for accessibility
+      tabIndex={0}
+    >
       <div className={`menu-bar ${isMenuOpen ? 'change' : ''}`}>
-        <div id="bar1" className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
-        <div id="bar2" className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
-        <div id="bar3" className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
+        <div id="bar1" className={`bar ${isMenuOpen ? 'change' : ''}`} />
+        <div id="bar2" className={`bar ${isMenuOpen ? 'change' : ''}`} />
+        <div id="bar3" className={`bar ${isMenuOpen ? 'change' : ''}`} />
       </div>
       <nav className={`nav ${isMenuOpen ? 'change-nav' : ''}`}>
         {/* Additional navigation links */}
@@ -61,7 +76,7 @@ function Humburger() {
       <div
         id="menu-bg"
         className={`menu-bg ${isMenuOpen ? 'change-bg' : ''}`}
-      ></div>
+      />
       <NavLink to="/">
         <img className="menu__logo" src={mainLogo} alt="main-logo" />
       </NavLink>

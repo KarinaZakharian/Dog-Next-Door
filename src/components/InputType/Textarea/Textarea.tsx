@@ -5,8 +5,6 @@ interface InputProps {
   label: string;
   placeholder: string;
   name: string;
-  rows: number;
-  cols: number;
 }
 
 function TextareaInput({ name, label, placeholder }: InputProps) {

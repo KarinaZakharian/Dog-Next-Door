@@ -14,10 +14,10 @@ function Account() {
 
   useEffect(() => {
     dispatch(fetchInboxAnimal());
-  }, []);
+  }, [dispatch]);
 
   const user = useAppSelector((state) => state.inboxAccount.user);
-  console.log('account data', user);
+  // console.log('account data', user);
   return (
     <div>
       <Header />

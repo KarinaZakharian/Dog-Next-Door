@@ -19,7 +19,6 @@ import {
 } from '../../../Validations/UserValidation';
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import { SignupProps } from '../../../@types/user';
-import { fillProfilForm } from '../../../store/reducers/profil-form';
 
 function SignupForm({
   isSignupContainerVisible,
@@ -42,8 +41,8 @@ function SignupForm({
 
   const myMessage = useAppSelector((state) => state.profilForm.myMessage);
   const myError = useAppSelector((state) => state.profilForm.myError);
-  console.log('error signup form', myError);
-  console.log('message signup form', myMessage);
+  // console.log('error signup form', myError);
+  // console.log('message signup form', myMessage);
 
   // Function to handle form submission
   const handleMySubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +53,7 @@ function SignupForm({
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    console.log('body envoyé dans la requête du signup', objData);
+    // console.log('body envoyé dans la requête du signup', objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
@@ -97,16 +96,16 @@ function SignupForm({
 
   useEffect(() => {
     // console.log('error', myError);
-    //console.log('message', myMessage);
-    console.log('useffect from signup form');
+    // console.log('message', myMessage);
+    // console.log('useffect from signup form');
     if (!myError && myMessage) {
-      console.log('signup form swall');
+      // console.log('signup form swall');
       swal(`${myMessage}`, {
         icon: 'success',
         timer: 1000,
       });
       setTimeout(() => {
-        console.log('i am in set timeout');
+        // console.log('i am in set timeout');
         dispatch(success());
         hideSignupContainer();
       }, 1000);
@@ -115,7 +114,7 @@ function SignupForm({
     if (myError) {
       swal(`${myError}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
   }, [myError, myMessage]);
@@ -125,7 +124,11 @@ function SignupForm({
       className={`form-container ${isSignupContainerVisible ? '' : 'display'}`}
     >
       <div className="booking-card">
-        <button className="close-button" onClick={hideSignupContainer}>
+        <button
+          type="button"
+          className="close-button"
+          onClick={hideSignupContainer}
+        >
           <img className="close-button__image" src={close_icon} alt="Cat" />
         </button>
       </div>
@@ -173,7 +176,7 @@ function SignupForm({
           style={{ borderColor: passwordValid ? 'initial' : 'red' }}
         />
         {!passwordValid && (
-          <p className="error">Votre password n'est pas valide</p>
+          <p className="error">Votre password n&apos;t pas valide</p>
         )}
 
         <Button prop="Enregistrer" />
@@ -183,4 +186,3 @@ function SignupForm({
 }
 
 export default SignupForm;
-

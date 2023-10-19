@@ -1,6 +1,5 @@
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 import { logout } from '../../../store/reducers/login';
 import Humburger from './Humburger/Humburger';
@@ -37,7 +36,6 @@ function Header() {
           </NavLink>
           {firstname && (
             <div className="menu__nav-wrapper">
-              <div className="menu__nav-menu"></div>
               <div className="menu__menu-connection">
                 <NavLink className="menu__menu-item" to="/inbox/awaiting">
                   <img className="menu-icon" src={inboxIcon} alt="inbox icon" />

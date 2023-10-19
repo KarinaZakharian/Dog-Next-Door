@@ -19,7 +19,7 @@ function Footer() {
               alt="logo"
               className="footer__section-icon-logo-img"
             />
-            <h5 className="footer__section-icon-logo">O'Dog Next Door</h5>
+            <h5 className="footer__section-icon-logo">O&rsquo;Dog Next Door</h5>
           </div>
           <div className="footer__section-icon-logo-social">
             <Link to="https://www.facebook.com/">
@@ -32,7 +32,6 @@ function Footer() {
               <img src={insta} alt="logo instagram" />
             </Link>
           </div>
-          <div className="footer__section-logo-social"></div>
         </div>
         <div className="footer__section-utils">
           <h3>Liens utiles</h3>
@@ -79,7 +78,7 @@ function Footer() {
             </li>
             <li>
               <Link className="footer__section-link" to="/subscribe">
-                S'incrire
+                S&rsquo;incrire
               </Link>
             </li>
             <li>

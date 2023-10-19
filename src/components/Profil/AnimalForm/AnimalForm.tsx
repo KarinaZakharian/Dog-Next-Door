@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { success, fillAnimalForm } from '../../../store/reducers/animal-form';
-import swal from 'sweetalert';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -11,7 +11,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 import Radio from '../../InputType/Radio/Radio';
 import CalendarComp from '../../InputType/DatePiker/DateSelect';
-import Main from '../../PageComponents/Main/Main'
+import Main from '../../PageComponents/Main/Main';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
@@ -20,7 +20,6 @@ import medium from '../../../assets/icons8-dog-35.png';
 import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
-
 
 function AnimalForm() {
   const navigate = useNavigate();
@@ -63,7 +62,6 @@ function AnimalForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const objData = Object.fromEntries(formData);
     dispatch(fillAnimalForm(formData));
   };
 
@@ -82,17 +80,16 @@ function AnimalForm() {
     if (error) {
       swal(`${error}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
-  }, [error, message]);
+  }, [dispatch, error, message, navigate]);
 
   return (
     <div className="page-wrapper">
       <Header />
 
-     
-        <Main > 
+      <Main>
         <div className="container-animalform">
           <form className="animal-form" onSubmit={handleSubmit}>
             <h2 className="animal-form__title">
@@ -214,7 +211,7 @@ function AnimalForm() {
               />
             </div>
 
-            <p className="label">Niveau d'énergie</p>
+            <p className="label">Niveau d&apos;énergie</p>
             <div className="radio-wrapper">
               <RadioSimple
                 name="energy"
@@ -230,15 +227,13 @@ function AnimalForm() {
                 value="Modéré"
                 onRadioChange={handleEnergyChange}
               />
-             
             </div>
 
             <Button prop="Enregistrer" />
           </form>
         </div>
-          </Main>
-        
-    
+      </Main>
+
       <Footer />
     </div>
   );

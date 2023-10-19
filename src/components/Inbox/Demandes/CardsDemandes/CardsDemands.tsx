@@ -1,7 +1,3 @@
-import cat from '../../../../assets/icons8-cat-100.png';
-import dog from '../../../../assets/icons8-dog-100.png';
-import Button from '../../../InputType/Button/Button';
-
 import './CardsDemands.scss';
 
 interface UserProps {

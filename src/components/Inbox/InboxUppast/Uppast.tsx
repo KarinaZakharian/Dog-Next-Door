@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Footer from '../../PageComponents/Footer/Footer';
 import Header from '../../PageComponents/Header/Header';
@@ -13,9 +13,9 @@ function Uppast() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchMessageUser());
-  }, []);
+  }, [dispatch]);
   const user = useAppSelector((state) => state.inboxUppast.user);
-  console.log('uppast data', user);
+  // console.log('uppast data', user);
   return (
     <div>
       <Header />
@@ -50,16 +50,16 @@ function Uppast() {
                 ) : (
                   <div className="content__link-no-demand-container">
                     <h2 className="content__link-no-demand-title">
-                      Vous n'avez pas de messages non lus...
+                      Vous n&apos;avez pas de messages non lus...
                     </h2>
                     <p className="content__link-no-demand-content">
                       Vous trouverez ici les messages que vous avez échangés
-                      avec un pet sitter lorsque que vous n'avez pas encore
+                      avec un pet sitter lorsque que vous n&apos;avez pas encore
                       confirmé la réservation.
                     </p>
                     <p className="content__link-no-demand-content">
                       Les messages concernant vos prochaines gardes se trouvent
-                      dans l'onglet Gardes à venir.
+                      dans l&apos;onglet Gardes à venir.
                     </p>
                   </div>
                 )}

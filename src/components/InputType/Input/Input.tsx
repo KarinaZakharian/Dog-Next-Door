@@ -5,12 +5,11 @@ import { useState } from 'react';
 interface InputProps {
   name: string;
   placeholder: string;
-  defaultValue?: string;
   [prop: string]: unknown;
 }
 
-function Input({ name, placeholder, defaultValue, ...props }: InputProps) {
-  const [value, setValue] = useState(defaultValue || '');
+function Input({ name, placeholder, ...props }: InputProps) {
+  const [value, setValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);

@@ -36,17 +36,15 @@ function DateRangeComp(disponibility: Disponibility) {
       />
 
       <div>
-        {open && (
-          <DateRange
-            editableDateInputs={false}
-            moveRangeOnFirstSelection={false}
-            ranges={dateRange}
-            months={1}
-            direction="horizontal"
-            className="calendarElement"
-            onChange={handleDateRangeChange} // Provide the empty function
-          />
-        )}
+        <DateRange
+          editableDateInputs={false}
+          moveRangeOnFirstSelection={false}
+          ranges={dateRange}
+          months={1}
+          direction="horizontal"
+          className="calendarElement"
+          onChange={handleDateRangeChange} // Provide the empty function
+        />
       </div>
     </div>
   );

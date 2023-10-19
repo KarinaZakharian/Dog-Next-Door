@@ -8,16 +8,20 @@ import { clientAccept } from '../../../store/reducers/account-inbox';
 import './Cards.scss';
 
 interface AnimalProps {
-  type: 'cat'| 'dog';
+  type: 'Cat' | 'Dog';
   name: string;
   start_date: string;
-  end_date : string ;
+  end_date: string;
   clientId: string;
 }
 
-function DisponibilityCards({ type, name, start_date, end_date,clientId }: AnimalProps) {
-  console.log(type)
- 
+function DisponibilityCards({
+  type,
+  name,
+  start_date,
+  end_date,
+  clientId,
+}: AnimalProps) {
   const acceptMessage = useAppSelector(
     (state) => state.inboxAccount.acceptMessage
   );
@@ -37,26 +41,29 @@ function DisponibilityCards({ type, name, start_date, end_date,clientId }: Anima
         timer: 1000,
       });
     }
-
   }, [acceptMessage]);
 
   return (
     <div className="animals-card">
       <div className="row">
         <div className="main-info">
-          {type && type === 'cat' && (
+          {type && type === 'Cat' && (
             <img className="animals-card__image" src={cat} alt="Avatar" />
           )}
-          {type && type === 'dog' && (
+          {type && type === 'Dog' && (
             <img className="animals-card__image" src={dog} alt="Avatar" />
           )}
           {name && <span className="animal-card__info">{name}</span>}
         </div>
-        <span className="animals-card__dates">{start_date}{end_date}</span>
+        <span className="animals-card__dates">
+          {start_date}
+          {end_date}
+        </span>
       </div>
       <div className="row2">
-        <button onClick={handleAccept}>Accepter</button>
-       
+        <button type="button" onClick={handleAccept}>
+          Accepter
+        </button>
       </div>
     </div>
   );

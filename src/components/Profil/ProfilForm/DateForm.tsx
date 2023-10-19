@@ -27,11 +27,10 @@ function DateForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     dispatch(fillDateForm(formData));
-   
   }
 
   useEffect(() => {
-    //console.log('error', error);
+    // console.log('error', error);
     // console.log('message', message);
 
     if (!dateError && dateMessage) {
@@ -48,7 +47,7 @@ function DateForm({
     if (dateError) {
       swal(`${dateError}`, {
         icon: 'error',
-        button: true,
+        buttons: [true],
       });
     }
   }, [dateError, dateMessage]);
@@ -57,8 +56,16 @@ function DateForm({
       className={`form-container ${isDateContainerVisible ? '' : 'display'}`}
     >
       <div className="booking-card">
-        <button className="close-button" onClick={hideDateContainer}>
-          <img className="close-button__image" src={close_icon} alt="Close icon" />
+        <button
+          type="button"
+          className="close-button"
+          onClick={hideDateContainer}
+        >
+          <img
+            className="close-button__image"
+            src={close_icon}
+            alt="Close icon"
+          />
         </button>
       </div>
       <form className="profil-form" onSubmit={handleSubmit}>
