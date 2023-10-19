@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import L, { LatLngExpression, latLng } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
@@ -276,7 +277,7 @@ function Profil() {
                   energy={energy}
                 />
               ) : (
-                <Link className="link-animal" to={'/account/animal-form'}>
+                <Link className="link-animal" to="/account/animal-form">
                   <Button prop="Ajoutez votre animal de compagnie" />
                 </Link>
               )}

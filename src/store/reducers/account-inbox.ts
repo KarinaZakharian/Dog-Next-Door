@@ -1,13 +1,9 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
 
 interface Card {
-  type: 'cat' | 'dog';
+  type: 'Cat' | 'Dog';
   name: string;
   start_date: string;
   end_date: string;
@@ -17,86 +13,51 @@ interface Card {
 
 interface InboxState {
   user: Card[] | null;
-  error: unknown;
-  message: string | null;
-  acceptError: string | undefined;
+  acceptError: string | null;
   acceptMessage: string | null;
 }
 export const initialState: InboxState = {
-  message: null,
   user: null,
-  error: undefined,
-  acceptError: undefined,
+  acceptError: null,
   acceptMessage: null,
 };
 
-export const fetchInboxAnimal = createAsyncThunk<Card, void>(
+export const fetchInboxAnimal = createAsyncThunk(
   'inbox/fetchanimal',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get(`/inbox/awaiting`);
-      return response.data;
-    } catch (error) {
-      if (typeof error === 'string') {
-        return thunkAPI.rejectWithValue(error);
-      }
-      console.error(error);
-    }
+  async () => {
+    const { data } = await axiosInstance.get(`/inbox/awaiting`);
+    return data;
   }
 );
 
-export const clientAccept = createAsyncThunk<
-  any, // type de la valeur retourné //  TODO
-  FormData, // type de userID // paramètre du callback
-  {
-    rejectValue: unknown;
+export const clientAccept = createAsyncThunk(
+  'inbox/accept',
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData.entries());
+    const { data } = await axiosInstance.post('/inbox/awaiting', objData);
+    return data;
   }
->('inbox/accept-decline', async (formData: FormData, thunkAPI) => {
-  const objData = Object.fromEntries(formData);
-  try {
-    const response = await axiosInstance.post('/inbox/awaiting', objData);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
-  }
-});
-
-// Create a success action
-export const fetchAnimalSuccess = createAction('animal/fetchSuccess');
+);
 
 // Create the user reducer
 const accountReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchInboxAnimal.rejected, (state, action) => {
-      if (action.payload) {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.error = action.payload;
-      } else {
-        state.error = action.error.message;
-      }
-      state.message = null;
-    })
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
-      state.error = undefined;
-      state.message = action.payload.message; // You can customize this message
       state.user = action.payload;
-    })
-    .addCase(fetchAnimalSuccess, (state) => {
-      state.error = undefined;
-      state.message = null;
     })
     .addCase(clientAccept.rejected, (state, action) => {
       if (action.payload) {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.acceptError = action.payload;
-      } else {
-        state.acceptError = action.error.message;
+        if (typeof action.payload === 'string') {
+          state.acceptError = action.payload;
+        } else {
+          state.acceptError = 'An unknown error occurred';
+        }
       }
-      // state.error = action.payload.response.data;
+
       state.acceptMessage = null;
     })
     .addCase(clientAccept.fulfilled, (state, action) => {
-      state.acceptError = undefined;
+      state.acceptError = null;
       state.acceptMessage = action.payload.message; // You can customize this message
     });
 });
