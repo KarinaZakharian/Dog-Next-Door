@@ -1,10 +1,10 @@
 import { DateRangePicker } from 'react-date-range';
 import format from 'date-fns/format';
-import { addDays } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './DatePicker.scss';
 import { useEffect, useRef, useState } from 'react';
+
 interface InputProps {
   legend: string;
 }
@@ -22,20 +22,17 @@ function DateRangePickerComp({ legend }: InputProps) {
   });
 
   /*  get the target element to toggle */
-  const refOne = useRef(null);
+  const refOne = useRef<HTMLDivElement>(null);
 
   /* hide dropdown on ESC press */
-  const hideOnEscape = (e) => {
-    // console.log(e.key);
+  const hideOnEscape = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       setOpen(false);
     }
   };
 
-  const hideOnClickOutside = (e) => {
-    // console.log(refOne.current);
-    // console.log(e.target);
-    if (refOne.current && !refOne.current.contains(e.target)) {
+  const hideOnClickOutside = (e: MouseEvent) => {
+    if (refOne.current && !refOne.current.contains(e.target as Node)) {
       setOpen(false);
     }
   };
@@ -43,6 +40,10 @@ function DateRangePickerComp({ legend }: InputProps) {
   useEffect(() => {
     document.addEventListener('keydown', hideOnEscape, true);
     document.addEventListener('click', hideOnClickOutside, true);
+    return () => {
+      document.removeEventListener('keydown', hideOnEscape, true);
+      document.removeEventListener('click', hideOnClickOutside, true);
+    };
   }, []);
 
   return (
@@ -63,10 +64,10 @@ function DateRangePickerComp({ legend }: InputProps) {
         {open && (
           <DateRangePicker
             onChange={(item) => setState({ ...state, ...item })}
-            editableDateInputs={true}
+            editableDateInputs
             moveRangeOnFirstSelection={false}
             months={1}
-            preventSnapRefocus={true}
+            preventSnapRefocus
             calendarFocus="backwards"
             direction="horizontal"
             className="calendarElement"

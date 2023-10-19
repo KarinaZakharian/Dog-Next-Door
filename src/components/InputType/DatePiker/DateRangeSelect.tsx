@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
 
-function DateRangeComp(disponibility) {
-  console.log(disponibility);
-  const start = disponibility.disponibility.start_date;
-  const end = disponibility.disponibility.end_date;
-  console.log(start, end);
+interface Disponibility {
+  id: number | null;
+  start_date: string | null;
+  end_date: string | null;
+}
+function DateRangeComp(disponibility: Disponibility) {
+  const { start_date, end_date } = disponibility.disponibility;
+  // console.log(start_date, end_date);
   /* Set your desired start and end dates here */
-  const startDate = new Date(`${start}`);
-  const endDate = new Date(`${end}`);
+  const startDate = new Date(`${start_date}`);
+  const endDate = new Date(`${end_date}`);
 
   /* Create a date range object */
   const dateRange = [
@@ -20,9 +22,6 @@ function DateRangeComp(disponibility) {
       key: 'selection',
     },
   ];
-
-  /* Set the open state and handle interactions */
-  const [open, setOpen] = useState(true);
 
   // Empty onChange function to block interactions
   const handleDateRangeChange = () => {};

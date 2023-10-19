@@ -6,10 +6,10 @@ function AutoComplete({ style, setCoordinates }) {
   const [query, setQuery] = useState('');
 
   const getAddressesFromAPI = async (search: string) => {
-    console.log('je suis dans la fonction');
+    // console.log('je suis dans la fonction');
     try {
       if (search !== '' && isNaN(search)) {
-        console.log('je suis dans la fonction et je cherche');
+        // console.log('je suis dans la fonction et je cherche');
         const response = await fetch(
           `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(
             search
@@ -18,18 +18,18 @@ function AutoComplete({ style, setCoordinates }) {
         if (response.ok) {
           const datas = await response.json();
           setAdresses(datas);
-          console.log(datas);
+          // console.log(datas);
         }
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const setAddressGeometryAndCloseAutocompletion = (geolocalisation) => {
     setCoordinates(geolocalisation);
     setAdresses([]);
-    console.log(geolocalisation);
+    // console.log(geolocalisation);
   };
 
   return (

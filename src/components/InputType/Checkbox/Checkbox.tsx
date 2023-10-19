@@ -19,7 +19,7 @@ function CheckboxGroup({
 
   useEffect(() => {
     onSelectionChange(selectedOptions);
-  }, []);
+  }, [onSelectionChange, selectedOptions]);
 
   const handleCheckboxChange = (option: string) => {
     if (selectedOptions.includes(option)) {
