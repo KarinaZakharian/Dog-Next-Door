@@ -77,7 +77,7 @@ export const fetchUserById = createAsyncThunk<
     rejectValue: string;
   }
 >('user/fetchById', async (userId, thunkAPI) => {
-  console.log('reduser userId' + userId);
+  //  console.log('reduser userId' + userId);
   try {
     const response = await axiosInstance.get(`petsitter/${userId}`);
     return response.data;
@@ -85,7 +85,7 @@ export const fetchUserById = createAsyncThunk<
     if (typeof error === 'string') {
       return thunkAPI.rejectWithValue(error);
     }
-    return thunkAPI.rejectWithValue(error);
+    throw error;
   }
 });
 

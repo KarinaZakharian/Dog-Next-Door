@@ -13,12 +13,10 @@ interface Card {
 interface InboxState {
   user: Card[] | null;
   error: string | undefined;
-  message: string | null;
 }
 export const initialState: InboxState = {
   user: null,
   error: undefined,
-  message: null,
 };
 
 export const fetchUpcomingAnimal = createAsyncThunk<Card, void>(
@@ -31,7 +29,7 @@ export const fetchUpcomingAnimal = createAsyncThunk<Card, void>(
       if (typeof error === 'string') {
         return thunkAPI.rejectWithValue(error);
       }
-      return thunkAPI.rejectWithValue(error);
+      throw error;
     }
   }
 );
@@ -40,18 +38,15 @@ export const fetchUpcomingAnimal = createAsyncThunk<Card, void>(
 const upcomingReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUpcomingAnimal.rejected, (state, action) => {
-      if (action.payload) {
+      if (action.payload === 'string') {
         // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
         state.error = action.payload;
       } else {
         state.error = action.error.message;
       }
-      // state.error = action.payload.response.data;
-      state.message = null;
     })
     .addCase(fetchUpcomingAnimal.fulfilled, (state, action) => {
       state.error = undefined;
-      state.message = action.payload.message; // You can customize this message
       state.user = action.payload;
     });
 });
