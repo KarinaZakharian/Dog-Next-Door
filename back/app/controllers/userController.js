@@ -231,7 +231,45 @@ const userController = {
     );
     res.json('Vous venez de créer une disponibilité');
   },
+
+  updateDisponibility: async (req,res) => {
+      const userId = req.userId;
+      const newDisponibility = req.body;
+
+      // On récupère la date du front
+      const dateRange = newDisponibility.disponibility_date.split(" au ");
+      const [startDateString, endDateString] = dateRange;
+
+      // on change les date au format YYYY-mm-dd
+      const startDateFormat = startDateString.split('/').reverse().join('-');
+      const endDateFormat = endDateString.split('/').reverse().join('-');
+      
+      // o nrécupère la disponibilité de l'utilisateur
+      const findDisponibilityByUserId = await userDatamapper.getUserDisponibility(userId);
+      
+      // Si elle existe, on modifie les dates de disponibilités
+      if(findDisponibilityByUserId){
+        const updateDisponibility = await userDatamapper.modifyDisponibility(findDisponibilityByUserId[0].id, startDateFormat, endDateFormat,userId);
+        if(updateDisponibility){
+          return res.json({"message" : "Vos disponibilités ont bien été modifié"});
+        }
+      }
+  },
   
+  updateOurAnimal: async (req,res) => {
+    const userId = req.userId;
+    const newAnimal = req.body;
+
+    try {
+      const ourNewAnimal = await userDatamapper.modifyOurAnimal(newAnimal,userId);
+      if(ourNewAnimal){
+        return res.json({"message": "Votre animal a bien été modifié"})
+      }    
+    } catch (error) {
+      res.status(500).json({ message: "Votre animal n'a pas été modifié" });
+    }
+    
+  },
 };
 
 module.exports = userController;

@@ -262,6 +262,68 @@ const userDatamapper = {
     const result = await client.query(query, values);
     return result;
   },
+
+  modifyDisponibility: async (disponibility, startDate, endDate, userId) => {
+    
+  
+    const query = `
+    WITH update_disponibility AS (
+      UPDATE "disponibility"
+      SET "start_date" = $2, "end_date" = $3, "updated_at" = NOW()
+      WHERE "id" = $1
+      RETURNING "id" AS dispo_id
+    )
+    UPDATE "user_has_disponibility"
+    SET "user_id" = $4, "disponibility_id" = (SELECT dispo_id FROM update_disponibility)
+    WHERE "disponibility_id" = (SELECT dispo_id FROM update_disponibility)
+    `;
+    const values = [disponibility, startDate,endDate, userId];
+    const result = await client.query(query, values);
+    return result.rowCount;
+  },
+
+  modifyOurAnimal : async (animalInformation, userId) => {
+
+      const {
+        type,
+        animal_name,
+        size,
+        birth_date,
+        race,
+        energy,
+        mealhours,
+        walk
+      } = animalInformation;
+
+      const query = `
+      UPDATE "animal"
+      SET "type" = $1, 
+      "animal_name" = $2, 
+      "size" = $3, 
+      "birth_date" = $4,
+      "race" = $5,
+      "energy" = $6,
+      "mealhours" = $7,
+      "walk" = $8,
+      "updated_at" = NOW()
+
+      WHERE user_id = $9
+      `;
+
+      const values = [
+        type,
+        animal_name,
+        size,
+        birth_date,
+        race,
+        energy,
+        mealhours,
+        walk,
+        userId
+      ];
+      const result = await client.query(query, values);
+      return result.rowCount;
+  },
 };
 
 module.exports = userDatamapper;
