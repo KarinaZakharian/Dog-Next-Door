@@ -17,8 +17,8 @@ export interface UserProps {
   town: string | null;
   country: string | null;
   avatar: string | null;
-  latitude: number | null;
-  longitude: number | null;
+  latitude: float | null;
+  longitude: float | null;
   user_address: string | null;
   disponibility_date: DisponibilityProps[] | nulle;
 }
@@ -35,7 +35,7 @@ export interface CardProps {
 }
 
 interface LeafletMapProps {
-  center: [number, number];
+  center: LatLngLiteral;
   zoom: number;
   children: React.ReactNode;
 }
@@ -77,6 +77,8 @@ export interface MessageProps {
 //   scrollZooom: boolean;
 // } & MapOptions;
 export interface HomeState {
+  date: string | null;
+  city: string | null;
   animal: string | null;
   user_address: string | null;
   disponibility_date: string | null;

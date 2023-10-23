@@ -16,7 +16,6 @@ function InputSearch() {
   const size = useAppSelector((state) => state.home.size);
   const searchRadius = useAppSelector((state) => state.home.radius);
   const dispatch = useAppDispatch();
-
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const center = useState({ lat: 0, lng: 0 });
 
@@ -57,7 +56,7 @@ function InputSearch() {
                 picked={pickedAnimal}
                 img={cat}
                 label=""
-                onRadioChange={handleAnimalChange}
+                onRadioChange={() => handleAnimalChange}
               />
               <Radio
                 name="animal"
@@ -66,7 +65,7 @@ function InputSearch() {
                 picked={pickedAnimal}
                 img={dog}
                 label=""
-                onRadioChange={handleAnimalChange}
+                onRadioChange={() => handleAnimalChange}
               />
             </div>
 
@@ -85,7 +84,7 @@ function InputSearch() {
                   id="5"
                   picked={pickedRadius}
                   value="5"
-                  onRadioChange={handleRadiusChange}
+                  onRadioChange={() => handleRadiusChange}
                   label="5 km"
                 />
                 <RadioSimple
@@ -93,7 +92,7 @@ function InputSearch() {
                   id="10"
                   picked={pickedRadius}
                   value="10"
-                  onRadioChange={handleRadiusChange}
+                  onRadioChange={() => handleRadiusChange}
                   label="5 km"
                 />
                 <RadioSimple
@@ -101,7 +100,7 @@ function InputSearch() {
                   id="20"
                   picked={pickedRadius}
                   value="20"
-                  onRadioChange={handleRadiusChange}
+                  onRadioChange={() => handleRadiusChange}
                   label="5 km"
                 />
                 <RadioSimple
@@ -109,13 +108,11 @@ function InputSearch() {
                   id="35"
                   picked={pickedRadius}
                   value="35"
-                  onRadioChange={handleRadiusChange}
+                  onRadioChange={() => handleRadiusChange}
                   label="5 km"
                 />
               </div>
             </div>
-
-            {/* <DateRangePickerComp legend="Disponibilités" /> */}
           </div>
         </div>
         <Button prop="Rechercher" />

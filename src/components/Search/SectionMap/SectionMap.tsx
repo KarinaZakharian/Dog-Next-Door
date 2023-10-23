@@ -3,6 +3,7 @@ import L, { LatLngExpression } from 'leaflet';
 import { useAppSelector } from '../../../hooks/redux';
 
 import marker from '../../../assets/dog-area-blue.png';
+import centerMarker from '../../../assets/dog-area.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
 import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor.svg';
@@ -26,6 +27,16 @@ function SectionMap() {
     shadowAnchor: [3, 17],
   });
 
+  const myCenterIcon = new L.Icon({
+    iconUrl: centerMarker,
+    iconRetinaUrl: centerMarker,
+    shadowUrl: shadow,
+    popupAnchor: [-0, -0],
+    iconSize: [35, 40],
+    shadowSize: [35, 40],
+    shadowAnchor: [3, 17],
+  });
+
   const userOne =
     users.length > 0
       ? users[0]
@@ -33,16 +44,15 @@ function SectionMap() {
           latitude: 48.866667,
           longitude: 2.333333,
         };
-  const center: LatLngExpression = L.latLng(
-    userOne.latitude,
-    userOne.longitude
-  );
+  const center: LatLngLiteral = L.latLng(userOne.latitude, userOne.longitude);
 
   console.log('Center used:', center);
+  console.log('log users:', users);
 
   return (
     <div className="map-container">
       <LeafletMap key={center.toString()} center={center} zoom={13}>
+        <Marker position={L.latLng(center)} icon={myCenterIcon} />
         {users.map((user: UserProps) => (
           <Marker
             key={user.id}
