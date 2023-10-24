@@ -22,7 +22,6 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -64,4 +63,9 @@
     color: v.$color-text;
     margin: 0;
   }
+}
+.update-button {
+  width: 25px;
+  height: 25px;
+  background-color: v.$color-flash;
 }

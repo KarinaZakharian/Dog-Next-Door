@@ -264,7 +264,23 @@ function Profil() {
             <div className="profil__animal">
               <div className="profil__animal-header">
                 <h2 className="profil__animal-name">Mon animal de compagnie</h2>
+                {type && (
+                  <div className="profil__user-header-button">
+                    <Link
+                      className="link-animal"
+                      to="/account/animal-form/update"
+                    >
+                      <img
+                        src={pencilIcon}
+                        alt="pencil white"
+                        className="profil__user-header-button-img"
+                        onClick={showFormContainer}
+                      />
+                    </Link>
+                  </div>
+                )}
               </div>
+
               {type ? (
                 <AnimalCard
                   type={type}

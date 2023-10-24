@@ -29,12 +29,14 @@ export const success = createAction('signup/success ');
 const signupReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(signup.rejected, (state, action) => {
+      console.log(action.payload);
       state.error = action.payload;
       state.message = null;
     })
     .addCase(signup.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.error = null;
-      state.message = action.payload.data;
+      state.message = action.payload;
     })
     .addCase(success, (state) => {
       state.error = null;

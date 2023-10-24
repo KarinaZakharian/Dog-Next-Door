@@ -9,6 +9,7 @@ import Login from '../Forms/Login/Login';
 import Signup from '../Forms/Signup/Signup';
 import Error from '../Error';
 import AnimalForm from '../Profil/AnimalForm/AnimalForm';
+import AnimalFormUpdate from '../Profil/AnimalForm/AnimalFormUpdate';
 import Profil from '../Profil/ProfilPage/Profil';
 import Petsitter from '../Petsitter/Petsitter';
 
@@ -66,6 +67,10 @@ function App() {
         {firstname && (
           <>
             <Route path="/account/animal-form" element={<AnimalForm />} />
+            <Route
+              path="/account/animal-form/update"
+              element={<AnimalFormUpdate />}
+            />
             <Route path="/account" element={<Profil />} />
           </>
         )}

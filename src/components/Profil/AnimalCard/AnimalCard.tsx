@@ -5,8 +5,11 @@ import mealIcon from '../../../assets/dog-bowl-64.png';
 import energyIcon from '../../../assets/energy-100.png';
 import poopingIcon from '../../../assets/dog-pooping-100.png';
 import sizeIcon from '../../../assets/size-64.png';
+import pencilIcon from '../../../assets/pencil-white-64.png';
 
 import './AnimalCard.scss';
+import { Link } from 'react-router-dom';
+import Button from '../../InputType/Button/Button';
 
 interface AnimalProps {
   type: string | null;
