@@ -58,6 +58,10 @@ export interface DateProps {
   isDateContainerVisible: boolean;
   setIsDateContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+export interface UpdateProps {
+  isUpdateContainerVisible: boolean;
+  setIsUpdateContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 export interface FormProps {
   isFormContainerVisible: boolean;
   setIsFormContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;

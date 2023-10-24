@@ -10,7 +10,6 @@ interface InputProps {
 
 function Input({ name, placeholder, ...props }: InputProps) {
   const [value, setValue] = useState(props.defaultValue || '');
-  console.log(props);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);

@@ -24,7 +24,9 @@ interface User {
   longitude: number | null;
   user_address: string | null;
   walking_duration: string | null;
-  error: string | null;
+  error: unknown;
+  dateError: unknown;
+  updateError: unknown;
 }
 interface Animal {
   name: string | null;
@@ -71,7 +73,11 @@ const initialUserState: User = {
   user_address: null,
   walking_duration: null,
   error: null,
+  dateError: null,
+  updateError: null,
 };
+
+export const success = createAction('form/success ');
 
 export const getSignupFormUpdate = createAction(
   'getUpdate/signupform',
@@ -101,13 +107,33 @@ export const fetchUser = createAsyncThunk('user/fetch', async () => {
     return data as User;
   } catch (error) {}
 });
-export const fillProfilFormUser = createAsyncThunk(
-  'user/form',
+
+export const fillDateForm = createAsyncThunk(
+  'dateform/fill',
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
     try {
-      const { data } = await axiosInstance.patch('/account/form', objData);
-      return data;
+      const { data } = await axiosInstance.post(
+        '/account/adddisponibility',
+        objData
+      );
+      return data as Disponibility;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const updateDateForm = createAsyncThunk(
+  'dateform/update',
+  async (formData: FormData, thunkAPI) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      const { data } = await axiosInstance.patch(
+        '/account/adddisponibility',
+        objData
+      );
+      return data as Disponibility;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -151,13 +177,37 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       state.error = null;
     })
     .addCase(fetchUser.rejected, (state, action) => {
-      if (action.payload) {
-        state.error = action.payload.response.data;
-      }
-
+      state.error = action.payload;
       state.firstname = null;
     })
-
+    .addCase(fillDateForm.rejected, (state, action) => {
+      state.dateError = action.payload;
+    })
+    .addCase(fillDateForm.fulfilled, (state, action) => {
+      state.dateError = null;
+      const userData = action.payload;
+      if (userData) {
+        state.disponibility = {
+          start_date: userData.start_date,
+          end_date: userData.end_date,
+          id: userData.id,
+        };
+      }
+    })
+    .addCase(updateDateForm.rejected, (state, action) => {
+      state.updateError = action.payload;
+    })
+    .addCase(updateDateForm.fulfilled, (state, action) => {
+      state.updateError = null;
+      const userData = action.payload;
+      if (userData) {
+        state.disponibility = {
+          start_date: userData.start_date,
+          end_date: userData.end_date,
+          id: userData.id,
+        };
+      }
+    })
     .addCase(getSignupFormUpdate, (state, action) => {
       if (action.payload) {
         state.lastname = action.payload.objData.lastname;
@@ -178,6 +228,10 @@ const profilReducer = createReducer(initialUserState, (builder) => {
         state.walking_duration = userData.walking_duration;
         state.disponibility = userData.disponibility;
       }
+    })
+    .addCase(success, (state) => {
+      state.dateError = null;
+      state.updateError = null;
     });
 });
 

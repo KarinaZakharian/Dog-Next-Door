@@ -20,6 +20,7 @@ import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
+import DateFormUpdate from '../ProfilForm/DateFormUpdate';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import Main from '../../PageComponents/Main/Main';
@@ -35,6 +36,9 @@ function Profil() {
 
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
 
+  const [isUpdateContainerVisible, setIsUpdateContainerVisible] =
+    useState(false);
+
   // Function to show the booking container
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
@@ -46,6 +50,10 @@ function Profil() {
 
   const showDateContainer = () => {
     setIsDateContainerVisible(true);
+  };
+
+  const showUpdateContainer = () => {
+    setIsUpdateContainerVisible(true);
   };
 
   useEffect(() => {
@@ -221,19 +229,38 @@ function Profil() {
                 <h2 className="profil__booking-title">Mes disponibilités</h2>
               </div>
               <div className="profil__booking-card">
-                <div className="profil__booking-button">
-                  <h3 className="profil__booking-button-title">
-                    Ajouter une disponibilité
-                  </h3>
-                  <div className="profil__user-header-button">
-                    <img
-                      src={calendarIcon}
-                      alt="pencil white"
-                      className="profil__user-header-button-img"
-                      onClick={showDateContainer}
-                    />
+                {disponibility?.end_date === null && (
+                  <div className="profil__booking-button">
+                    <h3 className="profil__booking-button-title">
+                      Ajouter une disponibilité
+                    </h3>
+                    <div className="profil__user-header-button">
+                      <img
+                        src={calendarIcon}
+                        alt="pencil white"
+                        className="profil__user-header-button-img"
+                        onClick={showDateContainer}
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {disponibility?.end_date && (
+                  <div className="profil__booking-button">
+                    <h3 className="profil__booking-button-title">
+                      Mettez à jour votre disponibilité
+                    </h3>
+                    <div className="profil__user-header-button">
+                      <img
+                        src={calendarIcon}
+                        alt="pencil white"
+                        className="profil__user-header-button-img"
+                        onClick={showUpdateContainer}
+                      />
+                    </div>
+                  </div>
+                )}
+
                 <div className="profil__booking-disponibility">
                   {disponibility?.end_date && (
                     <div className="profil__booking-disponibility">
@@ -258,6 +285,11 @@ function Profil() {
               <DateForm
                 isDateContainerVisible={isDateContainerVisible}
                 setIsDateContainerVisible={setIsDateContainerVisible}
+              />
+
+              <DateFormUpdate
+                isUpdateContainerVisible={isUpdateContainerVisible}
+                setIsUpdateContainerVisible={setIsUpdateContainerVisible}
               />
             </div>
             {/* -----------------------------profil animal------------------------ */}
