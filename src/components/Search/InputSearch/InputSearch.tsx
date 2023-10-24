@@ -84,7 +84,7 @@ function InputSearch() {
                   id="5"
                   picked={pickedRadius}
                   value="5"
-                  onRadioChange={() => handleRadiusChange}
+                  onRadioChange={handleRadiusChange.bind(this)}
                   label="5 km"
                 />
                 <RadioSimple
@@ -92,24 +92,24 @@ function InputSearch() {
                   id="10"
                   picked={pickedRadius}
                   value="10"
-                  onRadioChange={() => handleRadiusChange}
-                  label="5 km"
+                  onRadioChange={handleRadiusChange.bind(this)}
+                  label="10 km"
                 />
                 <RadioSimple
                   name="radius"
                   id="20"
                   picked={pickedRadius}
                   value="20"
-                  onRadioChange={() => handleRadiusChange}
-                  label="5 km"
+                  onRadioChange={handleRadiusChange.bind(this)}
+                  label="20 km"
                 />
                 <RadioSimple
                   name="radius"
                   id="35"
                   picked={pickedRadius}
                   value="35"
-                  onRadioChange={() => handleRadiusChange}
-                  label="5 km"
+                  onRadioChange={handleRadiusChange.bind(this)}
+                  label="35 km"
                 />
               </div>
             </div>

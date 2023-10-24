@@ -6,11 +6,19 @@ interface FieldProps {
   name: string;
   id: string | undefined;
   value: string;
-  picked: string;
+  picked: string | null;
   onRadioChange: (value: string) => void;
+  label: string | null;
 }
 
-function RadioSimple({ name, id, value, picked, onRadioChange }: FieldProps) {
+function RadioSimple({
+  name,
+  id,
+  value,
+  picked,
+  onRadioChange,
+  label,
+}: FieldProps) {
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     onRadioChange(event.target.value);
   }
@@ -27,7 +35,7 @@ function RadioSimple({ name, id, value, picked, onRadioChange }: FieldProps) {
         onChange={handleChange}
       />
       <label htmlFor={id} className="radio-label">
-        {value}
+        {label}
       </label>
     </div>
   );

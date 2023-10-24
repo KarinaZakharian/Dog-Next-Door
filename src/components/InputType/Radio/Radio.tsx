@@ -6,7 +6,7 @@ interface FieldProps {
   name: string;
   id: string | undefined;
   value: string;
-  picked: string;
+  picked: string | null;
   img: string;
   label: string;
   onRadioChange: (value: string) => void;
