@@ -2,7 +2,6 @@ import { SetStateAction, useState } from 'react';
 import cat from '../../../../assets/icons8-cat-100.png';
 import dog from '../../../../assets/icons8-dog-100.png';
 import Button from '../../../InputType/Button/Button';
-import Comment from '../Message/Message';
 
 import './UppastCard.scss';
 
