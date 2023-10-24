@@ -45,7 +45,6 @@ export const updateSignupForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.patch('/account/form2', objData);
-      thunkAPI.dispatch(getLoginUpdate(objData));
 
       thunkAPI.dispatch(getSignupFormUpdate(objData));
 

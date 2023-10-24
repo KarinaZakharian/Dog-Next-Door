@@ -20,6 +20,8 @@ function DateFormUpdate({
   };
   const dispatch = useAppDispatch();
   const dateError = useAppSelector((state) => state.profil.updateError);
+  const dateMessage = useAppSelector((state) => state.profil.updateMessage);
+  console.log(dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -33,8 +35,8 @@ function DateFormUpdate({
     // console.log('error', error);
     // console.log('message', message);
 
-    if (!dateError) {
-      swal({
+    if (!dateError && dateMessage) {
+      swal(`${dateMessage}`, {
         icon: 'success',
         timer: 1000,
       });
@@ -50,7 +52,7 @@ function DateFormUpdate({
         buttons: [true],
       });
     }
-  }, [dateError]);
+  }, [dateError, dateMessage]);
   return (
     <div
       className={`form-container ${isUpdateContainerVisible ? '' : 'display'}`}

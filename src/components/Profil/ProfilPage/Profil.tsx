@@ -306,7 +306,7 @@ function Profil() {
                         src={pencilIcon}
                         alt="pencil white"
                         className="profil__user-header-button-img"
-                        onClick={showFormContainer}
+                        onClick={showUpdateContainer}
                       />
                     </Link>
                   </div>

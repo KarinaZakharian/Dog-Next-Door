@@ -260,7 +260,7 @@ const userDatamapper = {
             `;
     const values = [beginDate, finalDate, id];
     const result = await client.query(query, values);
-    return result;
+    return result.rowCount;
   },
 
   modifyDisponibility: async (disponibility, startDate, endDate, userId) => {
@@ -285,8 +285,8 @@ const userDatamapper = {
   modifyOurAnimal : async (animalInformation, userId) => {
 
       const {
-        type,
-        animal_name,
+        animal,
+        name,
         size,
         birth_date,
         race,
@@ -311,8 +311,8 @@ const userDatamapper = {
       `;
 
       const values = [
-        type,
-        animal_name,
+        animal,
+        name,
         size,
         birth_date,
         race,

@@ -25,6 +25,7 @@ export const fillAnimalForm = createAsyncThunk(
   'animal/form',
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
+    console.log(objData);
     try {
       const data = await axiosInstance.post('/account/addanimal', objData);
       return data;
@@ -38,8 +39,9 @@ export const updateAnimalForm = createAsyncThunk(
   'animal/form/update',
   async (formData: FormData, thunkAPI) => {
     const objData = Object.fromEntries(formData);
+    console.log(objData);
     try {
-      const data = await axiosInstance.patch('/account/updateanimal', objData);
+      const data = await axiosInstance.patch('/account/update-animal', objData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -66,6 +68,7 @@ const animalFormReducer = createReducer(initialState, (builder) => {
       state.message = action.payload.data.message;
     })
     .addCase(updateAnimalForm.rejected, (state, action) => {
+      console.log(action.payload);
       // Handle form submission rejection
       if (action.payload) {
         state.updateError = action.payload;
@@ -74,6 +77,7 @@ const animalFormReducer = createReducer(initialState, (builder) => {
       state.updateMessage = null;
     })
     .addCase(updateAnimalForm.fulfilled, (state, action) => {
+      console.log(action.payload.data.message);
       // Handle a successful form submission
       state.updateError = null;
       state.updateMessage = action.payload.data.message;

@@ -25,19 +25,10 @@ export const logout = createAsyncThunk('user/logout', async () => {
   try {
     const { data } = await axiosInstance.get('/logout');
     return data;
-  } catch (error) {}
-});
-
-export const getLoginUpdate = createAction(
-  'getUpdate/aditionalform',
-  (objData) => {
-    return {
-      payload: {
-        objData,
-      },
-    };
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 // Create an async thunk for user login
 export const login = createAsyncThunk(
@@ -68,20 +59,18 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.error = null;
     })
     .addCase(login.rejected, (state, action) => {
+      console.log(action.payload);
       state.error = action.payload.response.data;
       state.firstname = null;
       // je récupère l'erreur directement dans `action.error`
+    })
+    .addCase(logout.rejected, (state) => {
+      console.log(action.payload);
     })
     .addCase(logout.fulfilled, (state) => {
       state.firstname = null;
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
-    })
-    .addCase(getLoginUpdate, (state, action) => {
-      if (action.payload.objData.lastname) {
-        state.lastname = action.payload.objData.lastname;
-        state.firstname = action.payload.objData.firstname;
-      }
     })
     .addCase(reconnect, (state, action) => {
       state.firstname = action.payload;

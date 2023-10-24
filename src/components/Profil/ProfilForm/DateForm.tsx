@@ -19,6 +19,7 @@ function DateForm({
   };
   const dispatch = useAppDispatch();
   const dateError = useAppSelector((state) => state.profil.dateError);
+  const dateMessage = useAppSelector((state) => state.profil.dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -32,7 +33,7 @@ function DateForm({
     // console.log('error', error);
     // console.log('message', message);
 
-    if (!dateError) {
+    if (!dateError && dateMessage) {
       swal({
         icon: 'success',
         timer: 1000,
@@ -49,7 +50,7 @@ function DateForm({
         buttons: [true],
       });
     }
-  }, [dateError]);
+  }, [dateError, dateMessage]);
   return (
     <div
       className={`form-container ${isDateContainerVisible ? '' : 'display'}`}

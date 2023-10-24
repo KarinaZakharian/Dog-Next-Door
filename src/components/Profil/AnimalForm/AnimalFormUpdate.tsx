@@ -1,12 +1,9 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import {
-  success,
-  fillAnimalForm,
-  updateAnimalForm,
-} from '../../../store/reducers/animal-form';
+import { success, updateAnimalForm } from '../../../store/reducers/animal-form';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -24,7 +21,7 @@ import medium from '../../../assets/icons8-dog-35.png';
 import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
-import React from 'react';
+
 
 function AnimalFormUpdate() {
   const navigate = useNavigate();

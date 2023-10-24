@@ -26,7 +26,9 @@ interface User {
   walking_duration: string | null;
   error: unknown;
   dateError: unknown;
+  dateMessage: string | null;
   updateError: unknown;
+  updateMessage: string | null;
 }
 interface Animal {
   name: string | null;
@@ -74,7 +76,9 @@ const initialUserState: User = {
   walking_duration: null,
   error: null,
   dateError: null,
+  dateMessage: null,
   updateError: null,
+  updateMessage: null,
 };
 
 export const success = createAction('form/success ');
@@ -101,11 +105,13 @@ export const getAditionalFormUpdate = createAction(
   }
 );
 
-export const fetchUser = createAsyncThunk('user/fetch', async () => {
+export const fetchUser = createAsyncThunk('user/fetch', async (thunkAPI) => {
   try {
     const { data } = await axiosInstance.get('/account');
     return data as User;
-  } catch (error) {}
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
 });
 
 export const fillDateForm = createAsyncThunk(
@@ -130,10 +136,10 @@ export const updateDateForm = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const { data } = await axiosInstance.patch(
-        '/account/adddisponibility',
+        '/account/update-disponibility',
         objData
       );
-      return data as Disponibility;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -181,10 +187,13 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       state.firstname = null;
     })
     .addCase(fillDateForm.rejected, (state, action) => {
+      console.log(action.payload);
       state.dateError = action.payload;
     })
     .addCase(fillDateForm.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.dateError = null;
+      state.dateMessage = action.payload.message;
       const userData = action.payload;
       if (userData) {
         state.disponibility = {
@@ -195,11 +204,15 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       }
     })
     .addCase(updateDateForm.rejected, (state, action) => {
+      console.log(action.payload);
       state.updateError = action.payload;
     })
     .addCase(updateDateForm.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.updateError = null;
       const userData = action.payload;
+      state.updateMessage = action.payload.message;
+      console.log(action.payload.message);
       if (userData) {
         state.disponibility = {
           start_date: userData.start_date,
@@ -231,7 +244,9 @@ const profilReducer = createReducer(initialUserState, (builder) => {
     })
     .addCase(success, (state) => {
       state.dateError = null;
+      state.dateMessage = null;
       state.updateError = null;
+      state.updateMessage = null;
     });
 });
 
