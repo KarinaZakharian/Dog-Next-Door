@@ -46,6 +46,7 @@ const upcomingReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(fetchUpcomingAnimal.fulfilled, (state, action) => {
+      console.log(action.payload)
       state.error = undefined;
       state.user = action.payload;
     });

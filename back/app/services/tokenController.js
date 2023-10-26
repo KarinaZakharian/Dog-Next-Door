@@ -20,6 +20,7 @@ const tokenController = {
   
   checkTokenLogin: async (req, res, next) => {
     const authorization = req.headers.authorization;
+
     if (!authorization) {
       return next();
     }
@@ -41,14 +42,9 @@ const tokenController = {
     
     if (authorization) {
       const token = authorization.split(' ')[1];
-      
       try {
-       
-        const data = jwt.verify(token, process.env.SECRET_KEY)
-     
+        res.status(202).clearCookie('access_token').json('Utilisateur déconnecté')
         
-        const userData = jwt.clearCookie('access_token');
-        res.json({ "message": 'Vous avez été déconnecté' });
         
       } catch (error) {
         return res.status(401);
