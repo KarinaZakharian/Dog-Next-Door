@@ -27,7 +27,7 @@ const inboxController = {
                 message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
                  return message
           });
-            res.json(userMessageList);
+            res.status(200).json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -153,18 +153,21 @@ const inboxController = {
     findPastBooking : async (req,res) => {
         const id = req.userId;
         try {
-            const searchSender = await inboxDatamapper.getSenderBooking(id);
-            
+            const searchSender = await inboxDatamapper.getUserBooking(id);
+            if(!searchSender){
+                res.status(200).json([]);
+                return
+            }
             
             const userMessage = await inboxDatamapper.getPastBooking(id, searchSender.sender_id);
             const userMessageList = userMessage.map(message => { 
 
                 message.booking.start_date = message.booking.start_date.split("-").reverse().join('/');
                 message.booking.end_date = message.booking.end_date.split("-").reverse().join('/');
-                 return message
+                return message
           });
             
-            res.json(userMessageList);
+            res.status(200).json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
