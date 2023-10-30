@@ -11,15 +11,18 @@ interface AutoProps {
   [prop: string]: unknown;
 }
 
-function AutoComplete({ setCoordinates, ...props }: AutoProps) {
+interface AutoCompleteProps {
+  style: string;
+  setCoordinates: (geolocalisation: { x: number; y: number }) => void;
+}
+
+function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
 
   const getAddressesFromAPI = async (search: string) => {
-    // console.log('je suis dans la fonction');
     try {
-      if (search !== '' && isNaN(search)) {
-        // console.log('je suis dans la fonction et je cherche');
+      if (search !== '' && search) {
         const response = await fetch(
           `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(
             search
@@ -28,7 +31,6 @@ function AutoComplete({ setCoordinates, ...props }: AutoProps) {
         if (response.ok) {
           const datas = await response.json();
           setAdresses(datas);
-          // console.log(datas);
         }
       }
     } catch (error) {
@@ -39,7 +41,6 @@ function AutoComplete({ setCoordinates, ...props }: AutoProps) {
   const setAddressGeometryAndCloseAutocompletion = (geolocalisation) => {
     setCoordinates(geolocalisation);
     setAdresses([]);
-    // console.log(geolocalisation);
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -62,28 +63,26 @@ function AutoComplete({ setCoordinates, ...props }: AutoProps) {
           className="search__form-filters__select autocompletion-city__input"
           {...props}
         />
-        {
-          <ul className="autocompletion-city__ul">
-            {addresses &&
-              addresses.features &&
-              addresses.features.map((address) => (
-                <li
-                  className="autocompletion-city__ul__li"
-                  key={address.properties.label}
-                  onClick={() => {
-                    const selectedLabel = address.properties.label;
-                    setQuery(selectedLabel); // Set the input value to the selected address label
-                    setAddressGeometryAndCloseAutocompletion({
-                      x: address.geometry.coordinates[0],
-                      y: address.geometry.coordinates[1],
-                    });
-                  }}
-                >
-                  {address.properties.label}
-                </li>
-              ))}
-          </ul>
-        }
+        <ul className="autocompletion-city__ul">
+          {addresses &&
+            addresses.features &&
+            addresses.features.map((address) => (
+              <switch
+                className="autocompletion-city__ul__li"
+                key={address.properties.label}
+                onClick={() => {
+                  const selectedLabel = address.properties.label;
+                  setQuery(selectedLabel); // Set the input value to the selected address label
+                  setAddressGeometryAndCloseAutocompletion({
+                    x: address.geometry.coordinates[0],
+                    y: address.geometry.coordinates[1],
+                  });
+                }}
+              >
+                {address.properties.label}
+              </switch>
+            ))}
+        </ul>
       </div>
     </div>
   );
