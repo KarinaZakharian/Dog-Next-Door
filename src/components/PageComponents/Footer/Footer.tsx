@@ -7,7 +7,7 @@ import pinterest from '../../../assets/Pinterest-Logo.png';
 import { useAppSelector } from '../../../hooks/redux';
 
 function Footer() {
-  const firstname = useAppSelector((state) => state.profil.firstname);
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
 
   return (
     <div className="footer__wrapper">
@@ -19,7 +19,7 @@ function Footer() {
               alt="logo"
               className="footer__section-icon-logo-img"
             />
-            <h5 className="footer__section-icon-logo">O&rsquo;Dog Next Door</h5>
+            <h5 className="footer__section-icon-logo">O&apos;Dog Next Door</h5>
           </div>
           <div className="footer__section-icon-logo-social">
             <Link to="https://www.facebook.com/">
@@ -32,28 +32,33 @@ function Footer() {
               <img src={insta} alt="logo instagram" />
             </Link>
           </div>
+          <div className="footer__section-logo-social" />
         </div>
         <div className="footer__section-utils">
           <h3>Liens utiles</h3>
           <ul className="footer__section-list">
             <li>
-              <Link className="footer__section-link" to="/">
-                Collectif des pet sitters de France
-              </Link>
-            </li>
-            <li>
-              <Link className="footer__section-link" to="/">
-                VetoAdom
-              </Link>
-            </li>
-            <li>
-              <Link className="footer__section-link" to="/">
+              <Link
+                className="footer__section-link"
+                to="https://www.la-spa.fr/"
+              >
                 La SPA
               </Link>
             </li>
             <li>
-              <Link className="footer__section-link" to="/mentions-legales">
-                Arche association
+              <Link
+                className="footer__section-link"
+                to="https://blog.cuisine-a-crocs.com/"
+              >
+                Blog cuisine a crocs
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="footer__section-link"
+                to="https://veterinairespourtous.fr/"
+              >
+                Vétérinaires pour tous
               </Link>
             </li>
           </ul>
@@ -63,7 +68,7 @@ function Footer() {
           <ul className="footer__section-list">
             <li>
               <Link className="footer__section-link" to="/">
-                Accueil
+                Accueil Accueil
               </Link>
             </li>
             <li>
@@ -78,7 +83,7 @@ function Footer() {
             </li>
             <li>
               <Link className="footer__section-link" to="/subscribe">
-                S&rsquo;incrire
+                S&apos;incrire
               </Link>
             </li>
             <li>

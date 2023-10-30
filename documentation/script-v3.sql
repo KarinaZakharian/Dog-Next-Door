@@ -37,14 +37,8 @@ CREATE TABLE BOOKING (
   validate VARCHAR(42),
    VARCHAR(42),
   code_user VARCHAR(42),
-<<<<<<< HEAD:developpement/script.sql
-  PRIMARY KEY (code_booking),
-  created_at DATETIME NOT NULL,
-  updated_at DATETIME
-=======
   code_user_1 VARCHAR(42),
   PRIMARY KEY (code_booking)
->>>>>>> 6f6a1681d49af9171cfc2fe35907435b9e11f42c:documentation/script-v3.sql
 );
 
 CREATE TABLE DETIENT (
@@ -87,14 +81,8 @@ CREATE TABLE MESSAGE (
   topic VARCHAR(42),
   body VARCHAR(42),
   code_user VARCHAR(42),
-<<<<<<< HEAD:developpement/script.sql
-  PRIMARY KEY (code_message),
-  created_at DATETIME NOT NULL,
-  updated_at DATETIME
-=======
   code_user_1 VARCHAR(42),
   PRIMARY KEY (code_message)
->>>>>>> 6f6a1681d49af9171cfc2fe35907435b9e11f42c:documentation/script-v3.sql
 );
 
 CREATE TABLE MESSAGE_ADMIN (

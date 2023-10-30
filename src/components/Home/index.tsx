@@ -26,6 +26,7 @@ import avatar2 from '../../../public/avatar2.jpg';
 import avatar3 from '../../../public/avatar3.jpg';
 import './index.scss';
 import Main from '../PageComponents/Main/Main';
+import { HomeState } from '../../@types/user';
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -34,20 +35,20 @@ function Home() {
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   const [picked, setPicked] = useState('');
-  function handleRadioChange(value: string): void {
+  const handleRadioChange = (value: string): void => {
     setPicked(value);
-  }
+  };
 
   const [pickedAnimal, setAnimal] = useState('');
-  function handleAnimalChange(value: string): void {
+  const handleAnimalChange = (value: string): void => {
     setAnimal(value);
-  }
+  };
 
   // picking the radius
   const [pickedRadius, setRadius] = useState('');
-  function handleRadiusChange(value: string): void {
+  const handleRadiusChange = (value: string): void => {
     setRadius(value);
-  }
+  };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,7 +57,19 @@ function Home() {
     const formData = new FormData(form);
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
-    const objData = Object.fromEntries(formData);
+
+    const objData: HomeState = {
+      date: formData.get('date') as string,
+      city: formData.get('city') as string,
+      animal: formData.get('animal') as string,
+      user_address: formData.get('user_address') as string,
+      radius: formData.get('radius') as string,
+      longitude: formData.get('longitude') as string,
+      latitude: formData.get('latitude') as string,
+      disponibility_date: '',
+      size: '',
+    };
+
     dispatch(searchThunk(formData));
     dispatch(addData(objData));
     navigate('/search', { replace: true });
@@ -106,6 +119,7 @@ function Home() {
                     picked={pickedRadius}
                     value="5"
                     onRadioChange={handleRadiusChange}
+                    label="5 km"
                   />
                   <RadioSimple
                     name="radius"
@@ -113,6 +127,7 @@ function Home() {
                     picked={pickedRadius}
                     value="10"
                     onRadioChange={handleRadiusChange}
+                    label="10 km"
                   />
                   <RadioSimple
                     name="radius"
@@ -120,6 +135,7 @@ function Home() {
                     picked={pickedRadius}
                     value="20"
                     onRadioChange={handleRadiusChange}
+                    label="20 km"
                   />
                   <RadioSimple
                     name="radius"
@@ -127,6 +143,7 @@ function Home() {
                     picked={pickedRadius}
                     value="35"
                     onRadioChange={handleRadiusChange}
+                    label="35 km"
                   />
                 </div>
                 <DateRangePickerComp legend="Pour ces jours" />

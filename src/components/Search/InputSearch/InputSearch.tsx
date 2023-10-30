@@ -1,38 +1,37 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { searchThunk } from '../../../store/reducers/search';
+
 import AutoComplete from '../../InputType/Addresse/Addresse';
 import Button from '../../InputType/Button/Button';
 import Radio from '../../InputType/Radio/Radio';
-import { searchThunk } from '../../../store/reducers/search';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 
 import dog from '../../../assets/icons8-dog-100.png';
 import cat from '../../../assets/icons8-cat-100.png';
 
 import './InputSearch.scss';
-import RadioSimple from '../../InputType/RadioSimple/RadioSimple';
 
 function InputSearch() {
   const animal = useAppSelector((state) => state.home.animal);
   const size = useAppSelector((state) => state.home.size);
   const searchRadius = useAppSelector((state) => state.home.radius);
   const dispatch = useAppDispatch();
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const center = useState({ lat: 0, lng: 0 });
 
-  // picking the radius
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [pickedRadius, setRadius] = useState(searchRadius);
-  function handleRadiusChange(value: string): void {
-    setRadius(value);
-  }
 
   const [pickedAnimal, setAnimal] = useState(animal);
-  function handleAnimalChange(value: string): void {
+  const handleAnimalChange = (value: string): void => {
     setAnimal(value);
-  }
+  };
+
+  const handleRadiusChange = (value: string): void => {
+    setRadius(value);
+  };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.append('longitude', coordinates.x.toString());
@@ -56,7 +55,7 @@ function InputSearch() {
                 picked={pickedAnimal}
                 img={cat}
                 label=""
-                onRadioChange={() => handleAnimalChange}
+                onRadioChange={handleAnimalChange}
               />
               <Radio
                 name="animal"
@@ -65,7 +64,7 @@ function InputSearch() {
                 picked={pickedAnimal}
                 img={dog}
                 label=""
-                onRadioChange={() => handleAnimalChange}
+                onRadioChange={handleAnimalChange}
               />
             </div>
 
@@ -76,7 +75,7 @@ function InputSearch() {
           </div>
 
           <div className="inputsearch__right">
-            <div className="inputsearch__radio-animal">
+            <div className="inputsearch__radio-radius">
               <p>Distance autour de chez moi</p>
               <div className="radiosimple-wrapper">
                 <RadioSimple
@@ -84,7 +83,7 @@ function InputSearch() {
                   id="5"
                   picked={pickedRadius}
                   value="5"
-                  onRadioChange={handleRadiusChange.bind(this)}
+                  onRadioChange={handleRadiusChange}
                   label="5 km"
                 />
                 <RadioSimple
@@ -92,7 +91,7 @@ function InputSearch() {
                   id="10"
                   picked={pickedRadius}
                   value="10"
-                  onRadioChange={handleRadiusChange.bind(this)}
+                  onRadioChange={handleRadiusChange}
                   label="10 km"
                 />
                 <RadioSimple
@@ -100,7 +99,7 @@ function InputSearch() {
                   id="20"
                   picked={pickedRadius}
                   value="20"
-                  onRadioChange={handleRadiusChange.bind(this)}
+                  onRadioChange={handleRadiusChange}
                   label="20 km"
                 />
                 <RadioSimple
@@ -108,7 +107,7 @@ function InputSearch() {
                   id="35"
                   picked={pickedRadius}
                   value="35"
-                  onRadioChange={handleRadiusChange.bind(this)}
+                  onRadioChange={handleRadiusChange}
                   label="35 km"
                 />
               </div>

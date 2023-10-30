@@ -58,16 +58,8 @@
     margin: 2rem 0;
   }
 
-  &__title-size {
-  }
-
-  &__radio {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5 px;
-  }
-
-  &__button {
+  &__radio-radius {
+    margin: 2rem 0;
   }
 }
 .radiosimple-wrapper {

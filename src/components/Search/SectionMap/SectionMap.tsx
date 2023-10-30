@@ -1,11 +1,12 @@
 import { Marker, Popup } from 'react-leaflet';
-import L, { LatLngExpression } from 'leaflet';
+import L, { LatLngLiteral } from 'leaflet';
+import React from 'react';
 import { useAppSelector } from '../../../hooks/redux';
 
+import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 import marker from '../../../assets/dog-area-blue.png';
 import centerMarker from '../../../assets/dog-area.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
-import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
 import avatarLogo from '../../../assets/Logo-ODogNextDoor.svg';
 
 import { UserProps } from '../../../@types/user';
@@ -45,9 +46,6 @@ function SectionMap() {
           longitude: 2.333333,
         };
   const center: LatLngLiteral = L.latLng(userOne.latitude, userOne.longitude);
-
-  console.log('Center used:', center);
-  console.log('log users:', users);
 
   return (
     <div className="map-container">

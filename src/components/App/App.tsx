@@ -1,5 +1,5 @@
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
 import axiosInstance from '../../utils/axios';
 
 // On import nos composants de pages
