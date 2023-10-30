@@ -33,7 +33,7 @@ function SectionMap() {
     iconRetinaUrl: centerMarker,
     shadowUrl: shadow,
     popupAnchor: [-0, -0],
-    iconSize: [35, 40],
+    iconSize: [38, 40],
     shadowSize: [35, 40],
     shadowAnchor: [3, 17],
   });

@@ -2,23 +2,31 @@
 @use '../../../styles/variables' as v;
 
 .footer__wrapper {
-  background-color: v.$color-border;
+  background-color: hsla(208, 54%, 89%, 0.5);
   padding: 4rem 1rem 1rem 1rem;
   @media screen and (max-width: 768px) {
     z-index: 20000;
     position: relative;
+    padding: 2rem 1rem 1rem 1rem;
   }
   text-align: center;
 }
 
 .footer__container {
   max-width: 1300px;
-  padding: 10px;
+  padding: 1rem;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: 5rem;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.5rem;
+  }
 }
 
 .footer__section-icon-logo-social {

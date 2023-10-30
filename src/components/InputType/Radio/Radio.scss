@@ -2,6 +2,7 @@
 @use '../../../styles/variables' as v;
 .form__radio-input {
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .form__fieldset {
@@ -17,9 +18,9 @@
   justify-content: center;
   align-items: center;
   height: 100px;
-  width: 100%;
+  width: 100px;
   border: 2px solid v.$color-border;
-  margin: auto;
+  margin: 0.5rem;
   border-radius: 10px;
   color: v.$color-text;
   transition: 0.5s;
