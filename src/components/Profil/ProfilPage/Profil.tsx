@@ -24,7 +24,6 @@ import DateForm from '../ProfilForm/DateForm';
 import DateFormUpdate from '../ProfilForm/DateFormUpdate';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
-import Main from '../../PageComponents/Main/Main';
 import './Profil.scss';
 
 function Profil() {
@@ -142,232 +141,220 @@ function Profil() {
     }
     return null;
   };
-  // console.log('user description', description);
 
   return (
     <div className="page-wrapper">
       <Header />
-      {isLoading ? (
-        <Main />
-      ) : (
-        <Main>
-          <div className="profil__wrapper">
-            <div className="profil__container">
-              {/* -----------------------------profil user-------------------------- */}
-              <div className="profil__user">
-                <div className="profil__user-header">
-                  <h2 className="profil__user-name">
-                    {firstname} {lastname}
-                  </h2>
-                  <div className="profil__user-header-button">
-                    <img
-                      src={pencilIcon}
-                      alt="pencil white"
-                      className="profil__user-header-button-img"
-                      onClick={showSignupContainer}
-                    />
-                  </div>
-                </div>
-                <div className="profil__user-card">
-                  <div className="profil__user-header-button">
-                    <img
-                      src={pencilIcon}
-                      alt="pencil white"
-                      className="profil__user-header-button-img"
-                      onClick={showFormContainer}
-                    />
-                  </div>
-                  <div className="profil__user-pref">
-                    <img
-                      className="profil__user-pref-img"
-                      src={avatar ? `/${avatar}` : avatarLogo}
-                      alt="Avatar"
-                    />
-                    {description && (
-                      <blockquote>
-                        <p>{description}</p>
-                      </blockquote>
-                    )}
-                    {size && (
-                      <h3 className="profil-title">
-                        {firstname} garde les animaux de taille :
-                      </h3>
-                    )}
-                    {size && <ul>{renderSize()}</ul>}
-                    {walking_duration && (
-                      <h3 className="profil-title">
-                        Disponibilité de promenade
-                      </h3>
-                    )}
-                    {walking_duration && <p>{walking_duration}</p>}
-                  </div>
-
-                  <div className="profil__user-home">
-                    <h3 className="profil-title">{address}</h3>
-                    {longitude && (
-                      <div className="leflet-container">
-                        <LeafletMap
-                          key={center.toString()}
-                          center={center}
-                          zoom={13}
-                        >
-                          <Marker
-                            position={L.latLng(latitude, longitude)}
-                            icon={myIcon}
-                          >
-                            <Popup>
-                              <img src={avatarLogo} alt="Avatar" />
-                              <div>
-                                <h2>
-                                  {firstname} {lastname}
-                                </h2>
-                              </div>
-                            </Popup>
-                          </Marker>
-                        </LeafletMap>
-                      </div>
-                    )}
-                    {accommodation ||
-                      garden ||
-                      (additionnal_information && (
-                        <div>
-                          <h3 className="profil-title">
-                            À propos du domicile de {firstname}:
-                          </h3>
-                          <ul>
-                            {accommodation && <li>{accommodation}</li>}
-                            {garden && <li>{garden}</li>}
-                            {renderOptions()}
-                          </ul>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </div>
-              {/* -------------------------------booking---------------------------- */}
-              <div className="profil__booking">
-                <div className="profil__booking-header">
-                  <h2 className="profil__booking-title">Mes disponibilités</h2>
-                </div>
-                <div className="profil__booking-card">
-                  {disponibility?.end_date === null && (
-                    <div className="profil__booking-button">
-                      <h3 className="profil__booking-button-title">
-                        Ajouter une disponibilité
-                      </h3>
-                      <div className="profil__user-header-button">
-                        <img
-                          src={calendarIcon}
-                          alt="pencil white"
-                          className="profil__user-header-button-img"
-                          onClick={showDateContainer}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  {disponibility?.end_date && (
-                    <div className="profil__booking-button">
-                      <h3 className="profil__booking-button-title">
-                        Mettez à jour votre disponibilité
-                      </h3>
-                      <div className="profil__user-header-button">
-                        <img
-                          src={calendarIcon}
-                          alt="pencil white"
-                          className="profil__user-header-button-img"
-                          onClick={showUpdateContainer}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="profil__booking-disponibility">
-                    {disponibility?.end_date && (
-                      <div className="profil__booking-disponibility">
-                        <h3 className="profil-title">
-                          Disponibilité de {firstname}:
-                        </h3>
-                        <DateRangeComp disponibility={disponibility} />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {/* -----------------------------popup form--------------------------- */}
-                <SignupForm
-                  isSignupContainerVisible={isSignupContainerVisible}
-                  setIsSignupContainerVisible={setIsSignupContainerVisible}
-                />
-                <ProfilForm
-                  isFormContainerVisible={isFormContainerVisible}
-                  setIsFormContainerVisible={setIsFormContainerVisible}
-                />
-
-                <DateForm
-                  isDateContainerVisible={isDateContainerVisible}
-                  setIsDateContainerVisible={setIsDateContainerVisible}
-                />
-
-                <DateFormUpdate
-                  isUpdateContainerVisible={isUpdateContainerVisible}
-                  setIsUpdateContainerVisible={setIsUpdateContainerVisible}
+      <div className="profil__wrapper">
+        <div className="profil__container">
+          {/* -----------------------------profil user-------------------------- */}
+          <div className="profil__user">
+            <div className="profil__user-header">
+              <h2 className="profil__user-name">
+                {firstname} {lastname}
+              </h2>
+              <div className="profil__user-header-button">
+                <img
+                  src={pencilIcon}
+                  alt="pencil white"
+                  className="profil__user-header-button-img"
+                  onClick={showSignupContainer}
                 />
               </div>
-              {/* -----------------------------profil animal------------------------ */}
-              <div className="profil__animal">
-                <div className="profil__animal-header">
-                  <h2 className="profil__animal-name">
-                    Mon animal de compagnie
-                  </h2>
-                  {type && (
-                    <div className="profil__user-header-button">
-                      <Link
-                        className="link-animal"
-                        to="/account/animal-form/update"
+            </div>
+            <div className="profil__user-card">
+              <div className="profil__user-header-button">
+                <img
+                  src={pencilIcon}
+                  alt="pencil white"
+                  className="profil__user-header-button-img"
+                  onClick={showFormContainer}
+                />
+              </div>
+              <div className="profil__user-pref">
+                <img
+                  className="profil__user-pref-img"
+                  src={avatar ? `/${avatar}` : avatarLogo}
+                  alt="Avatar"
+                />
+                {description && (
+                  <blockquote>
+                    <p>{description}</p>
+                  </blockquote>
+                )}
+                {size && (
+                  <h3 className="profil-title">
+                    {firstname} garde les animaux de taille :
+                  </h3>
+                )}
+                {size && <ul>{renderSize()}</ul>}
+                {walking_duration && (
+                  <h3 className="profil-title">Disponibilité de promenade</h3>
+                )}
+                {walking_duration && <p>{walking_duration}</p>}
+              </div>
+
+              <div className="profil__user-home">
+                <h3 className="profil-title">{address}</h3>
+                {longitude && (
+                  <div className="leflet-container">
+                    <LeafletMap
+                      key={center.toString()}
+                      center={center}
+                      zoom={13}
+                    >
+                      <Marker
+                        position={L.latLng(latitude, longitude)}
+                        icon={myIcon}
                       >
-                        <img
-                          src={pencilIcon}
-                          alt="pencil white"
-                          className="profil__user-header-button-img"
-                          onClick={showUpdateContainer}
-                        />
-                      </Link>
+                        <Popup>
+                          <img src={avatarLogo} alt="Avatar" />
+                          <div>
+                            <h2>
+                              {firstname} {lastname}
+                            </h2>
+                          </div>
+                        </Popup>
+                      </Marker>
+                    </LeafletMap>
+                  </div>
+                )}
+                {accommodation ||
+                  garden ||
+                  (additionnal_information && (
+                    <div>
+                      <h3 className="profil-title">
+                        À propos du domicile de {firstname}:
+                      </h3>
+                      <ul>
+                        {accommodation && <li>{accommodation}</li>}
+                        {garden && <li>{garden}</li>}
+                        {renderOptions()}
+                      </ul>
                     </div>
-                  )}
+                  ))}
+              </div>
+            </div>
+          </div>
+          {/* -------------------------------booking---------------------------- */}
+          <div className="profil__booking">
+            <div className="profil__booking-header">
+              <h2 className="profil__booking-title">Mes disponibilités</h2>
+            </div>
+            <div className="profil__booking-card">
+              {disponibility?.end_date === null && (
+                <div className="profil__booking-button">
+                  <h3 className="profil__booking-button-title">
+                    Ajouter une disponibilité
+                  </h3>
+                  <div className="profil__user-header-button">
+                    <img
+                      src={calendarIcon}
+                      alt="pencil white"
+                      className="profil__user-header-button-img"
+                      onClick={showDateContainer}
+                    />
+                  </div>
                 </div>
+              )}
 
-                {type ? (
-                  <AnimalCard
-                    type={type}
-                    name={name}
-                    race={race}
-                    age={date_birth}
-                    size={size_animal}
-                    pipi={walk}
-                    repa={food}
-                    energy={energy}
-                  />
-                ) : (
-                  <Link className="link-animal" to="/account/animal-form">
-                    <Button prop="Ajoutez votre animal de compagnie" />
-                  </Link>
+              {disponibility?.end_date && (
+                <div className="profil__booking-button">
+                  <h3 className="profil__booking-button-title">
+                    Mettez à jour votre disponibilité
+                  </h3>
+                  <div className="profil__user-header-button">
+                    <img
+                      src={calendarIcon}
+                      alt="pencil white"
+                      className="profil__user-header-button-img"
+                      onClick={showUpdateContainer}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="profil__booking-disponibility">
+                {disponibility?.end_date && (
+                  <div className="profil__booking-disponibility">
+                    <h3 className="profil-title">
+                      Disponibilité de {firstname}:
+                    </h3>
+                    <DateRangeComp disponibility={disponibility} />
+                  </div>
                 )}
               </div>
-              {testimonies && (
-                <div className="profil-testimonies">
-                  <h2 className="profil-testimonies__title">
-                    Avis sur mon service
-                  </h2>
-                  {testimonies.map((testimony) => (
-                    <TestimonyCard testimony={testimony.body} />
-                  ))}
+            </div>
+            {/* -----------------------------popup form--------------------------- */}
+            <SignupForm
+              isSignupContainerVisible={isSignupContainerVisible}
+              setIsSignupContainerVisible={setIsSignupContainerVisible}
+            />
+            <ProfilForm
+              isFormContainerVisible={isFormContainerVisible}
+              setIsFormContainerVisible={setIsFormContainerVisible}
+            />
+
+            <DateForm
+              isDateContainerVisible={isDateContainerVisible}
+              setIsDateContainerVisible={setIsDateContainerVisible}
+            />
+
+            <DateFormUpdate
+              isUpdateContainerVisible={isUpdateContainerVisible}
+              setIsUpdateContainerVisible={setIsUpdateContainerVisible}
+            />
+          </div>
+          {/* -----------------------------profil animal------------------------ */}
+          <div className="profil__animal">
+            <div className="profil__animal-header">
+              <h2 className="profil__animal-name">Mon animal de compagnie</h2>
+              {type && (
+                <div className="profil__user-header-button">
+                  <Link
+                    className="link-animal"
+                    to="/account/animal-form/update"
+                  >
+                    <img
+                      src={pencilIcon}
+                      alt="pencil white"
+                      className="profil__user-header-button-img"
+                      onClick={showUpdateContainer}
+                    />
+                  </Link>
                 </div>
               )}
             </div>
-          </div>
-        </Main>
-      )}
 
+            {type ? (
+              <AnimalCard
+                type={type}
+                name={name}
+                race={race}
+                age={date_birth}
+                size={size_animal}
+                pipi={walk}
+                repa={food}
+                energy={energy}
+              />
+            ) : (
+              <Link className="link-animal" to="/account/animal-form">
+                <Button prop="Ajoutez votre animal de compagnie" />
+              </Link>
+            )}
+          </div>
+          {testimonies && (
+            <div className="profil-testimonies">
+              <h2 className="profil-testimonies__title">
+                Avis sur mon service
+              </h2>
+              {testimonies.map((testimony) => (
+                <TestimonyCard testimony={testimony.body} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
       <Footer />
     </div>
   );

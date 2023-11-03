@@ -12,8 +12,7 @@
   }
 }
 .main-signup {
-  position: relative;
-  height: 70vh;
+  @include v.backgroundImg;
 }
 .container-signup {
   max-width: 1300px;

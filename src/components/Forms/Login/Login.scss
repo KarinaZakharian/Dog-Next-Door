@@ -15,8 +15,7 @@
 }
 
 .main-login {
-  position: relative;
-  height: 70vh;
+  @include v.backgroundImg;
 }
 
 .container-login {

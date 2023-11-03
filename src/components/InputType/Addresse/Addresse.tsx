@@ -12,7 +12,7 @@ interface AutoProps {
 }
 
 interface AutoCompleteProps {
-  style: string;
+  style: React.CSSProperties;
   setCoordinates: (geolocalisation: { x: number; y: number }) => void;
 }
 
@@ -38,7 +38,10 @@ function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
     }
   };
 
-  const setAddressGeometryAndCloseAutocompletion = (geolocalisation) => {
+  const setAddressGeometryAndCloseAutocompletion = (geolocalisation: {
+    x: number;
+    y: number;
+  }) => {
     setCoordinates(geolocalisation);
     setAdresses([]);
   };

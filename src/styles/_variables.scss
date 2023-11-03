@@ -83,3 +83,15 @@ $background-img: url(../assets/chientv2.jpg);
 @mixin transition {
   transition: ease-in-out 0.2s;
 }
+
+@mixin backgroundImg {
+  background-color: $color-flash;
+  background-image: url(../../../assets/chienv2.jpg);
+  background-size: contain;
+  background-position: top;
+  background-repeat: repeat-x;
+
+  @media screen and (max-width: 768px) {
+    background-image: none;
+  }
+}

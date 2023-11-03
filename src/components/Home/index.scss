@@ -6,6 +6,11 @@
   flex-direction: column;
 }
 
+.wrapper-container {
+  @include v.backgroundImg;
+  background-image: url(../../assets/chienv2.jpg);
+}
+
 .wrapper-home-container {
   width: 900px;
   margin: auto;
@@ -88,7 +93,8 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 18rem auto 10rem auto;
+  background-color: #fff;
+  padding: 20rem 0;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

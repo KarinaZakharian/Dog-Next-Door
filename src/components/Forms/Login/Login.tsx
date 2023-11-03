@@ -10,7 +10,6 @@ import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
-import Main from '../../PageComponents/Main/Main';
 
 import './Login.scss';
 
@@ -72,38 +71,36 @@ function Login() {
   return (
     <div className="page-wrapper">
       <Header />
-      <Main>
-        <main className="main-login">
-          <div className="container-login">
-            <form className="login__form" onSubmit={handleSubmit}>
-              <Input
-                label="email"
-                name="email"
-                type="email"
-                placeholder="E-mail"
-                aria-label="Adresse E-mail"
-                style={{ borderColor: valid ? 'initial' : 'red' }}
-              />
-              <Input
-                label="password"
-                name="user_password"
-                type="password"
-                placeholder="Mot de passe"
-                aria-label="Mot de passe"
-                style={{ borderColor: valid ? 'initial' : 'red' }}
-              />
-              {/* Display error message for invalid login */}
-              {!valid && (
-                <p className="error">
-                  Le mot de passe ou l'email que vous avez saisi est incorrect.
-                  Veuillez réessayer.
-                </p>
-              )}
-              <Button prop="Connexion" />
-            </form>
-          </div>
-        </main>
-      </Main>
+      <main className="main-login">
+        <div className="container-login">
+          <form className="login__form" onSubmit={handleSubmit}>
+            <Input
+              label="email"
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              aria-label="Adresse E-mail"
+              style={{ borderColor: valid ? 'initial' : 'red' }}
+            />
+            <Input
+              label="password"
+              name="user_password"
+              type="password"
+              placeholder="Mot de passe"
+              aria-label="Mot de passe"
+              style={{ borderColor: valid ? 'initial' : 'red' }}
+            />
+            {/* Display an error message for invalid login */}
+            {!valid && (
+              <p className="error">
+                Le mot de passe ou l&aps;email que vous avez saisi est
+                incorrect. Veuillez réessayer.
+              </p>
+            )}
+            <Button prop="Connexion" />
+          </form>
+        </div>
+      </main>
       <Footer />
     </div>
   );

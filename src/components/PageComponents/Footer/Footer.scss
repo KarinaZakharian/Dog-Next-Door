@@ -2,18 +2,14 @@
 @use '../../../styles/variables' as v;
 
 .footer__wrapper {
-  background-color: hsla(208, 54%, 89%, 0.5);
+  background-color: hsla(208, 54%, 89%, 1);
   padding: 4rem 1rem 1rem 1rem;
   @media screen and (max-width: 768px) {
-    z-index: 20000;
-    position: relative;
     padding: 2rem 1rem 1rem 1rem;
   }
-  text-align: center;
 }
 
 .footer__container {
-  max-width: 1300px;
   padding: 1rem;
   margin: 0 auto;
   display: flex;
@@ -64,4 +60,8 @@
     color: v.$color-text-dark;
     text-decoration: underline;
   }
+}
+
+.footer__rights {
+  text-align: center;
 }

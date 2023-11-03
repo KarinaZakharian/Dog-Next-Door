@@ -107,39 +107,33 @@ function Petsitter() {
   return (
     <div className="page-wrapper">
       <Header />
-      {isLoading ? (
-        <Main />
-      ) : (
-        <Main>
-          <div className="profil__wrapper">
-            <div className="profil__container">
-              {/* -----------------------------profil user-------------------------- */}
-              <div className="profil__user">
-                <div className="profil__user-header">
-                  <h2 className="profil__user-name">
-                    {firstname} {lastname}
-                  </h2>
-                </div>
-                <div className="profil__user-card">
-                  <div className="profil__user-pref">
-                    <img
-                      className="profil__user-pref-img"
-                      src={avatar ? `/${avatar}` : avatarLogo}
-                      alt="Avatar"
-                    />
-                    {description && <p>{description}</p>}
-                    {size && (
-                      <h3 className="profil-title">
-                        {firstname} garde les animaux de taille :
-                      </h3>
-                    )}
-                    <ul>{renderSize()}</ul>
-                    {walkAnimal && (
-                      <h3 className="profil-title">
-                        Disponibilité de promenade
-                      </h3>
-                    )}
-                    {walkAnimal && <p>{walkAnimal}</p>}
+      <div className="profil__wrapper">
+        <div className="profil__container">
+          {/* -----------------------------profil user-------------------------- */}
+          <div className="profil__user">
+            <div className="profil__user-header">
+              <h2 className="profil__user-name">
+                {firstname} {lastname}
+              </h2>
+            </div>
+            <div className="profil__user-card">
+              <div className="profil__user-pref">
+                <img
+                  className="profil__user-pref-img"
+                  src={avatar ? `/${avatar}` : avatarLogo}
+                  alt="Avatar"
+                />
+                {description && <p>{description}</p>}
+                {size && (
+                  <h3 className="profil-title">
+                    {firstname} garde les animaux de taille :
+                  </h3>
+                )}
+                <ul>{renderSize()}</ul>
+                {walkAnimal && (
+                  <h3 className="profil-title">Disponibilité de promenade</h3>
+                )}
+                {walkAnimal && <p>{walkAnimal}</p>}
 
                   {disponibilitySitter?.end_date && (
                     <h3 className="profil-title">
