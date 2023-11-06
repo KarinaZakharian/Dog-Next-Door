@@ -33,6 +33,7 @@ function Petsitter() {
   const user = useAppSelector((state) => state.sitter.user);
   const firstname = user?.lastname;
   const lastname = user?.firstname;
+  const address = user?.user_address;
   const avatar = user?.avatar;
   const size = user?.size;
   const description = user?.description;
@@ -50,9 +51,10 @@ function Petsitter() {
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
   const disponibilitySitter = user?.disponibility;
+  console.log(user);
 
   const center: LatLngExpression = latLng(latitude, longitude);
-  const account = useAppSelector((state) => state.login.firstname);
+  const account = useAppSelector((state) => state.profil.firstname);
 
   const disponibilityDateUser = useAppSelector(
     (state) => state.profil.disponibility
@@ -140,6 +142,7 @@ function Petsitter() {
                   )}
                 </div>
                 <div className="profil__user-home">
+                  <h3 className="profil-title">{address}</h3>
                   {longitude && (
                     <div className="leflet-container">
                       <LeafletMap
@@ -181,9 +184,7 @@ function Petsitter() {
               {typeAnimal && (
                 <div className="profil__animal">
                   <div className="animal-header">
-                    <h2 className="animal-name">
-                      Son animal de compagnie
-                    </h2>
+                    <h2 className="animal-name">Son animal de compagnie</h2>
                   </div>
                   <AnimalCard
                     type={typeAnimal}

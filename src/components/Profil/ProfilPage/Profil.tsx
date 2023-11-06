@@ -65,6 +65,7 @@ function Profil() {
   const avatar = useAppSelector((state) => state.profil.avatar);
   const longitude = useAppSelector((state) => state.profil.longitude);
   const latitude = useAppSelector((state) => state.profil.latitude);
+  const address = useAppSelector((state) => state.profil.user_address);
   const size = useAppSelector((state) => state.profil.animal_size);
   const description = useAppSelector((state) => state.profil.description);
   const garden = useAppSelector((state) => state.profil.garden);
@@ -187,6 +188,7 @@ function Profil() {
                 </div>
 
                 <div className="profil__user-home">
+                  <h3 className="profil-title">{address}</h3>
                   {longitude && (
                     <div className="leflet-container">
                       <LeafletMap

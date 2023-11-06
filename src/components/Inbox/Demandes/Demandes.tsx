@@ -41,7 +41,7 @@ function Demandes() {
                 </Link>
               </div>
               <div>
-                {users ? (
+                {users.length > 0 ? (
                   users.map((user, index) => (
                     <DemandesCard
                       // It's a good practice to provide a unique key for each component

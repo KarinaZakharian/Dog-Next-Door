@@ -12,12 +12,12 @@ interface Card {
 }
 
 interface InboxState {
-  user: Card[] | null;
+  user: Card[] | [];
   acceptError: string | null;
   acceptMessage: string | null;
 }
 export const initialState: InboxState = {
-  user: null,
+  user: [],
   acceptError: null,
   acceptMessage: null,
 };
@@ -45,6 +45,10 @@ const accountReducer = createReducer(initialState, (builder) => {
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
       console.log(action.payload);
       state.user = action.payload;
+    })
+    .addCase(fetchInboxAnimal.pending, (state, action) => {
+      console.log(action.payload);
+      state.user = [];
     })
     .addCase(clientAccept.rejected, (state, action) => {
       if (action.payload) {

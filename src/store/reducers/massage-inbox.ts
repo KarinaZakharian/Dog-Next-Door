@@ -11,36 +11,27 @@ interface Card {
 }
 
 interface InboxState {
-  user: Card[] | null;
-  error: string | undefined;
+  user: Card[] | [];
+  error: string | null;
   message: string | null;
   messageError: string | undefined;
   messageMessage: string | null;
 }
 export const initialState: InboxState = {
-  user: null,
-  error: undefined,
+  user: [],
+  error: null,
   message: null,
   messageError: undefined,
   messageMessage: null,
 };
 
-export const fetchMessageUser =
-  createAsyncThunk<// type de la valeur retourné //  TODO
-  {
-    rejecValue: string;
-  }>('inbox/fetchmessageuser', async (_, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get(`/inbox/past`);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      if (typeof error === 'string') {
-        return thunkAPI.rejectWithValue(error);
-      }
-      console.error(error);
-    }
-  });
+export const fetchMessageUser = createAsyncThunk(
+  'inbox/fetchmessageuser',
+  async () => {
+    const response = await axiosInstance.get(`/inbox/past`);
+    return response.data;
+  }
+);
 
 export const sendMessage = createAsyncThunk<
   any, // type de la valeur retourné //  TODO
@@ -64,19 +55,14 @@ export const sendMessage = createAsyncThunk<
 // Create the user reducer
 const messageReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchMessageUser.rejected, (state, action) => {
-      if (action.payload) {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.error = action.payload;
-      } else {
-        state.error = action.error.message;
-      }
-      // state.error = action.payload.response.data;
+    .addCase(fetchMessageUser.pending, (state, action) => {
+      state.error = null;
       state.message = null;
+      state.user = [];
     })
     .addCase(fetchMessageUser.fulfilled, (state, action) => {
-      state.error = undefined;
-      state.message = action.payload.message; // You can customize this message
+      state.error = null;
+      state.message = action.payload; // You can customize this message
       state.user = action.payload;
     })
 

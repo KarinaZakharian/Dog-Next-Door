@@ -10,50 +10,33 @@ interface User {
     end_date: string;
     booking_status: string;
   };
-  message: string;
 }
 
 interface InboxState {
-  user: User[] | null;
+  user: User[] | [];
   error: string | undefined;
-  message: string | null;
 }
 export const initialState: InboxState = {
-  user: null,
+  user: [],
   error: undefined,
-  message: null,
 };
 
 export const fetchStatus = createAsyncThunk<User, void>(
   'inbox/status',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get(`/inbox/demands`);
-      return response.data;
-    } catch (error) {
-      if (typeof error === 'string') {
-        return thunkAPI.rejectWithValue(error);
-      }
-      throw error; // You should throw the error to maintain the rejected state
-    }
+  async () => {
+    const response = await axiosInstance.get(`/inbox/demands`);
+    return response.data;
   }
 );
 
 // Create the  reducer
 const demandsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchStatus.rejected, (state, action) => {
-      if (action.payload === 'string') {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.error = action.payload;
-      } else {
-        state.error = action.error.message;
-      }
-      state.message = null;
+    .addCase(fetchStatus.pending, (state, action) => {
+      state.user = [];
     })
     .addCase(fetchStatus.fulfilled, (state, action) => {
       state.error = undefined;
-      state.message = action.payload.message; // You can customize this message
       state.user = action.payload;
     });
 });
