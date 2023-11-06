@@ -180,8 +180,8 @@ function Petsitter() {
             <div className="profil__animal">
               {typeAnimal && (
                 <div className="profil__animal">
-                  <div className="profil__animal-header">
-                    <h2 className="profil__animal-name">
+                  <div className="animal-header">
+                    <h2 className="animal-name">
                       Son animal de compagnie
                     </h2>
                   </div>

@@ -43,6 +43,7 @@ export const clientAccept = createAsyncThunk(
 const accountReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchInboxAnimal.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.user = action.payload;
     })
     .addCase(clientAccept.rejected, (state, action) => {

@@ -17,7 +17,7 @@ function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login', { replace: true });
+    navigate('/subscribe', { replace: true });
   };
   return (
     <div className="wrapper">

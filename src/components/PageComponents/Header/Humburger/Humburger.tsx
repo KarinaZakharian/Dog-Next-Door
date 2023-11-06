@@ -67,7 +67,7 @@ function Humburger() {
           </>
         )}
         <NavLink className="menu-item" to="/">
-          Accuel
+        Accueil
         </NavLink>
         <NavLink className="menu-item" to="/search">
           Recherche

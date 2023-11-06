@@ -43,8 +43,7 @@ const tokenController = {
     if (authorization) {
       const token = authorization.split(' ')[1];
       try {
-        res.status(202).clearCookie('access_token').json('Utilisateur déconnecté')
-        
+        res.status(202).clearCookie('access_token').json({'message':'Vous êtes maintenant déconnecté(e)'})
         
       } catch (error) {
         return res.status(401);

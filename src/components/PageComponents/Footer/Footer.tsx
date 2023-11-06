@@ -63,7 +63,7 @@ function Footer() {
           <ul className="footer__section-list">
             <li>
               <Link className="footer__section-link" to="/">
-                Accueul
+              Accueil
               </Link>
             </li>
             <li>

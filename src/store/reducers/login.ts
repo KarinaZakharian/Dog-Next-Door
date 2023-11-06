@@ -21,12 +21,13 @@ export const initialState: LoginState = {
 };
 
 // Create an async thunk for user logout
-export const logout = createAsyncThunk('user/logout', async () => {
+export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
+  console.log('i am in logout');
   try {
     const { data } = await axiosInstance.get('/logout');
     return data;
   } catch (error) {
-    console.log(error);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -64,15 +65,17 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.firstname = null;
       // je récupère l'erreur directement dans `action.error`
     })
-    .addCase(logout.rejected, (state) => {
+    .addCase(logout.rejected, (state, action) => {
       console.log(action.payload);
     })
-    .addCase(logout.fulfilled, (state) => {
+    .addCase(logout.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.firstname = null;
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
     })
     .addCase(reconnect, (state, action) => {
+      console.log(action.payload);
       state.firstname = action.payload;
     });
 });

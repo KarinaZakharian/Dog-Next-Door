@@ -55,16 +55,14 @@ const inboxController = {
         try {
 
             const searchPetSitter = await inboxDatamapper.getSenderBooking(userId);
-            console.log("search petsitter : ",searchPetSitter.user_id);
             const userMessage = await inboxDatamapper.getBookingRequest(userId,searchPetSitter.user_id);
            
             const userMessageList = userMessage.map(message => { 
                 
                 message.booking.start_date = message.booking.start_date.split("-").reverse().join("/");
                 message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
-                 return message
+                return message
           });
-            
             res.json(userMessageList);
 
         } catch (error) {
@@ -86,7 +84,7 @@ const inboxController = {
             res.json(userMessageList);
 
         } catch (error) {
-            res.status(500).json(error.toString());
+            res.status(500).json([]);
         }
         
     },

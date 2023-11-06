@@ -65,7 +65,7 @@ const userController = {
         
         const user = await userDatamapper.getOneUserById(userId);
         console.log(user);
-        res.json(user);
+        res.status(200).json(user);
       } catch (error) {
         res.status(500).json(error.toString());
       }

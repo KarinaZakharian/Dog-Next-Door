@@ -18,20 +18,7 @@ const userDatamapper = {
     try {
       const userId = id;
       //! Afficher commentaire par pet_sitter
-      // const query = `
-      // SELECT u.*,
-      // json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal,
-      // json_build_object('id', d.id, 'start_date', d.start_date, 'end_date', d.end_date) as disponibility,
-      // json_build_object('id', t.id, 'body', t.body, 'rating', t.rating, 'pet_sitter_id', t.pet_sitter_id,'user_id', t.user_id) as testimonial
-      // FROM "user" u
-      // LEFT JOIN "animal" a ON a."user_id" = u."id"
-      // LEFT JOIN "disponibility" d ON d."id" IN (
-      //   SELECT disponibility_id
-      //   FROM "user_has_disponibility"
-      //   WHERE "user_id" = $1
-      //   )
-      //   LEFT JOIN "testimonial" t ON u."id" = t."pet_sitter_id"
-      //   WHERE u."id"=$1;`;
+     
       const query = `
       SELECT u.*, 
       json_build_object('id', a.id,'name', a.animal_name, 'size', a.size, 'birth_date', a.birth_date, 'type', a.type, 'energy', a.energy, 'mealhours', a.mealhours, 'walk', a.walk, 'user_id', a.user_id, 'race', a.race) as animal,
@@ -44,7 +31,7 @@ const userDatamapper = {
         FROM "user_has_disponibility"
         WHERE "user_id" = $1
         )
-	  LEFT JOIN "booking" b ON b."user_id" = u."id"
+	    LEFT JOIN "booking" b ON b."user_id" = u."id"
         WHERE u."id"=$1`;
       const value = [userId];
       const userFound = await client.query(query, value);
