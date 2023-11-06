@@ -40,7 +40,7 @@ function Account() {
                 </Link>
               </div>
               <div>
-                {users.length ? (
+                {users.length > 0 ? (
                   users.map((user) => (
                     <AnimalCard
                       key={user.id} // Use a unique key for each user

@@ -272,7 +272,6 @@ const profilReducer = createReducer(initialUserState, (builder) => {
         state.accomodation = userData.accomodation;
         state.additionnal_information = userData.additionnal_information;
         state.walking_duration = userData.walking_duration;
-        state.disponibility = userData.disponibility;
       }
     })
     .addCase(success, (state) => {
