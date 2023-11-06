@@ -169,14 +169,14 @@
     justify-content: center;
     gap: 10px;
   }
-}
 
-.profil__animal-card {
-  @include v.card-styling;
-  justify-content: space-between;
-  margin: 2rem 0;
-  width: 100%;
-  height: 100%;
+  &-card {
+    @include v.card-styling;
+    justify-content: space-between;
+    margin: 2rem 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .profil-testimonies {

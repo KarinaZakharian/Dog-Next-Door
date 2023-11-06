@@ -9,6 +9,10 @@
 .wrapper-container {
   @include v.backgroundImg;
   background-image: url(../../assets/chienv2.jpg);
+
+  @media screen and (max-width: 768px) {
+    background-color: none;
+  }
 }
 
 .wrapper-home-container {
