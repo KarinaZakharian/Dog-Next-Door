@@ -25,6 +25,9 @@ export const citySchema = yup.object().shape({
   user_address: yup.string().trim().required(),
 });
 
-export const animalSchema = yup.object().shape({
-  animal: yup.string().trim().required(),
+export const nameSchema = yup.object().shape({
+  name: yup.string().trim().required(),
+});
+export const raceSchema = yup.object().shape({
+  race: yup.string().trim().required(),
 });

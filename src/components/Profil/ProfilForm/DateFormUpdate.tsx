@@ -21,7 +21,7 @@ function DateFormUpdate({
   const dispatch = useAppDispatch();
   const dateError = useAppSelector((state) => state.profil.updateError);
   const dateMessage = useAppSelector((state) => state.profil.updateMessage);
-  console.log(dateMessage);
+  //console.log(dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
