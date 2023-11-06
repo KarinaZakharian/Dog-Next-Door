@@ -29,6 +29,7 @@ function App() {
   useEffect(() => {
     // je récupère mon token dans le localstorage
     const token = localStorage.getItem('token');
+    console.log(token);
     // Si j'ai un token
     if (token) {
       // Je le passes dans les headers de mon instance Axios
@@ -37,9 +38,9 @@ function App() {
       axiosInstance
         .post('/login')
         // Vu que je suis dans un useEffect, je ne pas utilisé async/await, j'utilise les prommesses classique pour récupérer les data dans .then ou l'erreur dans le catch
-        .then(() => {
+        .then((response) => {
           // response
-          // const { firstname } = response.data;
+          const { firstname } = response.data;
           // Si j'ai une réponse positive de la base de donnée, je dispatche mon action pour reconnecté mon utilisateur : firstname = valeur
           dispatch(reconnect(firstname));
         })

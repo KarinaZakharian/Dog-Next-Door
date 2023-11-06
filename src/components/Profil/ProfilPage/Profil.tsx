@@ -210,16 +210,20 @@ function Profil() {
                       </LeafletMap>
                     </div>
                   )}
-                  {accommodation || garden || additionnal_information ? (
-                    <h3 className="profil-title">
-                      À propos du domicile de {firstname}:
-                    </h3>
-                  ) : null}
-                  <ul>
-                    {accommodation && <li>{accommodation}</li>}
-                    {garden && <li>{garden}</li>}
-                    {renderOptions()}
-                  </ul>
+                  {accommodation ||
+                    garden ||
+                    (additionnal_information && (
+                      <div>
+                        <h3 className="profil-title">
+                          À propos du domicile de {firstname}:
+                        </h3>
+                        <ul>
+                          {accommodation && <li>{accommodation}</li>}
+                          {garden && <li>{garden}</li>}
+                          {renderOptions()}
+                        </ul>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
