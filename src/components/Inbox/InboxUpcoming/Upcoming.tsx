@@ -39,7 +39,7 @@ function Account() {
                 </Link>
               </div>
               <div>
-                {users ? (
+                {users.length > 0 ? (
                   users.map((user, index) => (
                     <UpcomingCard
                       key={index}

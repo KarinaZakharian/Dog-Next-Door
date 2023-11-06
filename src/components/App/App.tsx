@@ -7,7 +7,7 @@ import Home from '../Home/index';
 import Search from '../Search/Search';
 import Login from '../Forms/Login/Login';
 import Signup from '../Forms/Signup/Signup';
-import Error from '../Error'
+import Error from '../Error';
 import AnimalForm from '../Profil/AnimalForm/AnimalForm';
 import AnimalFormUpdate from '../Profil/AnimalForm/AnimalFormUpdate';
 import Profil from '../Profil/ProfilPage/Profil';
@@ -19,11 +19,11 @@ import Account from '../Inbox/InboxAccount/Account';
 import Upcoming from '../Inbox/InboxUpcoming/Upcoming';
 import Uppast from '../Inbox/InboxUppast/Uppast';
 import Demandes from '../Inbox/Demandes/Demandes';
-import { reconnect } from '../../store/reducers/login';
+import { reconnect } from '../../store/reducers/profil';
 import AboutUs from '../Forms/About/AboutUs';
 
 function App() {
-  const firstname = useAppSelector((state) => state.login.firstname);
+  const firstname = useAppSelector((state) => state.profil.firstname);
   const dispatch = useAppDispatch();
   // Au premier chargement de l'application
   useEffect(() => {
@@ -58,15 +58,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/subscribe" element={<Signup />} />
         <Route path="/petsitter/:id" element={<Petsitter />} />
-       
+
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/about" element={<AboutUs />} />
         {firstname && (
           <>
-        <Route path="/inbox/awaiting" element={<Account />} />
-        <Route path="/inbox/upcoming" element={<Upcoming />} />
-        <Route path="/inbox/uppast" element={<Uppast />} />
-        <Route path="/inbox/demands" element={<Demandes />} />
+            <Route path="/inbox/awaiting" element={<Account />} />
+            <Route path="/inbox/upcoming" element={<Upcoming />} />
+            <Route path="/inbox/uppast" element={<Uppast />} />
+            <Route path="/inbox/demands" element={<Demandes />} />
             <Route path="/account/animal-form" element={<AnimalForm />} />
             <Route
               path="/account/animal-form/update"

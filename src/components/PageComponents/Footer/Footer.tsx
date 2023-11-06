@@ -7,7 +7,7 @@ import pinterest from '../../../assets/Pinterest-Logo.png';
 import { useAppSelector } from '../../../hooks/redux';
 
 function Footer() {
-  const firstname = useAppSelector((state) => state.login.firstname);
+  const firstname = useAppSelector((state) => state.profil.firstname);
 
   return (
     <div className="footer__wrapper">
@@ -63,7 +63,7 @@ function Footer() {
           <ul className="footer__section-list">
             <li>
               <Link className="footer__section-link" to="/">
-              Accueil
+                Accueil
               </Link>
             </li>
             <li>

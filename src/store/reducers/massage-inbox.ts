@@ -29,7 +29,7 @@ export const fetchMessageUser =
   createAsyncThunk<// type de la valeur retourné //  TODO
   {
     rejecValue: string;
-  }>('inbox/fetchmessageuser', async (thunkAPI) => {
+  }>('inbox/fetchmessageuser', async (_, thunkAPI) => {
     try {
       const response = await axiosInstance.get(`/inbox/past`);
       console.log(response.data);

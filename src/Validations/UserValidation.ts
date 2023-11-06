@@ -22,5 +22,9 @@ export const passwordSchema = yup.object().shape({
 });
 
 export const citySchema = yup.object().shape({
-  city: yup.string().trim().required(),
+  user_address: yup.string().trim().required(),
+});
+
+export const animalSchema = yup.object().shape({
+  animal: yup.string().trim().required(),
 });

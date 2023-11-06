@@ -53,7 +53,7 @@ function SignupForm({
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    // console.log('body envoyé dans la requête du signup', objData);
+    console.log('body envoyé dans la requête du signup', objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
@@ -79,7 +79,7 @@ function SignupForm({
     setlastnameIsValid(lastnameIsValid);
 
     const cityIsValid = await citySchema.isValid({
-      city: `${objData.city}`,
+      user_address: `${objData.user_address}`,
     });
     setCityIsValid(cityIsValid);
 

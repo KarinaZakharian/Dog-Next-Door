@@ -21,7 +21,7 @@ import medium from '../../../assets/icons8-dog-35.png';
 import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
-
+import { animalSchema } from '../../../Validations/UserValidation';
 
 function AnimalFormUpdate() {
   const navigate = useNavigate();
@@ -71,11 +71,21 @@ function AnimalFormUpdate() {
     setEnergy(value);
   }
 
+  const [animalValid, setAnimalIsValid] = useState(true);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    dispatch(updateAnimalForm(formData));
+    console.log(Object.fromEntries(formData));
+    const objData = Object.fromEntries(formData);
+    const animalIsValid = await animalSchema.isValid({
+      animal: `${objData.animal}`,
+    });
+    setAnimalIsValid(animalIsValid);
+    if (animalIsValid) {
+      dispatch(updateAnimalForm(formData));
+    }
   };
 
   useEffect(() => {
@@ -128,6 +138,7 @@ function AnimalFormUpdate() {
                 label=""
                 onRadioChange={handleAnimalChange}
               />
+              {!animalValid && <p className="error">Inscrivez votre animal</p>}
             </div>
 
             <Input name="name" placeholder="Nom" defaultValue={name} />

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { login } from '../../../store/reducers/login';
+import { login } from '../../../store/reducers/profil';
 import { loginSchema } from '../../../Validations/UserValidation';
 
 import Input from '../../InputType/Input/Input';
@@ -20,8 +20,8 @@ function Login() {
   const dispatch = useAppDispatch();
 
   // Get user data from Redux store
-  const firstname = useAppSelector((state) => state.login.firstname);
-  const error = useAppSelector((state) => state.login.error);
+  const firstname = useAppSelector((state) => state.profil.firstname);
+  const error = useAppSelector((state) => state.profil.error);
 
   // State to manage form validation
   const [valid, setIsValid] = useState(true);

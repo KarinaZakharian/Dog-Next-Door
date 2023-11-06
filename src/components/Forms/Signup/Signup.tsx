@@ -75,7 +75,7 @@ function SignUp() {
     setlastnameIsValid(lastnameIsValid);
 
     const cityIsValid = await citySchema.isValid({
-      city: `${objData.user_address}`,
+      user_address: `${objData.user_address}`,
     });
     setCityIsValid(cityIsValid);
 

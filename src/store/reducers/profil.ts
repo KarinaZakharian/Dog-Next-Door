@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
+import { LoginState } from '../../@types/user';
 
 interface User {
   accomodation: string | null;
@@ -29,6 +30,7 @@ interface User {
   dateMessage: string | null;
   updateError: unknown;
   updateMessage: string | null;
+  logoutMessage: string | null;
 }
 interface Animal {
   name: string | null;
@@ -79,6 +81,7 @@ const initialUserState: User = {
   dateMessage: null,
   updateError: null,
   updateMessage: null,
+  logoutMessage: null,
 };
 
 export const success = createAction('form/success ');
@@ -105,7 +108,7 @@ export const getAditionalFormUpdate = createAction(
   }
 );
 
-export const fetchUser = createAsyncThunk('user/fetch', async (thunkAPI) => {
+export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {
     const { data } = await axiosInstance.get('/account');
     return data as User;
@@ -146,6 +149,36 @@ export const updateDateForm = createAsyncThunk(
   }
 );
 
+// Create an async thunk for user logout
+export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
+  console.log('i am in logout');
+  try {
+    const { data } = await axiosInstance.get('/logout');
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+// Create an async thunk for user login
+export const login = createAsyncThunk(
+  'user/login',
+  async (formData: FormData, thunkAPI) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      const { data } = await axiosInstance.post('/login', objData);
+      // Set the authorization header for future requests
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      localStorage.setItem('token', data.token);
+      delete data.token;
+
+      return data as LoginState;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const reconnect = createAction<string | null>('reconnect');
 const profilReducer = createReducer(initialUserState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
@@ -247,6 +280,30 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       state.dateMessage = null;
       state.updateError = null;
       state.updateMessage = null;
+      state.logoutMessage = null;
+    })
+    .addCase(login.fulfilled, (state, action) => {
+      state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
+      state.error = null;
+    })
+    .addCase(login.rejected, (state, action) => {
+      console.log(action.payload);
+      state.error = action.payload.response.data;
+      state.firstname = null;
+      // je récupère l'erreur directement dans `action.error`
+    })
+
+    .addCase(logout.fulfilled, (state, action) => {
+      //console.log(action.payload);
+      state.logoutMessage = action.payload.message;
+      state.firstname = null;
+      delete axiosInstance.defaults.headers.common.Authorization;
+      localStorage.clear();
+    })
+    .addCase(reconnect, (state, action) => {
+      console.log(action.payload);
+      state.firstname = action.payload;
     });
 });
 

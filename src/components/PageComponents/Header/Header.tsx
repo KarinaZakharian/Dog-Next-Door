@@ -1,24 +1,45 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import swal from 'sweetalert';
 
-import { logout } from '../../../store/reducers/login';
+import { logout, success } from '../../../store/reducers/profil';
 import Humburger from './Humburger/Humburger';
 
 import searchIcon from '../../../assets/search-blue.png';
 import inboxIcon from '../../../assets/inbox-96.png';
 import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Header.scss';
+import { useEffect } from 'react';
 
 function Header() {
-  const firstname = useAppSelector((state) => state.login.firstname);
+  const firstname = useAppSelector((state) => state.profil.firstname);
+  const logoutMessage = useAppSelector((state) => state.profil.logoutMessage);
+  //console.log(logoutMessage);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/subscribe', { replace: true });
   };
+
+  useEffect(() => {
+    // console.log('error', myError);
+    // console.log('message', myMessage);
+    // console.log('useffect from signup form');
+    if (logoutMessage) {
+      // console.log('signup form swall');
+      swal(`${logoutMessage}`, {
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        // console.log('i am in set timeout');
+        navigate('/login', { replace: true });
+        dispatch(success());
+      }, 1000);
+    }
+  }, [logoutMessage, dispatch]);
   return (
     <div className="wrapper">
       <Humburger />

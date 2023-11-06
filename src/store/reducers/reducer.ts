@@ -1,4 +1,3 @@
-import loginReducer from './login';
 import signupReducer from './signup';
 import homeReducer from './home';
 import profilFormReducer from './profil-form';
@@ -14,7 +13,6 @@ import messageReducer from './massage-inbox';
 
 const reducer = {
   signup: signupReducer,
-  login: loginReducer,
   home: homeReducer,
   profilForm: profilFormReducer,
   animalForm: animalFormReducer,

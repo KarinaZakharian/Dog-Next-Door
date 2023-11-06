@@ -2,13 +2,13 @@ import React, { useCallback, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { logout } from '../../../../store/reducers/login';
+import { logout } from '../../../../store/reducers/profil';
 import mainLogo from '../../../../assets/Logo-ODogNextDoor-blue.png';
 
 import './Humburger.scss';
 
 function Humburger() {
-  const firstname = useAppSelector((state) => state.login.firstname);
+  const firstname = useAppSelector((state) => state.profil.firstname);
   // const firstname = 'karina';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -67,7 +67,7 @@ function Humburger() {
           </>
         )}
         <NavLink className="menu-item" to="/">
-        Accueil
+          Accueil
         </NavLink>
         <NavLink className="menu-item" to="/search">
           Recherche
