@@ -13,6 +13,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
+import TestimonyCard from './../Testimonies/Testiamonies';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
@@ -77,6 +78,7 @@ function Profil() {
     (state) => state.profil.walking_duration
   );
   const disponibility = useAppSelector((state) => state.profil.disponibility);
+  const tesimonies = useAppSelector((state) => state.profil.testimonies);
   const animal = useAppSelector((state) => state.profil.animal);
 
   // Access specific properties within the 'animal' object
@@ -336,6 +338,14 @@ function Profil() {
                 </Link>
               )}
             </div>
+            {tesimonies.length > 0 && (
+              <div className="profil-testimonies">
+                <h2 className="profil-testimonies__title">
+                  Avis sur mon service
+                </h2>
+                <TestimonyCard testimony="Great job" />
+              </div>
+            )}
           </div>
         </div>
       </Main>

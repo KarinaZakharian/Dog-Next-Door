@@ -179,6 +179,27 @@
   height: 100%;
 }
 
+.profil-testimonies {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
+
+  &__title {
+    background-color: v.$color-dark;
+    width: 100%;
+    border-radius: 10px;
+    color: v.$color-main;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}
+
 // -------------------------Leaflet Map----------------------------- //
 
 .leflet-container {

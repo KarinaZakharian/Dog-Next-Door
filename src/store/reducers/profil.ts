@@ -25,6 +25,7 @@ interface User {
   longitude: number | null;
   user_address: string | null;
   walking_duration: string | null;
+  testimonies: [];
   error: unknown;
   dateError: unknown;
   dateMessage: string | null;
@@ -76,6 +77,7 @@ const initialUserState: User = {
   longitude: null,
   user_address: null,
   walking_duration: null,
+  testimonies: [],
   error: null,
   dateError: null,
   dateMessage: null,
@@ -187,6 +189,7 @@ const profilReducer = createReducer(initialUserState, (builder) => {
       if (userData) {
         state.firstname = userData.firstname;
         state.lastname = userData.lastname;
+        state.testimonies = userData.testimonies;
         state.avatar = userData.avatar;
         state.user_address = userData.user_address;
         state.longitude = userData.longitude;

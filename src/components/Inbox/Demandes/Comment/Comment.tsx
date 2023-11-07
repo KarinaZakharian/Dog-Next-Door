@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import './Comment.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 
@@ -71,19 +72,18 @@ function Comment({ isMessageOpen, setMessageOpen, clientId }: MessageProps) {
 
   return (
     <div className={`comment-container ${isMessageOpen ? '' : 'display'}`}>
-      <div className="comment-card">
-        <button className="close-button" onClick={handelMessage}>
-          <img className="close-button__image" src={close_icon} alt="Cat" />
-        </button>
-        <form className="comment-form" onSubmit={handleSubmit}>
-          <TextareaInput
-            label={'Add your comment'}
-            placeholder={'comment'}
-            name={'comment'}
-          />
-          <Button prop="Ajouter" />
-        </form>
-      </div>
+      <button className="close-button" onClick={handelMessage}>
+        <img className="close-button__image" src={close_icon} alt="Cat" />
+      </button>
+      <p className="form__title">Veuillez ajouter votre commentaire</p>
+      <form className="comment-form" onSubmit={handleSubmit}>
+        <TextareaInput
+          label=""
+          placeholder="Votre commentaire"
+          name="comment"
+        />
+        <Button prop="Ajouter" />
+      </form>
     </div>
   );
 }

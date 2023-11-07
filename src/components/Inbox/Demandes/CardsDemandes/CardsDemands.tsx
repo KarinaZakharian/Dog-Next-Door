@@ -45,26 +45,34 @@ function DemandesCard({
   }
   return (
     <div className="status-card">
-      <div className="status-card__info">
-        <span>{firstname}</span>
-        <span> {lastname}</span>
+      <div className="status-card__main">
+        <div className="status-card__info">
+          <span>{firstname}</span>
+          <span> {lastname}</span>
+        </div>
+        <div className="status-card__info">
+          <span>{start_date}</span>
+          <span>au</span>
+          <span> {end_date}</span>
+        </div>
+        <div className={` ${statusClass}`}>
+          <span>{status}</span>
+        </div>
       </div>
-      <div className="status-card__info">
-        <span>{start_date}</span>
-        <span>au</span>
-        <span> {end_date}</span>
-      </div>
-      <div className={` ${statusClass}`}>
-        <span>{status}</span>
-      </div>
-      <div className="row2">
-        <button onClick={handelMessage}>Ajouter une commentaire</button>
-      </div>
-      <Comment
-        clientId={id}
-        isMessageOpen={isMessageOpen}
-        setMessageOpen={setMessageOpen}
-      />
+      {status === 'Passé' && (
+        <div className="status-card_button">
+          <div className="row2">
+            <button className="card-button" onClick={handelMessage}>
+              Ajouter une commentaire
+            </button>
+          </div>
+          <Comment
+            clientId={id}
+            isMessageOpen={isMessageOpen}
+            setMessageOpen={setMessageOpen}
+          />
+        </div>
+      )}
     </div>
   );
 }

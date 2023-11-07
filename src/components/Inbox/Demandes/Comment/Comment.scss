@@ -1,0 +1,60 @@
+@use '../../../../styles/reset';
+@use '../../../../styles/variables' as v;
+
+.comment-container {
+  position: absolute;
+  top: -50px; /* Adjust as needed */
+  left: 0; /* Adjust as needed */
+
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(v.$color-border, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-form {
+  @include v.form-styling;
+  width: 60%;
+}
+
+.label-form {
+  @include v.label;
+}
+
+@media screen and (max-width: 414px) {
+  .label-form {
+    @include v.label-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .form__title {
+    @include v.title-form-text-phone;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .radio-wrapper {
+    flex-direction: column;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &__image {
+    width: 60px;
+    height: 60px;
+  }
+}
+.display {
+  display: none;
+}
