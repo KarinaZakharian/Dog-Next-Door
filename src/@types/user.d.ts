@@ -24,14 +24,14 @@ export interface UserProps {
 }
 
 export interface CardProps {
-  avatar: string;
-  firstname: string;
-  lastname: string;
-  distance: string;
+  avatar: string | null;
+  firstname: string | null;
+  lastname: string | null;
+  distance: string | null;
   id: srting;
-  town: string;
-  user_address: string;
-  country: string;
+  town: string | null;
+  user_address: string | null;
+  country: string | null;
 }
 
 interface LeafletMapProps {
