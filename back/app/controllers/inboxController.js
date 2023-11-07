@@ -126,9 +126,9 @@ const inboxController = {
                 return;
             }
 
-            const petsitter_id = searchSender.user_id;
-
-            const userMessage = await inboxDatamapper.getUpcomingBooking(id,petsitter_id);
+            const userRequest = searchSender.sender_id;
+            
+            const userMessage = await inboxDatamapper.getUpcomingBooking(id,userRequest);
 
 
             // userMessage.start_date = userMessage.start_date.toLocaleDateString('fr-FR',{day: 'numeric', month: 'numeric', year: 'numeric'});

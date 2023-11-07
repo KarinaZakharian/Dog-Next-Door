@@ -25,10 +25,12 @@ export const initialState: InboxState = {
   messageMessage: null,
 };
 
+
+
 export const fetchMessageUser = createAsyncThunk(
   'inbox/fetchmessageuser',
   async () => {
-    const response = await axiosInstance.get(`/inbox/past`);
+    const response = await axiosInstance.get(`/inbox/uppast`);
     return response.data;
   }
 );
@@ -42,7 +44,7 @@ export const sendMessage = createAsyncThunk<
 >('inbox/sendmessage', async (formData: FormData, thunkAPI) => {
   try {
     const objData = Object.fromEntries(formData);
-    const response = await axiosInstance.post('account/message', objData);
+    const response = await axiosInstance.post('inbox/past', objData);
     return response.data;
   } catch (error) {
     if (typeof error === 'string') {
@@ -61,6 +63,7 @@ const messageReducer = createReducer(initialState, (builder) => {
       state.user = [];
     })
     .addCase(fetchMessageUser.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.error = null;
       state.message = action.payload; // You can customize this message
       state.user = action.payload;

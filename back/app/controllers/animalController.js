@@ -7,24 +7,20 @@ const animalController = {
     createNewAnimal : async (req, res) => {
         try {
             const newAnimal = req.body;
-            
+            console.log(newAnimal);
             newAnimal.userId = req.userId;
             const animalAdded = await animalDatamapper.addNewAnimal(newAnimal);
             
             if(animalAdded === 1){
               
             
-                res.json({"message": "Votre animal a été ajouté avec succès",newAnimal});
+                res.status(200).json({"message": "Votre animal a été ajouté avec succès",newAnimal});
             };
         } catch (error) {
             const err = new APIError(error, 500)
             res.status(err.status).json(err.message);
         }
     },
-
-    
-
-
 }
 
 module.exports = animalController;

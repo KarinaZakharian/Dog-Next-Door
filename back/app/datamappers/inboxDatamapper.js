@@ -78,7 +78,7 @@ const inboxDatamapper = {
             json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
             json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
             FROM "user" u, "booking" b, "animal" a, petsitter p
-            WHERE u."id"=$1 AND b."booking_status" = 'A venir' AND a."user_id" = $1 AND b."sender_id" = $1` ;
+            WHERE u."id"=$1 AND a."user_id" = $1 AND b."sender_id" = $1` ;
             
             const value = [userId, pet_sitter_id];
             const bookingFound = await client.query(query, value);
@@ -127,24 +127,24 @@ const inboxDatamapper = {
         }
     },
 
-    getUpcomingBooking : async (id, petsitter_id) => {
+    getUpcomingBooking : async (id, user_request) => {
         try {
             const userId = id;
-            const petsitterId = petsitter_id;
-
+            const userRequest = user_request;
+           
                 query = `
                 WITH petsitter AS (
                     SELECT * FROM "user" WHERE "id" = $2
-                    )
-                    SELECT u.*, 
-                    json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
-                    json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
-                    FROM "user" u, "booking" b, "animal" a, petsitter p
-                    WHERE u."id"=$1 AND b."booking_status" = 'A venir' AND a."user_id" = $2 AND b."user_id" = $1`
+               )
+               SELECT 
+               json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
+               json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
+               FROM "user" u, "booking" b, "animal" a, petsitter p
+               WHERE u."id" = $1 AND b."booking_status" = 'A venir' AND a."user_id" = $2 AND b."user_id" = $1`
                             ;
-                value = [userId, petsitter_id];
+                values = [userId, userRequest];
 
-            const bookingFound = await client.query(query, value);
+            const bookingFound = await client.query(query, values);
             console.log(bookingFound.rows);
             return bookingFound.rows;
         } catch (error) {
