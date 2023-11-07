@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import Comment from '../Comment/Comment';
 import './CardsDemands.scss';
 
 interface UserProps {
@@ -6,6 +8,7 @@ interface UserProps {
   start_date: string;
   end_date: string;
   status: string;
+  id: string;
 }
 
 function DemandesCard({
@@ -13,6 +16,7 @@ function DemandesCard({
   lastname,
   start_date,
   end_date,
+  id,
   status,
 }: UserProps) {
   let statusClass = '';
@@ -34,7 +38,11 @@ function DemandesCard({
       statusClass = 'unknown-text';
       break;
   }
+  const [isMessageOpen, setMessageOpen] = useState(false);
 
+  function handelMessage() {
+    setMessageOpen(true);
+  }
   return (
     <div className="status-card">
       <div className="status-card__info">
@@ -49,6 +57,14 @@ function DemandesCard({
       <div className={` ${statusClass}`}>
         <span>{status}</span>
       </div>
+      <div className="row2">
+        <button onClick={handelMessage}>Ajouter une commentaire</button>
+      </div>
+      <Comment
+        clientId={id}
+        isMessageOpen={isMessageOpen}
+        setMessageOpen={setMessageOpen}
+      />
     </div>
   );
 }

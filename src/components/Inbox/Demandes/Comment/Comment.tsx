@@ -1,23 +1,31 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { success, fillBookingForm } from '../../../../store/reducers/booking';
 
 // import close_icon from '../../../../assets/icons/close_icon.svg';
 
 import Button from '../../../InputType/Button/Button';
-import close_icon from '../../../../assets/icons8-close-64.png'
+import close_icon from '../../../../assets/icons8-close-64.png';
 
 import TextareaInput from '../../../InputType/Textarea/Textarea';
 import { MessageProps } from '../../../../@types/user';
-import { sendMessage } from '../../../../store/reducers/massage-inbox';
+import {
+  sendMessage,
+  success,
+} from '../../../../store/reducers/demandes-inbox';
 
 function Comment({ isMessageOpen, setMessageOpen, clientId }: MessageProps) {
+  const navigate = useNavigate();
   // Initialize navigation and dispatch
-  const messageError = useAppSelector((state) => state.inboxUppast.messageError);
-  const messageMessage = useAppSelector((state) => state.inboxUppast.messageMessage);
+  const messageError = useAppSelector(
+    (state) => state.inboxDemands.messageError
+  );
+  const messageMessage = useAppSelector(
+    (state) => state.inboxDemands.messageMessage
+  );
   function handelMessage() {
     setMessageOpen(false);
   }
@@ -68,13 +76,10 @@ function Comment({ isMessageOpen, setMessageOpen, clientId }: MessageProps) {
           <img className="close-button__image" src={close_icon} alt="Cat" />
         </button>
         <form className="comment-form" onSubmit={handleSubmit}>
-        
           <TextareaInput
             label={'Add your comment'}
             placeholder={'comment'}
             name={'comment'}
-            rows={10}
-            cols={10}
           />
           <Button prop="Ajouter" />
         </form>
