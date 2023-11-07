@@ -172,6 +172,14 @@ const inboxController = {
         }
         
     },
+
+    appendTestimony : async (req, res) => {
+        console.log(req.body);
+        const userTestimony = req.body;
+
+        const testimonyAdded = await inboxDatamapper.addTestimony(userTestimony);
+        res.status(200).json("Votre commentaire a été publié");
+    },
     
 };
 module.exports = inboxController;

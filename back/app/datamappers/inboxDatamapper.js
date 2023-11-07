@@ -78,7 +78,7 @@ const inboxDatamapper = {
             json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
             json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
             FROM "user" u, "booking" b, "animal" a, petsitter p
-            WHERE u."id"=$1 AND a."user_id" = $1 AND b."sender_id" = $1` ;
+            WHERE u."id"=$1 AND a."user_id" = $1 AND b."sender_id" = $1 AND b."booking_status" = 'Passé'` ;
             
             const value = [userId, pet_sitter_id];
             const bookingFound = await client.query(query, value);
@@ -206,6 +206,21 @@ const inboxDatamapper = {
             return console.error("Problème de recherche BDD utilisateur")
         }
     },
+
+    addTestimony : async (userTestimony) => {
+      const testimonyMessage = userTestimony.comment;
+      const petsitterId = parseInt(userTestimony.client_id);
+  
+      const query = `
+      INSERT INTO "testimonial" ("body", "user_id")
+      VALUES ($1, $2)
+      `
+      const values = [testimonyMessage, petsitterId];
+  
+      const testimonyAdded = client.query(query, values);
+      return (await testimonyAdded).rowCount
+    },  
+
 
 };
 

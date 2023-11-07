@@ -16,5 +16,6 @@ inboxRouter.get("/inbox/demands", checkTokenMember, cw(inboxController.findBooki
 //!Route POST
 
 inboxRouter.post("/inbox/awaiting", checkTokenMember, cw(inboxController.acceptBooking));
+inboxRouter.post("/inbox/demands", checkTokenMember, cw(inboxController.appendTestimony));
 
 module.exports = inboxRouter;
