@@ -20,4 +20,7 @@ psql -f ./scripts/import_data.sql
 
 
 psql -f ./scripts/fonctions.sql
+<<<<<<< HEAD
  
+=======
+>>>>>>> 1d9cdbd (merge FixTsError and karina/end)

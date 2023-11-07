@@ -16,6 +16,9 @@ inboxRouter.get("/inbox/demands", checkTokenMember, cw(inboxController.findBooki
 //!Route POST
 
 inboxRouter.post("/inbox/awaiting", checkTokenMember, cw(inboxController.acceptBooking));
+<<<<<<< HEAD
 inboxRouter.post("/inbox/demands", checkTokenMember, cw(inboxController.appendTestimony));
+=======
+>>>>>>> 1d9cdbd (merge FixTsError and karina/end)
 
 module.exports = inboxRouter;
