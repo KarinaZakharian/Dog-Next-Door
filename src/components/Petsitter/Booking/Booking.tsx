@@ -23,8 +23,6 @@ function Booking({
   setIsBookingContainerVisible,
   disponibility_date,
   id,
-  bookingNotAvailibleStart,
-  bookingNotAvailibleEnd,
 }: BookingProps) {
   // Initialize navigation and dispatch
   // console.log('Sitter dispo in booking ', disponibility_date);

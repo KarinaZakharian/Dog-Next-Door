@@ -12,9 +12,9 @@ interface ValidationErrors {
 }
 interface User {
   accomodation: string | null;
-  additionnal_information: (null | any)[];
+  additionnal_information: null | [];
   animal: Animal | null;
-  animal_size: (null | any)[];
+  animal_size: null | [];
   avatar: string | null;
   booking: Booking | null;
   description: string | null;
@@ -29,7 +29,12 @@ interface User {
   user_address: string | null;
   walking_duration: string | null;
   size: string | null;
+  testimonies: Testimonial | null;
   error: string | null;
+}
+interface Testimonial {
+  comment: string | null;
+  id: string | null;
 }
 interface Animal {
   name: string | null;

@@ -51,7 +51,7 @@ export const sendMessage = createAsyncThunk<
 >('inbox/sendmessage', async (formData: FormData, thunkAPI) => {
   try {
     const objData = Object.fromEntries(formData);
-    const response = await axiosInstance.post('inbox/past', objData);
+    const response = await axiosInstance.post('inbox/demands', objData);
     return response.data;
   } catch (error) {
     if (typeof error === 'string') {
@@ -63,7 +63,8 @@ export const sendMessage = createAsyncThunk<
 // Create the  reducer
 const demandsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchStatus.pending, (state, action) => {
+    .addCase(fetchStatus.rejected, (state, action) => {
+      console.log(action.payload);
       state.user = [];
     })
     .addCase(fetchStatus.fulfilled, (state, action) => {

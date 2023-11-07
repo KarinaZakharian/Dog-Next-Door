@@ -1,4 +1,4 @@
-const { userDatamapper } = require('../datamappers');
+const { userDatamapper, inboxDatamapper } = require('../datamappers');
 const tokenController = require('../services/tokenController');
 const validator = require('validator');
 require('dotenv').config();
@@ -76,8 +76,13 @@ const userController = {
         const userId = parseInt(req.userId);
         
         const user = await userDatamapper.getOneUserById(userId);
-        console.log(user);
-        res.json(user);
+        const userTestimonials = await inboxDatamapper.getAllTestimonies(userId);
+        if(user && userTestimonials){
+res.status(200).json({
+          "user": user,
+         "userTestimonials":userTestimonials });
+        }
+        
       } catch (error) {
         res.status(500).json(error.toString());
       }
@@ -113,7 +118,7 @@ const userController = {
           
           const response = await userDatamapper.addUser(newUser);
           console.log(response);
-          res.json('Ajout utilisateur');
+          res.status(200).json('Ajout utilisateur');
         } catch (error) {
           res.status(404).json('Erreur de connexion server');
         }

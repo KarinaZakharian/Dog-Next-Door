@@ -42,8 +42,9 @@ function Uppast() {
                   users.map((user) => (
                     <PastCard
                       key={user.id} // Provide a unique key for each component
-                      firstname={user.firstname}
-                      lastname={user.lastname}
+                      firstname={user.animal.petsitter_firstname}
+                      lastname={user.animal.petsitter_lastname}
+                      status={user.booking.booking_status}
                       id={user.id}
                       start_date={user.booking.start_date}
                       end_date={user.booking.end_date}

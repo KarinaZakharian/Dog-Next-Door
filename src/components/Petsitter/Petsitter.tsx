@@ -15,6 +15,7 @@ import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
 import Main from '../PageComponents/Main/Main';
+import TestimonyCard from '../Profil/Testimonies/Testiamonies'
 
 function Petsitter() {
   const dispatch = useAppDispatch();
@@ -51,6 +52,7 @@ function Petsitter() {
   const foodAnimal = user?.animal?.mealhours;
   const raceAnimal = user?.animal?.race;
   const disponibilitySitter = user?.disponibility;
+  const testimonies = [user?.testimonies?.comment];
   console.log(user);
 
   const center: LatLngExpression = latLng(latitude, longitude);
@@ -196,6 +198,17 @@ function Petsitter() {
                     repa={foodAnimal}
                     energy={energyAnimal}
                   />
+                </div>
+              )}
+
+              {testimonies.length > 0 && (
+                <div className="profil-testimonies">
+                  <h2 className="profil-testimonies__title">
+                    Avis sur mon service
+                  </h2>
+                  {testimonies.map((testimony) => (
+                     <TestimonyCard testimony={testimony.comment} />
+                  ))}
                 </div>
               )}
               {account && disponibilitySitter?.end_date ? (

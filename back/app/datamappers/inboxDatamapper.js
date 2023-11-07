@@ -76,9 +76,9 @@ const inboxDatamapper = {
             )
             SELECT u.*, 
             json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
-            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
+            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firstname', p.firstname, 'petsitter_lastname', p.lastname) as animal
             FROM "user" u, "booking" b, "animal" a, petsitter p
-            WHERE u."id"=$1 AND a."user_id" = $1 AND b."sender_id" = $1 AND b."booking_status" = 'Passé'` ;
+            WHERE u."id"=$1 AND a."user_id" = $1 AND b."sender_id" = $1` ;
             
             const value = [userId, pet_sitter_id];
             const bookingFound = await client.query(query, value);
@@ -162,7 +162,7 @@ const inboxDatamapper = {
             )
             SELECT u.*, 
             json_build_object('id',b.id, 'start_date',b.start_date,'end_date',b.end_date,'booking_status', b.booking_status,'user_id', b.user_id,'sender_id',b.sender_id) as booking,
-            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firsname', p.firstname, 'petsitter_lastname', p.lastname) as animal
+            json_build_object('id', a.id,'name', a.animal_name, 'type', a.type, 'user_id', a.user_id, 'race', a.race, 'petsitter_firstname', p.firstname, 'petsitter_lastname', p.lastname) as animal
             FROM "user" u, "booking" b, "animal" a, petsitter p
             WHERE u."id"=$1 AND b."booking_status" = 'Passé' AND a."user_id" = $2 AND b."user_id" = $1`;
             
@@ -210,18 +210,27 @@ const inboxDatamapper = {
     addTestimony : async (userTestimony) => {
       const testimonyMessage = userTestimony.comment;
       const petsitterId = parseInt(userTestimony.client_id);
-  
+      const senderUser = userTestimony.userId;
       const query = `
-      INSERT INTO "testimonial" ("body", "user_id")
-      VALUES ($1, $2)
+      INSERT INTO "testimonial" ("body", "user_id", "sender_id")
+      VALUES ($1, $2, $3)
       `
-      const values = [testimonyMessage, petsitterId];
+      const values = [testimonyMessage, petsitterId, senderUser ];
   
       const testimonyAdded = client.query(query, values);
-      return (await testimonyAdded).rowCount
+      return testimonyAdded.rowCount
     },  
 
-
+    getAllTestimonies : async (user_id) => {
+        const query = `
+        SELECT * 
+        FROM "testimonial" 
+        WHERE user_id = $1
+        `;
+        const value = [user_id];
+        const result = await client.query(query, value);
+        return result.rows;
+    },
 };
 
 module.exports = inboxDatamapper;

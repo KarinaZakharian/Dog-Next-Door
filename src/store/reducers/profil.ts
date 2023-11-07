@@ -25,13 +25,17 @@ interface User {
   longitude: number | null;
   user_address: string | null;
   walking_duration: string | null;
-  testimonies: [];
+  testimonies: Testimonial[] | [];
   error: unknown;
   dateError: unknown;
   dateMessage: string | null;
   updateError: unknown;
   updateMessage: string | null;
   logoutMessage: string | null;
+}
+interface Testimonial {
+  comment: string | null;
+  id: string | null;
 }
 interface Animal {
   name: string | null;
@@ -62,7 +66,7 @@ interface Disponibility {
 const initialUserState: User = {
   accomodation: null,
   additionnal_information: [],
-  animal: null,
+  animal: [],
   animal_size: [],
   avatar: null,
   booking: null,
@@ -153,7 +157,6 @@ export const updateDateForm = createAsyncThunk(
 
 // Create an async thunk for user logout
 export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
-  console.log('i am in logout');
   try {
     const { data } = await axiosInstance.get('/logout');
     return data;
@@ -184,6 +187,7 @@ export const reconnect = createAction<string | null>('reconnect');
 const profilReducer = createReducer(initialUserState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
+      console.log(action.payload);
       const userData = action.payload;
 
       if (userData) {

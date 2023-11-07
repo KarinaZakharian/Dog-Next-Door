@@ -117,6 +117,7 @@ CREATE TABLE testimonial (
   body TEXT,
   rating VARCHAR(42),
   user_id INTEGER REFERENCES "user"("id"),
+  sender_id INTEGER REFERENCES "user"("id"),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );
