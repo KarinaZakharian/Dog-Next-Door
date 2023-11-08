@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { FormEvent, useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import { fillProfilForm, success } from '../../../store/reducers/profil-form';
@@ -24,7 +23,6 @@ function ProfilForm({
 
   const error = useAppSelector((state) => state.profilForm.fillError);
   const message = useAppSelector((state) => state.profilForm.fillMessage);
-  // console.log('profil form ', error, message);
 
   const [selectedOptions1, setSelectedOptions1] = useState<string[]>([]);
   const [selectedOptions2, setSelectedOptions2] = useState<string[]>([]);
@@ -67,7 +65,6 @@ function ProfilForm({
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-    // console.log('profil nform before event');
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -77,10 +74,6 @@ function ProfilForm({
   }
 
   useEffect(() => {
-    // console.log('error', error);
-    // console.log('message', message);
-    // console.log('useffect fom profill form');
-
     if (!error && message) {
       swal(`${message}`, {
         icon: 'success',
@@ -104,15 +97,6 @@ function ProfilForm({
     <div
       className={`form-container ${isFormContainerVisible ? '' : 'display'}`}
     >
-      <div className="booking-card">
-        <button
-          type="button"
-          className="close-button"
-          onClick={hideFormContainer}
-        >
-          <img className="close-button__image" src={close_icon} alt="Cat" />
-        </button>
-      </div>
       <form className="profil-form" onSubmit={handleSubmit}>
         <p className="form__title">
           Complétez les informations demandées pour que votre profil soit
@@ -217,8 +201,16 @@ function ProfilForm({
             onRadioChange={handleWalkChange}
           />
         </div>
-
-        <Button prop="Enregistrer" />
+        <div className="button-container">
+          <Button prop="Enregistrer" />
+          <button
+            className="popup-close-button"
+            type="button"
+            onClick={hideFormContainer}
+          >
+            Fermer
+          </button>
+        </div>
       </form>
     </div>
   );

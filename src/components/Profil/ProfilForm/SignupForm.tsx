@@ -1,14 +1,7 @@
-/* eslint-disable prettier/prettier */
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-import { success, updateSignupForm } from '../../../store/reducers/profil-form';
-
-import Input from '../../InputType/Input/Input';
-import Button from '../../InputType/Button/Button';
-import './ProfilForm.scss';
-import close_icon from '../../../assets/icons8-close-64.png';
-
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { success, updateSignupForm } from '../../../store/reducers/profil-form';
 
 import {
   emailSchema,
@@ -17,17 +10,21 @@ import {
   lastnameSchema,
   citySchema,
 } from '../../../Validations/UserValidation';
+
 import AutoComplete from '../../InputType/Addresse/Addresse';
+import Input from '../../InputType/Input/Input';
+import Button from '../../InputType/Button/Button';
+import close_icon from '../../../assets/icons8-close-64.png';
+
 import { SignupProps } from '../../../@types/user';
+import './ProfilForm.scss';
 
 function SignupForm({
   isSignupContainerVisible,
   setIsSignupContainerVisible,
 }: SignupProps) {
-  // Initialize dispatch
   const dispatch = useAppDispatch();
 
-  // Function to hide the booking container
   const hideSignupContainer = () => {
     setIsSignupContainerVisible(false);
   };
@@ -41,10 +38,7 @@ function SignupForm({
 
   const myMessage = useAppSelector((state) => state.profilForm.myMessage);
   const myError = useAppSelector((state) => state.profilForm.myError);
-  // console.log('error signup form', myError);
-  // console.log('message signup form', myMessage);
 
-  // Function to handle form submission
   const handleMySubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -53,7 +47,6 @@ function SignupForm({
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     const objData = Object.fromEntries(formData);
-    console.log('body envoyé dans la requête du signup', objData);
 
     // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
     const emailIsValid = await emailSchema.isValid({
@@ -95,22 +88,16 @@ function SignupForm({
   };
 
   useEffect(() => {
-    // console.log('error', myError);
-    // console.log('message', myMessage);
-    // console.log('useffect from signup form');
     if (!myError && myMessage) {
-      // console.log('signup form swall');
       swal(`${myMessage}`, {
         icon: 'success',
         timer: 1000,
       });
       setTimeout(() => {
-        // console.log('i am in set timeout');
         dispatch(success());
         hideSignupContainer();
       }, 1000);
     }
-
     if (myError) {
       swal(`${myError}`, {
         icon: 'error',
@@ -123,15 +110,7 @@ function SignupForm({
     <div
       className={`form-container ${isSignupContainerVisible ? '' : 'display'}`}
     >
-      <div className="booking-card">
-        <button
-          type="button"
-          className="close-button"
-          onClick={hideSignupContainer}
-        >
-          <img className="close-button__image" src={close_icon} alt="Cat" />
-        </button>
-      </div>
+      <div className="booking-card"></div>
       <form className="profil-form" onSubmit={handleMySubmit}>
         <p className="form__title">
           Complétez les informations demandées pour que votre profil soit
@@ -178,8 +157,16 @@ function SignupForm({
         {!passwordValid && (
           <p className="error">Votre password n&apos;t pas valide</p>
         )}
-
-        <Button prop="Enregistrer" />
+        <div className="button-container">
+          <Button prop="Enregistrer" />
+          <button
+            className="popup-close-button"
+            type="button"
+            onClick={hideSignupContainer}
+          >
+            Fermer
+          </button>
+        </div>
       </form>
     </div>
   );

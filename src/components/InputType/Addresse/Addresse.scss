@@ -18,9 +18,9 @@
     @include v.input-field;
     width: 100%;
 
-    @media screen and (max-width: 768px) {
-      width: 70%;
-    }
+    // @media screen and (max-width: 768px) {
+    //   width: 70%;
+    // }
 
     &:focus {
       outline: none;

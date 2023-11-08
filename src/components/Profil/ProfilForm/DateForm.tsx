@@ -52,22 +52,18 @@ function DateForm({
     <div
       className={`form-container ${isDateContainerVisible ? '' : 'display'}`}
     >
-      <div className="booking-card">
-        <button
-          type="button"
-          className="close-button"
-          onClick={hideDateContainer}
-        >
-          <img
-            className="close-button__image"
-            src={close_icon}
-            alt="Close icon"
-          />
-        </button>
-      </div>
       <form className="profil-form" onSubmit={handleSubmit}>
         <DateRangePickerComp legend="Votre dispo" />
-        <Button prop="Enregistrer" />
+        <div className="button-container">
+          <Button prop="Enregistrer" />
+          <button
+            className="popup-close-button"
+            type="button"
+            onClick={hideDateContainer}
+          >
+            Fermer
+          </button>
+        </div>
       </form>
     </div>
   );

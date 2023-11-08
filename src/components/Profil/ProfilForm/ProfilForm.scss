@@ -3,8 +3,8 @@
 
 .form-container {
   position: absolute;
-  top: 10px; /* Adjust as needed */
-  left: 0; /* Adjust as needed */
+  top: 10px;
+  left: 0;
 
   min-height: 100vh;
   width: 100%;
@@ -59,19 +59,29 @@ p {
   }
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
+.popup-close-button {
+  display: block;
+  padding: 10px 20px;
+  margin: 20px;
+  border-radius: 10px;
+  border: 2px solid v.$color-border;
+  font-weight: 400;
+  font-size: 20px;
+  color: v.$color-text-dark;
+  background-color: v.$color-main;
+  transition: 0.1s;
 
-  &__image {
-    width: 60px;
-    height: 60px;
+  &:hover {
+    transform: scale(1.1);
   }
 }
+
 .display {
   display: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

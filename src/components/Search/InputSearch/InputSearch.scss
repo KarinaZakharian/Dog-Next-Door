@@ -58,3 +58,13 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
 }
+
+.inputsearch__autocomplete {
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}

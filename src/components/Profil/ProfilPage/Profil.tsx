@@ -13,7 +13,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
-import TestimonyCard from './../Testimonies/Testiamonies';
+import TestimonyCard from '../Testimonies/Testiamonies';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
@@ -30,19 +30,15 @@ function Profil() {
 
   const [isSignupContainerVisible, setIsSignupContainerVisible] =
     useState(false);
-
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
-
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
 
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
   };
-
   const showFormContainer = () => {
     setIsFormContainerVisible(true);
   };
-
   const showDateContainer = () => {
     setIsDateContainerVisible(true);
   };
@@ -289,11 +285,6 @@ function Profil() {
             <DateForm
               isDateContainerVisible={isDateContainerVisible}
               setIsDateContainerVisible={setIsDateContainerVisible}
-            />
-
-            <DateFormUpdate
-              isUpdateContainerVisible={isUpdateContainerVisible}
-              setIsUpdateContainerVisible={setIsUpdateContainerVisible}
             />
           </div>
           {/* -----------------------------profil animal------------------------ */}

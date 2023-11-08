@@ -66,10 +66,12 @@ function InputSearch() {
               onRadioChange={handleAnimalChange}
             />
           </div>
-          <AutoComplete
-            style={{ borderColor: 'initial' }}
-            setCoordinates={setCoordinates}
-          />
+          <div className="inputsearch__autocomplete">
+            <AutoComplete
+              style={{ borderColor: 'initial' }}
+              setCoordinates={setCoordinates}
+            />
+          </div>
           <div className="inputsearch__radio-radius">
             <label htmlFor="radius" className="input__label">
               Distance autour de chez moi
