@@ -30,9 +30,6 @@ function DateForm({
   }
 
   useEffect(() => {
-    // console.log('error', error);
-    // console.log('message', message);
-
     if (!dateError && dateMessage) {
       swal({
         icon: 'success',

@@ -21,7 +21,6 @@ import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
-import DateFormUpdate from '../ProfilForm/DateFormUpdate';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import './Profil.scss';
@@ -36,10 +35,6 @@ function Profil() {
 
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
 
-  const [isUpdateContainerVisible, setIsUpdateContainerVisible] =
-    useState(false);
-
-  // Function to show the booking container
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
   };
@@ -50,10 +45,6 @@ function Profil() {
 
   const showDateContainer = () => {
     setIsDateContainerVisible(true);
-  };
-
-  const showUpdateContainer = () => {
-    setIsUpdateContainerVisible(true);
   };
 
   useEffect(() => {

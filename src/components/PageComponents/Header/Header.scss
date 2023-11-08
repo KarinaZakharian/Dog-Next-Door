@@ -2,6 +2,17 @@
 @use '../../../styles/variables' as v;
 .wrapper {
   border-bottom: 2px solid v.$color-border;
+  background-color: #fff;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    position: static;
+  }
 }
 .menu {
   margin: 0 auto;

@@ -13,7 +13,7 @@
 
 .radio-label {
   position: relative;
-  padding-left: 25px; /* Adjust as needed */
+  padding-left: 25px;
   cursor: pointer;
   font-weight: 400;
   color: v.$color-text-dark;
@@ -24,8 +24,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 18px; /* Adjust the size */
-  height: 18px; /* Adjust the size */
+  width: 18px;
+  height: 18px;
   border: 2px solid v.$color-border;
   background-color: v.$color-main;
   border-radius: 50%;
@@ -33,5 +33,4 @@
 
 .radio-input:checked + .radio-label::before {
   background-color: v.$color-text-dark;
-  /* You can change the style when the radio is checked */
 }

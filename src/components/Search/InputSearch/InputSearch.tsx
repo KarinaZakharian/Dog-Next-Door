@@ -46,71 +46,67 @@ function InputSearch() {
       </h3>
       <form className="inputsearch__form" onSubmit={handleSubmit}>
         <div className="inputsearch__container">
-          <div className="inputsearch__left">
-            <div className="inputsearch__radio-animal">
-              <Radio
-                name="animal"
-                id="cat"
-                value="Cat"
-                picked={pickedAnimal}
-                img={cat}
-                label=""
-                onRadioChange={handleAnimalChange}
-              />
-              <Radio
-                name="animal"
-                id="dog"
-                value="Dog"
-                picked={pickedAnimal}
-                img={dog}
-                label=""
-                onRadioChange={handleAnimalChange}
-              />
-            </div>
-
-            <AutoComplete
-              style={{ borderColor: 'initial' }}
-              setCoordinates={setCoordinates}
+          <div className="inputsearch__radio-animal">
+            <Radio
+              name="animal"
+              id="cat"
+              value="Cat"
+              picked={pickedAnimal}
+              img={cat}
+              label=""
+              onRadioChange={handleAnimalChange}
+            />
+            <Radio
+              name="animal"
+              id="dog"
+              value="Dog"
+              picked={pickedAnimal}
+              img={dog}
+              label=""
+              onRadioChange={handleAnimalChange}
             />
           </div>
-
-          <div className="inputsearch__right">
-            <div className="inputsearch__radio-radius">
-              <p>Distance autour de chez moi</p>
-              <div className="radiosimple-wrapper">
-                <RadioSimple
-                  name="radius"
-                  id="5"
-                  picked={pickedRadius}
-                  value="5"
-                  onRadioChange={handleRadiusChange}
-                  label="5 km"
-                />
-                <RadioSimple
-                  name="radius"
-                  id="10"
-                  picked={pickedRadius}
-                  value="10"
-                  onRadioChange={handleRadiusChange}
-                  label="10 km"
-                />
-                <RadioSimple
-                  name="radius"
-                  id="20"
-                  picked={pickedRadius}
-                  value="20"
-                  onRadioChange={handleRadiusChange}
-                  label="20 km"
-                />
-                <RadioSimple
-                  name="radius"
-                  id="35"
-                  picked={pickedRadius}
-                  value="35"
-                  onRadioChange={handleRadiusChange}
-                  label="35 km"
-                />
-              </div>
+          <AutoComplete
+            style={{ borderColor: 'initial' }}
+            setCoordinates={setCoordinates}
+          />
+          <div className="inputsearch__radio-radius">
+            <label htmlFor="radius" className="input__label">
+              Distance autour de chez moi
+            </label>
+            <div className="radiosimple-wrapper">
+              <RadioSimple
+                name="radius"
+                id="5"
+                picked={pickedRadius}
+                value="5"
+                onRadioChange={handleRadiusChange}
+                label="5 km"
+              />
+              <RadioSimple
+                name="radius"
+                id="10"
+                picked={pickedRadius}
+                value="10"
+                onRadioChange={handleRadiusChange}
+                label="10 km"
+              />
+              <RadioSimple
+                name="radius"
+                id="20"
+                picked={pickedRadius}
+                value="20"
+                onRadioChange={handleRadiusChange}
+                label="20 km"
+              />
+              <RadioSimple
+                name="radius"
+                id="35"
+                picked={pickedRadius}
+                value="35"
+                onRadioChange={handleRadiusChange}
+                label="35 km"
+              />
             </div>
           </div>
         </div>

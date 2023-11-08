@@ -29,7 +29,6 @@ function App() {
   useEffect(() => {
     // je récupère mon token dans le localstorage
     const token = localStorage.getItem('token');
-    console.log(token);
     // Si j'ai un token
     if (token) {
       // Je le passes dans les headers de mon instance Axios

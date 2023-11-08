@@ -28,7 +28,7 @@ export interface CardProps {
   firstname: string | null;
   lastname: string | null;
   distance: string | null;
-  id: srting;
+  id: string;
   town: string | null;
   user_address: string | null;
   country: string | null;

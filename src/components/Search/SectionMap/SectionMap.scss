@@ -1,15 +1,21 @@
 .map-container {
   background-color: #111;
   width: 30%;
-  height: 95vh;
+  height: 90vh;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
   margin-bottom: 1rem;
 
   @media screen and (max-width: 768px) {
     width: 40%;
+    position: fixed;
+    right: 0;
+    top: 90px;
+    height: 50rem;
   }
 
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 500px) {
     width: 100%;
+    position: relative;
+    top: 0;
   }
 }

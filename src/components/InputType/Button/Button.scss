@@ -17,10 +17,3 @@
     transform: scale(1.1);
   }
 }
-
-@media screen and (max-width: 414px) {
-  .form__submit-button {
-    @include v.label-phone;
-    padding: 5px;
-  }
-}

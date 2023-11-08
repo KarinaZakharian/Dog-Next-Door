@@ -18,6 +18,10 @@
     @include v.input-field;
     width: 100%;
 
+    @media screen and (max-width: 768px) {
+      width: 70%;
+    }
+
     &:focus {
       outline: none;
       border-color: v.$color-text;
@@ -47,13 +51,12 @@
 .signup__localisation {
   display: flex;
   width: 100%;
-  margin-top: 1rem;
 }
 
-.nput__label {
+.input__label {
   display: block;
   margin-top: 8px;
   color: rgb(64, 67, 71);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
 }

@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { useEffect } from 'react';
 import swal from 'sweetalert';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import { logout, success } from '../../../store/reducers/profil';
 import Humburger from './Humburger/Humburger';
@@ -9,7 +10,6 @@ import searchIcon from '../../../assets/search-blue.png';
 import inboxIcon from '../../../assets/inbox-96.png';
 import mainLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import './Header.scss';
-import { useEffect } from 'react';
 
 function Header() {
   const firstname = useAppSelector((state) => state.profil.user.firstname);
@@ -26,17 +26,12 @@ function Header() {
   };
 
   useEffect(() => {
-    // console.log('error', myError);
-    // console.log('message', myMessage);
-    // console.log('useffect from signup form');
     if (logoutMessage) {
-      // console.log('signup form swall');
       swal(`${logoutMessage}`, {
         icon: 'success',
         timer: 1000,
       });
       setTimeout(() => {
-        // console.log('i am in set timeout');
         navigate('/login', { replace: true });
         dispatch(success());
       }, 1000);
@@ -76,7 +71,6 @@ function Header() {
               </div>
             </div>
           )}
-
           {!firstname && (
             <div className="menu__nav-menu">
               <NavLink className="menu__menu-item" to="/login">

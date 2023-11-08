@@ -37,8 +37,8 @@ function Humburger() {
     <div
       className="menuHumburger"
       onClick={handleMenuClick}
-      onKeyPress={handleKeyPress} // Listen for keyboard events
-      role="button" // Add the role="button" for accessibility
+      onKeyDown={handleKeyPress}
+      role="button"
       tabIndex={0}
     >
       <div className={`menu-bar ${isMenuOpen ? 'change' : ''}`}>
@@ -60,7 +60,7 @@ function Humburger() {
             <NavLink className="menu-item" to="/account">
               Profil
             </NavLink>
-            <NavLink className="menu-item" to="/account/inbox">
+            <NavLink className="menu-item" to="/inbox/awaiting">
               Boite de reception
             </NavLink>
             <NavLink className="menu-item" to="/search">
@@ -73,6 +73,12 @@ function Humburger() {
         </NavLink>
         <NavLink className="menu-item" to="/search">
           Recherche
+        </NavLink>
+        <NavLink className="menu-item" to="/login">
+          Connexion
+        </NavLink>
+        <NavLink className="menu-item" to="/subscribe">
+          S&apos;inscrire
         </NavLink>
       </nav>
       <div

@@ -3,6 +3,7 @@
 .form__radio-input {
   -webkit-appearance: none;
   appearance: none;
+  position: absolute;
 }
 
 .form__fieldset {
@@ -19,8 +20,7 @@
   align-items: center;
   height: 100px;
   width: 100px;
-  border: 2px solid v.$color-border;
-  margin: 0.5rem;
+  border: 2px solid v.$color-text;
   border-radius: 10px;
   color: v.$color-text;
   transition: 0.5s;

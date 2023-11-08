@@ -21,14 +21,14 @@
   }
 }
 
-@media screen and (max-width: 414px) {
-  .input__label {
-    @include v.label-phone;
-  }
-}
+// @media screen and (max-width: 414px) {
+//   .input__label {
+//     @include v.label-phone;
+//   }
+// }
 
-@media screen and (max-width: 414px) {
-  .input__field {
-    @include v.input-field-phone;
-  }
-}
+// @media screen and (max-width: 414px) {
+//   .input__field {
+//     @include v.input-field-phone;
+//   }
+// }

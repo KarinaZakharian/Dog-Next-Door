@@ -6,15 +6,11 @@ import {
 
 import axiosInstance from '../../utils/axios';
 
-interface ValidationErrors {
-  errorMessage: string;
-  field_errors: Record<string, string>;
-}
 interface User {
   accomodation: string | null;
-  additionnal_information: null | [];
+  additionnal_information: (null | unknown)[];
   animal: Animal | null;
-  animal_size: null | [];
+  animal_size: (null | unknown)[];
   avatar: string | null;
   booking: Booking | null;
   description: string | null;
@@ -81,7 +77,7 @@ export const initialState: SitterState = {
 
 // Create an async thunk for fetching user information by ID
 export const fetchUserById = createAsyncThunk<
-  any, // type de la valeur retourné //  TODO
+  unknown, // type de la valeur retourné
   number, // type de userID // paramètre du callback
   {
     rejectValue: string;
