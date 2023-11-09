@@ -13,7 +13,7 @@ import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
-import TestimonyCard from '../Testimonies/Testiamonies';
+import TestimonyCard from '../Testiamonies/Testiamonies';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';

@@ -6,7 +6,6 @@ import {
 
 import axiosInstance from '../../utils/axios';
 import { LoginState } from '../../@types/user';
-import { Interface } from 'readline';
 
 interface User {
   accomodation: string | null;
@@ -220,10 +219,8 @@ export const reconnect = createAction<string | null>('reconnect');
 const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.user.isLoading = false;
       const userData = action.payload.user;
-      console.log(action.payload.userTestimonials);
       state.userTestimonials = [...action.payload.userTestimonials];
 
       if (userData) {
@@ -267,11 +264,9 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.user.error = action.payload;
     })
     .addCase(fillDateForm.rejected, (state, action) => {
-      console.log(action.payload);
       state.user.dateError = action.payload;
     })
     .addCase(fillDateForm.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.user.dateError = null;
       state.user.dateMessage = 'success';
       const userData = action.payload;
@@ -284,15 +279,12 @@ const profilReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(updateDateForm.rejected, (state, action) => {
-      console.log(action.payload);
       state.user.updateError = action.payload;
     })
     .addCase(updateDateForm.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.user.updateError = null;
       const userData = action.payload;
       state.user.updateMessage = action.payload.message;
-      console.log(action.payload.message);
       if (userData) {
         state.user.disponibility = {
           start_date: userData.start_date,
@@ -335,14 +327,12 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.user.error = null;
     })
     .addCase(login.rejected, (state, action) => {
-      console.log(action.payload);
       state.user.error = action.payload?.response?.data;
       state.user.firstname = null;
       // je récupère l'erreur directement dans `action.error`
     })
 
     .addCase(logout.fulfilled, (state, action) => {
-      //console.log(action.payload);
       state.user.logoutMessage = action.payload.message;
       state.user.firstname = null;
       delete axiosInstance.defaults.headers.common.Authorization;
@@ -350,7 +340,6 @@ const profilReducer = createReducer(initialState, (builder) => {
     })
 
     .addCase(reconnect, (state, action) => {
-      console.log(action.payload);
       state.user.firstname = action.payload;
     });
 });
