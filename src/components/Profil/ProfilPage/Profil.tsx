@@ -25,6 +25,7 @@ import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import './Profil.scss';
 import AnimalFormUpdate from '../AnimalForm/AnimalFormUpdate';
+import AnimalForm from '../AnimalForm/AnimalForm';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -34,6 +35,8 @@ function Profil() {
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
   const [isUpdateContainerVisible, setIsUpdateContainerVisible] =
+    useState(false);
+  const [isAnimalContainerVisible, setIsAnimalContainerVisible] =
     useState(false);
   const [isUpdateAnimalContainerVisible, setIsUpdateAnimalContainerVisible] =
     useState(false);
@@ -49,6 +52,9 @@ function Profil() {
   };
   const showUpdateContainer = () => {
     setIsUpdateContainerVisible(true);
+  };
+  const showAnimalContainer = () => {
+    setIsAnimalContainerVisible(true);
   };
   const showUpdateAnimalContainer = () => {
     setIsUpdateAnimalContainerVisible(true);
@@ -299,6 +305,10 @@ function Profil() {
             isUpdateContainerVisible={isUpdateContainerVisible}
             setIsUpdateContainerVisible={setIsUpdateContainerVisible}
           />
+          <AnimalForm
+            isAnimalContainerVisible={isAnimalContainerVisible}
+            setIsAnimalContainerVisible={setIsAnimalContainerVisible}
+          />
           <AnimalFormUpdate
             isUpdateAnimalContainerVisible={isUpdateAnimalContainerVisible}
             setIsUpdateAnimalContainerVisible={
@@ -309,18 +319,20 @@ function Profil() {
           <div className="profil__animal">
             <div className="profil__animal-header">
               <h2 className="profil__animal-name">Mon animal de compagnie</h2>
-              <div className="profil__booking-button">
-                <switch
-                  onClick={showUpdateAnimalContainer}
-                  className="profil__user-header-button"
-                >
-                  <img
-                    src={pencilIcon}
-                    alt="pencil white"
-                    className="profil__user-header-button-img"
-                  />
-                </switch>
-              </div>
+              {type && (
+                <div className="profil__booking-button">
+                  <switch
+                    onClick={showUpdateAnimalContainer}
+                    className="profil__user-header-button"
+                  >
+                    <img
+                      src={pencilIcon}
+                      alt="pencil white"
+                      className="profil__user-header-button-img"
+                    />
+                  </switch>
+                </div>
+              )}
             </div>
 
             {type ? (
@@ -335,9 +347,14 @@ function Profil() {
                 energy={energy}
               />
             ) : (
-              <Link className="link-animal" to="/account/animal-form">
-                <Button prop="Ajoutez votre animal de compagnie" />
-              </Link>
+              <div className="profil__button">
+                <switch
+                  onClick={showAnimalContainer}
+                  className="profil__user-button"
+                >
+                  <Button prop="Ajoutez votre animal de compagnie" />
+                </switch>
+              </div>
             )}
           </div>
           {/* {testimonies.length > 0 && (

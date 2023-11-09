@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormProps, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { success, updateAnimalForm } from '../../../store/reducers/animal-form';
@@ -18,12 +18,12 @@ import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
 import { nameSchema, raceSchema } from '../../../Validations/UserValidation';
-import { AnimalProps } from '../../../@types/user';
+import { AnimalUpdateProps } from '../../../@types/user';
 
 function AnimalFormUpdate({
   isUpdateAnimalContainerVisible,
   setIsUpdateAnimalContainerVisible,
-}: AnimalProps) {
+}: AnimalUpdateProps) {
   const hideFormContainer = () => {
     setIsUpdateAnimalContainerVisible(false);
   };
