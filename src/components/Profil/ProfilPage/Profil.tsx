@@ -21,6 +21,7 @@ import avatarLogo from '../../../assets/Logo-ODogNextDoor-blue.png';
 import SignupForm from '../ProfilForm/SignupForm';
 import ProfilForm from '../ProfilForm/ProfilForm';
 import DateForm from '../ProfilForm/DateForm';
+import DateFormUpdate from '../ProfilForm/DateFormUpdate';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import './Profil.scss';
@@ -32,6 +33,8 @@ function Profil() {
     useState(false);
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
+  const [isUpdateContainerVisible, setIsUpdateContainerVisible] =
+    useState(false);
 
   const showSignupContainer = () => {
     setIsSignupContainerVisible(true);
@@ -41,6 +44,9 @@ function Profil() {
   };
   const showDateContainer = () => {
     setIsDateContainerVisible(true);
+  };
+  const showUpdateContainer = () => {
+    setIsUpdateContainerVisible(true);
   };
 
   useEffect(() => {
@@ -234,33 +240,35 @@ function Profil() {
                   <h3 className="profil__booking-button-title">
                     Ajouter une disponibilité
                   </h3>
-                  <div className="profil__user-header-button">
+                  <switch
+                    onClick={showDateContainer}
+                    className="profil__user-header-button"
+                  >
                     <img
                       src={calendarIcon}
                       alt="pencil white"
                       className="profil__user-header-button-img"
-                      onClick={showDateContainer}
                     />
-                  </div>
+                  </switch>
                 </div>
               )}
-
               {disponibility?.end_date && (
                 <div className="profil__booking-button">
                   <h3 className="profil__booking-button-title">
                     Mettez à jour votre disponibilité
                   </h3>
-                  <div className="profil__user-header-button">
+                  <switch
+                    onClick={showUpdateContainer}
+                    className="profil__user-header-button"
+                  >
                     <img
                       src={calendarIcon}
                       alt="pencil white"
                       className="profil__user-header-button-img"
-                      onClick={showUpdateContainer}
                     />
-                  </div>
+                  </switch>
                 </div>
               )}
-
               <div className="profil__booking-disponibility">
                 {disponibility?.end_date && (
                   <div className="profil__booking-disponibility">
@@ -272,21 +280,24 @@ function Profil() {
                 )}
               </div>
             </div>
-            {/* -----------------------------popup form--------------------------- */}
-            <SignupForm
-              isSignupContainerVisible={isSignupContainerVisible}
-              setIsSignupContainerVisible={setIsSignupContainerVisible}
-            />
-            <ProfilForm
-              isFormContainerVisible={isFormContainerVisible}
-              setIsFormContainerVisible={setIsFormContainerVisible}
-            />
-
-            <DateForm
-              isDateContainerVisible={isDateContainerVisible}
-              setIsDateContainerVisible={setIsDateContainerVisible}
-            />
           </div>
+          {/* -----------------------------popup form--------------------------- */}
+          <SignupForm
+            isSignupContainerVisible={isSignupContainerVisible}
+            setIsSignupContainerVisible={setIsSignupContainerVisible}
+          />
+          <ProfilForm
+            isFormContainerVisible={isFormContainerVisible}
+            setIsFormContainerVisible={setIsFormContainerVisible}
+          />
+          <DateForm
+            isDateContainerVisible={isDateContainerVisible}
+            setIsDateContainerVisible={setIsDateContainerVisible}
+          />
+          <DateFormUpdate
+            isUpdateContainerVisible={isUpdateContainerVisible}
+            setIsUpdateContainerVisible={setIsUpdateContainerVisible}
+          />
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
             <div className="profil__animal-header">

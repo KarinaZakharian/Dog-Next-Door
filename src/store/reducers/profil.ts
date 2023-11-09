@@ -25,6 +25,7 @@ interface User {
   longitude: number | null;
   user_address: string | null;
   walking_duration: string | null;
+  testimonies: Testimonial[] | [];
   error: unknown;
   dateError: unknown;
   dateMessage: string | null;
@@ -39,6 +40,11 @@ interface Testimonial {
   sender_id: number | null;
   // Add more properties as needed
 }
+interface Testimonial {
+  comment: string | null;
+  id: number | null;
+}
+
 interface Animal {
   name: string | null;
   size: string | null;
@@ -102,6 +108,7 @@ const initialUserState: User = {
   longitude: null,
   user_address: null,
   walking_duration: null,
+  testimonies: [],
   error: null,
   dateError: null,
   dateMessage: null,
