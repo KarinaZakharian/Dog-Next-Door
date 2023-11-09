@@ -18,11 +18,16 @@ import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
 import { nameSchema, raceSchema } from '../../../Validations/UserValidation';
+import { AnimalProps } from '../../../@types/user';
 
 function AnimalFormUpdate({
-  isFormContainerVisible,
-  setIsFormContainerVisible,
-}: FormProps) {
+  isUpdateAnimalContainerVisible,
+  setIsUpdateAnimalContainerVisible,
+}: AnimalProps) {
+  const hideFormContainer = () => {
+    setIsUpdateAnimalContainerVisible(false);
+  };
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -39,10 +44,6 @@ function AnimalFormUpdate({
   const energy = animal?.energy || null;
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
-
-  const hideFormContainer = () => {
-    setIsFormContainerVisible(false);
-  };
 
   // picking  the animal
   const [pickedAnimal, setAnimal] = useState(type || '');
@@ -105,7 +106,8 @@ function AnimalFormUpdate({
       });
       setTimeout(() => {
         dispatch(success());
-        navigate('/account', { replace: true });
+        hideFormContainer();
+        // navigate('/account', { replace: true });
       }, 1000);
     }
 
@@ -118,181 +120,183 @@ function AnimalFormUpdate({
   }, [dispatch, error, message, navigate]);
 
   return (
-    <div className="page-wrapper">
-      <div className="container-animalform">
-        <form className="animal-form" onSubmit={handleSubmit}>
-          <h2 className="animal-form__title">
-            Ajouter votre animal de compagnie
-          </h2>
+    <div
+      className={`form-container ${
+        isUpdateAnimalContainerVisible ? '' : 'display'
+      }`}
+    >
+      <form className="animal-form" onSubmit={handleSubmit}>
+        <h2 className="animal-form__title">
+          Modifier les informations de votre animal
+        </h2>
 
-          <div className="animal-form__type">
-            <Radio
-              name="animal"
-              id="cat"
-              value="Cat"
-              picked={pickedAnimal}
-              img={cat}
-              label=""
-              onRadioChange={handleAnimalChange}
-            />
-            <Radio
-              name="animal"
-              id="dog"
-              value="Dog"
-              picked={pickedAnimal}
-              img={dog}
-              label=""
-              onRadioChange={handleAnimalChange}
-            />
-          </div>
-
-          <Input
-            name="name"
-            placeholder="Nom"
-            defaultValue={name}
-            style={{ borderColor: nameValid ? 'initial' : 'red' }}
+        <div className="animal-form__type">
+          <Radio
+            name="animal"
+            id="cat"
+            value="Cat"
+            picked={pickedAnimal}
+            img={cat}
+            label=""
+            onRadioChange={handleAnimalChange}
           />
-          {!nameValid && (
-            <p className="error">Inscrivez le nom de votre animal</p>
-          )}
-          <Input
-            name="race"
-            placeholder="Race(s)"
-            defaultValue={race}
-            style={{ borderColor: raceValid ? 'initial' : 'red' }}
+          <Radio
+            name="animal"
+            id="dog"
+            value="Dog"
+            picked={pickedAnimal}
+            img={dog}
+            label=""
+            onRadioChange={handleAnimalChange}
           />
-          {!raceValid && (
-            <p className="error">Inscrivez la race de votre animal</p>
-          )}
-          <CalendarComp />
+        </div>
 
-          <p className="label">La taille de mon animal</p>
-          <div className="radio">
-            <Radio
-              name="size"
-              id="small"
-              value="Petit"
-              picked={picked}
-              img={small}
-              label="0-7 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="medium"
-              value="Moyen"
-              picked={picked}
-              img={medium}
-              label="7-18 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="large"
-              value="Grand"
-              picked={picked}
-              img={big}
-              label="18-45 kg"
-              onRadioChange={handleRadioChange}
-            />
-            <Radio
-              name="size"
-              id="geant"
-              value="Geant"
-              picked={picked}
-              img={geant}
-              label="45+ kg"
-              onRadioChange={handleRadioChange}
-            />
-          </div>
+        <Input
+          name="name"
+          placeholder="Nom"
+          defaultValue={name}
+          style={{ borderColor: nameValid ? 'initial' : 'red' }}
+        />
+        {!nameValid && (
+          <p className="error">Inscrivez le nom de votre animal</p>
+        )}
+        <Input
+          name="race"
+          placeholder="Race(s)"
+          defaultValue={race}
+          style={{ borderColor: raceValid ? 'initial' : 'red' }}
+        />
+        {!raceValid && (
+          <p className="error">Inscrivez la race de votre animal</p>
+        )}
+        <CalendarComp />
 
-          <p className="label">Horaires des pauses pipi</p>
-          <div className="radio-wrapper">
-            <RadioSimple
-              name="walk"
-              id="1"
-              picked={pickedWalk}
-              value="Entre 0 et 2 heures"
-              label="Entre 0 et 2 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="2"
-              picked={pickedWalk}
-              value="Entre 2 et 4 heures"
-              label="Entre 2 et 4 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="3"
-              picked={pickedWalk}
-              value="Entre 4 et 8 heures"
-              label="Entre 4 et 8 heures"
-              onRadioChange={handleWalkChange}
-            />
-            <RadioSimple
-              name="walk"
-              id="4"
-              picked={pickedWalk}
-              value="+ 8 heures"
-              label="+ 8 heures"
-              onRadioChange={handleWalkChange}
-            />
-          </div>
+        <p className="label">La taille de mon animal</p>
+        <div className="radio">
+          <Radio
+            name="size"
+            id="small"
+            value="Petit"
+            picked={picked}
+            img={small}
+            label="0-7 kg"
+            onRadioChange={handleRadioChange}
+          />
+          <Radio
+            name="size"
+            id="medium"
+            value="Moyen"
+            picked={picked}
+            img={medium}
+            label="7-18 kg"
+            onRadioChange={handleRadioChange}
+          />
+          <Radio
+            name="size"
+            id="large"
+            value="Grand"
+            picked={picked}
+            img={big}
+            label="18-45 kg"
+            onRadioChange={handleRadioChange}
+          />
+          <Radio
+            name="size"
+            id="geant"
+            value="Geant"
+            picked={picked}
+            img={geant}
+            label="45+ kg"
+            onRadioChange={handleRadioChange}
+          />
+        </div>
 
-          <p className="label">Horaires des repas</p>
-          <div className="radio-wrapper">
-            <RadioSimple
-              name="mealhours"
-              id="morning"
-              picked={pickedHour}
-              value="Le matin"
-              label="Le matin"
-              onRadioChange={handleHourChange}
-            />
-            <RadioSimple
-              name="mealhours"
-              id="twise"
-              picked={pickedHour}
-              value="Deux fois par jour"
-              label="Deux fois par jour"
-              onRadioChange={handleHourChange}
-            />
-          </div>
+        <p className="label">Horaires des pauses pipi</p>
+        <div className="radio-wrapper">
+          <RadioSimple
+            name="walk"
+            id="1"
+            picked={pickedWalk}
+            value="Entre 0 et 2 heures"
+            label="Entre 0 et 2 heures"
+            onRadioChange={handleWalkChange}
+          />
+          <RadioSimple
+            name="walk"
+            id="2"
+            picked={pickedWalk}
+            value="Entre 2 et 4 heures"
+            label="Entre 2 et 4 heures"
+            onRadioChange={handleWalkChange}
+          />
+          <RadioSimple
+            name="walk"
+            id="3"
+            picked={pickedWalk}
+            value="Entre 4 et 8 heures"
+            label="Entre 4 et 8 heures"
+            onRadioChange={handleWalkChange}
+          />
+          <RadioSimple
+            name="walk"
+            id="4"
+            picked={pickedWalk}
+            value="+ 8 heures"
+            label="+ 8 heures"
+            onRadioChange={handleWalkChange}
+          />
+        </div>
 
-          <p className="label">Niveau d&apos;énergie</p>
-          <div className="radio-wrapper">
-            <RadioSimple
-              name="energy"
-              id="high"
-              picked={pickedEnergy}
-              value="Élève"
-              label="Élève"
-              onRadioChange={handleEnergyChange}
-            />
-            <RadioSimple
-              name="energy"
-              id="middle"
-              picked={pickedEnergy}
-              value="Modéré"
-              label="Modéré"
-              onRadioChange={handleEnergyChange}
-            />
-          </div>
-          <div className="button-container">
-            <Button prop="Enregistrer" />
-            <button
-              className="popup-close-button"
-              type="button"
-              onClick={hideFormContainer}
-            >
-              Fermer
-            </button>
-          </div>
-        </form>
-      </div>
+        <p className="label">Horaires des repas</p>
+        <div className="radio-wrapper">
+          <RadioSimple
+            name="mealhours"
+            id="morning"
+            picked={pickedHour}
+            value="Le matin"
+            label="Le matin"
+            onRadioChange={handleHourChange}
+          />
+          <RadioSimple
+            name="mealhours"
+            id="twise"
+            picked={pickedHour}
+            value="Deux fois par jour"
+            label="Deux fois par jour"
+            onRadioChange={handleHourChange}
+          />
+        </div>
+
+        <p className="label">Niveau d&apos;énergie</p>
+        <div className="radio-wrapper">
+          <RadioSimple
+            name="energy"
+            id="high"
+            picked={pickedEnergy}
+            value="Élève"
+            label="Élève"
+            onRadioChange={handleEnergyChange}
+          />
+          <RadioSimple
+            name="energy"
+            id="middle"
+            picked={pickedEnergy}
+            value="Modéré"
+            label="Modéré"
+            onRadioChange={handleEnergyChange}
+          />
+        </div>
+        <div className="button-container">
+          <Button prop="Enregistrer" />
+          <button
+            className="popup-close-button"
+            type="button"
+            onClick={hideFormContainer}
+          >
+            Fermer
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -65,6 +65,13 @@ export interface FormProps {
   setIsFormContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface AnimalProps {
+  isUpdateAnimalContainerVisible: boolean;
+  setIsUpdateAnimalContainerVisible: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+}
+
 export interface MessageProps {
   clientId: string;
   isMessageOpen: boolean;
