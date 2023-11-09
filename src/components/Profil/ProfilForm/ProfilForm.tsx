@@ -10,7 +10,6 @@ import CheckboxGroup from '../../InputType/Checkbox/Checkbox';
 import Button from '../../InputType/Button/Button';
 
 import './ProfilForm.scss';
-import close_icon from '../../../assets/icons8-close-64.png';
 
 function ProfilForm({
   isFormContainerVisible,
@@ -114,6 +113,7 @@ function ProfilForm({
             id="maison"
             picked={pickedAccomodation}
             value="Maison"
+            label="Maison"
             onRadioChange={handleAccomodationChange}
           />
           <RadioSimple
@@ -121,6 +121,7 @@ function ProfilForm({
             id="appartement"
             picked={pickedAccomodation}
             value="Appartement"
+            label="Appartement"
             onRadioChange={handleAccomodationChange}
           />
           <RadioSimple
@@ -128,6 +129,7 @@ function ProfilForm({
             id="ferme"
             picked={pickedAccomodation}
             value="Ferme"
+            label="Ferme"
             onRadioChange={handleAccomodationChange}
           />
         </div>
@@ -138,6 +140,7 @@ function ProfilForm({
             id="clos"
             picked={pickedGarden}
             value="Jardin clos"
+            label="Jardin clos"
             onRadioChange={handleGardenChange}
           />
           <RadioSimple
@@ -145,6 +148,7 @@ function ProfilForm({
             id="non-clo"
             picked={pickedGarden}
             value="Jardin non clos"
+            label="Jardin non clos"
             onRadioChange={handleGardenChange}
           />
           <RadioSimple
@@ -152,6 +156,7 @@ function ProfilForm({
             id="pas-jardin"
             picked={pickedGarden}
             value="Pas de jardin"
+            label="Pas de jardin"
             onRadioChange={handleGardenChange}
           />
         </div>
@@ -177,6 +182,7 @@ function ProfilForm({
             id="1"
             picked={pickedWalk}
             value="Entre 0 et 2 heures"
+            label="Entre 0 et 2 heures"
             onRadioChange={handleWalkChange}
           />
           <RadioSimple
@@ -184,6 +190,7 @@ function ProfilForm({
             id="2"
             picked={pickedWalk}
             value="Entre 2 et 4 heures"
+            label="Entre 2 et 4 heures"
             onRadioChange={handleWalkChange}
           />
           <RadioSimple
@@ -191,6 +198,7 @@ function ProfilForm({
             id="3"
             picked={pickedWalk}
             value="Entre 4 et 8 heures"
+            label="Entre 4 et 8 heures"
             onRadioChange={handleWalkChange}
           />
           <RadioSimple
@@ -198,6 +206,7 @@ function ProfilForm({
             id="4"
             picked={pickedWalk}
             value="+ 8 heures"
+            label="+ 8 heures"
             onRadioChange={handleWalkChange}
           />
         </div>

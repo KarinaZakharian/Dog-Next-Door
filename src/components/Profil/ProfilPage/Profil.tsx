@@ -13,7 +13,6 @@ import Footer from '../../PageComponents/Footer/Footer';
 import DateRangeComp from '../../InputType/DatePiker/DateRangeSelect';
 import Button from '../../InputType/Button/Button';
 import AnimalCard from '../AnimalCard/AnimalCard';
-import TestimonyCard from '../Testiamonies/Testiamonies';
 
 import marker from '../../../assets/dog-area-blue.png';
 import shadow from '../../../assets/dog-area-shadow-blur.png';
@@ -25,6 +24,7 @@ import DateFormUpdate from '../ProfilForm/DateFormUpdate';
 import pencilIcon from '../../../assets/pencil-white-64.png';
 import calendarIcon from '../../../assets/Calendar-Icon.png';
 import './Profil.scss';
+import AnimalFormUpdate from '../AnimalForm/AnimalFormUpdate';
 
 function Profil() {
   const dispatch = useAppDispatch();
@@ -34,6 +34,8 @@ function Profil() {
   const [isFormContainerVisible, setIsFormContainerVisible] = useState(false);
   const [isDateContainerVisible, setIsDateContainerVisible] = useState(false);
   const [isUpdateContainerVisible, setIsUpdateContainerVisible] =
+    useState(false);
+  const [isUpdateAnimalContainerVisible, setIsUpdateAnimalContainerVisible] =
     useState(false);
 
   const showSignupContainer = () => {
@@ -47,6 +49,9 @@ function Profil() {
   };
   const showUpdateContainer = () => {
     setIsUpdateContainerVisible(true);
+  };
+  const showUpdateAnimalContainer = () => {
+    setIsUpdateAnimalContainerVisible(true);
   };
 
   useEffect(() => {
@@ -74,9 +79,7 @@ function Profil() {
   const disponibility = useAppSelector(
     (state) => state.profil.user.disponibility
   );
-  console.log(disponibility);
   const testimonies = useAppSelector((state) => state.profil.userTestimonials);
-  console.log(testimonies);
   const animal = useAppSelector((state) => state.profil.user.animal);
 
   // Access specific properties within the 'animal' object
@@ -89,8 +92,6 @@ function Profil() {
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
   const center: LatLngExpression = latLng(latitude, longitude);
-
-  console.log(firstname);
 
   const myIcon = new L.Icon({
     iconUrl: marker,
@@ -258,7 +259,7 @@ function Profil() {
                     Mettez à jour votre disponibilité
                   </h3>
                   <switch
-                    onClick={showUpdateContainer}
+                    onClick={showDateContainer}
                     className="profil__user-header-button"
                   >
                     <img
@@ -298,25 +299,28 @@ function Profil() {
             isUpdateContainerVisible={isUpdateContainerVisible}
             setIsUpdateContainerVisible={setIsUpdateContainerVisible}
           />
+          <AnimalFormUpdate
+            isUpdateAnimalContainerVisible={isUpdateAnimalContainerVisible}
+            setIsUpdateAnimalContainerVisible={
+              setIsUpdateAnimalContainerVisible
+            }
+          />
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
             <div className="profil__animal-header">
               <h2 className="profil__animal-name">Mon animal de compagnie</h2>
-              {type && (
-                <div className="profil__user-header-button">
-                  <Link
-                    className="link-animal"
-                    to="/account/animal-form/update"
-                  >
-                    <img
-                      src={pencilIcon}
-                      alt="pencil white"
-                      className="profil__user-header-button-img"
-                      onClick={showUpdateContainer}
-                    />
-                  </Link>
-                </div>
-              )}
+              <div className="profil__booking-button">
+                <switch
+                  onClick={showUpdateAnimalContainer}
+                  className="profil__user-header-button"
+                >
+                  <img
+                    src={pencilIcon}
+                    alt="pencil white"
+                    className="profil__user-header-button-img"
+                  />
+                </switch>
+              </div>
             </div>
 
             {type ? (
@@ -336,7 +340,7 @@ function Profil() {
               </Link>
             )}
           </div>
-          {testimonies && (
+          {/* {testimonies.length > 0 && (
             <div className="profil-testimonies">
               <h2 className="profil-testimonies__title">
                 Avis sur mon service
@@ -345,7 +349,7 @@ function Profil() {
                 <TestimonyCard testimony={testimony.body} />
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <Footer />
