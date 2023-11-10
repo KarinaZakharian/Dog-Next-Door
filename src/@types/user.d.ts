@@ -43,8 +43,8 @@ interface LeafletMapProps {
 export interface BookingProps {
   isBookingContainerVisible: boolean;
   setIsBookingContainerVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  disponibility_date: DisponibilityProps[];
-  id: string;
+  disponibility_date: DisponibilityProps;
+  id: string | undefined;
 }
 
 export interface SignupProps {

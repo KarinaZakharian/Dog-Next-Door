@@ -60,7 +60,7 @@ interface Booking {
 }
 
 interface Disponibility {
-  id: number | null;
+  id: string | null;
   start_date: string | null;
   end_date: string | null;
   // Add more properties as needed

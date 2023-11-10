@@ -36,12 +36,12 @@ function Booking({
   const animal = useAppSelector((state) => state.profil.user.animal);
 
   // Access specific properties within the 'animal' object
-  const type = animal?.type || null;
-  const name = animal?.name || null;
-  const dateBirth = animal?.birth_date || null;
-  const energy = animal?.energy || null;
-  const food = animal?.mealhours || null;
-  const race = animal?.race || null;
+  const type = animal.type;
+  const name = animal.name;
+  const dateBirth = animal.birth_date;
+  const energy = animal.energy;
+  const food = animal.mealhours;
+  const race = animal.race;
 
   // Function to hide the booking container
   const hideBookingContainer = () => {
@@ -55,12 +55,23 @@ function Booking({
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    formData.append('petsitterId', id);
-    formData.append('start_date', disponibility_date.start_date);
-    formData.append('end_date', disponibility_date.end_date);
-    formData.append('disponibility_id', disponibility_date.id);
+    if (
+      disponibility_date.start_date &&
+      disponibility_date.end_date &&
+      disponibility_date.id &&
+      id !== undefined
+    ) {
+      formData.append('petsitterId', id);
+      formData.append('start_date', disponibility_date.start_date);
+      formData.append('end_date', disponibility_date.end_date);
+      formData.append('disponibility_id', disponibility_date.id);
 
-    dispatch(fillBookingForm(formData));
+      dispatch(fillBookingForm(formData));
+      // dispatch(fillProfilForm(formData));
+    } else {
+      // Handle the case where id is undefined
+      console.error('Invalid inputs:');
+    }
 
     // dispatch(fillProfilForm(formData));
   };

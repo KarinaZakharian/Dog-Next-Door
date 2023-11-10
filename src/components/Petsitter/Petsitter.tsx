@@ -201,13 +201,13 @@ function Petsitter() {
                 </div>
               )}
 
-              {testimonies.length > 0 && (
+              {testimonies && (
                 <div className="profil-testimonies">
                   <h2 className="profil-testimonies__title">
                     Avis sur mon service
                   </h2>
                   {testimonies.map((testimony) => (
-                    <TestimonyCard testimony={testimony.comment} />
+                    <TestimonyCard testimony={testimony} />
                   ))}
                 </div>
               )}
