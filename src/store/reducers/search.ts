@@ -1,4 +1,4 @@
-import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import axiosInstance from '../../utils/axios';
 
@@ -6,11 +6,20 @@ interface SearchState {
   users: string[];
   error: string | null;
   message: string | null;
+  centerCoordinates: {
+    latitude: number;
+    longitude: number;
+  };
 }
-export const initialState: SearchState = {
+
+const initialState: SearchState = {
   users: [],
   error: null,
   message: null,
+  centerCoordinates: {
+    latitude: 48.866667,
+    longitude: 2.333333,
+  },
 };
 
 export const searchThunk = createAsyncThunk(
@@ -19,34 +28,42 @@ export const searchThunk = createAsyncThunk(
     const objData = Object.fromEntries(formData);
     try {
       const data = await axiosInstance.post('/search', objData);
-      return data; // Return the data in case of success
+      return data;
     } catch (error) {
       if (typeof error === 'string') {
-        return thunkAPI.rejectWithValue(error); // Return the error message in case of an error
+        return thunkAPI.rejectWithValue(error);
       }
-      throw error; // Throw the error to maintain the rejected state
+      throw error;
     }
   }
 );
 
-const searchReducer = createReducer(initialState, (builder) => {
-  builder
-
-    .addCase(searchThunk.rejected, (state, action) => {
-      if (action.payload) {
-        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-        state.error = action.payload;
-      } else {
-        state.error = action.error.message;
-      }
-      state.message = null;
-    })
-
-    .addCase(searchThunk.fulfilled, (state, action) => {
-      state.error = null;
-      state.message = action.payload.data;
-      state.users = action.payload.data;
-    });
+const searchSlice = createSlice({
+  name: 'search',
+  initialState,
+  reducers: {
+    updateCoordinates(state, action) {
+      state.centerCoordinates = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(searchThunk.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
+        } else {
+          state.error = action.error.message;
+        }
+        state.message = null;
+      })
+      .addCase(searchThunk.fulfilled, (state, action) => {
+        state.error = null;
+        state.message = action.payload.data;
+        state.users = action.payload.data;
+      });
+  },
 });
 
-export default searchReducer;
+export const { updateCoordinates } = searchSlice.actions;
+
+export default searchSlice.reducer;

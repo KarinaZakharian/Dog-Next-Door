@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
+import { updateCoordinates } from '../../../store/reducers/search';
 import './Addresse.scss';
 interface AutoProps {
   setCoordinates: React.Dispatch<
@@ -19,6 +21,7 @@ interface AutoCompleteProps {
 function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
+  const dispatch = useAppDispatch();
 
   const getAddressesFromAPI = async (search: string) => {
     try {
@@ -34,8 +37,15 @@ function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
         }
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
+  };
+
+  const setCenterCoordinates = (CenterCoordinates: {
+    longitude: number;
+    latitude: number;
+  }) => {
+    dispatch(updateCoordinates(CenterCoordinates));
   };
 
   const setAddressGeometryAndCloseAutocompletion = (geolocalisation: {
@@ -79,6 +89,10 @@ function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
                   setAddressGeometryAndCloseAutocompletion({
                     x: address.geometry.coordinates[0],
                     y: address.geometry.coordinates[1],
+                  });
+                  setCenterCoordinates({
+                    longitude: address.geometry.coordinates[0],
+                    latitude: address.geometry.coordinates[1],
                   });
                 }}
               >

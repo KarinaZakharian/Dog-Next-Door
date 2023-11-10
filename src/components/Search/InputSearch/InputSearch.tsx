@@ -19,6 +19,7 @@ function InputSearch() {
   const dispatch = useAppDispatch();
 
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+
   const [pickedRadius, setRadius] = useState(searchRadius);
 
   const [pickedAnimal, setAnimal] = useState(animal);

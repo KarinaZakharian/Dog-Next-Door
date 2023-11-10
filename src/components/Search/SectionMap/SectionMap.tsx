@@ -1,6 +1,5 @@
 import { Marker, Popup } from 'react-leaflet';
 import L, { LatLngLiteral } from 'leaflet';
-import React from 'react';
 import { useAppSelector } from '../../../hooks/redux';
 
 import LeafletMap from '../../PageComponents/LeafletMap/LeafletMap';
@@ -16,6 +15,7 @@ function SectionMap() {
   const users: UserProps[] = useAppSelector(
     (state) => state.search.users
   ) as unknown as UserProps[];
+
   const avatarNone = avatarLogo;
 
   const myIcon = new L.Icon({
@@ -38,19 +38,16 @@ function SectionMap() {
     shadowAnchor: [3, 17],
   });
 
-  const userOne =
-    users.length > 0
-      ? users[0]
-      : {
-          latitude: 48.866667,
-          longitude: 2.333333,
-        };
-  const center: LatLngLiteral = L.latLng(userOne.latitude, userOne.longitude);
+  const coordinates = useAppSelector((state) => state.search.centerCoordinates);
+
+  const center: LatLngLiteral = L.latLng(
+    coordinates.latitude,
+    coordinates.longitude
+  );
 
   return (
     <div className="map-container">
       <LeafletMap key={center.toString()} center={center} zoom={13}>
-        <Marker position={L.latLng(center)} icon={myCenterIcon} />
         {users.map((user: UserProps) => (
           <Marker
             key={user.id}
@@ -68,6 +65,11 @@ function SectionMap() {
             </Popup>
           </Marker>
         ))}
+        <Marker position={L.latLng(center)} icon={myCenterIcon}>
+          <Popup>
+            <p>Emplacement de votre recherche</p>
+          </Popup>
+        </Marker>
       </LeafletMap>
     </div>
   );

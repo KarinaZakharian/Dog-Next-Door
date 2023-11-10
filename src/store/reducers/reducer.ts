@@ -2,7 +2,7 @@ import signupReducer from './signup';
 import homeReducer from './home';
 import profilFormReducer from './profil-form';
 import animalFormReducer from './animal-form';
-import searchReducer from './search';
+import searchSlice from './search';
 import sitterReducer from './sitter';
 import profilReduser from './profil';
 import bookingFormReducer from './booking';
@@ -16,7 +16,7 @@ const reducer = {
   home: homeReducer,
   profilForm: profilFormReducer,
   animalForm: animalFormReducer,
-  search: searchReducer,
+  search: searchSlice,
   sitter: sitterReducer,
   profil: profilReduser,
   booking: bookingFormReducer,

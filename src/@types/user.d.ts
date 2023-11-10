@@ -82,12 +82,7 @@ export interface MessageProps {
   isMessageOpen: boolean;
   setMessageOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-// export type LeafletMapProps = {
-//   center: [number, number];
-//   children: ReactNode;
-//   zoom: number;
-//   scrollZooom: boolean;
-// } & MapOptions;
+
 export interface HomeState {
   date: string | null;
   city: string | null;
