@@ -8,8 +8,7 @@ import mainLogo from '../../../../assets/Logo-ODogNextDoor-blue.png';
 import './Humburger.scss';
 
 function Humburger() {
-  const firstname = useAppSelector((state) => state.profil.firstname);
-  // const firstname = 'karina';
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -63,6 +62,9 @@ function Humburger() {
             </NavLink>
             <NavLink className="menu-item" to="/account/inbox">
               Boite de reception
+            </NavLink>
+            <NavLink className="menu-item" to="/search">
+              Recherche
             </NavLink>
           </>
         )}

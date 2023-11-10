@@ -18,8 +18,8 @@ function DateForm({
     setIsDateContainerVisible(false);
   };
   const dispatch = useAppDispatch();
-  const dateError = useAppSelector((state) => state.profil.dateError);
-  const dateMessage = useAppSelector((state) => state.profil.dateMessage);
+  const dateError = useAppSelector((state) => state.profil.user.dateError);
+  const dateMessage = useAppSelector((state) => state.profil.user.dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();

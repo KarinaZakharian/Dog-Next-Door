@@ -23,7 +23,7 @@ import { reconnect } from '../../store/reducers/profil';
 import AboutUs from '../Forms/About/AboutUs';
 
 function App() {
-  const firstname = useAppSelector((state) => state.profil.firstname);
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
   const dispatch = useAppDispatch();
   // Au premier chargement de l'application
   useEffect(() => {

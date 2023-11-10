@@ -33,7 +33,7 @@ function Booking({
   // information from the Redux store
   const error = useAppSelector((state) => state.booking.error);
   const message = useAppSelector((state) => state.booking.message);
-  const animal = useAppSelector((state) => state.profil.animal);
+  const animal = useAppSelector((state) => state.profil.user.animal);
 
   // Access specific properties within the 'animal' object
   const type = animal?.type || null;

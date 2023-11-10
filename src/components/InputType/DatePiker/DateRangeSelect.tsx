@@ -8,8 +8,8 @@ interface Disponibility {
   end_date: string | null;
 }
 function DateRangeComp(disponibility: Disponibility) {
-  const { start_date, end_date } = disponibility.disponibility;
-  // console.log(start_date, end_date);
+  const { start_date, end_date, id } = disponibility.disponibility;
+  console.log(start_date, end_date, disponibility);
   /* Set your desired start and end dates here */
   const startDate = new Date(`${start_date}`);
   const endDate = new Date(`${end_date}`);

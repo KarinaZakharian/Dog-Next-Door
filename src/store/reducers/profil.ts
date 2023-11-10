@@ -6,16 +6,17 @@ import {
 
 import axiosInstance from '../../utils/axios';
 import { LoginState } from '../../@types/user';
+import { RootState } from '..';
 
 interface User {
   accomodation: string | null;
   additionnal_information: (null | unknown)[];
-  animal: Animal | null;
+  animal: Animal;
   animal_size: (null | unknown)[];
   avatar: string | null;
-  booking: Booking | null;
+  booking: Booking;
   description: string | null;
-  disponibility: Disponibility | null;
+  disponibility: Disponibility;
   email: string | null;
   firstname: string | null;
   garden: string | null;
@@ -25,7 +26,6 @@ interface User {
   longitude: number | null;
   user_address: string | null;
   walking_duration: string | null;
-  testimonies: Testimonial[] | [];
   error: unknown;
   dateError: unknown;
   dateMessage: string | null;
@@ -34,8 +34,10 @@ interface User {
   logoutMessage: string | null;
 }
 interface Testimonial {
+  id: number | null;
   comment: string | null;
-  id: string | null;
+  sender_id: number | null;
+  // Add more properties as needed
 }
 interface Animal {
   name: string | null;
@@ -66,12 +68,31 @@ interface Disponibility {
 const initialUserState: User = {
   accomodation: null,
   additionnal_information: [],
-  animal: [],
+  animal: {
+    name: null,
+    size: null,
+    birth_date: null,
+    type: null,
+    energy: null,
+    mealhours: null,
+    walk: null,
+    race: null,
+  },
   animal_size: [],
   avatar: null,
-  booking: null,
+  booking: {
+    id: null,
+    start_date: null,
+    end_date: null,
+    message: null,
+    booking_status: null,
+  },
   description: null,
-  disponibility: null,
+  disponibility: {
+    id: null,
+    start_date: null,
+    end_date: null,
+  },
   email: null,
   firstname: null,
   garden: null,
@@ -81,7 +102,6 @@ const initialUserState: User = {
   longitude: null,
   user_address: null,
   walking_duration: null,
-  testimonies: [],
   error: null,
   dateError: null,
   dateMessage: null,
@@ -89,6 +109,21 @@ const initialUserState: User = {
   updateMessage: null,
   logoutMessage: null,
 };
+const initialTestimonialsState: Testimonial = {
+  id: null,
+  comment: null,
+  sender_id: null,
+};
+
+const initialState = {
+  user: initialUserState,
+  userTestimonials: initialTestimonialsState,
+};
+
+interface UserData {
+  user: User;
+  userTestimonials: Testimonial;
+}
 
 export const success = createAction('form/success ');
 
@@ -116,8 +151,8 @@ export const getAditionalFormUpdate = createAction(
 
 export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {
-    const { data } = await axiosInstance.get('/account');
-    return data as User;
+    const { data } = await axiosInstance.get<UserData>('/account');
+    return data as UserData;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
@@ -184,30 +219,34 @@ export const login = createAsyncThunk(
   }
 );
 export const reconnect = createAction<string | null>('reconnect');
-const profilReducer = createReducer(initialUserState, (builder) => {
+const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
       console.log(action.payload);
-      const userData = action.payload;
 
+      const userData = action.payload.user;
+      const commentData = action.payload.userTestimonials;
+      state.userTestimonials.comment = commentData.comment;
+      if (commentData) {
+        state.userTestimonials.comment;
+      }
       if (userData) {
-        state.firstname = userData.firstname;
-        state.lastname = userData.lastname;
-        state.testimonies = userData.testimonies;
-        state.avatar = userData.avatar;
-        state.user_address = userData.user_address;
-        state.longitude = userData.longitude;
-        state.latitude = userData.latitude;
-        state.description = userData.description;
-        state.garden = userData.garden;
-        state.animal_size = userData.animal_size;
-        state.accomodation = userData.accomodation;
-        state.additionnal_information = userData.additionnal_information;
-        state.walking_duration = userData.walking_duration;
-        state.disponibility = userData.disponibility;
+        state.user.firstname = userData.firstname;
+        state.user.lastname = userData.lastname;
+        state.user.avatar = userData.avatar;
+        state.user.user_address = userData.user_address;
+        state.user.longitude = userData.longitude;
+        state.user.latitude = userData.latitude;
+        state.user.description = userData.description;
+        state.user.garden = userData.garden;
+        state.user.animal_size = userData.animal_size;
+        state.user.accomodation = userData.accomodation;
+        state.user.additionnal_information = userData.additionnal_information;
+        state.user.walking_duration = userData.walking_duration;
+        state.user.disponibility = userData.disponibility;
 
         if (userData.animal) {
-          state.animal = {
+          state.user.animal = {
             name: userData.animal.name,
             size: userData.animal.size,
             birth_date: userData.animal.birth_date,
@@ -220,23 +259,23 @@ const profilReducer = createReducer(initialUserState, (builder) => {
         }
       }
 
-      state.error = null;
+      state.user.error = null;
     })
     .addCase(fetchUser.rejected, (state, action) => {
-      state.error = action.payload;
-      state.firstname = null;
+      state.user.error = action.payload;
+      state.user.firstname = null;
     })
     .addCase(fillDateForm.rejected, (state, action) => {
       console.log(action.payload);
-      state.dateError = action.payload;
+      state.user.dateError = action.payload;
     })
     .addCase(fillDateForm.fulfilled, (state, action) => {
       console.log(action.payload);
-      state.dateError = null;
-      state.dateMessage = action.payload.message;
+      state.user.dateError = null;
+      state.user.dateMessage = action.payload.message;
       const userData = action.payload;
       if (userData) {
-        state.disponibility = {
+        state.user.disponibility = {
           start_date: userData.start_date,
           end_date: userData.end_date,
           id: userData.id,
@@ -245,16 +284,16 @@ const profilReducer = createReducer(initialUserState, (builder) => {
     })
     .addCase(updateDateForm.rejected, (state, action) => {
       console.log(action.payload);
-      state.updateError = action.payload;
+      state.user.updateError = action.payload;
     })
     .addCase(updateDateForm.fulfilled, (state, action) => {
       console.log(action.payload);
-      state.updateError = null;
+      state.user.updateError = null;
       const userData = action.payload;
-      state.updateMessage = action.payload.message;
+      state.user.updateMessage = action.payload.message;
       console.log(action.payload.message);
       if (userData) {
-        state.disponibility = {
+        state.user.disponibility = {
           start_date: userData.start_date,
           end_date: userData.end_date,
           id: userData.id,
@@ -263,53 +302,53 @@ const profilReducer = createReducer(initialUserState, (builder) => {
     })
     .addCase(getSignupFormUpdate, (state, action) => {
       if (action.payload) {
-        state.lastname = action.payload.objData.lastname;
-        state.firstname = action.payload.objData.firstname;
-        state.user_address = action.payload.objData.user_address;
-        state.latitude = action.payload.objData.latitude;
-        state.longitude = action.payload.objData.longitude;
+        state.user.lastname = action.payload.objData.lastname;
+        state.user.firstname = action.payload.objData.firstname;
+        state.user.user_address = action.payload.objData.user_address;
+        state.user.latitude = action.payload.objData.latitude;
+        state.user.longitude = action.payload.objData.longitude;
       }
     })
     .addCase(getAditionalFormUpdate, (state, action) => {
       const userData = action.payload.objData;
       if (userData) {
-        state.description = userData.description;
-        state.garden = userData.garden;
-        state.animal_size = userData.animal_size;
-        state.accomodation = userData.accomodation;
-        state.additionnal_information = userData.additionnal_information;
-        state.walking_duration = userData.walking_duration;
+        state.user.description = userData.description;
+        state.user.garden = userData.garden;
+        state.user.animal_size = userData.animal_size;
+        state.user.accomodation = userData.accomodation;
+        state.user.additionnal_information = userData.additionnal_information;
+        state.user.walking_duration = userData.walking_duration;
       }
     })
     .addCase(success, (state) => {
-      state.dateError = null;
-      state.dateMessage = null;
-      state.updateError = null;
-      state.updateMessage = null;
-      state.logoutMessage = null;
+      state.user.dateError = null;
+      state.user.dateMessage = null;
+      state.user.updateError = null;
+      state.user.updateMessage = null;
+      state.user.logoutMessage = null;
     })
     .addCase(login.fulfilled, (state, action) => {
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.error = null;
+      state.user.firstname = action.payload.firstname;
+      state.user.lastname = action.payload.lastname;
+      state.user.error = null;
     })
     .addCase(login.rejected, (state, action) => {
       console.log(action.payload);
-      state.error = action.payload.response.data;
-      state.firstname = null;
+      state.user.error = action.payload.response.data;
+      state.user.firstname = null;
       // je récupère l'erreur directement dans `action.error`
     })
 
     .addCase(logout.fulfilled, (state, action) => {
       //console.log(action.payload);
-      state.logoutMessage = action.payload.message;
-      state.firstname = null;
+      state.user.logoutMessage = action.payload.message;
+      state.user.firstname = null;
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
     })
     .addCase(reconnect, (state, action) => {
       console.log(action.payload);
-      state.firstname = action.payload;
+      state.user.firstname = action.payload;
     });
 });
 

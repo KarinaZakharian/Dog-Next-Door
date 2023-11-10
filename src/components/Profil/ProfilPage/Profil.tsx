@@ -61,25 +61,33 @@ function Profil() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  const firstname = useAppSelector((state) => state.profil.firstname);
-  const lastname = useAppSelector((state) => state.profil.lastname);
-  const avatar = useAppSelector((state) => state.profil.avatar);
-  const longitude = useAppSelector((state) => state.profil.longitude);
-  const latitude = useAppSelector((state) => state.profil.latitude);
-  const address = useAppSelector((state) => state.profil.user_address);
-  const size = useAppSelector((state) => state.profil.animal_size);
-  const description = useAppSelector((state) => state.profil.description);
-  const garden = useAppSelector((state) => state.profil.garden);
-  const accommodation = useAppSelector((state) => state.profil.accomodation);
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
+  const lastname = useAppSelector((state) => state.profil.user.lastname);
+  const avatar = useAppSelector((state) => state.profil.user.avatar);
+  const longitude = useAppSelector((state) => state.profil.user.longitude);
+  const latitude = useAppSelector((state) => state.profil.user.latitude);
+  const address = useAppSelector((state) => state.profil.user.user_address);
+  const size = useAppSelector((state) => state.profil.user.animal_size);
+  const description = useAppSelector((state) => state.profil.user.description);
+  const garden = useAppSelector((state) => state.profil.user.garden);
+  const accommodation = useAppSelector(
+    (state) => state.profil.user.accomodation
+  );
   const additionnal_information = useAppSelector(
-    (state) => state.profil.additionnal_information
+    (state) => state.profil.user.additionnal_information
   );
   const walking_duration = useAppSelector(
-    (state) => state.profil.walking_duration
+    (state) => state.profil.user.walking_duration
   );
-  const disponibility = useAppSelector((state) => state.profil.disponibility);
-  const testimonies = [useAppSelector((state) => state.profil.testimonies)];
-  const animal = useAppSelector((state) => state.profil.animal);
+  const disponibility = useAppSelector(
+    (state) => state.profil.user.disponibility
+  );
+  console.log(disponibility);
+  const testimonies = useAppSelector(
+    (state) => state.profil.userTestimonials.comment
+  );
+  console.log(testimonies);
+  const animal = useAppSelector((state) => state.profil.user.animal);
 
   // Access specific properties within the 'animal' object
   const type = animal?.type || null;
@@ -92,7 +100,7 @@ function Profil() {
   const race = animal?.race || null;
   const center: LatLngExpression = latLng(latitude, longitude);
 
-  console.log(testimonies);
+  console.log(firstname);
 
   const myIcon = new L.Icon({
     iconUrl: marker,
@@ -340,16 +348,16 @@ function Profil() {
                 </Link>
               )}
             </div>
-            {testimonies.length > 0 && (
-            <div className="profil-testimonies">
-            <h2 className="profil-testimonies__title">
-             Avis sur mon service
-            </h2>
-            {testimonies.map((testimony) => (
-         <TestimonyCard testimony={testimony.comment} />
-          ))}
-  </div>
-)}
+            {testimonies && (
+              <div className="profil-testimonies">
+                <h2 className="profil-testimonies__title">
+                  Avis sur mon service
+                </h2>
+                {testimonies.map((testimony) => (
+                  <TestimonyCard testimony={testimony} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </Main>

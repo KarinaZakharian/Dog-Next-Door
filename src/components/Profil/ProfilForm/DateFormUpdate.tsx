@@ -19,8 +19,10 @@ function DateFormUpdate({
     setIsUpdateContainerVisible(false);
   };
   const dispatch = useAppDispatch();
-  const dateError = useAppSelector((state) => state.profil.updateError);
-  const dateMessage = useAppSelector((state) => state.profil.updateMessage);
+  const dateError = useAppSelector((state) => state.profil.user.updateError);
+  const dateMessage = useAppSelector(
+    (state) => state.profil.user.updateMessage
+  );
   //console.log(dateMessage);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {

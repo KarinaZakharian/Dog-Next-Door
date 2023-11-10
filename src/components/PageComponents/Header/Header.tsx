@@ -12,8 +12,10 @@ import './Header.scss';
 import { useEffect } from 'react';
 
 function Header() {
-  const firstname = useAppSelector((state) => state.profil.firstname);
-  const logoutMessage = useAppSelector((state) => state.profil.logoutMessage);
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
+  const logoutMessage = useAppSelector(
+    (state) => state.profil.user.logoutMessage
+  );
   //console.log(logoutMessage);
 
   const dispatch = useAppDispatch();
