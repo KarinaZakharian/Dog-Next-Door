@@ -50,8 +50,8 @@ const userDatamapper = {
       const userToAdd = newUser;
       // console.log(userToAdd);
       const query = `INSERT INTO "user"
-        ("firstname", "lastname", "email", "user_address", "user_password", "latitude", "longitude")
-        VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+        ("firstname", "lastname", "email","avatar", "user_address", "user_password", "latitude", "longitude")
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
       const {
         firstname,
         lastname,
@@ -65,6 +65,7 @@ const userDatamapper = {
         firstname,
         lastname,
         email,
+        'avatar6.jpg',
         user_address,
         user_password,
         latitude,
@@ -85,7 +86,6 @@ const userDatamapper = {
     const latitude = parseFloat(resultSearch.latitude);
     const longitude = parseFloat(resultSearch.longitude);
     const userId = parseInt(id);
-
     const radius_km = parseInt(resultSearch.radius);
     let values = [];
     let query= ``;
@@ -201,7 +201,6 @@ const userDatamapper = {
 
       return result;
     } catch (error) {
-      console.log(error);
       return error;
     }
   },

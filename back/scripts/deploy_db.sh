@@ -20,3 +20,4 @@ psql -f ./scripts/import_data.sql
 
 
 psql -f ./scripts/fonctions.sql
+ 

@@ -40,10 +40,9 @@ const userController = {
         })
         .status(200)
         .json(userFound);
-        // req.session.user = [userToken];
-        // console.log(req.session.user);
+        
       } else {
-        console.log("je suis dans le catch");
+        
         res.status(401).json('Couple identifiant mot de passe incorrect');
         return;
       }
@@ -64,8 +63,12 @@ const userController = {
         const userId = parseInt(req.params.id);
         
         const user = await userDatamapper.getOneUserById(userId);
-        // console.log(user);
-        res.status(200).json(user);
+        const userTestimonials = await inboxDatamapper.getAllTestimonies(userId);
+        if(user && userTestimonials){
+        res.status(200).json({
+          "user": user,
+         "userTestimonials":userTestimonials });
+        }
       } catch (error) {
         res.status(500).json(error.toString());
       }
@@ -78,7 +81,7 @@ const userController = {
         const user = await userDatamapper.getOneUserById(userId);
         const userTestimonials = await inboxDatamapper.getAllTestimonies(userId);
         if(user && userTestimonials){
-res.status(200).json({
+        res.status(200).json({
           "user": user,
          "userTestimonials":userTestimonials });
         }
@@ -90,7 +93,7 @@ res.status(200).json({
     
     createUser: async (req, res) => {
       const newUser = req.body;
-      console.log(newUser);
+      
       
       try {
         // Vérification de l'existence du compte
@@ -118,7 +121,7 @@ res.status(200).json({
           
           const response = await userDatamapper.addUser(newUser);
           console.log(response);
-          res.status(200).json('Ajout utilisateur');
+          res.status(200).json('Vous êtes désormais inscrit');
         } catch (error) {
           res.status(404).json('Erreur de connexion server');
         }
@@ -127,8 +130,6 @@ res.status(200).json({
       findUserByDistance: async (req, res) => {
         const userId = req.userId;
         const searchParameters = req.body;
-        console.log(searchParameters);
-        console.log(userId);
         try {
           const users = await userDatamapper.getUsersByDistance(searchParameters, userId);
           res.json(users);
@@ -241,7 +242,6 @@ res.status(200).json({
                       sqlEndDate,
                       userId
                       );
-                      console.log(start_date_front,end_date_front);
                       res.json({"start_date": start_date_front ,"end_date": end_date_front , "message":"Vous venez de créer une disponibilité"});
                       
                       
@@ -277,7 +277,6 @@ res.status(200).json({
                   updateOurAnimal: async (req,res) => {
                     const userId = req.userId;
                     const newAnimal = req.body;
-                    console.log(newAnimal);
                     
                     try {
                       const ourNewAnimal = await userDatamapper.modifyOurAnimal(newAnimal,userId);

@@ -8,7 +8,7 @@ const inboxController = {
         try {
             const userMessage = await inboxDatamapper.getMessagesById(id);
             
-            res.json(userMessage);
+            res.status(200).json(userMessage);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -34,21 +34,7 @@ const inboxController = {
         }
         
     },
-    
-    // findUpcomingMessages : async (req,res) => {
-    //     const id = req.userId;
-    //     try {
-        
-            
-    //         const userMessage = await inboxDatamapper.getUpcomingMessages(id);
-            
-    //         res.json(userMessage);
-
-    //     } catch (error) {
-    //         res.status(500).json(error.toString());
-    //     }
-        
-    // },
+ 
     
     findBookingRequest : async (req,res) => {
         const userId = req.userId;
@@ -63,7 +49,7 @@ const inboxController = {
                 message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
                 return message
           });
-            res.json(userMessageList);
+            res.status(200).json(userMessageList);
 
         } catch (error) {
             res.status(500).json(error.toString());
@@ -81,7 +67,7 @@ const inboxController = {
                 message.booking.end_date = message.booking.end_date.split("-").reverse().join("/");
                  return message
           });
-            res.json(userMessageList);
+          res.status(200).json(userMessageList);
 
         } catch (error) {
             res.status(500).json([]);
@@ -100,7 +86,7 @@ const inboxController = {
                 const bookingAccept = await inboxDatamapper.bookingAccepted(information.clientId);
                 
                 if(bookingAccept){
-                   return res.json({"message" : "Vous venez de valider votre réservation"})
+                   return res.status(200).json({"message" : "Vous venez de valider votre réservation"})
                 }
                 
             }else {
@@ -139,7 +125,7 @@ const inboxController = {
                    return message
             });
 
-            res.json(userMessage);
+            res.status(200).json(userMessage);
 
         } catch (error) {
             res.status(500).json(error.toString());
