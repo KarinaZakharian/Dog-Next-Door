@@ -20,8 +20,8 @@ function Login() {
   const dispatch = useAppDispatch();
 
   // Get user data from Redux store
-  const firstname = useAppSelector((state) => state.profil.firstname);
-  const error = useAppSelector((state) => state.profil.error);
+  const firstname = useAppSelector((state) => state.profil.user.firstname);
+  const error = useAppSelector((state) => state.profil.user.error);
 
   // State to manage form validation
   const [valid, setIsValid] = useState(true);

@@ -6,7 +6,6 @@ import {
 
 import axiosInstance from '../../utils/axios';
 import { LoginState } from '../../@types/user';
-import { RootState } from '..';
 
 interface User {
   accomodation: string | null;
@@ -35,7 +34,7 @@ interface User {
 }
 interface Testimonial {
   id: number | null;
-  comment: string | null;
+  body: string | null;
   sender_id: number | null;
   // Add more properties as needed
 }
@@ -111,7 +110,7 @@ const initialUserState: User = {
 };
 const initialTestimonialsState: Testimonial = {
   id: null,
-  comment: null,
+  body: null,
   sender_id: null,
 };
 
@@ -226,10 +225,9 @@ const profilReducer = createReducer(initialState, (builder) => {
 
       const userData = action.payload.user;
       const commentData = action.payload.userTestimonials;
-      state.userTestimonials.comment = commentData.comment;
-      if (commentData) {
-        state.userTestimonials.comment;
-      }
+      console.log(action.payload.userTestimonials)
+      state.userTestimonials.body = commentData.body;
+    
       if (userData) {
         state.user.firstname = userData.firstname;
         state.user.lastname = userData.lastname;

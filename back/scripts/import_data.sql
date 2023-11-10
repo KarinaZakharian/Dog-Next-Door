@@ -25,9 +25,22 @@ VALUES
 ('Charlotte', 'Green', 'charlottegreen@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1994-01-04', 'avatar20.jpg', '20', 'Rue de Lyon', '69005', 'Lyon', 'France', '45.7640', '4.8357'),
 ('Matthew', 'Baker', 'mat@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1989-05-21', 'avatar21.jpg', '21', 'Rue de Paris', '75006', 'Paris', 'France', '48.8495', '2.3515'),
 ('Amelia', 'Adams', 'amelia@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119'),
-('Chris', 'MOBY', 'moby@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1980-11-27', 'avatar-Chris.png', '22', 'Paris 75007', '75007', 'Paris', 'France', '48.859', '2.347'),
-('Amaury', 'JEUNOT', 'amaury@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-11-27', 'avatar-Amaury.png', '22', 'Paris 75019', '75019', 'Paris', 'France', '48.866667', '2.333333');
+('Chris', 'MOBY', 'moby@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1980-11-27', 'avatar5.jpg', '22', 'Paris 75007', '75007', 'Paris', 'France', '48.859', '2.347'),
+('Amaury', 'JEUNOT', 'amaury@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-11-27', 'avatar8.jpg', '22', 'Paris 75019', '75019', 'Paris', 'France', '48.866667', '2.333333');
 
+
+INSERT INTO "testimonial" ("body","rating","user_id","sender_id")
+VALUES 
+('1er commentaire','5', 24, 23),
+('2eme commentaire','5', 24, 23),
+('3eme commentaire','5', 24, 23),
+('4eme commentaire','5', 24, 23),
+('5eme commentaire','5', 24, 23),
+('6eme commentaire','5', 23, 24),
+('7eme commentaire','5', 23, 24),
+('8eme commentaire','5', 23, 24),
+('9eme commentaire','5', 23, 24),
+('10eme commentaire','5', 23, 24);
 -- INSERT INTO "disponibility" ("start_date","end_date")
 -- VALUES
 -- ('20/10/2023', '28/10/2023'),

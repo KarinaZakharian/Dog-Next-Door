@@ -84,7 +84,7 @@ function Profil() {
   );
   console.log(disponibility);
   const testimonies = useAppSelector(
-    (state) => state.profil.userTestimonials.comment
+    (state) => state.profil.userTestimonials.body
   );
   console.log(testimonies);
   const animal = useAppSelector((state) => state.profil.user.animal);
