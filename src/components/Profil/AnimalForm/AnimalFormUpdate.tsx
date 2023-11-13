@@ -29,7 +29,7 @@ function AnimalFormUpdate() {
 
   const error = useAppSelector((state) => state.animalForm.updateError);
   const message = useAppSelector((state) => state.animalForm.updateMessage);
-  const animal = useAppSelector((state) => state.profil.animal);
+  const animal = useAppSelector((state) => state.profil.user.animal);
 
   // Access specific properties within the 'animal' object
   const type = animal?.type || null;
@@ -80,8 +80,9 @@ function AnimalFormUpdate() {
     const formData = new FormData(form);
     console.log(Object.fromEntries(formData));
     const objData = Object.fromEntries(formData);
+
     const nameIsValid = await nameSchema.isValid({
-      animal: `${objData.animal}`,
+      name: `${objData.name}`,
     });
     setNameIsValid(nameIsValid);
     const raceIsValid = await raceSchema.isValid({

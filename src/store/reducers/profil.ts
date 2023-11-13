@@ -6,6 +6,7 @@ import {
 
 import axiosInstance from '../../utils/axios';
 import { LoginState } from '../../@types/user';
+import { Interface } from 'readline';
 
 interface User {
   accomodation: string | null;
@@ -31,6 +32,7 @@ interface User {
   updateError: unknown;
   updateMessage: string | null;
   logoutMessage: string | null;
+  isLoading: boolean;
 }
 interface Testimonial {
   id: number | null;
@@ -107,12 +109,9 @@ const initialUserState: User = {
   updateError: null,
   updateMessage: null,
   logoutMessage: null,
+  isLoading: false,
 };
-const initialTestimonialsState: Testimonial = {
-  id: null,
-  body: null,
-  sender_id: null,
-};
+const initialTestimonialsState: Testimonial[] = [];
 
 const initialState = {
   user: initialUserState,
@@ -121,7 +120,7 @@ const initialState = {
 
 interface UserData {
   user: User;
-  userTestimonials: Testimonial;
+  userTestimonials: Testimonial[];
 }
 
 export const success = createAction('form/success ');
@@ -222,12 +221,11 @@ const profilReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUser.fulfilled, (state, action) => {
       console.log(action.payload);
-
+      state.user.isLoading = false;
       const userData = action.payload.user;
-      const commentData = action.payload.userTestimonials;
-      console.log(action.payload.userTestimonials)
-      state.userTestimonials.body = commentData.body;
-    
+      console.log(action.payload.userTestimonials);
+      state.userTestimonials = [...action.payload.userTestimonials];
+
       if (userData) {
         state.user.firstname = userData.firstname;
         state.user.lastname = userData.lastname;
@@ -260,8 +258,13 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.user.error = null;
     })
     .addCase(fetchUser.rejected, (state, action) => {
+      state.user.isLoading = false;
       state.user.error = action.payload;
       state.user.firstname = null;
+    })
+    .addCase(fetchUser.pending, (state, action) => {
+      state.user.isLoading = true;
+      state.user.error = action.payload;
     })
     .addCase(fillDateForm.rejected, (state, action) => {
       console.log(action.payload);
