@@ -7,6 +7,20 @@ export const loginSchema = yup.object().shape({
   user_password: yup.string().min(4).max(25).required(),
 });
 
+export const signupSchema = yup.object().shape({
+  lastname: yup.string().trim().required('Inscrivez votre nom'),
+  firstname: yup.string().trim().required('Inscrivez votre prénom'),
+  user_address: yup.string().trim().required('Inscrivez votre adresse'),
+  email: yup
+    .string()
+    .email()
+    .required('Votre adresse e-mail n&apos;est pas valide'),
+  user_password: yup
+    .string()
+    .min(4)
+    .max(25)
+    .required('Votre password n&apos;est pas valide'),
+});
 export const emailSchema = yup.object().shape({
   email: yup.string().email().required(),
 });
