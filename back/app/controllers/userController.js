@@ -98,15 +98,14 @@ const userController = {
       try {
         // Vérification de l'existence du compte
         const userExist = await userDatamapper.getOneUserByEmail(newUser);
+        console.log(userExist);
         if (userExist) {
-          res.status(401).json({
-            message: 'Cet email est déjà utilisé ! Veuillez vous logger',
-          });
-          return;
+          res.status(401).json('Cet email est déjà utilisé ! Veuillez vous logger');
+          return
         }
         
         // Remplacement du mdp par un mdp crypté
-        newUser.user_password = await bcrypt.hash(
+          newUser.user_password = await bcrypt.hash(
           newUser.user_password,
           parseInt(process.env.SALT)
           );
@@ -120,7 +119,7 @@ const userController = {
           //! Validation de la longitude et lattitude via API Gouv
           
           const response = await userDatamapper.addUser(newUser);
-          console.log(response);
+          
           res.status(200).json('Vous êtes désormais inscrit');
         } catch (error) {
           res.status(404).json('Erreur de connexion server');

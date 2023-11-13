@@ -2,7 +2,7 @@ import React from 'react';
 import './Testiamonies.scss';
 
 interface TestimonyProps {
-  testimony: string;
+  testimony: string | null;
 }
 
 function TestimonyCard({ testimony }: TestimonyProps) {

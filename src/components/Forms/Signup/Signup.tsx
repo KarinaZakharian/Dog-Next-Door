@@ -1,16 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
+import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { signup, success } from '../../../store/reducers/signup';
-import {
-  emailSchema,
-  passwordSchema,
-  firstnameSchema,
-  lastnameSchema,
-  citySchema,
-} from '../../../Validations/UserValidation';
+import { signupSchema } from '../../../Validations/UserValidation';
 
 import Input from '../../InputType/Input/Input';
 import Button from '../../InputType/Button/Button';
@@ -20,24 +15,74 @@ import AutoComplete from '../../InputType/Addresse/Addresse';
 import Main from '../../PageComponents/Main/Main';
 import './Signup.scss';
 
+interface FormErrors {
+  lastname?: string;
+  firstname?: string;
+  user_address?: string;
+  user_password?: string;
+  email?: string;
+}
+
+const initialErrors: FormErrors = {
+  lastname: undefined,
+  firstname: undefined,
+  user_address: undefined,
+  user_password: undefined,
+  email: undefined,
+};
+
 function SignUp() {
   // Initialize navigation and dispatch
+ 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  // State to manage validation for various form fields
-  const [emailValid, setEmailIsValid] = useState(true);
-  const [passwordValid, setPasswordIsValid] = useState(true);
-  const [firstnameValid, setfirstnameIsValid] = useState(true);
-  const [lastnameValid, setlastnameIsValid] = useState(true);
-  const [cityValid, setCityIsValid] = useState(true);
-
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [successValidation, setSuccess] = useState(false);
   // State to store coordinates for address selection
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   // Get error and success messages from the Redux store
-  const error = useAppSelector((state) => state.signup.error);
+  const errorMessage = useAppSelector((state) => state.signup.error);
   const message = useAppSelector((state) => state.signup.message);
+  console.log(errorMessage)
+  console.log(message)
+
+  const signUp = async (formData) => {
+    const objData = Object.fromEntries(formData);
+    try {
+      // Awaiting for Yup to validate text
+      await signupSchema.validate(
+        {
+          lastname: objData.lastname,
+          firstname: objData.firstname,
+          user_address: objData.user_address,
+          user_password: objData.user_password,
+          email: objData.email,
+        },
+        { abortEarly: false }
+      );
+
+      // Reseting Warnings and displaying success message if all goes well
+      setErrors({});
+      setSuccess(true);
+    } catch (error) {
+      // Reseting Succes Message
+      setSuccess(false);
+
+      // Setting error messages identified by Yup
+      if (error instanceof Yup.ValidationError) {
+        // Extracting Yup specific validation errors from list of total errors
+        const yupErrors = {};
+        error.inner.forEach((innerError) => {
+          yupErrors[innerError.path] = innerError.message;
+        });
+
+        // Saving extracted errors
+        setErrors(yupErrors);
+      }
+    }
+  };
 
   // Function to handle form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -48,51 +93,20 @@ function SignUp() {
     // Append coordinates to the form data
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
-    const objData = Object.fromEntries(formData);
-
-    // Validation of email using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-    const emailIsValid = await emailSchema.isValid({
-      email: `${objData.email}`,
-    });
-    setEmailIsValid(emailIsValid);
-
-    // Validation of password using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-    const passwordIsValid = await passwordSchema.isValid({
-      user_password: `${objData.user_password}`,
-    });
-    setPasswordIsValid(passwordIsValid);
-
-    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-    const firstnameIsValid = await firstnameSchema.isValid({
-      firstname: `${objData.firstname}`,
-    });
-    setfirstnameIsValid(firstnameIsValid);
-
-    // Validation of firstname using Yup with emailSchema, change the input color, and display an error message in case of validation failure
-    const lastnameIsValid = await lastnameSchema.isValid({
-      lastname: `${objData.lastname}`,
-    });
-    setlastnameIsValid(lastnameIsValid);
-
-    const cityIsValid = await citySchema.isValid({
-      user_address: `${objData.user_address}`,
-    });
-    setCityIsValid(cityIsValid);
+    await signUp(formData);
 
     // If all validations pass, dispatch the signup action
-    if (
-      emailIsValid &&
-      passwordIsValid &&
-      firstnameIsValid &&
-      lastnameIsValid &&
-      cityIsValid
-    ) {
+    if (successValidation) {
       dispatch(signup(formData));
     }
   };
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
   // Handle success and error messages using useEffect
   useEffect(() => {
-    if (!error && message) {
+    if (!errorMessage && message) {
       // Show a success message using a modal
       swal(`${message}`, {
         text: message,
@@ -106,14 +120,17 @@ function SignUp() {
       }, 1000);
     }
 
-    if (error) {
+    if (errorMessage) {
       // Show an error message using a modal
-      swal(`${error}`, {
+      swal(`${errorMessage}`, {
         icon: 'error',
         buttons: [true],
       });
     }
-  }, [dispatch, error, message, navigate]);
+  }, [dispatch, errorMessage, message, navigate]);
+
+ // console.log(errors);
+  //console.log(successValidation);
 
   return (
     <div className="page-wrapper">
@@ -127,47 +144,47 @@ function SignUp() {
                 type="text"
                 placeholder="Nom"
                 aria-label="Votre Nom"
-                style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
+                style={{ borderColor: errors.lastname ? 'red' : 'initial' }}
               />
-              {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
+
+              {errors.lastname && <p className="error">{errors.lastname}</p>}
               <Input
                 name="firstname"
                 type="text"
                 placeholder="Prénom"
                 aria-label="Votre Prenom"
-                style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
+                style={{ borderColor: errors.firstname ? 'red' : 'initial' }}
               />
-              {!firstnameValid && (
-                <p className="error">Inscrivez votre prénom</p>
-              )}
+              {errors.firstname && <p className="error">{errors.firstname}</p>}
               <AutoComplete
-                style={{ borderColor: cityValid ? 'initial' : 'red' }}
                 setCoordinates={setCoordinates}
+                style={{ borderColor: errors.user_address ? 'red' : 'initial' }}
               />
-              {!cityValid && <p className="error">Inscrivez votre adresse</p>}
+
+              {errors.user_address && (
+                <p className="error">{errors.user_address}</p>
+              )}
+
               <Input
                 name="email"
                 type="email"
                 placeholder="Adresse E-mail"
                 aria-label="Adresse E-mail"
-                style={{ borderColor: emailValid ? 'initial' : 'red' }}
+                style={{ borderColor: errors.email ? 'red' : 'initial' }}
               />
-              {!emailValid && (
-                <p className="error">
-                  Votre adresse e-mail n&apos;est pas valide
-                </p>
-              )}
+              {errors.email && <p className="error">{errors.email}</p>}
               <Input
                 name="user_password"
                 type="password"
                 placeholder="Mot de passe"
                 aria-label="Mot de passe"
-                style={{ borderColor: passwordValid ? 'initial' : 'red' }}
+                style={{
+                  borderColor: errors.user_password ? 'red' : 'initial',
+                }}
               />
-              {!passwordValid && (
-                <p className="error">Votre password n&apos;est pas valide</p>
+              {errors.user_password && (
+                <p className="error">{errors.user_password}</p>
               )}
-
               <Button prop="S'inscrire" />
             </form>
           </div>

@@ -29,12 +29,13 @@ interface User {
   user_address: string | null;
   walking_duration: string | null;
   size: string | null;
-  testimonies: Testimonial | null;
   error: string | null;
 }
 interface Testimonial {
-  comment: string | null;
-  id: string | null;
+  id: number | null;
+  body: string | null;
+  sender_id: number | null;
+  // Add more properties as needed
 }
 interface Animal {
   name: string | null;
@@ -65,13 +66,17 @@ interface Disponibility {
 
 interface SitterState {
   user: User | null;
+  userTestimonials: Testimonial[] | null;
   error: string | undefined;
   message: string | null;
+  isLoading: boolean;
 }
 export const initialState: SitterState = {
   user: null,
+  userTestimonials: null,
   error: undefined,
   message: null,
+  isLoading: false,
 };
 
 // Create an async thunk for fetching user information by ID
@@ -104,6 +109,7 @@ const sitterReducer = createReducer(initialState, (builder) => {
       if (action.payload) {
         // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
         state.error = action.payload;
+        state.isLoading = false;
       } else {
         state.error = action.error.message;
       }
@@ -112,9 +118,18 @@ const sitterReducer = createReducer(initialState, (builder) => {
       state.message = null;
     })
     .addCase(fetchUserById.fulfilled, (state, action) => {
+      console.log(action.payload.userTestimonials);
+      (state.isLoading = false),
+        (state.userTestimonials = [...action.payload.userTestimonials]);
       state.error = undefined;
       state.message = 'User fetched successfully'; // You can customize this message
-      state.user = action.payload;
+      state.user = action.payload.user;
+    })
+    .addCase(fetchUserById.pending, (state, action) => {
+      (state.isLoading = true), (state.error = undefined);
+      state.message = null; // You can customize this message
+      state.user = null;
+      state.userTestimonials = null;
     })
     .addCase(fetchUserSuccess, (state) => {
       state.error = undefined;
