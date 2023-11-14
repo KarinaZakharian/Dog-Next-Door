@@ -17,9 +17,15 @@ export const signupSchema = yup.object().shape({
     .required('Votre adresse e-mail n&apos;est pas valide'),
   user_password: yup
     .string()
-    .min(4)
+    .min(8)
     .max(25)
-    .required('Votre password n&apos;est pas valide'),
+    .matches(/[a-z]/)
+    .matches(/[A-Z]/)
+    .matches(/[0-9]/)
+    .matches(/[#?!@$%^&*-]/)
+    .required(
+      'Le mot de passe est requis et doit respecter les critères suivants : au moins 8 caractères, une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial .'
+    ),
 });
 export const emailSchema = yup.object().shape({
   email: yup.string().email().required(),

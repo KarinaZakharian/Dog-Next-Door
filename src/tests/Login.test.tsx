@@ -23,7 +23,7 @@ it('should have an email password field and submit button', () => {
   expect(submitButton).toBeInTheDocument();
 });
 
-test('displays error message for invalid data', async () => {
+it('displays error message for invalid data', async () => {
   render(
     <Provider store={store}>
       <Router>
@@ -31,8 +31,6 @@ test('displays error message for invalid data', async () => {
       </Router>
     </Provider>
   );
-
-  // Fill in invalid data
   userEvent.type(screen.getByLabelText(/Adresse E-mail/i), 'npm.gmail.com');
   userEvent.type(screen.getByLabelText(/Mot de passe/i), '123456');
 
