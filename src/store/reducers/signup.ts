@@ -17,10 +17,14 @@ export const initialState: SignupState = {
 
 export const signup = createAsyncThunk(
   'user/signup',
-  async (formData: FormData) => {
-    const objData = Object.fromEntries(formData.entries());
-    const { data } = await axiosInstance.post('/subscribe', objData);
-    return data;
+  async (formData: FormData, thunkAPI) => {
+    try {
+      const objData = Object.fromEntries(formData.entries());
+      const { data } = await axiosInstance.post('/subscribe', objData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -30,7 +34,8 @@ const signupReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(signup.rejected, (state, action) => {
       console.log(action.payload);
-      state.error = action.payload;
+      state.error = action.payload.response.data;
+      //state.error = action.payload;
       state.message = null;
     })
     .addCase(signup.fulfilled, (state, action) => {

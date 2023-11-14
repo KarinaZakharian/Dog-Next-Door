@@ -33,22 +33,21 @@ const initialErrors: FormErrors = {
 
 function SignUp() {
   // Initialize navigation and dispatch
- 
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [errors, setErrors] = useState<FormErrors>({});
-  const [successValidation, setSuccess] = useState(false);
   // State to store coordinates for address selection
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   // Get error and success messages from the Redux store
   const errorMessage = useAppSelector((state) => state.signup.error);
   const message = useAppSelector((state) => state.signup.message);
-  console.log(errorMessage)
-  console.log(message)
+  //console.log(errorMessage);
+  console.log(errors.user_address);
 
-  const signUp = async (formData) => {
+  const signUp = async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
     try {
       // Awaiting for Yup to validate text
@@ -65,10 +64,9 @@ function SignUp() {
 
       // Reseting Warnings and displaying success message if all goes well
       setErrors({});
-      setSuccess(true);
+      dispatch(signup(formData));
     } catch (error) {
       // Reseting Succes Message
-      setSuccess(false);
 
       // Setting error messages identified by Yup
       if (error instanceof Yup.ValidationError) {
@@ -94,11 +92,6 @@ function SignUp() {
     formData.append('longitude', coordinates.x.toString());
     formData.append('latitude', coordinates.y.toString());
     await signUp(formData);
-
-    // If all validations pass, dispatch the signup action
-    if (successValidation) {
-      dispatch(signup(formData));
-    }
   };
 
   useEffect(() => {
@@ -129,7 +122,7 @@ function SignUp() {
     }
   }, [dispatch, errorMessage, message, navigate]);
 
- // console.log(errors);
+  // console.log(errors);
   //console.log(successValidation);
 
   return (

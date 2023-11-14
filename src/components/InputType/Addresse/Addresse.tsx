@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import './Addresse.scss';
+interface AutoProps {
+  setCoordinates: React.Dispatch<
+    React.SetStateAction<{
+      x: number;
+      y: number;
+    }>
+  >;
 
-function AutoComplete({ style, setCoordinates }) {
+  [prop: string]: unknown;
+}
+
+function AutoComplete({ setCoordinates, ...props }: AutoProps) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
 
@@ -31,7 +41,10 @@ function AutoComplete({ style, setCoordinates }) {
     setAdresses([]);
     // console.log(geolocalisation);
   };
-
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+    event.target.style.borderColor = 'initial';
+  };
   return (
     <div className="signup__localisation">
       <div className="autocompletion-city">
@@ -42,12 +55,12 @@ function AutoComplete({ style, setCoordinates }) {
           name="user_address"
           id="city"
           type="text"
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleChange}
           onKeyUp={() => getAddressesFromAPI(query)}
           placeholder="Adresse"
           value={query}
           className="search__form-filters__select autocompletion-city__input"
-          style={style}
+          {...props}
         />
         {
           <ul className="autocompletion-city__ul">
