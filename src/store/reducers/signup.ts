@@ -34,7 +34,7 @@ const signupReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(signup.rejected, (state, action) => {
       console.log(action.payload);
-      state.error = action.payload.response.data;
+      state.error = action.payload?.response?.data;
       //state.error = action.payload;
       state.message = null;
     })

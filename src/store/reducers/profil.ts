@@ -273,7 +273,7 @@ const profilReducer = createReducer(initialState, (builder) => {
     .addCase(fillDateForm.fulfilled, (state, action) => {
       console.log(action.payload);
       state.user.dateError = null;
-      state.user.dateMessage = action.payload.message;
+      state.user.dateMessage = 'success';
       const userData = action.payload;
       if (userData) {
         state.user.disponibility = {
@@ -327,6 +327,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       state.user.updateError = null;
       state.user.updateMessage = null;
       state.user.logoutMessage = null;
+      state.user.error = null;
     })
     .addCase(login.fulfilled, (state, action) => {
       state.user.firstname = action.payload.firstname;
@@ -335,7 +336,7 @@ const profilReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.rejected, (state, action) => {
       console.log(action.payload);
-      state.user.error = action.payload.response.data;
+      state.user.error = action.payload?.response?.data;
       state.user.firstname = null;
       // je récupère l'erreur directement dans `action.error`
     })
@@ -347,6 +348,7 @@ const profilReducer = createReducer(initialState, (builder) => {
       delete axiosInstance.defaults.headers.common.Authorization;
       localStorage.clear();
     })
+
     .addCase(reconnect, (state, action) => {
       console.log(action.payload);
       state.user.firstname = action.payload;

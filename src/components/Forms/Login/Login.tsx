@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { login } from '../../../store/reducers/profil';
+import { login, success } from '../../../store/reducers/profil';
 import { loginSchema } from '../../../Validations/UserValidation';
 
 import Input from '../../InputType/Input/Input';
@@ -15,6 +15,7 @@ import Main from '../../PageComponents/Main/Main';
 import './Login.scss';
 
 function Login() {
+  const [prevError, setPrevError] = useState<string | null>(null);
   // Initialize navigation and dispatch
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ function Login() {
   // Get user data from Redux store
   const firstname = useAppSelector((state) => state.profil.user.firstname);
   const error = useAppSelector((state) => state.profil.user.error);
+  console.log(error);
 
   // State to manage form validation
   const [valid, setIsValid] = useState(true);
@@ -63,6 +65,7 @@ function Login() {
         icon: 'error',
         buttons: [true],
       });
+      dispatch(success());
     }
   }, [firstname, error, navigate]);
 
@@ -92,8 +95,8 @@ function Login() {
               {/* Display an error message for invalid login */}
               {!valid && (
                 <p className="error">
-                  Le mot de passe ou l&aps;email que vous avez saisi est
-                  incorrect. Veuillez réessayer.
+                  Le mot de passe ou l'email que vous avez saisi est incorrect.
+                  Veuillez réessayer.
                 </p>
               )}
               <Button prop="Connexion" />

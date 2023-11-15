@@ -119,6 +119,7 @@ function SignUp() {
         icon: 'error',
         buttons: [true],
       });
+      dispatch(success());
     }
   }, [dispatch, errorMessage, message, navigate]);
 
