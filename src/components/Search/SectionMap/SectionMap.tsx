@@ -51,7 +51,7 @@ function SectionMap() {
 
     return null;
   }
-  // key={center.toString()}
+
   return (
     <div className="map-container">
       <LeafletMap center={center} zoom={13}>
