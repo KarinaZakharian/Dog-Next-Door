@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { updateCoordinates } from '../../../store/reducers/search';
 import './Addresse.scss';
+
 interface AutoProps {
   setCoordinates: React.Dispatch<
     React.SetStateAction<{
@@ -9,6 +10,7 @@ interface AutoProps {
       y: number;
     }>
   >;
+}
 
   [prop: string]: unknown;
 }
@@ -18,7 +20,7 @@ interface AutoCompleteProps {
   setCoordinates: (geolocalisation: { x: number; y: number }) => void;
 }
 
-function AutoComplete({ style, setCoordinates }: AutoCompleteProps) {
+function AutoComplete({ setCoordinates, ...props }: AutoCompleteProps) {
   const [addresses, setAdresses] = useState([]);
   const [query, setQuery] = useState('');
   const dispatch = useAppDispatch();

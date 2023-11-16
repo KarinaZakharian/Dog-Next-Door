@@ -72,3 +72,10 @@
 .footer__rights {
   text-align: center;
 }
+
+.footer__button-logout {
+  border: none;
+  background: none;
+  padding: 0;
+  color: v.$color-text;
+}

@@ -16,7 +16,6 @@ function Header() {
   const logoutMessage = useAppSelector(
     (state) => state.profil.user.logoutMessage
   );
-  //console.log(logoutMessage);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

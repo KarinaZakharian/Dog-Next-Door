@@ -1,13 +1,39 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import swal from 'sweetalert';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { logout, success } from '../../../store/reducers/profil';
 import './Footer.scss';
 import logo from '../../../assets/Logo-ODogNextDoor.svg';
 import insta from '../../../assets/instagram-logo.png';
 import facebook from '../../../assets/Facebook-logo.png';
 import pinterest from '../../../assets/Pinterest-Logo.png';
-import { useAppSelector } from '../../../hooks/redux';
 
 function Footer() {
   const firstname = useAppSelector((state) => state.profil.user.firstname);
+  const logoutMessage = useAppSelector(
+    (state) => state.profil.user.logoutMessage
+  );
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    if (logoutMessage) {
+      swal(`${logoutMessage}`, {
+        icon: 'success',
+        timer: 1000,
+      });
+      setTimeout(() => {
+        navigate('/login', { replace: true });
+        dispatch(success());
+      }, 1000);
+    }
+  }, [logoutMessage, dispatch]);
 
   return (
     <div className="footer__wrapper">
@@ -76,16 +102,20 @@ function Footer() {
                 Recherche
               </Link>
             </li>
-            <li>
-              <Link className="footer__section-link" to="/login">
-                Connexion
-              </Link>
-            </li>
-            <li>
-              <Link className="footer__section-link" to="/subscribe">
-                S&apos;incrire
-              </Link>
-            </li>
+            {!firstname && (
+              <div className="footer__ifConnected">
+                <li>
+                  <Link className="footer__section-link" to="/login">
+                    Connexion
+                  </Link>
+                </li>
+                <li>
+                  <Link className="footer__section-link" to="/subscribe">
+                    S&apos;incrire
+                  </Link>
+                </li>
+              </div>
+            )}
             <li>
               <Link className="footer__section-link" to="/contact">
                 Contact
@@ -113,9 +143,13 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link className="footer__section-link" to="/logout">
+                <button
+                  className="footer__button-logout"
+                  type="button"
+                  onClick={handleLogout}
+                >
                   Se déconnecter
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
