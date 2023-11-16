@@ -35,7 +35,7 @@ export interface CardProps {
 }
 
 interface LeafletMapProps {
-  center: LatLngLiteral;
+  center: LatLng;
   zoom: number;
   children: React.ReactNode;
 }
