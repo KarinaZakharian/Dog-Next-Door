@@ -93,10 +93,6 @@ function SignUp() {
     formData.append('latitude', coordinates.y.toString());
     await signUp(formData);
   };
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   // Handle success and error messages using useEffect
   useEffect(() => {
     if (!errorMessage && message) {
