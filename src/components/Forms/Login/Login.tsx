@@ -92,7 +92,7 @@ function Login() {
                 aria-label="Mot de passe"
                 style={{ borderColor: valid ? 'initial' : 'red' }}
               />
-              {/* Display an error message for invalid login */}
+              {/* Display error message for invalid login */}
               {!valid && (
                 <p className="error">
                   Le mot de passe ou l'email que vous avez saisi est incorrect.
