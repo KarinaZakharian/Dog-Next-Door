@@ -117,10 +117,7 @@ CREATE TABLE testimonial (
   body TEXT,
   rating VARCHAR(42),
   user_id INTEGER REFERENCES "user"("id"),
-<<<<<<< HEAD
   sender_id INTEGER REFERENCES "user"("id"),
-=======
->>>>>>> 1d9cdbd (merge FixTsError and karina/end)
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ
 );

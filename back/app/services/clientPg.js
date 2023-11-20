@@ -10,9 +10,4 @@ const client = new Pool({
 
 client.connect;
 
-// console.log("Connexion au serveur ok");
-
-<<<<<<< HEAD
-module.exports = client;
-=======
 module.exports = client;

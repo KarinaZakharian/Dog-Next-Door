@@ -14,7 +14,7 @@ import './InputSearch.scss';
 
 function InputSearch() {
   const animal = useAppSelector((state) => state.home.animal);
-  const size = useAppSelector((state) => state.home.size);
+  const address = useAppSelector((state) => state.home.user_address);
   const searchRadius = useAppSelector((state) => state.home.radius);
   const dispatch = useAppDispatch();
 
