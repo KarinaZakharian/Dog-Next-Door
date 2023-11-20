@@ -159,19 +159,13 @@
   height: 80vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
     justify-content: flex-end;
     margin: 0;
-  }
-
-  &__left-space {
-    width: 60%;
-    @media screen and (max-width: 500px) {
-      width: 0;
-    }
   }
 
   &__right-space {

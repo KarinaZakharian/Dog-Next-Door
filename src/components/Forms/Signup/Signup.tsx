@@ -12,6 +12,7 @@ import Button from '../../InputType/Button/Button';
 import Header from '../../PageComponents/Header/Header';
 import Footer from '../../PageComponents/Footer/Footer';
 import AutoComplete from '../../InputType/Addresse/Addresse';
+import Main from '../../PageComponents/Main/Main';
 import './Signup.scss';
 
 interface FormErrors {
@@ -43,8 +44,6 @@ function SignUp() {
   // Get error and success messages from the Redux store
   const errorMessage = useAppSelector((state) => state.signup.error);
   const message = useAppSelector((state) => state.signup.message);
-  //console.log(errorMessage);
-  console.log(errors.user_address);
 
   const signUp = async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
@@ -118,63 +117,64 @@ function SignUp() {
     }
   }, [dispatch, errorMessage, message, navigate]);
 
-  // console.log(errors);
-  //console.log(successValidation);
-
   return (
     <div className="page-wrapper">
       <Header />
-      <main className="main-signup">
-        <div className="container-signup">
-          <form className="form" onSubmit={handleSubmit}>
-            <Input
-              name="lastname"
-              type="text"
-              placeholder="Nom"
-              aria-label="Votre Nom"
-              style={{ borderColor: lastnameValid ? 'initial' : 'red' }}
-            />
-            {!lastnameValid && <p className="error">Inscrivez votre nom</p>}
-            <Input
-              name="firstname"
-              type="text"
-              placeholder="Prénom"
-              aria-label="Votre Prenom"
-              style={{ borderColor: firstnameValid ? 'initial' : 'red' }}
-            />
-            {!firstnameValid && <p className="error">Inscrivez votre prénom</p>}
-            <AutoComplete
-              style={{ borderColor: cityValid ? 'initial' : 'red' }}
-              setCoordinates={setCoordinates}
-            />
-            {!cityValid && <p className="error">Inscrivez votre adresse</p>}
-            <Input
-              name="email"
-              type="email"
-              placeholder="Adresse E-mail"
-              aria-label="Adresse E-mail"
-              style={{ borderColor: emailValid ? 'initial' : 'red' }}
-            />
-            {!emailValid && (
-              <p className="error">
-                Votre adresse e-mail n&apos;est pas valide
-              </p>
-            )}
-            <Input
-              name="user_password"
-              type="password"
-              placeholder="Mot de passe"
-              aria-label="Mot de passe"
-              style={{ borderColor: passwordValid ? 'initial' : 'red' }}
-            />
-            {!passwordValid && (
-              <p className="error">Votre password n&apos;est pas valide</p>
-            )}
+      <Main>
+        <main className="main-signup">
+          <div className="container-signup">
+            <form className="form" onSubmit={handleSubmit}>
+              <Input
+                name="lastname"
+                type="text"
+                placeholder="Nom"
+                aria-label="Votre Nom"
+                style={{ borderColor: errors.lastname ? 'red' : 'initial' }}
+              />
 
-            <Button prop="S'inscrire" />
-          </form>
-        </div>
-      </main>
+              {errors.lastname && <p className="error">{errors.lastname}</p>}
+              <Input
+                name="firstname"
+                type="text"
+                placeholder="Prénom"
+                aria-label="Votre Prenom"
+                style={{ borderColor: errors.firstname ? 'red' : 'initial' }}
+              />
+              {errors.firstname && <p className="error">{errors.firstname}</p>}
+              <AutoComplete
+                setCoordinates={setCoordinates}
+                style={{ borderColor: errors.user_address ? 'red' : 'initial' }}
+              />
+
+              {errors.user_address && (
+                <p className="error">{errors.user_address}</p>
+              )}
+
+              <Input
+                name="email"
+                type="email"
+                placeholder="Adresse E-mail"
+                aria-label="Adresse E-mail"
+                style={{ borderColor: errors.email ? 'red' : 'initial' }}
+              />
+              {errors.email && <p className="error">{errors.email}</p>}
+              <Input
+                name="user_password"
+                type="password"
+                placeholder="Mot de passe"
+                aria-label="Mot de passe"
+                style={{
+                  borderColor: errors.user_password ? 'red' : 'initial',
+                }}
+              />
+              {errors.user_password && (
+                <p className="error">{errors.user_password}</p>
+              )}
+              <Button prop="S'inscrire" />
+            </form>
+          </div>
+        </main>
+      </Main>
       <Footer />
     </div>
   );

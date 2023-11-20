@@ -71,6 +71,7 @@ function InputSearch() {
             <AutoComplete
               style={{ borderColor: 'initial' }}
               setCoordinates={setCoordinates}
+              value={address}
             />
           </div>
           <div className="inputsearch__radio-radius">

@@ -3,21 +3,10 @@ import { useAppDispatch } from '../../../hooks/redux';
 import { updateCoordinates } from '../../../store/reducers/search';
 import './Addresse.scss';
 
-interface AutoProps {
-  setCoordinates: React.Dispatch<
-    React.SetStateAction<{
-      x: number;
-      y: number;
-    }>
-  >;
-}
-
-  [prop: string]: unknown;
-}
-
 interface AutoCompleteProps {
   style: React.CSSProperties;
   setCoordinates: (geolocalisation: { x: number; y: number }) => void;
+  value: string | null;
 }
 
 function AutoComplete({ setCoordinates, ...props }: AutoCompleteProps) {

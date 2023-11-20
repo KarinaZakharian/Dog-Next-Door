@@ -227,7 +227,6 @@ function Home() {
           </div>
         </section>
         <section className="marketing">
-          <div className="marketing__left-space" />
           <div className="marketing__right-space">
             <h3 className="marketing__title">Partager</h3>
             <p className="marketing__content">

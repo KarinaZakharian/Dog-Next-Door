@@ -10,6 +10,8 @@ export const initialState: HomeState = {
   radius: null,
   longitude: null,
   latitude: null,
+  date: null,
+  city: null,
 };
 
 // Create an action to add data to the Home state
