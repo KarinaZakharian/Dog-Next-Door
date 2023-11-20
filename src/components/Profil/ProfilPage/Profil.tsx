@@ -309,12 +309,12 @@ function Profil() {
             isAnimalContainerVisible={isAnimalContainerVisible}
             setIsAnimalContainerVisible={setIsAnimalContainerVisible}
           />
-          <AnimalFormUpdate
+          {/* <AnimalFormUpdate
             isUpdateAnimalContainerVisible={isUpdateAnimalContainerVisible}
             setIsUpdateAnimalContainerVisible={
               setIsUpdateAnimalContainerVisible
             }
-          />
+          /> */}
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
             <div className="profil__animal-header">

@@ -199,7 +199,7 @@ function AnimalForm({
         <div className="radio-wrapper">
           <RadioSimple
             name="walk"
-            id="1"
+            id="11"
             picked={pickedWalk}
             value="Entre 0 et 2 heures"
             label="Entre 0 et 2 heures"
@@ -207,7 +207,7 @@ function AnimalForm({
           />
           <RadioSimple
             name="walk"
-            id="2"
+            id="12"
             picked={pickedWalk}
             value="Entre 2 et 4 heures"
             label="Entre 2 et 4 heures"
@@ -215,7 +215,7 @@ function AnimalForm({
           />
           <RadioSimple
             name="walk"
-            id="3"
+            id="13"
             picked={pickedWalk}
             value="Entre 4 et 8 heures"
             label="Entre 4 et 8 heures"
@@ -223,7 +223,7 @@ function AnimalForm({
           />
           <RadioSimple
             name="walk"
-            id="4"
+            id="14"
             picked={pickedWalk}
             value="+ 8 heures"
             label="+ 8 heures"

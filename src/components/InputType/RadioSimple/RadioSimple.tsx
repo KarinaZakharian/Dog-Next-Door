@@ -6,9 +6,9 @@ interface FieldProps {
   name: string;
   id: string | undefined;
   value: string;
-  picked: string | null;
+  picked: string;
   onRadioChange: (value: string) => void;
-  label: string | null;
+  label: string | undefined;
 }
 
 function RadioSimple({
