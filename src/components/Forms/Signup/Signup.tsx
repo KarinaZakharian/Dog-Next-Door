@@ -120,61 +120,59 @@ function SignUp() {
   return (
     <div className="page-wrapper">
       <Header />
-      <Main>
-        <main className="main-signup">
-          <div className="container-signup">
-            <form className="form" onSubmit={handleSubmit}>
-              <Input
-                name="lastname"
-                type="text"
-                placeholder="Nom"
-                aria-label="Votre Nom"
-                style={{ borderColor: errors.lastname ? 'red' : 'initial' }}
-              />
+      <main className="main-signup">
+        <div className="container-signup">
+          <form className="form" onSubmit={handleSubmit}>
+            <Input
+              name="lastname"
+              type="text"
+              placeholder="Nom"
+              aria-label="Votre Nom"
+              style={{ borderColor: errors.lastname ? 'red' : 'initial' }}
+            />
 
-              {errors.lastname && <p className="error">{errors.lastname}</p>}
-              <Input
-                name="firstname"
-                type="text"
-                placeholder="Prénom"
-                aria-label="Votre Prenom"
-                style={{ borderColor: errors.firstname ? 'red' : 'initial' }}
-              />
-              {errors.firstname && <p className="error">{errors.firstname}</p>}
-              <AutoComplete
-                setCoordinates={setCoordinates}
-                style={{ borderColor: errors.user_address ? 'red' : 'initial' }}
-              />
+            {errors.lastname && <p className="error">{errors.lastname}</p>}
+            <Input
+              name="firstname"
+              type="text"
+              placeholder="Prénom"
+              aria-label="Votre Prenom"
+              style={{ borderColor: errors.firstname ? 'red' : 'initial' }}
+            />
+            {errors.firstname && <p className="error">{errors.firstname}</p>}
+            <AutoComplete
+              setCoordinates={setCoordinates}
+              style={{ borderColor: errors.user_address ? 'red' : 'initial' }}
+            />
 
-              {errors.user_address && (
-                <p className="error">{errors.user_address}</p>
-              )}
+            {errors.user_address && (
+              <p className="error">{errors.user_address}</p>
+            )}
 
-              <Input
-                name="email"
-                type="email"
-                placeholder="Adresse E-mail"
-                aria-label="Adresse E-mail"
-                style={{ borderColor: errors.email ? 'red' : 'initial' }}
-              />
-              {errors.email && <p className="error">{errors.email}</p>}
-              <Input
-                name="user_password"
-                type="password"
-                placeholder="Mot de passe"
-                aria-label="Mot de passe"
-                style={{
-                  borderColor: errors.user_password ? 'red' : 'initial',
-                }}
-              />
-              {errors.user_password && (
-                <p className="error">{errors.user_password}</p>
-              )}
-              <Button prop="S'inscrire" />
-            </form>
-          </div>
-        </main>
-      </Main>
+            <Input
+              name="email"
+              type="email"
+              placeholder="Adresse E-mail"
+              aria-label="Adresse E-mail"
+              style={{ borderColor: errors.email ? 'red' : 'initial' }}
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
+            <Input
+              name="user_password"
+              type="password"
+              placeholder="Mot de passe"
+              aria-label="Mot de passe"
+              style={{
+                borderColor: errors.user_password ? 'red' : 'initial',
+              }}
+            />
+            {errors.user_password && (
+              <p className="error">{errors.user_password}</p>
+            )}
+            <Button prop="S'inscrire" />
+          </form>
+        </div>
+      </main>
       <Footer />
     </div>
   );
