@@ -13,6 +13,7 @@
 }
 .main-signup {
   @include v.backgroundImg;
+  min-height: 100vh;
 }
 .container-signup {
   max-width: 1300px;
