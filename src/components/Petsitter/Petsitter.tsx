@@ -14,7 +14,7 @@ import Booking from './Booking/Booking';
 import AnimalCard from '../Profil/AnimalCard/AnimalCard';
 import avatarLogo from '../../assets/Logo-ODogNextDoor-blue.png';
 import Button from '../InputType/Button/Button';
-import TestimonyCard from '../Profil/Testimonies/Testiamonies';
+import TestimonyCard from '../Profil/Testiamonies/Testiamonies';
 
 function Petsitter() {
   const dispatch = useAppDispatch();
@@ -200,10 +200,21 @@ function Petsitter() {
                 />
               </div>
             )}
+
+{testimonials && (
+                  <div className="profil-testimonies">
+                    <h2 className="profil-testimonies__title">
+                      Avis sur mon service
+                    </h2>
+                    {testimonials.map((testimony) => (
+                      <TestimonyCard testimony={testimony.body} />
+                    ))}
+                  </div>
+                )}
             {account && disponibilitySitter?.end_date ? (
            
 
-           
+
                 <button
                 type="button"
                 className="booking-button"

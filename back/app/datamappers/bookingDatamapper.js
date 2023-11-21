@@ -31,11 +31,11 @@ const bookingDatamapper = {
     `;
     const values = [sitterId, disponibilityId];
     const result = await client.query(query, values);
-    
+
     return result.rows[0];
   },
 
-  addBooking: async (petSitterId,userId, booking) => {
+  addBooking: async (petSitterId, userId, booking) => {
     try {
       const pet_sitter_id = petSitterId;
       const idConnectedUser = userId;
@@ -62,7 +62,7 @@ const bookingDatamapper = {
         idConnectedUser,
         disponibility_id,
       ];
-      console.log(values);
+      console.log('values addbooking', values);
       const result = await client.query(query, values);
       return result.rows[0];
     } catch (error) {
