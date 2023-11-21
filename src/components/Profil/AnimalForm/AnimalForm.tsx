@@ -20,13 +20,8 @@ import { AnimalProps } from '../../../@types/user';
 import { nameSchema, raceSchema } from '../../../Validations/UserValidation';
 import './AnimalForm.scss';
 
-function AnimalForm({
-  isAnimalContainerVisible,
-  setIsAnimalContainerVisible,
-}: AnimalProps) {
-  const hideFormContainer = () => {
-    setIsAnimalContainerVisible(false);
-  };
+function AnimalForm({}) {
+  const hideFormContainer = () => {};
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -109,9 +104,7 @@ function AnimalForm({
   }, [dispatch, error, message, navigate]);
 
   return (
-    <div
-      className={`form-container ${isAnimalContainerVisible ? '' : 'display'}`}
-    >
+    <div className="form - container">
       <form className="animal-form" onSubmit={handleSubmit}>
         <h2 className="animal-form__title">
           Ajouter votre animal de compagnie

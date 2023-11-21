@@ -62,7 +62,7 @@ function Profil() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [dispatch]);
+  }, []);
   const isLoading = useAppSelector((state) => state.profil.user.isLoading);
   const firstname = useAppSelector((state) => state.profil.user.firstname);
   const lastname = useAppSelector((state) => state.profil.user.lastname);
@@ -305,32 +305,24 @@ function Profil() {
             isUpdateContainerVisible={isUpdateContainerVisible}
             setIsUpdateContainerVisible={setIsUpdateContainerVisible}
           />
-          <AnimalForm
-            isAnimalContainerVisible={isAnimalContainerVisible}
-            setIsAnimalContainerVisible={setIsAnimalContainerVisible}
-          />
-          {/* <AnimalFormUpdate
-            isUpdateAnimalContainerVisible={isUpdateAnimalContainerVisible}
-            setIsUpdateAnimalContainerVisible={
-              setIsUpdateAnimalContainerVisible
-            }
-          /> */}
+
           {/* -----------------------------profil animal------------------------ */}
           <div className="profil__animal">
             <div className="profil__animal-header">
               <h2 className="profil__animal-name">Mon animal de compagnie</h2>
               {type && (
-                <div className="profil__booking-button">
-                  <switch
-                    onClick={showUpdateAnimalContainer}
-                    className="profil__user-header-button"
+                <div className="profil__user-header-button">
+                  <Link
+                    className="link-animal"
+                    to="/account/animal-form/update"
                   >
                     <img
                       src={pencilIcon}
                       alt="pencil white"
                       className="profil__user-header-button-img"
+                      onClick={showUpdateContainer}
                     />
-                  </switch>
+                  </Link>
                 </div>
               )}
             </div>
@@ -347,14 +339,9 @@ function Profil() {
                 energy={energy}
               />
             ) : (
-              <div className="profil__button">
-                <switch
-                  onClick={showAnimalContainer}
-                  className="profil__user-button"
-                >
-                  <Button prop="Ajoutez votre animal de compagnie" />
-                </switch>
-              </div>
+              <Link className="link-animal" to="/account/animal-form">
+                <Button prop="Ajoutez votre animal de compagnie" />
+              </Link>
             )}
           </div>
           {/* {testimonies.length > 0 && (

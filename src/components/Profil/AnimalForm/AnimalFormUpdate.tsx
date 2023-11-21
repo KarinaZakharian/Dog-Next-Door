@@ -18,14 +18,10 @@ import big from '../../../assets/icons8-dog-55.png';
 import geant from '../../../assets/icons8-dog-64.png';
 import './AnimalForm.scss';
 import { nameSchema, raceSchema } from '../../../Validations/UserValidation';
-import { AnimalUpdateProps } from '../../../@types/user';
 
-function AnimalFormUpdate({
-  isUpdateAnimalContainerVisible,
-  setIsUpdateAnimalContainerVisible,
-}: AnimalUpdateProps) {
+function AnimalFormUpdate({}) {
   const hideFormContainer = () => {
-    setIsUpdateAnimalContainerVisible(false);
+    navigate('/account', { replace: true });
   };
 
   const navigate = useNavigate();
@@ -46,7 +42,7 @@ function AnimalFormUpdate({
   const race = animal?.race || null;
 
   // picking  the animal
-  const [pickedAnimal, setAnimal] = useState(type || '');
+  const [pickedAnimal, setAnimal] = useState('');
   function handleAnimalChange(value: string): void {
     setAnimal(value);
   }
@@ -106,8 +102,7 @@ function AnimalFormUpdate({
       });
       setTimeout(() => {
         dispatch(success());
-        hideFormContainer();
-        // navigate('/account', { replace: true });
+        navigate('/account', { replace: true });
       }, 1000);
     }
 
@@ -120,11 +115,7 @@ function AnimalFormUpdate({
   }, [dispatch, error, message, navigate]);
 
   return (
-    <div
-      className={`form-container ${
-        isUpdateAnimalContainerVisible ? '' : 'display'
-      }`}
-    >
+    <div className={`form-container `}>
       <form className="animal-form" onSubmit={handleSubmit}>
         <h2 className="animal-form__title">
           Modifier les informations de votre animal
