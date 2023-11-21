@@ -19,15 +19,25 @@ function CalendarComp() {
       setOpen(false);
     }
   };
+
+  /* hide dropdown on ESC press */
+  const hideOnEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      setOpen(false);
+    }
+  };
   /* set carrent date on component Load */
   useEffect(() => {
-    setCalendar(format(new Date(), 'MM/dd/yyyy'));
+    setCalendar(format(new Date(), 'dd/MM/yyyy'));
     document.addEventListener('click', hideOnClickOutside, true);
+    document.removeEventListener('keydown', hideOnEscape, true);
   }, []);
 
   /* on date change, store date in store */
   const handleSelect = (date: number | Date) => {
-    setCalendar(format(date, 'MM/dd/yyyy'));
+    // Update the state with the selected date
+    setCalendar(format(date, 'dd/MM/yyyy'));
+    setOpen(false); // Close the calendar after selecting a date
   };
 
   return (

@@ -104,7 +104,7 @@ function ProfilForm({
         <TextareaInput
           name="description"
           label="Ma description"
-          placeholder="About me"
+          placeholder="A propos de moi"
         />
         <p className="label-form">Mon logement</p>
         <div className="radio-wrapper">

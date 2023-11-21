@@ -31,7 +31,7 @@
     "markdown": "html",
     "ejs": "html"
   },
-  "workbench.iconTheme": "a-file-icon-vscode",
+  "workbench.iconTheme": "material-icon-theme",
   "cSpell.words": [
     "airbnb"
   ]

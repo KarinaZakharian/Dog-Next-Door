@@ -90,6 +90,8 @@ function Profil() {
   const energy = animal?.energy || null;
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
+
+  console.log(type)
   const center: LatLngExpression = latLng(latitude, longitude);
 
   const myIcon = new L.Icon({
@@ -306,7 +308,7 @@ function Profil() {
             <div className="profil__animal">
               <div className="profil__animal-header">
                 <h2 className="profil__animal-name">Mon animal de compagnie</h2>
-                {animal && (
+                {name && (
                   <div className="profil__user-header-button">
                     <Link
                       className="link-animal"
@@ -323,7 +325,7 @@ function Profil() {
                 )}
               </div>
 
-              {animal ? (
+              {name ? (
                 <AnimalCard
                   type={type}
                   name={name}
