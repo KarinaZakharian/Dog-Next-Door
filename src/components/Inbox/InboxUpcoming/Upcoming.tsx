@@ -23,7 +23,7 @@ function Account() {
           <div className="content">
             <div className="content__header">
               <Link className="content__link" to="/inbox/awaiting">
-                Demandes en attente
+                Demande en attente
               </Link>
               <Link className="content__link" to="/inbox/upcoming">
                 Gardes à venir

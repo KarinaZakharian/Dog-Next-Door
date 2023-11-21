@@ -24,7 +24,7 @@ function Demandes() {
           <div className="content">
             <div className="content__header">
               <Link className="content__link" to="/inbox/awaiting">
-                Demandes en attente
+                Demande en attente
               </Link>
               <Link className="content__link" to="/inbox/upcoming">
                 Gardes à venir
@@ -33,7 +33,7 @@ function Demandes() {
                 Gardes passées
               </Link>
               <Link className="content__link" to="/inbox/demands">
-                Votre demands
+                Votre demande
               </Link>
             </div>
             <div>
