@@ -19,9 +19,13 @@ import geant from '../../../assets/icons8-dog-64.png';
 import { AnimalProps } from '../../../@types/user';
 import { nameSchema, raceSchema } from '../../../Validations/UserValidation';
 import './AnimalForm.scss';
+import Header from '../../PageComponents/Header/Header';
+import Footer from '../../PageComponents/Footer/Footer';
 
 function AnimalForm({}) {
-  const hideFormContainer = () => {};
+  const hideFormContainer = () => {
+    navigate('/account', { replace: true });
+  };
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -91,7 +95,7 @@ function AnimalForm({}) {
       setTimeout(() => {
         dispatch(success());
         hideFormContainer();
-        // navigate('/account', { replace: true });
+        navigate('/account', { replace: true });
       }, 1000);
     }
 
@@ -104,7 +108,9 @@ function AnimalForm({}) {
   }, [dispatch, error, message, navigate]);
 
   return (
-    <div className="form - container">
+    <div>
+      <Header />
+
       <form className="animal-form" onSubmit={handleSubmit}>
         <h2 className="animal-form__title">
           Ajouter votre animal de compagnie
@@ -274,6 +280,8 @@ function AnimalForm({}) {
           </button>
         </div>
       </form>
+
+      <Footer />
     </div>
   );
 }

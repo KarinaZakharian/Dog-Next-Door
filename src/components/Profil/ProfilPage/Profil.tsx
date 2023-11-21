@@ -53,12 +53,6 @@ function Profil() {
   const showUpdateContainer = () => {
     setIsUpdateContainerVisible(true);
   };
-  const showAnimalContainer = () => {
-    setIsAnimalContainerVisible(true);
-  };
-  const showUpdateAnimalContainer = () => {
-    setIsUpdateAnimalContainerVisible(true);
-  };
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -87,7 +81,7 @@ function Profil() {
   );
   const testimonies = useAppSelector((state) => state.profil.userTestimonials);
   const animal = useAppSelector((state) => state.profil.user.animal);
-
+  console.log(animal);
   // Access specific properties within the 'animal' object
   const type = animal?.type || null;
   const name = animal?.name || null;
@@ -310,7 +304,7 @@ function Profil() {
           <div className="profil__animal">
             <div className="profil__animal-header">
               <h2 className="profil__animal-name">Mon animal de compagnie</h2>
-              {type && (
+              {animal && (
                 <div className="profil__user-header-button">
                   <Link
                     className="link-animal"
@@ -327,7 +321,7 @@ function Profil() {
               )}
             </div>
 
-            {type ? (
+            {animal ? (
               <AnimalCard
                 type={type}
                 name={name}

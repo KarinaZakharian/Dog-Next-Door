@@ -37,7 +37,7 @@ const bookingFormReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fillBookingForm.rejected, (state, action) => {
       if (action.payload) {
-        state.error = action.payload.response.data.message;
+        state.error = action.payload;
       }
 
       state.message = null;

@@ -209,7 +209,9 @@ function Petsitter() {
                 Booking
               </button>
             ) : (
-              <p>Cet utilisateur n&apos;a pas de disponibilité</p>
+              <p className="label-sitter">
+                Cet utilisateur n&apos;a pas de disponibilité
+              </p>
             )}
             {!account && (
               <Link to="/subscribe">
