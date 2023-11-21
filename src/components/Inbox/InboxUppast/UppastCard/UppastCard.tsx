@@ -1,11 +1,14 @@
 import './UppastCard.scss';
 
+import Comment from '../../Demandes/Comment/Comment';
+import { useState } from 'react';
 interface PastCardProps {
   firstname: string;
   lastname: string;
   start_date: string;
   end_date: string;
   status: string;
+  id: string;
 }
 
 function PastCard({
@@ -14,8 +17,8 @@ function PastCard({
   start_date,
   end_date,
   status,
+  id,
 }: PastCardProps) {
-
   let statusClass = '';
   switch (status) {
     case 'En attente':
@@ -35,6 +38,11 @@ function PastCard({
       statusClass = 'unknown-text';
       break;
   }
+  const [isMessageOpen, setMessageOpen] = useState(false);
+
+  function handelMessage() {
+    setMessageOpen(true);
+  }
   return (
     <div className="animals-card">
       <div className="row">
@@ -48,6 +56,18 @@ function PastCard({
         <span className="animals-card__dates">
           {start_date} - {end_date}
         </span>
+      </div>
+      <div className="status-card_button">
+        <div className="row2">
+          <button className="card-button" onClick={handelMessage}>
+            Ajouter une commentaire
+          </button>
+        </div>
+        <Comment
+          clientId={id}
+          isMessageOpen={isMessageOpen}
+          setMessageOpen={setMessageOpen}
+        />
       </div>
     </div>
   );
