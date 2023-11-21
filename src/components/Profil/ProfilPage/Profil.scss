@@ -233,3 +233,22 @@
   font-size: 20px;
   font-weight: 500;
 }
+.booking-button{
+  background-color: v.$color-flash;
+  border-radius: 10px;
+  border: 1px solid v.$color-border;
+  @include v.label;
+  @include v.transition;
+  margin: 0 auto;
+
+
+  &:hover{
+   background-color: v.$color-main;
+   border: 1px solid v.$color-flash;
+
+  }
+}
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+}

@@ -36,10 +36,10 @@ export const success = createAction('form/success ');
 const bookingFormReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fillBookingForm.rejected, (state, action) => {
+      console.log(action.payload)
       if (action.payload) {
-        state.error = action.payload;
+        state.error = action.payload.response.data.message;
       }
-
       state.message = null;
     })
     .addCase(fillBookingForm.fulfilled, (state, action) => {

@@ -201,13 +201,18 @@ function Petsitter() {
               </div>
             )}
             {account && disponibilitySitter?.end_date ? (
-              <button
+           
+
+           
+                <button
                 type="button"
-                className="card-button"
+                className="booking-button"
                 onClick={showBookingContainer}
               >
-                Booking
+                Réserver un créneau
               </button>
+              
+              
             ) : (
               <p className="label-sitter">
                 Cet utilisateur n&apos;a pas de disponibilité
@@ -215,7 +220,7 @@ function Petsitter() {
             )}
             {!account && (
               <Link to="/subscribe">
-                <Button prop="Booking" />
+                <Button prop="Réserver un créneau" />
               </Link>
             )}
             {disponibilitySitter?.end_date && (
