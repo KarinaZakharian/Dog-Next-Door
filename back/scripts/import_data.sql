@@ -31,16 +31,16 @@ VALUES
 
 INSERT INTO "testimonial" ("body","rating","user_id","sender_id")
 VALUES 
-('1er commentaire','5', 24, 23),
-('2eme commentaire','5', 24, 23),
-('3eme commentaire','5', 24, 23),
-('4eme commentaire','5', 24, 23),
-('5eme commentaire','5', 24, 23),
-('6eme commentaire','5', 23, 24),
-('7eme commentaire','5', 23, 24),
-('8eme commentaire','5', 23, 24),
-('9eme commentaire','5', 23, 24),
-('10eme commentaire','5', 23, 24);
+('Super pet sitter ! je recommande ','5', 24, 23),
+('Pet sitter très agréable !','5', 24, 23),
+('Encore un pet sitter hors du commun','5', 24, 23),
+('Génial je recommande ','5', 24, 23),
+('Nice ! Great job','5', 24, 23),
+('A refaire ! je recommande','5', 23, 24),
+('Pet sitter très sérieux','5', 23, 24),
+('A bientôt pour une autre fois','5', 23, 24),
+('Génialissime','5', 23, 24),
+('Je recommande à 100%','5', 23, 24);
 -- INSERT INTO "disponibility" ("start_date","end_date")
 -- VALUES
 -- ('20/10/2023', '28/10/2023'),

@@ -58,10 +58,13 @@ const userController = {
 
   findUserById: async (req, res) => {
     try {
+      // petsitter
       const userId = parseInt(req.params.id);
 
       const user = await userDatamapper.getOneUserById(userId);
+      console.log(user);
       const userTestimonials = await inboxDatamapper.getAllTestimonies(userId);
+      console.log(userTestimonials);
       if (user && userTestimonials) {
         res.status(200).json({
           user: user,

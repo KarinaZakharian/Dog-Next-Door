@@ -213,9 +213,12 @@ const inboxDatamapper = {
 
   getAllTestimonies: async (user_id) => {
     const query = `
-        SELECT * 
-        FROM "testimonial" 
-        WHERE user_id = $1
+    WITH sender_testimonial AS (
+        SELECT * FROM "user" WHERE "id" = $2
+    )
+    SELECT t.body, t.user_id,t.sender_id, st.firstname, st.lastname
+    FROM "testimonial" t , "sender_testimonial" st
+    WHERE t.user_id = $1
         `;
     const value = [user_id];
     const result = await client.query(query, value);

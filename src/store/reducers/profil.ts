@@ -41,10 +41,7 @@ interface Testimonial {
   sender_id: number | null;
   // Add more properties as needed
 }
-interface Testimonial {
-  comment: string | null;
-  id: number | null;
-}
+
 
 interface Animal {
   name: string | null;

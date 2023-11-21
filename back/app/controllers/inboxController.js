@@ -175,7 +175,7 @@ const inboxController = {
     console.log(userTestimony);
     userTestimony.userId = req.userId;
     const testimonyAdded = await inboxDatamapper.addTestimony(userTestimony);
-
+    console.log(testimonyAdded);
     res
       .status(200)
       .json({ testimonyAdded, message: 'Votre commentaire a été publié' });
