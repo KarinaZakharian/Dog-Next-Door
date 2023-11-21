@@ -19,7 +19,7 @@ const userController = {
     const userFound = await userController.findUserByEmail(req, res);
 
     if (!userFound) {
-      res.status(401).json('Couple identifiant mot de passe incorrect');
+      res.status(401).json("Vous n'avez pas accès");
       return;
     }
 

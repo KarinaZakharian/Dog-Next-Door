@@ -172,6 +172,7 @@ const inboxController = {
 
   appendTestimony: async (req, res) => {
     const userTestimony = req.body;
+    console.log(userTestimony);
     userTestimony.userId = req.userId;
     const testimonyAdded = await inboxDatamapper.addTestimony(userTestimony);
 

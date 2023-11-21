@@ -57,18 +57,6 @@ function PastCard({
           {start_date} - {end_date}
         </span>
       </div>
-      <div className="status-card_button">
-        <div className="row2">
-          <button className="card-button" onClick={handelMessage}>
-            Ajouter une commentaire
-          </button>
-        </div>
-        <Comment
-          clientId={id}
-          isMessageOpen={isMessageOpen}
-          setMessageOpen={setMessageOpen}
-        />
-      </div>
     </div>
   );
 }

@@ -46,6 +46,7 @@ function Demandes() {
                     start_date={user.booking.start_date}
                     end_date={user.booking.end_date}
                     status={user.booking.booking_status}
+                    id={user.booking.user_id}
                   />
                 ))
               ) : (

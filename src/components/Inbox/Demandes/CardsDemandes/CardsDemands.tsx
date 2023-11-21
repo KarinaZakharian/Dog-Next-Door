@@ -39,6 +39,7 @@ function DemandesCard({
       break;
   }
   const [isMessageOpen, setMessageOpen] = useState(false);
+  console.log("id from cardsDemand",id)
 
   function handelMessage() {
     setMessageOpen(true);

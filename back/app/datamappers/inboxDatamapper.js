@@ -200,7 +200,7 @@ const inboxDatamapper = {
   addTestimony: async (userTestimony) => {
     const testimonyMessage = userTestimony.comment;
     const petsitterId = parseInt(userTestimony.client_id);
-    const senderUser = userTestimony.userId;
+    const senderUser = parseInt(userTestimony.userId);
     const query = `
       INSERT INTO "testimonial" ("body", "user_id", "sender_id")
       VALUES ($1, $2, $3)

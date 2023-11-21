@@ -54,9 +54,7 @@ export const sendMessage = createAsyncThunk<
     const response = await axiosInstance.post('inbox/demands', objData);
     return response.data;
   } catch (error) {
-    if (typeof error === 'string') {
-      return thunkAPI.rejectWithValue(error);
-    }
+   
     return thunkAPI.rejectWithValue(error);
   }
 });
@@ -68,6 +66,7 @@ const demandsReducer = createReducer(initialState, (builder) => {
       state.user = [];
     })
     .addCase(fetchStatus.fulfilled, (state, action) => {
+      console.log(action.payload)
       state.error = undefined;
       state.user = action.payload;
     })

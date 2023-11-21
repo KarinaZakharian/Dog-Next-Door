@@ -19,6 +19,7 @@ import {
 } from '../../../../store/reducers/demandes-inbox';
 
 function Comment({ isMessageOpen, setMessageOpen, clientId }: MessageProps) {
+  console.log("clientId", clientId)
   const navigate = useNavigate();
   // Initialize navigation and dispatch
   const messageError = useAppSelector(
