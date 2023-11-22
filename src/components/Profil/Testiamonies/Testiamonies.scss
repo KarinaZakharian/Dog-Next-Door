@@ -3,7 +3,8 @@
 
 .testimony-card {
   @include v.card-styling;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 2rem 0;
   width: 100%;
   height: 100%;
@@ -11,5 +12,9 @@
   &__label {
     color: v.$color-text;
     margin: 0;
+  }
+
+  &__name {
+    color: v.$color-hower;
   }
 }

@@ -212,7 +212,11 @@ function Petsitter() {
                     Avis sur mon service
                   </h2>
                   {testimonials.map((testimony) => (
-                    <TestimonyCard testimony={testimony.body} />
+                    <TestimonyCard
+                      testimony={testimony.body}
+                      firstname={testimony.firstname_sender}
+                      lastname={testimony.lastname_sender}
+                    />
                   ))}
                 </div>
               )}

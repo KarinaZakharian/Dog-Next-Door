@@ -35,6 +35,8 @@ interface Testimonial {
   id: number | null;
   body: string | null;
   sender_id: number | null;
+  firstname_sender: string | null;
+  lastname_sender: string | null;
   // Add more properties as needed
 }
 interface Animal {
@@ -106,7 +108,7 @@ export const fetchUserSuccess = createAction('user/fetchSuccess');
 const sitterReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchUserById.rejected, (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       if (action.payload) {
         // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
         state.error = action.payload;
@@ -120,7 +122,7 @@ const sitterReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchUserById.fulfilled, (state, action) => {
       console.log(action.payload.userTestimonials);
-      state.isLoading = false,
+      (state.isLoading = false),
         (state.userTestimonials = [...action.payload.userTestimonials]);
       state.error = undefined;
       state.message = 'User fetched successfully'; // You can customize this message

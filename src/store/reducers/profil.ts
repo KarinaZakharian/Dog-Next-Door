@@ -39,9 +39,10 @@ interface Testimonial {
   id: number | null;
   body: string | null;
   sender_id: number | null;
+  firstname_sender: string | null;
+  lastname_sender: string | null;
   // Add more properties as needed
 }
-
 
 interface Animal {
   name: string | null;

@@ -91,7 +91,7 @@ function Profil() {
   const food = animal?.mealhours || null;
   const race = animal?.race || null;
 
-  console.log(type)
+  console.log(type);
   const center: LatLngExpression = latLng(latitude, longitude);
 
   const myIcon = new L.Icon({
@@ -348,7 +348,11 @@ function Profil() {
                   Avis sur mon service
                 </h2>
                 {testimonies.map((testimony) => (
-                  <TestimonyCard testimony={testimony.body} />
+                  <TestimonyCard
+                    testimony={testimony.body}
+                    firstname={testimony.firstname_sender}
+                    lastname={testimony.lastname_sender}
+                  />
                 ))}
               </div>
             )}
