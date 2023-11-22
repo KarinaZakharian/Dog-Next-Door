@@ -217,13 +217,15 @@ function Petsitter() {
                 </div>
               )}
               {account && disponibilitySitter?.end_date ? (
-                <button
-                  type="button"
-                  className="booking-button"
-                  onClick={showBookingContainer}
-                >
-                  Réserver un créneau
-                </button>
+                <div className="button-container">
+                  <button
+                    type="button"
+                    className="booking-button"
+                    onClick={showBookingContainer}
+                  >
+                    Réserver un créneau
+                  </button>
+                </div>
               ) : (
                 <p className="label-sitter">
                   Cet utilisateur n&apos;a pas de disponibilité
