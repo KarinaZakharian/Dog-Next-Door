@@ -38,6 +38,10 @@
   }
 }
 
+.content__link.active {
+  color: v.$color-hower;
+  border-bottom: 2px solid v.$color-hower;
+}
 .container {
   margin: 3rem auto;
   max-width: 1300px;

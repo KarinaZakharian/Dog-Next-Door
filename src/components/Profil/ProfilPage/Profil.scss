@@ -5,6 +5,7 @@
 
 .profil__wrapper {
   @include v.backgroundImg;
+  min-height: 100vh;
 }
 
 .profil__container {
@@ -233,7 +234,7 @@
   font-size: 20px;
   font-weight: 500;
 }
-.booking-button{
+.booking-button {
   background-color: v.$color-flash;
   border-radius: 10px;
   border: 1px solid v.$color-border;
@@ -241,14 +242,12 @@
   @include v.transition;
   margin: 0 auto;
 
-
-  &:hover{
-   background-color: v.$color-main;
-   border: 1px solid v.$color-flash;
-
+  &:hover {
+    background-color: v.$color-main;
+    border: 1px solid v.$color-flash;
   }
 }
-.button-wrapper{
+.button-wrapper {
   display: flex;
   justify-content: center;
 }

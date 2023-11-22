@@ -7,6 +7,7 @@ import Header from '../../PageComponents/Header/Header';
 import '../InboxAccount/Account.scss';
 import DemandesCard from './CardsDemandes/CardsDemands';
 import { fetchStatus } from '../../../store/reducers/demandes-inbox';
+import LinkAccount from '../Link/Link';
 
 function Demandes() {
   const dispatch = useAppDispatch();
@@ -22,20 +23,7 @@ function Demandes() {
       <main className="main-account">
         <div className="container">
           <div className="content">
-            <div className="content__header">
-              <Link className="content__link" to="/inbox/awaiting">
-                Demande en attente
-              </Link>
-              <Link className="content__link" to="/inbox/upcoming">
-                Gardes à venir
-              </Link>
-              <Link className="content__link" to="/inbox/uppast">
-                Gardes passées
-              </Link>
-              <Link className="content__link" to="/inbox/demands">
-                Votre demande
-              </Link>
-            </div>
+            <LinkAccount />
             <div>
               {users.length > 0 ? (
                 users.map((user, index) => (

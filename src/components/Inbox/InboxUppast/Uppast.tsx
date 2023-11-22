@@ -8,6 +8,7 @@ import PastCard from './UppastCard/UppastCard';
 import '../InboxAccount/Account.scss';
 import { fetchMessageUser } from '../../../store/reducers/massage-inbox';
 import Main from '../../PageComponents/Main/Main';
+import LinkAccount from '../Link/Link';
 
 function Uppast() {
   const dispatch = useAppDispatch();
@@ -23,20 +24,7 @@ function Uppast() {
         <main className="main-account">
           <div className="container">
             <div className="content">
-              <div className="content__header">
-                <Link className="content__link" to="/inbox/awaiting">
-                  Demande en attente
-                </Link>
-                <Link className="content__link" to="/inbox/upcoming">
-                  Gardes à venir
-                </Link>
-                <Link className="content__link" to="/inbox/uppast">
-                  Gardes passées
-                </Link>
-                <Link className="content__link" to="/inbox/demands">
-                  Votre demande
-                </Link>
-              </div>
+              <LinkAccount />
               <div>
                 {users.length > 0 ? (
                   users.map((user) => (

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import Footer from '../../PageComponents/Footer/Footer';
 import Header from '../../PageComponents/Header/Header';
+import LinkAccount from '../Link/Link';
 import AnimalCard from '../CardsInbox/Cards';
 
 import './Account.scss';
 import { fetchInboxAnimal } from '../../../store/reducers/account-inbox';
-import Main from '../../PageComponents/Main/Main';
 
 function Account() {
   const dispatch = useAppDispatch();
@@ -24,20 +24,7 @@ function Account() {
       <main className="main-account">
         <div className="container">
           <div className="content">
-            <div className="content__header">
-              <Link className="content__link" to="/inbox/awaiting">
-                Demande en attente
-              </Link>
-              <Link className="content__link" to="/inbox/upcoming">
-                Gardes à venir
-              </Link>
-              <Link className="content__link" to="/inbox/uppast">
-                Gardes passées
-              </Link>
-              <Link className="content__link" to="/inbox/demands">
-                Votre demande
-              </Link>
-            </div>
+            <LinkAccount />
             <div>
               {users.length > 0 ? (
                 users.map((user) => (
