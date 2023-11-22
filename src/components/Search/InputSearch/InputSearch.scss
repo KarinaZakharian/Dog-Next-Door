@@ -28,6 +28,8 @@
   &__form {
     padding: 10px;
     background-color: v.$color-main;
+    display: flex;
+    flex-direction: column;
 
     @media screen and (max-width: 390px) {
       padding: 0;

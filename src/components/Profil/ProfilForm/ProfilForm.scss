@@ -34,6 +34,10 @@ p {
 .profil-form {
   @include v.form-styling;
   width: 60%;
+
+  @media screen and (max-width: 414px) {
+    width: 100%;
+  }
 }
 
 .label-form {

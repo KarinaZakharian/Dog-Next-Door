@@ -48,7 +48,7 @@ function Humburger() {
       </div>
       <nav className={`nav ${isMenuOpen ? 'change-nav' : ''}`}>
         {/* Additional navigation links */}
-        {isMenuOpen && firstname && (
+        {isMenuOpen && firstname ? (
           <>
             <button
               className="menu-button"
@@ -67,19 +67,22 @@ function Humburger() {
               Recherche
             </NavLink>
           </>
+        ) : (
+          <>
+            <NavLink className="menu-item" to="/">
+              Accueil
+            </NavLink>
+            <NavLink className="menu-item" to="/search">
+              Recherche
+            </NavLink>
+            <NavLink className="menu-item" to="/login">
+              Connexion
+            </NavLink>
+            <NavLink className="menu-item" to="/subscribe">
+              S&apos;inscrire
+            </NavLink>
+          </>
         )}
-        <NavLink className="menu-item" to="/">
-          Accueil
-        </NavLink>
-        <NavLink className="menu-item" to="/search">
-          Recherche
-        </NavLink>
-        <NavLink className="menu-item" to="/login">
-          Connexion
-        </NavLink>
-        <NavLink className="menu-item" to="/subscribe">
-          S&apos;inscrire
-        </NavLink>
       </nav>
       <div
         id="menu-bg"
