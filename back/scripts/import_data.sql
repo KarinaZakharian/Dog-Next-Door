@@ -15,7 +15,6 @@ VALUES
 ('Olivia', 'Anderson', 'oliviaanderson@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1993-10-18', 'avatar10.jpg', '10', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', ' 44.783241', '-0.573299'),
 ('William', 'Clark', 'williamclark@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1986-04-12', 'avatar11.jpg', '11', 'Rue de Marseille', '13003', 'Marseille', 'France', '43.2965', '5.3698'),
 ('Ava', 'Wright', 'avawright@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1997-01-09', 'avatar12.jpg', '12', 'Rue de Lyon', '69003', 'Lyon', 'France', '45.44', '4.39'),
-('Daniel', 'Walker', 'danielwalker@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1990-08-26', 'avatar13.jpg', '13', 'Rue de Paris', '75004', 'Paris', 'France', '48.8599', '2.3594'),
 ('Sophia', 'Hall', 'sophiahall@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1992-12-01', 'avatar14.jpg', '14', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.785156', '-0.616437'),
 ('Joseph', 'Allen', 'josephallen@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-02-28', 'avatar15.jpg', '15', 'Rue de Marseille', '13004', 'Marseille', 'France', '43.2965', '5.3698'),
 ('Mia', 'Young', 'miayoung@example.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1998-05-07', 'avatar16.jpg', '16', 'Rue de Lyon', '69004', 'Lyon', 'France', '45.7640', '4.8357'),
@@ -26,21 +25,42 @@ VALUES
 ('Matthew', 'Baker', 'mat@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1989-05-21', 'avatar21.jpg', '21', 'Rue de Paris', '75006', 'Paris', 'France', '48.8495', '2.3515'),
 ('Amelia', 'Adams', 'amelia@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1993-11-27', 'avatar22.jpg', '22', 'Rue de Bordeaux', '33000', 'Bordeaux', 'France', '44.810071', '-0.631119'),
 ('Chris', 'MOBY', 'moby@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1980-11-27', 'avatar5.jpg', '22', 'Paris 75007', '75007', 'Paris', 'France', '48.859', '2.347'),
-('Amaury', 'JEUNOT', 'amaury@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-11-27', 'avatar8.jpg', '22', 'Paris 75019', '75019', 'Paris', 'France', '48.866667', '2.333333');
+('Amaury', 'JEUNOT', 'amaury@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1985-11-27', 'avatar8.jpg', '22', 'Paris 75019', '75019', 'Paris', 'France', '48.866667', '2.333333'),
+('Ben', 'AFFLECK', 'ben@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1990-11-24', 'avatar-ben.jpg', '13', 'Rue de Paris', '75004', 'Paris', 'France', '48.8599', '2.3594'),
+('Nicole', 'KIDMAN', 'kidman@gmail.com', '$2a$10$7.Z02N7ES38qSnhnHVrJ5udz76LTQQEFI5OsOPfZ7J4GSPqNOjzgq', '1990-11-24', 'avatar-kidman.jpg', '9', 'Rue de Paris', '75003', 'Paris', 'France', '48.8867', '2.3431');
 
 
 INSERT INTO "testimonial" ("body","rating","user_id","sender_id")
 VALUES 
-('Super pet sitter ! je recommande ','5', 24, 23),
-('Pet sitter très agréable !','5', 24, 23),
-('Encore un pet sitter hors du commun','5', 24, 23),
-('Génial je recommande ','5', 24, 23),
-('Nice ! Great job','5', 24, 23),
-('A refaire ! je recommande','5', 23, 24),
-('Pet sitter très sérieux','5', 23, 24),
-('A bientôt pour une autre fois','5', 23, 24),
-('Génialissime','5', 23, 24),
-('Je recommande à 100%','5', 23, 24);
+('Super pet sitter ! je recommande ','5', 22, 23),
+('Pet sitter très agréable !','5', 23, 22),
+('Encore un pet sitter hors du commun','5', 23, 22),
+('Génial je recommande ','5', 23, 22),
+('Nice ! Great job','5', 23, 22),
+('A refaire ! je recommande','5', 23, 22),
+('Pet sitter très sérieux','5', 22, 23),
+('A bientôt pour une autre fois','5', 22, 23),
+('Nice ! Great job','5', 22, 23),
+('A refaire ! je recommande','5', 24, 25),
+('Pet sitter très sérieux','5', 25, 24),
+('A bientôt pour une autre fois','5', 25, 24),
+('Génialissime','5', 22, 23),
+('Je recommande à 100%','5', 22, 23),
+('Je recommande à 100%','5', 24, 25);
+
+INSERT INTO "booking" ("start_date","end_date", "message", "booking_status","user_id","sender_id")
+VALUES
+('2023-11-10','2023-11-13', 'Réservation accepté','Passé',24,25),
+('2023-11-10','2023-11-13', 'Réservation accepté','Passé',25,24);
+
+
+INSERT INTO "animal" ("type","animal_name", "size", "birth_date","race","energy", "mealhours","walk","user_id")
+VALUES
+('Dog','Crockdur', 'Grand','22/11/2020','Bulldog','Modéré','Deux fois par jour','Entre 2 et 4 heures',24),
+('Cat','Nougat', 'Petit','05/10/2022','Siamois','Modéré','Deux fois par jour','Entre 2 et 4 heures',25);
+
+
+
 -- INSERT INTO "disponibility" ("start_date","end_date")
 -- VALUES
 -- ('20/10/2023', '28/10/2023'),

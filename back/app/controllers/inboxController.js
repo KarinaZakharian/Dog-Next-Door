@@ -143,6 +143,7 @@ const inboxController = {
     const id = req.userId;
     try {
       const searchSender = await inboxDatamapper.getUserBooking(id);
+
       if (!searchSender) {
         res.status(200).json([]);
         return;
@@ -152,6 +153,8 @@ const inboxController = {
         id,
         searchSender.sender_id
       );
+      console.log(userMessage);
+
       const userMessageList = userMessage.map((message) => {
         message.booking.start_date = message.booking.start_date
           .split('-')
@@ -163,7 +166,6 @@ const inboxController = {
           .join('/');
         return message;
       });
-
       res.status(200).json(userMessageList);
     } catch (error) {
       res.status(500).json(error.toString());
